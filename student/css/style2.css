@@ -1,0 +1,37 @@
+body{
+    color:black;
+}
+
+
+.bg{
+    background:url("img/BG_REGFORM.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+	height: 100%;
+	overflow: visible;
+	position: fixed;
+	background-position: center;
+	display: table;
+	width: 100%;
+}
+
+
+.container{
+    padding: 30px 0px;
+    width:850px;
+   
+}
+
+.card{
+    
+    background: rgba(255,255,255,0.8);
+    border: 1px solid #824d1b;
+    border-radius: 0;
+    
+    
+   
+}
+
+.message{
+    color:rgba(255,255,255,0);
+}
