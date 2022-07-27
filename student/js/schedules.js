@@ -10,11 +10,12 @@ function recordLoader() {
 	})
 }
 
-function cleaner() {
+function cleaners() {
 	$('#txtId').val('')
 	$('#subj').val('')	
 	$('#day').val('')	
 	$('#time').val('')	
+	$('#prof').val('')	
 }
 
 function loadRecord(schedId) {
@@ -44,6 +45,7 @@ function loadRecord(schedId) {
 			$('#subj').val(rowEdit['sched_subj'])
 			$('#day').val(rowEdit['sched_day'])
 			$('#time').val(rowEdit['sched_time'])
+			$('#prof').val(rowEdit['sched_prof'])
 		})
 	})
 }
@@ -87,7 +89,7 @@ $(document).ready(function () {
 	recordLoader()
 
 	$('#btnSched').click(function () {
-		cleaner()
+		cleaners()
 		$('#myModal').modal('show')
 	})
 
@@ -101,9 +103,10 @@ $(document).ready(function () {
 		let subj = $('#subj').val() 
 		let day = $('#day').val() 
 		let time = $('#time').val() 
-		let data = subj + '^' + day + '^' + time + '^' + id
+		let prof = $('#prof').val() 
+		let data = subj + '^' + day + '^' + time + '^' + prof + '^' + id
 
-		if (subj === '' || day === '' || time === '') {
+		if (subj === '' || day === '' || time === '' || prof === '') {
 			Swal.fire({
 				icon: 'error',
 				title: 'Oops..',

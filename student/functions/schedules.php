@@ -15,8 +15,9 @@ if (isset($_POST['param'])) {
 		$strOut.= '<tr>';
 		$strOut.= '<td class="text-gray-900">'.$row['sched_subj'].'</td>';
 		$strOut.= '<td class="text-gray-900">'.$row['sched_day'].'</td>';
-		$strOut.= '<td class="text-gray-900">'.$row['sched_time'].'</td>';
-		$strOut.= '<td>
+		$strOut.= '<td class="text-gray-900" width=25%>'.$row['sched_time'].'</td>';
+		$strOut.= '<td class="text-gray-900">'.$row['sched_prof'].'</td>';
+		$strOut.= '<td width=18%>
 						<button class="btn btn-warning" onClick="loadRecord('.$row['schedId'].')" title="Edit"><i class="fas fa-edit"></i></button>
 						<button class="btn btn-danger" onClick="deleteRecord('.$row['schedId'].')" title="Delete"><i class="fas fa-trash"></i></button>
 					</td>';
@@ -29,14 +30,15 @@ if (isset($_POST['upsert'])) {
 	$subj = htmlspecialchars(trim($_POST['subj']));
 	$days = htmlspecialchars(trim($_POST['days']));
 	$time = htmlspecialchars(trim($_POST['time']));
+	$prof = htmlspecialchars(trim($_POST['prof']));
 	$studnum = $snum;
 	$data = explode('^', $_POST['Data']);
 	
-	if ($data[3] == '') {
-		$sql = "INSERT INTO schedules (sched_snum, sched_subj, sched_day, sched_time) VALUES (?,?,?,?)";
-		$data = array($studnum, $data[0], $data[1], $data[2]);
+	if ($data[4] == '') {
+		$sql = "INSERT INTO schedules (sched_snum, sched_subj, sched_day, sched_time, sched_prof) VALUES (?,?,?,?,?)";
+		$data = array($studnum, $data[0], $data[1], $data[2], $data[3]);
 	} else {
-		$sql = "UPDATE schedules SET sched_subj=?, sched_day=?, sched_time=? WHERE schedId=?";	
+		$sql = "UPDATE schedules SET sched_subj=?, sched_day=?, sched_time=?, sched_prof=? WHERE schedId=?";	
 	}
 	$stmt = $con->prepare($sql);
 	$stmt->execute($data);
