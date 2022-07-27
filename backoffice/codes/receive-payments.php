@@ -48,7 +48,7 @@ if (isset($_POST['email_data'])) {
                 $mail->SMTPDebug = 3;
                 $mail->isSMTP();
 
-                require_once '../includes/smtp_config.php';
+                include '../includes/smtp_config.php';
 
                 $mail->setFrom("CSTA_Accounting@sampleemail.com"); // insert department email here
                 $mail->FromName = "CSTA Accounting"; // employee name + Department 

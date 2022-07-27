@@ -56,7 +56,11 @@ $(document).ready(function () {
                         swal("Success!", "Payment Acknowledged!", "success").
                         
                         then(function(){ 
-                            location.reload();
+                            setTimeout(function(){ 
+                                location.reload();
+                              }, 2000);
+
+                          
                            }
                         );
                        
