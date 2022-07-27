@@ -64,10 +64,10 @@ if(isset($_POST['approve_btn_set'])){
     $mail->isSMTP();
 
     //SMTP user credentials
-    $mail->Host="smtp-relay.sendinblue.com";
+    $mail->Host="smtp.mailtrap.io";
     $mail->SMTPAuth=true; 
-    $mail->Username="jasonwafuu@gmail.com";
-    $mail->Password="whxz2btTErLDGyjI";
+    $mail->Username="628e47e553af20";
+    $mail->Password="86316279e24051";
     $mail->SMTPSecure="tls";
     $mail->Port="587";
 

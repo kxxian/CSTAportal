@@ -82,7 +82,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                        <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" class="btn btn-success btnReceive float-right">Receive</button>
+                        <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" name="bulkReceive" id="bulkReceive" class="btn btn-success bulkReceive float-right" data-action="bulk">Receive</button>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -120,8 +120,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         $data = array('Pending');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
+                                        $result=$stmt->fetchAll();
 
-                                        while ($row = $stmt->fetch()) {
+                                        foreach ($result as $row) {
 
                                             $payment = "../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
                                             $reqform = "../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
@@ -146,7 +147,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                             $reqform = "";
                                             echo '<tr> 
-                                                        <td><input type="checkbox" value="' . $row['pv_ID'] . '"></td>
+                                                        <td>
+                                                            <input type="checkbox" name="single_select" 
+                                                            class="form-control-sm single_select" data-id="' . $row['pv_ID'] . '"
+                                                            data-email="'.$row['email'].'" data-name="'.$row['fullname'].'"
+
+
+                                                            >
+                                                        </td>
+
+
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['fullname'] . '</td>
@@ -260,53 +270,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </div>
 
 
-    <!-- View Payment Details Modal -->
-    <div class="modal fade" id="viewfulldetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg  " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-credit-card"></i><strong> Payment Details</strong> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
 
-
-                        <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Tuition Fee:</label>
-                                    <input type="text" class="form-control" id="tfeepay" name="tfeepay" rows="4" readonly>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Amount:</label>
-                                    <input type="text" class="form-control" id="tfeeamt" name="tfeeamt" rows="4" readonly>
-                                </div>
-
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Others:</label>
-                                    <textarea class="form-control" id="payfor" name="payfor" rows="4" readonly></textarea>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Amount:</label>
-                                    <input type="text" class="form-control" id="othersamt" name="othersamt" rows="4" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info" id="done" name="done"> Done</button>
-
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script src="js/pending-payments.js"></script>
     <script src="js/sweetalert.min.js"></script>

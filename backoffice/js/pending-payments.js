@@ -6,8 +6,10 @@ $(document).ready(function () {
     })
 
         //receive multiple
-    $('.btnReceive').on("click",function(){
+    $('.bulkReceive').on("click",function(){
         var id=[];
+        var email_data = [];
+      
         $(":checkbox:checked").each(function(key){
             id[key] = $(this).val();
         });
@@ -15,7 +17,16 @@ $(document).ready(function () {
         if (id.length===0){
            norecord();
         }else{
-          
+            $('.single_select').each(function(){
+                if($(this).prop('checked')==true){
+                    
+                    email_data.push({
+                        id:$(this).data('id'),
+                        email: $(this).data("email"),
+                        name:$(this).data('name')
+                    });
+                }console.log(email_data);
+            });          
             swal({
                 title: "Are you sure?",
                 text: "This action can not be undone!",
@@ -26,28 +37,35 @@ $(document).ready(function () {
                 .then((willReceive) => {
                     if (willReceive) {
                         $.ajax({
-                            type: "POST",
+                            method: "POST",
                             url: "codes/receive-payments.php",
                             data:
                             {
-                               
-                                pv_ID: id
-                            } 
+                               email_data:email_data
+                            //    pv_ID:id
+                              
+                            }, beforeSend:function(){
+                                $('.bulkReceive').html('Please Wait...');
+                                $('.bulkReceive').addClass('btn-danger');
+                            },
+                            success:function(){
+                              
+                            }
                         })
                         
                         swal("Success!", "Payment Acknowledged!", "success").
                         
                         then(function(){ 
-                           location.reload();
+                            location.reload();
                            }
                         );
                        
                     }
                 });
         }
+
     });
 });
-
 
 //Load Data From Database
 function dataLoader() {
