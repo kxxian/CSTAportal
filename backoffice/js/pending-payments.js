@@ -32,7 +32,7 @@ $(document).ready(function () {
                 text: "This action can not be undone!",
                 icon: "info",
                 buttons: true,
-                dangerMode: true,
+                dangerMode: false,
             })
                 .then((willReceive) => {
                     if (willReceive) {
@@ -49,20 +49,20 @@ $(document).ready(function () {
                                 $('.bulkReceive').addClass('btn-danger');
                             },
                             success:function(){
+
+                                swal("Success!", "Payment Acknowledged!", "success").then(function(){ 
+                                    setTimeout(function(){ 
+                                        location.reload();
+                                      }, 500);
+        
+                                  
+                                   }
+                                );
                               
                             }
                         })
                         
-                        swal("Success!", "Payment Acknowledged!", "success").
-                        
-                        then(function(){ 
-                            setTimeout(function(){ 
-                                location.reload();
-                              }, 2000);
-
-                          
-                           }
-                        );
+                 
                        
                     }
                 });
