@@ -74,9 +74,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 									<form id="login-form" action="validate_login.php" method="post" role="form" style="display: block;">
 										<div class="form-group">
 											<label class="icon-lp"><i class="fas fa-user-tie"></i></label>
-											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="" autofocus>
-										</div>
-										<div class="form-group">
+											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required="" autofocus> 
+										</div><br>
+										<div class="form-group" >
+											<div class="row">
+												
+											</div>
 											<label class="icon-lp"><i class="fas fa-key"></i></label>
 											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required="">
 										</div><br>
@@ -85,12 +88,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 										<div class="form-group">
 											<div class="row">
 												
-												<div class="col-sm-12">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-													<p style="color:red; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg?></p>
-													<p style="color:green; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg2?></p>
 												
-												</div>
+											<div class="col-sm-6 offset-sm-3">
+												
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+												<p style="color:red; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg?></p>
+											</div>
 											</div>
 										</div>
 										<div class="form-group">

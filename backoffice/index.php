@@ -31,6 +31,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!-- Custom styles for this table -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
@@ -222,7 +225,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                     </div>
                     <div class="row">
-                    
+
 
                         <!-- Pending Enrollment For Current School Year and Semester  -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -257,8 +260,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             </div>
                         </div>
 
-                            <!-- Pending Student Request Card  -->
-                            <div class="col-xl-3 col-md-6 mb-4">
+                        <!-- Pending Student Request Card  -->
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -306,7 +309,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <?php
                                                 try {
                                                     $sql = "SELECT * FROM vwgradereq where status=?";
-                                                    $data=array('Pending');
+                                                    $data = array('Pending');
                                                     $stmt = $con->prepare($sql);
                                                     $stmt->execute($data);
                                                     $row = $stmt->rowCount();
@@ -332,7 +335,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            <a class="text-success" href="verified-payments.php"> Verified Payments</a></div>
+                                                <a class="text-success" href="verified-payments.php"> Verified Payments</a>
+                                            </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <?php
 
@@ -417,6 +421,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         </div>
     </div>
 
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
+  
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -432,10 +443,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <!-- DataTable CDN JS -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
+
 
 
 

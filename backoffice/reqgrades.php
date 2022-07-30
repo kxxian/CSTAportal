@@ -91,7 +91,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Year Level</th>
                                             <th>Course</th>
 
-                                            
+
                                             <th hidden>Email</th>
                                             <th width="5">Send</th>
                                         </tr>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         $stmt->execute($data);
 
                                         while ($row = $stmt->fetch()) {
-                                            $file = "../student/uploads/users/" . $row['sid']. ".jpg";
+                                            $file = "../student/uploads/users/" . $row['sid'] . ".jpg";
                                             if (file_exists($file)) {
                                                 $dp = $row['sid']  . '.jpg';
                                             } else {
@@ -177,7 +177,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="sendgrades.php" method="POST" enctype="multipart/form-data" >
+                <form action="sendgrades.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
 
 
@@ -213,9 +213,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                         <div class="modal-footer">
 
-                            
 
-                            <button type="submit" class="btn btn-success" id="send" name="submit" ><i class="fas fa-paper-plane"></i> Send</button>
+
+                            <button type="submit" class="btn btn-success" id="send" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
                         </div>
                 </form>
             </div>
@@ -277,8 +277,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
             });
         });
-
-     
     </script>
 
 
@@ -288,6 +286,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     require_once 'includes/scripts.php';
 
     ?>
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 
 
 </body>

@@ -42,7 +42,7 @@ $(document).ready(function () {
                             data:
                             {
                                email_data:email_data
-                            //    pv_ID:id
+        
                               
                             }, beforeSend:function(){
                                 $('.bulkReceive').html('Please Wait...');

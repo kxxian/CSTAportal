@@ -11,8 +11,6 @@ if (isset($_POST['email_data'])) {
         // $pv_ID = $_POST['pv_ID'];
         // $str = implode(",", $pv_ID,);
         // echo $str;
-       
-
         foreach ($_POST['email_data'] as $row) {
                 $ids =$row['id'];
                 $email = $row['email'];
@@ -26,16 +24,11 @@ if (isset($_POST['email_data'])) {
                 $stmt->execute($data);
 
 
-                // $emails = implode(",", $row['email'],);
-
-
-
-
                 //email
                 $mailTo = $email;
                 $body =
                         "
-                        Hi Ma’am / Sir, <br><br>
+                        Hi Ma'am / Sir, <br><br>
 
                         Your payment is duly noted, we shall update you once verified.<br><br>
 
@@ -48,6 +41,8 @@ if (isset($_POST['email_data'])) {
                 $mail->SMTPDebug = 3;
                 $mail->isSMTP();
 
+                // smtp user credentials
+                
                 include '../includes/smtp_config.php';
 
                 $mail->setFrom("CSTA_Accounting@sampleemail.com"); // insert department email here

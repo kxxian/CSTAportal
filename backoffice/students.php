@@ -206,12 +206,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </a>
 
 
-
+    <script src="js/"></script>
 
     <?php
     require_once 'includes/scripts2.php';
 
     ?>
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
 
 </body>
 

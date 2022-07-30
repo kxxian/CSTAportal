@@ -79,7 +79,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $stmt->execute($data);
                         $row = $stmt->rowCount();
 
-                       // echo $row;
+                        // echo $row;
                     } catch (PDOException $error) {
                         echo $error->getMessage();
                     }
@@ -89,7 +89,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Assessment <p class="link-success float-right">Assessed: <a href="assessed-students.php" title="View Assessed"><?=$row?></a></p>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Assessment <p class="link-success float-right">Assessed: <a href="assessed-students.php" title="View Assessed"><?= $row ?></a></p>
                             </h6>
                         </div>
                         <div class="card-body">
@@ -107,7 +107,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Department</th>
                                             <th>Course</th>
                                             <th hidden>S.Y.</th>
-                                            
+
                                             <th hidden>Email</th>
                                             <th width="75">Actions</th>
                                         </tr>
@@ -319,6 +319,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     require_once 'includes/scripts.php';
 
     ?>
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
 
 
 </body>

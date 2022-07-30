@@ -429,7 +429,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 $('#assess_id').val(data[0]);
                 $('#sid').val(data[1]);
                 $('#name').val(data[3]);
-                
+
             });
 
             //close payment details modal
@@ -447,6 +447,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         });
     </script>
 
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 
 
 

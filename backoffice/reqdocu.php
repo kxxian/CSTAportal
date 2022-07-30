@@ -79,7 +79,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $stmt->execute($data);
                         $row = $stmt->rowCount();
 
-                       // echo $row;
+                        // echo $row;
                     } catch (PDOException $error) {
                         echo $error->getMessage();
                     }
@@ -89,7 +89,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Document Requests 
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Document Requests
                             </h6>
                         </div>
                         <div class="card-body">
@@ -208,8 +208,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                 </div><br>
                             </div>
-                          
-                          
+
+
 
 
                             <div class="form-group row">
@@ -289,6 +289,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     require_once 'includes/scripts.php';
 
     ?>
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
 
 
 </body>

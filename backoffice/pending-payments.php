@@ -271,8 +271,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-
+    <!-- scripts -->
     <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
 
 
