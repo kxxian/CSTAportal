@@ -4,9 +4,7 @@ $(document).ready(function() {
         {data:'get'},function(data){
      
             if(data>0){
-              
-
-                    //alert(data);
+                    //console.log(data);
                 $(".ctr_pendingpayment").addClass('badge-danger');
                 $(".ctr_pendingpayment").text(data);
            
@@ -14,9 +12,24 @@ $(document).ready(function() {
                 $(".ctr_pendingpayment").removeClass('badge-danger');
                 $(".ctr_pendingpayment").text('');
             }
-           
-            
-        })
-    },1000);
+        });
 
+        $.post("codes/counter.php",
+        {data2:'get'},function(data2){
+     
+            if(data2>0){
+                    // console.log(data2);
+                $(".ctr_rcvdpayment").addClass('badge-danger');
+                $(".ctr_rcvdpayment").text(data2);
+           
+            }else{
+                $(".ctr_rcvdpayment").removeClass('badge-danger');
+                $(".ctr_rcvdpayment").text('');
+            }
+        });
+
+
+
+    },1000);
+    
 });

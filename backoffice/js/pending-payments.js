@@ -72,18 +72,18 @@ $(document).ready(function () {
 });
 
 //Load Data From Database
-function dataLoader() {
-    $.ajax({
-        type: "POST",
-        url: "codes/pending-payments.php",
-        data:
-        {
-            param: 1
-        }
-    }).done(function (rec) {
-        $("#dt").html(rec);
-    });
-}
+// function dataLoader() {
+//     $.ajax({
+//         type: "POST",
+//         url: "codes/pending-payments.php",
+//         data:
+//         {
+//             param: 1
+//         }
+//     }).done(function (rec) {
+//         $("#dt").html(rec);
+//     });
+// }
 
 
 //payment details on modal

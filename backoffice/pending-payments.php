@@ -82,7 +82,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                        <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" name="bulkReceive" id="bulkReceive" class="btn btn-success bulkReceive float-right" data-action="bulk">Receive</button>
+                        <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" name="bulkReceive" id="bulkReceive" class="btn btn-success bulkReceive float-right" data-action="bulk">Acknowledge</button>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -90,7 +90,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>#</th>
+                                            <th></th>
                                             <th hidden>sid</th>
                                             <th>Student No.</th>
                                             <th>Name</th>
@@ -130,7 +130,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             if (file_exists($payment)) {
 
                                                 $img = '
-                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-success" >
+                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-warning" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -138,7 +138,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             }
 
                                             if (file_exists($reqform)) {
-                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-warning" >
+                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-info" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -262,7 +262,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-hand"></i> Receive</button>
+                                <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-hand"></i> Acknowledge</button>
                             </div>
                 </form>
             </div>
