@@ -16,6 +16,26 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`studentportal` /*!40100 DEFAULT CHARACT
 
 USE `studentportal`;
 
+/*Table structure for table `assessment` */
+
+DROP TABLE IF EXISTS `assessment`;
+
+CREATE TABLE `assessment` (
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
+  `assess_snum` varchar(255) NOT NULL,
+  `assess_name` varchar(100) NOT NULL,
+  `assess_email` varchar(100) NOT NULL,
+  `assess_img_name` varchar(100) NOT NULL,
+  `assess_img` varchar(100) NOT NULL,
+  PRIMARY KEY (`aid`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `assessment` */
+
+insert  into `assessment`(`aid`,`assess_snum`,`assess_name`,`assess_email`,`assess_img_name`,`assess_img`) values 
+(18,'18-46799','Doe John','jdoe@mail.com','test123','18-46799_test123.png'),
+(23,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','test123','19-14677_test123.jpg');
+
 /*Table structure for table `chat_message` */
 
 DROP TABLE IF EXISTS `chat_message`;
