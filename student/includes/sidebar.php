@@ -28,6 +28,13 @@ if ($pageValue == 0) {
        $strSidebar .= '                <span>Profile</span></a>';
        $strSidebar .= '        </li>';
 
+       // <!-- Nav Item - Class Schedules -->
+       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="schedules.php">';
+	$strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+       $strSidebar .= '                <span>Class Schedules</span></a>';
+       $strSidebar .= '        </li>';
+
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
@@ -73,7 +80,7 @@ if ($pageValue == 0) {
        // <!-- Nav Item - Class Schedules -->
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
-	   $strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	$strSidebar .= '				<i class="fas fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
