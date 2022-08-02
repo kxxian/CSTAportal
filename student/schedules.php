@@ -70,7 +70,7 @@ require_once("includes/header.php");
                         <div class="main-body">				
                             <div class="row gutters-sm">	
                                 <div class="col-md-8 mb-3">	
-                                    <div class="card">
+                                    <div class="card shadow">
                                       <div class="card-header">
                                         <h6 class="m-0 font-weight-bold text-gray-900">Add Class Schedule</h6>	
                                       </div>
@@ -98,7 +98,7 @@ require_once("includes/header.php");
                                 </div>
                             </div>
                                 <div class="col-md-4 mb-3">
-                                    <div class="card">
+                                    <div class="card shadow">
                                         <div class="card-header font-weight-bold text-gray-900" style="background: #fff3cd">
                                             Side Notes
                                             <button id="btnNote" data-toggle="modal" class="btn btn-success btn-sm float-md-right" title="Add new side note"><i class="fas fa-plus"></i></button>                                     

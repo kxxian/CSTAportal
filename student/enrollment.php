@@ -387,7 +387,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                         $assessdate=$row['date_assessed'];
                                         $datevalidated=$row['date_validated'];
                                         $pv=$row['date_pverif'];
-                                        $dateoffenrolled=$row['date_or'];
+                                        // $dateoffenrolled=$row['date_or'];
 
                                         $showhidedetails = '        
                                         <script>

@@ -1,3 +1,8 @@
+<div class="row px-3">
+    <p class="text-gray-900 font-weight-bold px-1">NOTE: </p>
+    <p class="px-1">before enrolling proceed to assessment first</p>
+    <a href="assessment.php">click here.</a>
+</div>
 <div class="row">
     <div class="col-lg-12" id="enrolldetailsdiv">
         <div class="card shadow mb-4">
