@@ -182,7 +182,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         
 
                                                         <td> 
-                                                        <button class="btn btn-success btnPaymentDetails" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
+                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
                                         }
@@ -215,7 +215,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="modal fade" id="viewpaydetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="verifypayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -224,14 +224,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="sendreceipt.php" method="POST" enctype="multipart/form-data">
+                <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
-
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                                    <input type="hidden" name="enroll_id" id="txt_id" class="form-control">
+                                    <input type="text" name="pv_ID" id="txt_id" class="form-control">
                                     <input type="hidden" name="sid" id="txtsid" class="form-control">
                                     <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
                                 </div>
@@ -239,12 +238,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label class="font-weight-bold text-gray-900">Verification Code:</label>
-                                    <input type="text" name="" id="" class="form-control">
+                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-hand"></i> Verify</button>
+                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Verify</button>
                             </div>
                 </form>
             </div>
@@ -257,6 +256,26 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/verify-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+
+    <?php
+    if (isset($_SESSION['status']) && $_SESSION['status']!="") 
+    {
+
+    ?>
+    <script>
+        swal({
+            title: "<?php echo $_SESSION['status']; ?>",
+            // text: ""
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            button: "Done",
+            timer: 5000
+        });
+    </script>
+
+    <?php
+    unset($_SESSION['status']);}
+    ?>
+
 
 
     <!-- Bootstrap core JavaScript-->
