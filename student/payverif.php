@@ -123,7 +123,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         School Year
                                                                     </label>
-                                                                  
+
 
                                                                     <input type="text" name="selsy" id="selsy" class="form-control">
                                                                 </div>
@@ -137,7 +137,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         require_once("includes/connect.php");
 
                                                                         $sql = "select * from semester where isVisible=? ";
-                                                                        $data=array('1');
+                                                                        $data = array('1');
                                                                         $stmt = $con->prepare($sql);
                                                                         $stmt->execute($data);
 
@@ -162,7 +162,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         require_once("includes/connect.php");
 
                                                                         $sql = "select * from terms where isVisible=?";
-                                                                        $data=array(1);
+                                                                        $data = array(1);
                                                                         $stmt = $con->prepare($sql);
                                                                         $stmt->execute($data);
 
@@ -260,7 +260,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 <div class="col-lg-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>
                                                                     <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" class="form-control" name="amtpaid" id="amtpaid" placeholder="0.00" style="text-align:right;" required>
-                                                                    <p class="text-danger font-weight-bold" id="errmsg" style="display:none">Please Enter a Valid Amount !</p>
+                                                                    <p class="font-weight-bold" id="errmsg" style="display:none; color:red">Please Enter a Valid Amount !</p>
                                                                 </div>
                                                                 <div class="col-lg-6">
 
@@ -409,7 +409,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script type="text/javascript"></script>
     <script>
         $(document).ready(function() {
-            // Get value on keyup funtion
+
+         
+            // Get value on keyup function
             $("#tfeeamount, #totalothers, #amtpaid").keyup(function() {
 
 
@@ -417,25 +419,31 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 var y = Number($("#totalothers").val());
                 var amtpaid = Number($("#amtpaid").val());
                 var total = x + y;
+
+                // hidden input
                 $('#totaldue').val(total);
+
+                //input displayed
                 $('#totaldue1').val(total);
 
-                var m = document.getElementById("totaldue").value;
-                m.toLocaleString("en-PH", {
+               
+                //Philippine Currency
+                let amtdue = total.toLocaleString("fil-PH", {
                     style: "currency",
                     currency: "PHP"
                 })
-                document.getElementById("totaldue1").val();
+                var total_amt=document.getElementById("totaldue1");
+                
+                total_amt.value=amtdue;
 
 
-
+                //Amounts Validation
                 if (amtpaid >= 1 && amtpaid < total) {
                     $(':input[type="submit"]').prop('disabled', true);
                     $("#errmsg").show();
                 } else {
                     $(':input[type="submit"]').prop('disabled', false);
                     $("#totaldue").prop('value', total);
-
                     $("#errmsg").hide();
                 }
 
