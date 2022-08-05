@@ -105,6 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Others Total</th>
                                             <th>Attachment/s</th>
                                             <th hidden>Total</th>
+                                            <th hidden>Amount1</th>
                                             <th>Amount</th>
                                             <th hidden>Change</th>
                                             <th hidden>Sent Via</th>
@@ -179,7 +180,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td >' . $row['amtpaid'] . '</td>
+                                                        <td hidden id="hiddenamt">' . $row['amtpaid'] . '</td>
+                                                        <td id="visibleamt"></td>
+
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td hidden>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>

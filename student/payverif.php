@@ -230,8 +230,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                         </fieldset>
 
-
-
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Total</legend>
                                                             <div class="form-group row">
@@ -251,12 +249,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div>
                                                         </fieldset>
 
-
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment Information</legend>
                                                             <i style="font-size: 1rem;color:red">*NOTE: Fill all the details as reflected on your proof of payment</i>
                                                             <div class="form-group row">
-
                                                                 <div class="col-lg-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>
                                                                     <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" class="form-control" name="amtpaid" id="amtpaid" placeholder="0.00" style="text-align:right;" required>
@@ -279,9 +275,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         ?>
                                                                     </select>
                                                                 </div>
-
                                                             </div>
-
                                                             <div class="form-group row">
                                                                 <div class="col-lg-6">
                                                                     <label for="paymethod"><strong>Payment Method</strong></label>
@@ -299,7 +293,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         ?>
                                                                     </select>
                                                                 </div>
-
                                                                 <div class="col-lg-3">
                                                                     <label for="dop"><strong>Payment Date</strong></label>
                                                                     <input type="date" class="form-control" id="DoP" name="DoP" required>
@@ -308,19 +301,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label for="dop"><strong>Time</strong></label>
                                                                     <input type="time" class="form-control" id="ToP" name="ToP" required>
                                                                 </div>
-
                                                             </div>
-
                                                             <div class="form-group row">
                                                                 <div class="col-lg-6">
                                                                     <label for="paymentproof"><strong>Proof of Payment</strong></label>
                                                                     <input type="file" accept=".jpg" class="form-control-file" name="paymentproof" required>
                                                                 </div>
-
-
-
                                                             </div>
-
                                                             <div class="form-group row">
                                                                 <div class="col-lg-12">
                                                                     <label for="tuitionpaynote"><strong>Notes (Optional)</strong></label>
@@ -334,21 +321,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                 </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
