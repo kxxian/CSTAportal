@@ -37,6 +37,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+    <!-- DataTable CDN CSS  -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
     <!-- Bootstrap CSS  -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 
@@ -73,28 +76,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
-
-
-                    <!-- For Assessment Table -->
+                    <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Payment Verification
-                            </h6>
+                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-receipt"></i> Receipts
+                            </h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th hidden>#</th>
+
                                             <th hidden>sid</th>
                                             <th>Student No.</th>
                                             <th>Name</th>
                                             <th hidden>Tuition Fee</th>
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
-                                            <th>Course</th>
+                                            <th hidden>Course</th>
+                                            <th>Amount</th>
+                                            <th>Payment For</th>
                                             <th hidden>S.Y</th>
                                             <th hidden>Semester</th>
                                             <th hidden>Term</th>
@@ -104,23 +106,22 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Total</th>
                                             <th>Amount</th>
                                             <th hidden>Change</th>
-
                                             <th hidden>Sent Via</th>
                                             <th hidden>Payment Method</th>
                                             <th hidden>Notes</th>
                                             <th hidden>Date of Payment</th>
-                                            <th width="140" class="text-center">Actions</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <?php
                                         $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
-                                        $data = array('Pending');
+                                        $data = array('Received');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
+                                        $result = $stmt->fetchAll();
 
-                                        while ($row = $stmt->fetch()) {
+                                        foreach ($result as $row) {
 
                                             $payment = "../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
                                             $reqform = "../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
@@ -128,7 +129,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             if (file_exists($payment)) {
 
                                                 $img = '
-                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-success" >
+                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-warning" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -136,7 +137,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             }
 
                                             if (file_exists($reqform)) {
-                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-warning" >
+                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-info" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -145,13 +146,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                             $reqform = "";
                                             echo '<tr> 
-                                                        <td hidden>' . $row['pv_ID'] . '</td>
+                             
+
+
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['fullname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
-                                                        <td >' . $row['course'] . '</td>
+                                                        <td hidden>' . $row['course'] . '</td>
+                                                        <td>Amount Here</td>
+                                                        <td>Tuition Fee</td>
 
                                                         <td hidden>' . $row['tfeepayment'] . '</td>
                                                         <td hidden>' . $row['schoolyr'] . '</td>
@@ -177,33 +182,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         
 
                                                         <td> 
-                                                        <button type="button"  title="View Payment Details" class="btn btn-info viewpaydetails" >
-                                                        <i class="fa fa-credit-card fa-fw"></i>
-                                                        </button>
-
-                                                        <input type="hidden" class="rcvpaymentval" value="' . $row['sid'] . '">
-                                                        <button type="button"  title="Receive" class="btn btn-info rcvpayment " >
-                                                        <i class="fas fa-hand-holding fa-fw"></i>
-                                                        </button>
-
-
-                                                       
-                                                        <button type="button"  title="Mark as Verified" class="btn btn-success verifypayment" >
-                                                        <i class="fa fa-check fa-fw"></i>
-                                                        </button>
-
-                                                       
-                                                        <button hidden type="button"  title="Return" class="btn btn-danger " >
-                                                        <i class="fa fa-times fa-fw"></i>
-                                                        </button>
-
-
-                                                        
-                                                            </td>
+                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
+                                                        </td>
                                                       </tr>';
                                         }
                                         ?>
+
+
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -214,12 +201,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             </div>
             <!-- End of Main Content -->
 
-
-
             <!-- Footer -->
             <?php require_once('includes/footer.php'); ?>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -231,118 +215,66 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="modal fade" id="codes/sendreceipt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="verifypayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Receipt</strong> </h5>
+                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-check"></i><strong> Verify Payment</strong> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="sendreceipt.php" method="POST" enctype="multipart/form-data">
+                <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
-
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">To:</label>
-                                    <input type="text" name="enroll_id" id="assess_id" class="form-control">
-                                    <input type="text" name="sid" id="sid" class="form-control">
-                                    <input type="text" name="name" id="name" class="form-control" disabled>
-
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-5">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">OR No. :</label>
-                                    <input type="number" name="attachment" id="attachment" class="form-control" accept=".jpg" required>
-
-                                </div><br>
-                                <div class="col-lg-7">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">Official Receipt:</label>
-                                    <input type="file" name="officialreceipt" id="officialreceipt" class="form-control" accept=".jpg" required>
-
-                                </div><br>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-5">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">A.R. No. :</label>
-                                    <input type="number" name="ackreceipt" id="ackreceipt" class="form-control" accept=".jpg" required>
-
-                                </div><br>
-                                <div class="col-lg-7">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">Acknowledgement Receipt:</label>
-                                    <input type="file" name="attachment" id="attachment" class="form-control" accept=".jpg" required>
-
-                                </div><br>
+                                    <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
+                                    <input type="text" name="pv_ID" id="txt_id" class="form-control">
+                                    <input type="hidden" name="sid" id="txtsid" class="form-control">
+                                    <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Remarks:</label>
-                                    <textarea class="form-control" id="assessnotes" name="assessnotes" rows="2"></textarea>
-                                </div><br>
-                            </div>
+                                    <label class="font-weight-bold text-gray-900">Verification Code:</label>
+                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Verify</button>
+                            </div>
                 </form>
             </div>
         </div>
     </div>
 
 
-    <!-- View Payment Details Modal -->
-    <div class="modal fade" id="viewfulldetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg  " role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-credit-card"></i><strong> Payment Details</strong> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
 
+    <!-- scripts -->
+    <script src="js/verify-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 
-                        <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Tuition Fee:</label>
-                                    <input type="text" class="form-control" id="tfeepay" name="tfeepay" rows="4" readonly>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Amount:</label>
-                                    <input type="text" class="form-control" id="tfeeamt" name="tfeeamt" rows="4" readonly>
-                                </div>
+    <?php
+    if (isset($_SESSION['status']) && $_SESSION['status']!="") 
+    {
 
+    ?>
+    <script>
+        swal({
+            title: "<?php echo $_SESSION['status']; ?>",
+            // text: ""
+            icon: "<?php echo $_SESSION['status_code']; ?>",
+            button: "Done",
+            timer: 5000
+        });
+    </script>
 
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Others:</label>
-                                    <textarea class="form-control" id="payfor" name="payfor" rows="4" readonly></textarea>
-                                </div>
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Amount:</label>
-                                    <input type="text" class="form-control" id="othersamt" name="othersamt" rows="4" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info" id="done" name="done"> Done</button>
-
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
+    <?php
+    unset($_SESSION['status']);}
+    ?>
 
 
 
@@ -361,6 +293,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <!-- DataTable CDN JS -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
@@ -368,89 +303,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-    <?php
-    require_once 'includes/scripts.php';
 
-    ?>
 
-    <script>
-        //Acknowledge payment
-        $(document).ready(function() {
-            $('.rcvpayment').click(function(e) {
-                e.preventDefault;
-                var rcvpayid = $(this).closest("tr").find('.rcvpaymentval').val();
-                console.log(rcvpayid);
 
-                swal({
-                        title: "Acknowledge Payment?",
-                        //text: "This Action Cannot be Undone!",
-                        icon: "info",
-                        buttons: true,
-                        dangerMode: false,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: "POST",
-                                url: "rcvpayment.php",
-                                data: {
-                                    "rcv_btn_set": 1,
-                                    "rcv_id": rcvpayid,
-                                },
-                                success: function(response) {
-                                    swal("Payment Acknowledged!", {
-                                        icon: "success",
-                                    }).then((result) => {
-                                        location.replace("payverif.php");
-                                    });
-                                }
-                            });
-                        }
-                    });
-            });
-        });
-    </script>
 
-    <script type="text/javascript">
-        //MArk As verified
-        $(document).ready(function() {
-            $('.verifypayment').on('click', function() {
-                $('#sendreceipt').modal('show');
 
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                //fetch data from payverif datatable
-                $('#assess_id').val(data[0]);
-                $('#sid').val(data[1]);
-                $('#name').val(data[3]);
-
-            });
-
-            //close payment details modal
-            $('#done').on('click', function() {
-                $('#sendreceipt').modal('hide');
-
-            });
-
-            //close payment details modal
-            $('.close').on('click', function() {
-                $('#sendreceipt').modal('hide');
-
-            });
-
-        });
-    </script>
-
-    <!-- scripts -->
-    <script src="js/pending-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
-    <script src="js/sweetalert.min.js"></script>
 
 
 

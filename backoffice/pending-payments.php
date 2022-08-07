@@ -180,8 +180,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td hidden id="hiddenamt">' . $row['amtpaid'] . '</td>
-                                                        <td id="visibleamt"></td>
+                                                        <td hidden class="hiddenamt">' . $row['amtpaid'] . '</td>
+                                                        <td class="visibleamt">' . $row['amtpaid'] . '</td>
 
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td hidden>' . $row['sentvia'] . '</td>
