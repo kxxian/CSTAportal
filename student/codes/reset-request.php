@@ -13,7 +13,7 @@ if (isset($_POST['reset-request-submit'])) {
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
 
-    $url = "http://localhost/v2/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+    $url = "http://localhost/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
     $expires = date("U") + 1800;
 
     $userEmail = $_POST['email'];
@@ -58,12 +58,7 @@ if (isset($_POST['reset-request-submit'])) {
     $mail->isSMTP();
 
     //SMTP user credentials
-    $mail->Host = "smtp-relay.sendinblue.com";
-    $mail->SMTPAuth = true;
-    $mail->Username = "jasonwafuu@gmail.com";
-    $mail->Password = "whxz2btTErLDGyjI";
-    $mail->SMTPSecure = "tls";
-    $mail->Port = "587";
+    include '../includes/smtp_config.php';
 
     $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
     $mail->FromName = "CSTA Registrar"; // employee name + Department 

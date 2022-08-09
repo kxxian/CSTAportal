@@ -1,19 +1,6 @@
 $(document).ready(function () {
 
-    // Get all the "visibleamt" elements into an array
-    let cells = Array.prototype.slice.call(document.querySelectorAll(".visibleamt"));
-
-    // Loop over the array
-    cells.forEach(function(cell){
-    // Convert cell data to a number, call .toLocaleString()
-    // on that number and put result back into the cell
-    cell.textContent = (+cell.textContent).toLocaleString("fil-PH", {
-                style: "currency",
-                currency: "PHP"
-            });
-    });
-
-
+ 
     //load payment details on button click
     $('.btnPaymentDetails').on('click', function() {
         $('#sendreceipt').modal('show');

@@ -1,4 +1,21 @@
 $(document).ready(function() {
+
+   // Get all the "currency" elements into an array
+   let cells = Array.prototype.slice.call(document.querySelectorAll(".currency"));
+
+   // Loop over the array
+   cells.forEach(function(cell){
+   // Convert cell data to a number, call .toLocaleString()
+   // on that number and put result back into the cell
+   cell.textContent = (+cell.textContent).toLocaleString("fil-PH", {
+               style: "currency",
+               currency: "PHP"
+           });
+   });
+
+
+
+
     setInterval(function() {
         $.post("codes/counter.php",
         {data:'get'},function(data){

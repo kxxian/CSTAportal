@@ -94,9 +94,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Tuition Fee</th>
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
-                                            <th hidden>Course</th>
-                                            <th>Amount</th>
-                                            <th>Payment For</th>
+                                            <th>Course</th>
                                             <th hidden>S.Y</th>
                                             <th hidden>Semester</th>
                                             <th hidden>Term</th>
@@ -154,9 +152,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td>' . $row['fullname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
-                                                        <td hidden>' . $row['course'] . '</td>
-                                                        <td>Amount Here</td>
-                                                        <td>Tuition Fee</td>
+                                                        <td >' . $row['course'] . '</td>
+                                                        
 
                                                         <td hidden>' . $row['tfeepayment'] . '</td>
                                                         <td hidden>' . $row['schoolyr'] . '</td>
@@ -173,7 +170,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td >' . $row['amtpaid'] . '</td>
+                                                        <td class="currency">' . $row['amtpaid'] . '</td>
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td hidden>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
@@ -216,7 +213,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </a>
 
     <div class="modal fade" id="verifypayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-sm-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-check"></i><strong> Verify Payment</strong> </h5>
@@ -227,14 +224,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                                    <input type="text" name="pv_ID" id="txt_id" class="form-control">
-                                    <input type="hidden" name="sid" id="txtsid" class="form-control">
-                                    <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
-                                </div>
-                            </div>
+                           
+                            <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
+                            <input type="hidden" name="sid" id="txtsid" class="form-control">
+                            <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label class="font-weight-bold text-gray-900">Verification Code:</label>
@@ -243,7 +236,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Verify</button>
+                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Send</button>
                             </div>
                 </form>
             </div>
@@ -258,22 +251,22 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/sweetalert.min.js"></script>
 
     <?php
-    if (isset($_SESSION['status']) && $_SESSION['status']!="") 
-    {
+    if (isset($_SESSION['status']) && $_SESSION['status'] != "") {
 
     ?>
-    <script>
-        swal({
-            title: "<?php echo $_SESSION['status']; ?>",
-            // text: ""
-            icon: "<?php echo $_SESSION['status_code']; ?>",
-            button: "Done",
-            timer: 5000
-        });
-    </script>
+        <script>
+            swal({
+                title: "<?php echo $_SESSION['status']; ?>",
+                // text: ""
+                icon: "<?php echo $_SESSION['status_code']; ?>",
+                button: "Done",
+                timer: 5000
+            });
+        </script>
 
     <?php
-    unset($_SESSION['status']);}
+        unset($_SESSION['status']);
+    }
     ?>
 
 

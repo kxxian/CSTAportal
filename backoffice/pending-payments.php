@@ -82,7 +82,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                        <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" name="bulkReceive" id="bulkReceive" class="btn btn-success bulkReceive float-right" data-action="bulk">Acknowledge</button>
+                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Pending Payments<button type="button" name="bulkReceive" id="bulkReceive" class="btn btn-success bulkReceive float-right" data-action="bulk">Acknowledge</button>
                             </h5>
                         </div>
                         <div class="card-body">
@@ -121,7 +121,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         $data = array('Pending');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
-                                        $result=$stmt->fetchAll();
+                                        $result = $stmt->fetchAll();
 
                                         foreach ($result as $row) {
 
@@ -151,7 +151,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td>
                                                             <input type="checkbox" name="single_select" 
                                                             class="form-control-sm single_select" data-id="' . $row['pv_ID'] . '"
-                                                            data-email="'.$row['email'].'" data-name="'.$row['fullname'].'"
+                                                            data-email="' . $row['email'] . '" data-name="' . $row['fullname'] . '"
 
 
                                                             >
@@ -181,7 +181,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
                                                         <td hidden class="hiddenamt">' . $row['amtpaid'] . '</td>
-                                                        <td class="visibleamt">' . $row['amtpaid'] . '</td>
+                                                        <td class="currency">' . $row['amtpaid'] . '</td>
 
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td hidden>' . $row['sentvia'] . '</td>
@@ -225,7 +225,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </a>
 
     <div class="modal fade" id="viewpaydetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-list"></i><strong> Payment Details</strong> </h5>
@@ -239,34 +239,33 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                                    <input type="text" name="enroll_id" id="txt_id" class="form-control">
+                                    <input type="hidden" name="enroll_id" id="txt_id" class="form-control">
                                     <input type="hidden" name="sid" id="txtsid" class="form-control">
-                                    <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
+                                    <input type="hidden" name="name" id="txtemail" class="form-control">
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-7">
-                                    <label class="font-weight-bold text-gray-900">Tuition Fee:</label>
-                                    <input type="text" name="" id="" class="form-control" readonly>
-                                </div>
-                                <div class="col-lg-5">
-                                    <label class="font-weight-bold text-gray-900">Amount:</label>
-                                    <input type="text" name="" id="" class="form-control" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Other Fees:</label>
-                                    <textarea name="" id="" cols="30" rows="2" class="form-control" readonly></textarea>
+                                    <label class="font-weight-bold text-gray-900">Payment For:</label>
+                                    <input type="text" name="" id="" class="form-control" readonly hidden>
+                                    <textarea name="" class ="form-control" id="" cols="30" rows="10" readonly>
+                
+                                    </textarea>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label class="font-weight-bold text-gray-900">Total:</label>
+                                    <input type="text" name="" id="" class="form-control" readonly hidden>
+                                    <textarea name="" class ="form-control" id="" cols="30" rows="10" readonly>
+                
+                                    </textarea>
                                 </div>
                             </div>
+                            
 
 
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-hand"></i> Acknowledge</button>
                             </div>
+                        </div>
                 </form>
             </div>
         </div>
@@ -278,6 +277,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/pending-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+
 
 
     <!-- Bootstrap core JavaScript-->

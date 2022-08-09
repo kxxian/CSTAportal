@@ -219,7 +219,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-check"></i><strong> Verify Payment</strong> </h5>
+                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Receipt</strong> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -227,23 +227,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
+                           
                                     <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                                    <input type="text" name="pv_ID" id="txt_id" class="form-control">
+                                    <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
                                     <input type="hidden" name="sid" id="txtsid" class="form-control">
                                     <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
-                                </div>
-                            </div>
+                              
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Verification Code:</label>
+                                    <label class="font-weight-bold text-gray-900">O.R/A.R No:</label>
                                     <input type="text" name="verif_code" id="verif_code" class="form-control" required>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Verify</button>
+                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Send</button>
                             </div>
                 </form>
             </div>
