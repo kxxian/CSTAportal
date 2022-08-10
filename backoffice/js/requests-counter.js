@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    //datatable currency
    // Get all the "currency" elements into an array
    let cells = Array.prototype.slice.call(document.querySelectorAll(".currency"));
 
@@ -12,6 +12,9 @@ $(document).ready(function() {
                currency: "PHP"
            });
    });
+
+
+
 
 
 

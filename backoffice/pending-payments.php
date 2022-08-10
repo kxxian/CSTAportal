@@ -93,7 +93,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th></th>
                                             <th hidden>sid</th>
                                             <th>Student No.</th>
-                                            <th>Name</th>
+                                            <th width="200">Name</th>
                                             <th hidden>Tuition Fee</th>
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
@@ -151,7 +151,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td>
                                                             <input type="checkbox" name="single_select" 
                                                             class="form-control-sm single_select" data-id="' . $row['pv_ID'] . '"
-                                                            data-email="' . $row['email'] . '" data-name="' . $row['fullname'] . '"
+                                                            data-email="' . $row['email'] . '" data-name="' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '"
 
 
                                                             >
@@ -160,7 +160,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['fullname'] . '</td>
+                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
                                                         <td >' . $row['course'] . '</td>
@@ -225,7 +225,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </a>
 
     <div class="modal fade" id="viewpaydetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-list"></i><strong> Payment Details</strong> </h5>
@@ -243,22 +243,79 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <input type="hidden" name="sid" id="txtsid" class="form-control">
                                     <input type="hidden" name="name" id="txtemail" class="form-control">
                                 </div>
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Payment For:</label>
-                                    <input type="text" name="" id="" class="form-control" readonly hidden>
-                                    <textarea name="" class ="form-control" id="" cols="30" rows="10" readonly>
-                
-                                    </textarea>
+                                <!-- <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Student Number:</label>
+                                    <input type="text" name="txtsnum" id="txtsnum" class="form-control" readonly>
+                                </div> -->
+
+                                <div class="col-lg-4"><label class="font-weight-bold text-gray-900">Date of Payment:</label>
+                                    <input type="text" name="dtDateSub" id="dtDateSub" class="form-control" readonly>
                                 </div>
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Total:</label>
-                                    <input type="text" name="" id="" class="form-control" readonly hidden>
-                                    <textarea name="" class ="form-control" id="" cols="30" rows="10" readonly>
-                
-                                    </textarea>
+                                <div class="col-lg-4"><label class="font-weight-bold text-gray-900">Time:</label>
+                                    <input type="text" name="dtDateSub" id="dtDateSub" class="form-control" readonly>
                                 </div>
                             </div>
-                            
+
+                            <div class="form-group">
+                                <!-- <div class="form-group row">
+                                    <div class="col-lg-5">
+                                        <label class="font-weight-bold text-gray-900">Student Name:</label>
+                                        <input type="text" name="txtLname" id="txtLname" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-lg-7"><label class="font-weight-bold text-gray-900">Course:</label>
+                                        <input type="text" name="txtCourse" id="txtCourse" class="form-control" readonly>
+                                    </div> -->
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Term:</label>
+                                    <input type="text" name="txtTerm" id="txtTerm" class="form-control" readonly>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Applicable SY:</label>
+                                    <input type="text" name="txtSySem" id="txtSySem" class="form-control" readonly>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Tuition Fee Amount:</label>
+                                    <input type="text" name="txtTfee" id="txtTfee" class="form-control modal-currency" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-8">
+                                    <label class="font-weight-bold text-gray-900">Particulars:</label>
+                                    <input type="text" name="txtParticulars" id="txtParticulars" class="form-control" readonly>
+                                    <!-- <textarea name="txtParticulars" id="txtParticulars" class="form-control" cols="30" rows="10"></textarea> -->
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Other Fees:</label>
+                                    <input type="text" name="txtOthers" id="txtOthers" class="form-control modal-currency" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Payment Method:</label>
+                                    <input type="text" name="txtPaymethod" id="txtPaymethod" class="form-control" readonly>
+                                    
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Sent Via:</label>
+                                    <input type="text" name="txtSentVia" id="txtSentVia" class="form-control" readonly>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="font-weight-bold text-gray-900">Total Amount Paid:</label>
+                                    <input type="text" name="txtGtotal" id="txtGtotal" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label class="font-weight-bold text-gray-900">Note:</label>
+                                    <textarea name="txtNotes" id="txtNotes" cols="30" rows="2" class="form-control" readonly></textarea>
+                                </div>
+
+                            </div>
+
 
 
 

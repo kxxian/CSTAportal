@@ -241,7 +241,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <input type="hidden" class="form-control" id="totaldue" name="totaldue" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
 
-                                                                    <input type="text" class="form-control" id="totaldue1" name="totaldue" style="pointer-events: none; height:55px; 
+                                                                    <input type="text" class="form-control" id="totaldue1" name="totaldue1" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
                                                                 </div>
                                                                 <i style="font-size: 1rem;color:#808080">*Total amount should be same on what is on your receipt</i>

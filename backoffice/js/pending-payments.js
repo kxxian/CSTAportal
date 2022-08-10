@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+    const elements = document.querySelectorAll(".modal-currency");
+
+    elements.forEach(el => {
+    el.textContent=(+el.textContent).toLocaleString("fil-PH", {
+        style: "currency",
+        currency: "PHP"
+    });
+});
+
  
     //load payment details on button click
     $('.btnPaymentDetails').on('click', function() {
@@ -76,6 +85,9 @@ $(document).ready(function () {
 
 //payment details on modal
 function loadRecord(payment_ID) {
+
+    
+  
  
  $.ajax({
      type: "POST",
@@ -87,10 +99,32 @@ function loadRecord(payment_ID) {
        }
    }).done(function (rec) {
        var rowEdit = $.parseJSON(rec);
-       console.log(rec);
+    //console.log(rec);
     $("#txt_id").val(rowEdit['pv_ID']);
     $("#txtemail").val(rowEdit['email']);
     $("#txtsid").val(rowEdit['sid']);
+    $("#txtsnum").val(rowEdit['snum']);
+    $("#dtDateSub").val(rowEdit['datepaid']);
+    $("#txtLname").val(rowEdit['lname']+', '+rowEdit['fname']+' '+rowEdit['mname']);
+    $("#txtFname").val("First Year");
+    $("#txtCourse").val(rowEdit['course']);
+    $("#txtTfee").val(rowEdit['tfeepayment']);
+    $("#txtTerm").val(rowEdit['term']);
+    $("#txtSySem").val(rowEdit['schoolyr']+' '+rowEdit['semester']);
+    $("#txtOthers").val(rowEdit['particulars_total']);
+    $("#txtParticulars").val(rowEdit['particulars']);
+    $("#txtPaymethod").val(rowEdit['paymethod']);
+    $("#txtSentVia").val(rowEdit['sentvia']);
+    $("#txtGtotal").val(rowEdit['gtotal']);
+    $("#txtNotes").val(rowEdit['note']);
+   
+    
+
+
+
+
+
+
     $("#viewpaydetails").modal("show");
    });
 
