@@ -7,7 +7,7 @@
             // text: ""
             icon: "<?php echo $_SESSION['status_code']; ?>",
             button: "Done",
-            timer: 10000
+            timer: 3000
         });
     </script>
 

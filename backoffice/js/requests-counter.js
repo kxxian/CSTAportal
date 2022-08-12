@@ -13,12 +13,6 @@ $(document).ready(function() {
            });
    });
 
-
-
-
-
-
-
     setInterval(function() {
         $.post("codes/counter.php",
         {data:'get'},function(data){

@@ -1,57 +1,57 @@
 $(document).ready(function () {
-    // var verifcode = $("#verif_code").val();
-    // var pv_ID = $("#verif_code").val();
+    var verifcode = $("#verif_code").val();
+    var pv_ID = $("#verif_code").val();
 
-    // $('.btnVerify').on('click', function() {
+    $('.btnVerify').on('click', function() {
    
 
-    //     if (verifcode.length==0){
-    //         norecord();
-    //         }else{
-    //             swal({
-    //                 title: "Are you sure?",
-    //                 text: "This action can not be undone",
-    //                 icon: "warning",
-    //                 buttons: true,
-    //                 dangerMode: true,
-    //               })
-    //               .then((willVerify) => {
-    //                 if (willVerify) {
-    //                     $.ajax({
-    //                         type: "POST",
-    //                         url: "codes/verify-payments.php",
-    //                         data:
-    //                        {
-    //                               verify: 1,
-    //                               payment_ID: pv_ID,
-    //                               verif_code:verif_code
-    //                           }
-    //                       }).success(function(){
+        if (verifcode.length==0){
+            norecord();
+            }else{
+                swal({
+                    title: "Are you sure?",
+                    text: "This action can not be undone",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((willVerify) => {
+                    if (willVerify) {
+                        $.ajax({
+                            type: "POST",
+                            url: "codes/verify-payments.php",
+                            data:
+                           {
+                                  verify: 1,
+                                  payment_ID: pv_ID,
+                                  verif_code:verif_code
+                              }
+                          }).success(function(){
 
-    //                         swal("Success!", "Payment Verified!", "success").then(function(){ 
-    //                             setTimeout(function(){ 
-    //                                 location.reload();
-    //                               }, 500);
+                            swal("Success!", "Payment Verified!", "success").then(function(){ 
+                                setTimeout(function(){ 
+                                    location.reload();
+                                  }, 500);
     
                               
-    //                            }
-    //                         ); 
+                               }
+                            ); 
 
-    //                       }
-    //                       )
+                          }
+                          )
                        
                         
-    //             }else{
+                }else{
 
-    //             }
-    //               });
+                }
+                  });
                 
-    //         }
+            }
        
 
 
 
-    // })
+    })
    
 
 });

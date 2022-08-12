@@ -233,15 +233,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="sendreceipt.php" method="POST" enctype="multipart/form-data">
+                <form action="codes/receive-payments.php" method="POST" enctype="multipart/form-data" >
                     <div class="modal-body">
 
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <input type="hidden" name="enroll_id" id="txt_id" class="form-control">
+                                    <input type="hidden" name="pv_id" id="pv_id" class="form-control">
                                     <input type="hidden" name="sid" id="txtsid" class="form-control">
-                                    <input type="hidden" name="name" id="txtemail" class="form-control">
+                                    <input type="hidden" name="txtemail" id="txtemail" class="form-control">
+                                    <input type="hidden" name="txtName" id="txtName" class="form-control" readonly>
                                 </div>
                                 <!-- <div class="col-lg-4">
                                     <label class="font-weight-bold text-gray-900">Student Number:</label>
@@ -257,18 +258,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             </div>
 
                             <div class="form-group">
-                                <!-- <div class="form-group row">
-                                    <div class="col-lg-5">
-                                        <label class="font-weight-bold text-gray-900">Student Name:</label>
-                                        <input type="text" name="txtLname" id="txtLname" class="form-control" readonly>
-                                    </div>
-                                    <div class="col-lg-7"><label class="font-weight-bold text-gray-900">Course:</label>
-                                        <input type="text" name="txtCourse" id="txtCourse" class="form-control" readonly>
-                                    </div> -->
-                            </div>
+                              
+                                    
+                                       
+                                   
+                                    
+                           
                             <div class="form-group row">
                                 <div class="col-lg-4">
-                                    <label class="font-weight-bold text-gray-900">Term:</label>
+                                    <label class="font-weight-bold text-gray-900">Tuition Fee:</label>
                                     <input type="text" name="txtTerm" id="txtTerm" class="form-control" readonly>
                                 </div>
                                 <div class="col-lg-4">
@@ -276,7 +274,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <input type="text" name="txtSySem" id="txtSySem" class="form-control" readonly>
                                 </div>
                                 <div class="col-lg-4">
-                                    <label class="font-weight-bold text-gray-900">Tuition Fee Amount:</label>
+                                    <label class="font-weight-bold text-gray-900">Amount:</label>
                                     <input type="text" name="txtTfee" id="txtTfee" class="form-control modal-currency" readonly>
                                 </div>
                             </div>
@@ -288,7 +286,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                 </div>
                                 <div class="col-lg-4">
-                                    <label class="font-weight-bold text-gray-900">Other Fees:</label>
+                                    <label class="font-weight-bold text-gray-900">Other Fees Total:</label>
                                     <input type="text" name="txtOthers" id="txtOthers" class="form-control modal-currency" readonly>
                                 </div>
                             </div>
@@ -305,7 +303,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 </div>
                                 <div class="col-lg-4">
                                     <label class="font-weight-bold text-gray-900">Total Amount Paid:</label>
-                                    <input type="text" name="txtGtotal" id="txtGtotal" class="form-control" readonly>
+                                    <input type="text" name="txtGtotal" id="txtGtotal" class="form-control modal-currency" readonly>
+                                   
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -316,11 +315,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                             </div>
 
-
-
-
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-hand"></i> Acknowledge</button>
+                                <button type="submit" class="btn btn-success ackpayment" name="acknowledge"><i class="fas fa-hand"></i> Acknowledge</button>
                             </div>
                         </div>
                 </form>
@@ -330,10 +326,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-    <!-- scripts -->
+    <!-- JS -->
     <script src="js/pending-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+    <?php
+        require_once 'includes/scripts.php';
+    ?>
 
 
 
