@@ -149,7 +149,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['fullname'] . '</td>
+                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
                                                         <td >' . $row['course'] . '</td>
@@ -175,7 +175,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td hidden>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
                                                         <td hidden>' . $row['note'] . '</td>
-                                                        <td hidden>' . $row['datepaid'] . '</td>
+                                                        <td hidden>' . $row['date_paid'] . '</td>
                                                         
 
                                                         <td> 

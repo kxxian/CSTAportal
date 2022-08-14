@@ -123,7 +123,7 @@ else if (isset($_POST['acknowledge'])) {
 
                 $mail->AltBody = "";
 
-             
+               
 
                 if (!$mail->send()) {
                         echo "Email Not Sent: " . $mail->ErrorInfo;

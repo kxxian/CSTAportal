@@ -99,7 +99,8 @@ function loadRecord(payment_ID) {
     $("#txtemail").val(rowEdit['email']);
     $("#txtsid").val(rowEdit['sid']);
     $("#txtsnum").val(rowEdit['snum']);
-    $("#dtDateSub").val(rowEdit['datepaid']);
+    $("#dtDatePaid").val(rowEdit['date_paid']);
+    $("#timePaid").val(rowEdit['time_paid']);
     $("#txtName").val(rowEdit['lname']+', '+rowEdit['fname']+' '+rowEdit['mname']);
     // $("#txtFname").val("First Year");
     $("#txtCourse").val(rowEdit['course']);

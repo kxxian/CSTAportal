@@ -117,7 +117,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
+                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=?" ;
                                         $data = array('Pending');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
@@ -187,7 +187,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td hidden>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
                                                         <td hidden>' . $row['note'] . '</td>
-                                                        <td hidden>' . $row['datepaid'] . '</td>
+                                                        <td hidden>' . $row['date_paid'] . '</td>
                                                         
 
                                                         <td> 
@@ -250,10 +250,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 </div> -->
 
                                 <div class="col-lg-4"><label class="font-weight-bold text-gray-900">Date of Payment:</label>
-                                    <input type="text" name="dtDateSub" id="dtDateSub" class="form-control" readonly>
+                                    <input type="text" name="dtDatePaid" id="dtDatePaid" class="form-control" readonly>
                                 </div>
                                 <div class="col-lg-4"><label class="font-weight-bold text-gray-900">Time:</label>
-                                    <input type="text" name="dtDateSub" id="dtDateSub" class="form-control" readonly>
+                                    <input type="text" name="timePaid" id="timePaid" class="form-control" readonly>
                                 </div>
                             </div>
 

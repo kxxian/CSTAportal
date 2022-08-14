@@ -46,7 +46,7 @@ if (isset($_POST['uploadpayments'])) {
 
     try {
 
-        $sql = "INSERT INTO paymentverif (sid,date,time,schoolyr_ID,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO paymentverif (sid,date_of_payment,time_of_payment,schoolyr_ID,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $data = array($sid, $dop, $top, $pay_sy, $pay_sem, $payterm, $tfeeamount, $particulars, $total_others, $sentthru, $paymethod, $notes, $amountdue, $amtpaid);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
