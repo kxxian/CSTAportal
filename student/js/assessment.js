@@ -23,7 +23,7 @@ $(document).ready(function () {
                 icon: 'error',
                 title: 'Oops...',
                 width: 400,
-                text: 'Only jpeg, jpg, png are available filetypes to upload'
+                text: 'Only jpeg, jpg, png are available filetypes to upload.'
             })
 
             $('#fileupload').val('')

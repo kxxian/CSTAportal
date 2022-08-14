@@ -109,6 +109,12 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 														<a href="forgot-password.php" tabindex="5" class="forgot-password text-gray-900">Forgot Password?</a>
 													</div>
 												</div>
+
+												<div class="col-lg-12">
+													<div class="text-center">
+														<a href="guest_index.php" class="text-primary">Login as Guest?</a>
+													</div>
+												</div>
 											
 										</div>
 									</form>

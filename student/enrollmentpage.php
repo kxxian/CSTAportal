@@ -109,7 +109,7 @@
 										$stmt = $con->query($sql);
 
 										foreach($stmt as $rows) {
-											echo '<option value='.$rows['course_ID'].'>'.$rows[course].'</option>';
+											echo '<option value='.$rows['course_ID'].'>'.$rows['course'].'</option>';
 										}
 									?>
                                 </select>

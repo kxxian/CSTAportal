@@ -28,13 +28,14 @@ CREATE TABLE `assessment` (
   `assess_img_name` varchar(100) NOT NULL,
   `assess_img` varchar(100) NOT NULL,
   PRIMARY KEY (`aid`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `assessment` */
 
 insert  into `assessment`(`aid`,`assess_snum`,`assess_name`,`assess_email`,`assess_img_name`,`assess_img`) values 
 (18,'18-46799','Doe John','jdoe@mail.com','test123','18-46799_test123.png'),
-(23,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','test123','19-14677_test123.jpg');
+(23,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','test123','19-14677_test123.jpg'),
+(24,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','asdas','19-14677_asdas.jpg');
 
 /*Table structure for table `chat_message` */
 
@@ -52,6 +53,28 @@ CREATE TABLE `chat_message` (
 
 /*Data for the table `chat_message` */
 
+/*Table structure for table `course_tesda` */
+
+DROP TABLE IF EXISTS `course_tesda`;
+
+CREATE TABLE `course_tesda` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `course` varchar(255) NOT NULL,
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `course_tesda` */
+
+insert  into `course_tesda`(`cid`,`course`) values 
+(1,'Bartending NCII'),
+(2,'Bread and Pastry Production NCII'),
+(3,'Food and Bevarage Services NCII'),
+(4,'Front Office Servcies NCII'),
+(5,'Housekeeping NCII'),
+(6,'Tourguiding NCII'),
+(7,'Cookery NCII'),
+(8,'Caregiving NCII');
+
 /*Table structure for table `courses` */
 
 DROP TABLE IF EXISTS `courses`;
@@ -62,21 +85,21 @@ CREATE TABLE `courses` (
   `course` varchar(255) NOT NULL,
   `visible` varchar(20) NOT NULL DEFAULT 'VISIBLE',
   PRIMARY KEY (`course_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `courses` */
 
 insert  into `courses`(`course_ID`,`deptid`,`course`,`visible`) values 
-(1,0,'*Course  not set','HIDDEN'),
-(2,3,'Bachelor of Elementary Education Major in General','VISIBLE'),
+(1,3,'Bachelor of Elementary Education Major in General','VISIBLE'),
+(2,3,'Bachelor of Elementary Education Major in Preschool','VISIBLE'),
 (3,3,'Bachelor of Secondary Education Major in English','VISIBLE'),
 (4,3,'Bachelor of Secondary Education Major in Filipino','VISIBLE'),
 (5,3,'Bachelor of Secondary Education Major in Mathematics','VISIBLE'),
 (6,3,'Bachelor of Secondary Education Major in Social Science','VISIBLE'),
-(7,1,'Bachelor of Science in Information Technology','VISIBLE'),
-(8,2,'Bachelor of Science in Hospitality Management','VISIBLE'),
-(9,2,'Bachelor of Science in Tourism Management','VISIBLE'),
-(10,2,'Bachelor of Science in Hotel and Restaurant Management','VISIBLE');
+(7,2,'Bachelor of Science in Hospitality Management','VISIBLE'),
+(8,2,'Bachelor of Science in Tourism Management','VISIBLE'),
+(9,1,'Bachelor of Science in Information Technology','VISIBLE'),
+(10,4,'Certificate of Professional Education (CPE)','VISIBLE');
 
 /*Table structure for table `departments` */
 
@@ -202,13 +225,14 @@ CREATE TABLE `enrollment` (
   `date_or` varchar(100) DEFAULT NULL,
   `enrollment_status` varchar(60) NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`enrollment_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment` */
 
 insert  into `enrollment`(`enrollment_ID`,`sid`,`snum`,`mobile`,`yrlevel_ID`,`dept_ID`,`course_ID`,`schoolyr_ID`,`semester_ID`,`date_validated`,`date_enrolled`,`date_assessed`,`date_pverif`,`date_regform`,`payment_status`,`date_or`,`enrollment_status`) values 
 (83,22,'20-14789','09613397412',1,2,10,4,3,'Processing','Registered 07-11-22',NULL,NULL,NULL,NULL,NULL,'Pending'),
-(84,30,'19-14677','09128698224',1,1,7,4,3,'Processing','Registered 07-14-22',NULL,NULL,NULL,NULL,NULL,'Pending');
+(84,30,'19-14677','09128698224',1,1,7,4,3,'Processing','Registered 07-14-22',NULL,NULL,NULL,NULL,NULL,'Pending'),
+(85,31,'18-46799','09123456789',1,1,9,4,3,'Processing','Registered 08-11-22',NULL,NULL,NULL,NULL,NULL,'Pending');
 
 /*Table structure for table `enrollment_switch` */
 
@@ -245,6 +269,76 @@ CREATE TABLE `gradereq` (
 
 insert  into `gradereq`(`gradereq_ID`,`sid`,`schoolyr_ID`,`semester_ID`,`yrlevel_ID`,`course_ID`,`date_req`,`status`) values 
 (19,22,4,3,5,7,'06-14-22','Pending');
+
+/*Table structure for table `guest_payments` */
+
+DROP TABLE IF EXISTS `guest_payments`;
+
+CREATE TABLE `guest_payments` (
+  `gpid` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_fileName` varchar(100) NOT NULL,
+  `guest_fileImage` varchar(100) NOT NULL,
+  `guest_email` varchar(255) NOT NULL,
+  `guest_fullName` varchar(255) NOT NULL,
+  PRIMARY KEY (`gpid`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `guest_payments` */
+
+insert  into `guest_payments`(`gpid`,`guest_fileName`,`guest_fileImage`,`guest_email`,`guest_fullName`) values 
+(6,'1million_dollars','1million_dollars.jpg','ericnewman@gmail.com','Eric A. Newman');
+
+/*Table structure for table `guest_register` */
+
+DROP TABLE IF EXISTS `guest_register`;
+
+CREATE TABLE `guest_register` (
+  `gid` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_first_name` varchar(100) NOT NULL,
+  `guest_last_name` varchar(100) NOT NULL,
+  `guest_middle_name` varchar(100) NOT NULL,
+  `guest_suffix` varchar(10) NOT NULL,
+  `guest_address` varchar(255) NOT NULL,
+  `guest_email` varchar(255) NOT NULL,
+  `guest_mobile` varchar(11) NOT NULL,
+  `guest_telephone` varchar(11) NOT NULL,
+  `guest_course` varchar(100) NOT NULL,
+  `guest_guardian` varchar(255) NOT NULL,
+  `guest_guardian_no` varchar(11) NOT NULL,
+  `guest_guardian_email` varchar(255) NOT NULL,
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `guest_register` */
+
+insert  into `guest_register`(`gid`,`guest_first_name`,`guest_last_name`,`guest_middle_name`,`guest_suffix`,`guest_address`,`guest_email`,`guest_mobile`,`guest_telephone`,`guest_course`,`guest_guardian`,`guest_guardian_no`,`guest_guardian_email`) values 
+(9,'Kristian Ryan','Bulos','Binondo','','Blk 10 Lot 14 B Kingstown 1 Bagumbong, Caloocan City','kristianryanbulos@gmail.com','09128698224','9905014','9','Rizzalinda B. Roxas','09123456789','sample@gmail.com');
+
+/*Table structure for table `guest_register_tesda` */
+
+DROP TABLE IF EXISTS `guest_register_tesda`;
+
+CREATE TABLE `guest_register_tesda` (
+  `gid` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_first_name` varchar(100) NOT NULL,
+  `guest_last_name` varchar(100) NOT NULL,
+  `guest_middle_name` varchar(100) NOT NULL,
+  `guest_suffix` varchar(10) NOT NULL,
+  `guest_address` varchar(255) NOT NULL,
+  `guest_email` varchar(255) NOT NULL,
+  `guest_mobile` varchar(11) NOT NULL,
+  `guest_telephone` varchar(11) NOT NULL,
+  `guest_course` varchar(100) NOT NULL,
+  `guest_guardian` varchar(255) NOT NULL,
+  `guest_guardian_no` varchar(11) NOT NULL,
+  `guest_guardian_email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `guest_register_tesda` */
+
+insert  into `guest_register_tesda`(`gid`,`guest_first_name`,`guest_last_name`,`guest_middle_name`,`guest_suffix`,`guest_address`,`guest_email`,`guest_mobile`,`guest_telephone`,`guest_course`,`guest_guardian`,`guest_guardian_no`,`guest_guardian_email`) values 
+(2,'John','Doe','','I','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.','johndoe@mail.com','09123456789','9907687','4','Albert Breadcrumbs','09123456789','albertcrumbs@mail.com');
 
 /*Table structure for table `login_details` */
 
@@ -44419,7 +44513,7 @@ insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`course`,`
 (23,'Taruc','Aila Marie','Boncacas','19-13781',1,1,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','Llano Road','13','1375','137501','137501171','Maria Teresa Taruc','09887666663','tarucaila','03ea38899b518ec52e6464dec0295b65984ca339','APPROVED','2022-07-07 16:48:02'),
 (26,'Tulfo','Raffy','','NA',1,1,'Male','2022-06-15','Filipino','09888653566','rafyy@sample.com','sample address','13','1374','137403','137403010','Mr. Tulfo','09223440000','raffy_tulfo','4cd5daf931c8f733b2b6e9c10f0b58163abece55','APPROVED','2022-06-30 18:40:55'),
 (30,'Bulos','Kristian Ryan','Binondo','19-14677',1,7,'Male','2000-07-26','Filipino','09128698224','kristianryanbulos@gmail.com','Blk 10 A Lot 14 Kingstown 1 Bagumbong, Caloocan City','13','1375','137501','137501173','Rizzalinda B. Roxas','09123456789','krbulos26','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-07-14 16:49:40'),
-(31,'John','Doe','','18-46799',1,1,'Male','2022-07-15','Filipino','09123456789','jdoe@mail.com','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678','13','1374','137402','137402001','Robert Doe','09123456789','jdoe_123','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-07-15 20:14:57');
+(31,'John','Doe','','18-46799',1,9,'Male','2022-07-15','Filipino','09123456789','jdoe@mail.com','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678','13','1374','137402','137402001','Robert Doe','09123456789','jdoe_123','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-08-11 18:45:39');
 
 /*Table structure for table `studreq` */
 
