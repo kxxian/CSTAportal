@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Payment Verification</title>
+    <title>Online Payments | For Verification</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -32,19 +32,86 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for  DataTable -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- JQuery -->
+    <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
 
-    <!-- DataTable CDN CSS  -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+     <!-- Bootstrap 4 -->
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    
+    <!--Jquery Datatables Bootstrap 4 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 
-    <!-- Bootstrap CSS  -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Export -->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    
+
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+         var table = $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                className:'btn btn-primary',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20],
+                    
+                }
+            },
+            // {
+            //     extend: 'csvHtml5',
+            //     className:'btn btn-info',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
+            {
+                extend: 'excelHtml5',
+                className:'btn btn-success',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                className:'btn btn-danger',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+            {
+                extend: 'print',
+                className:'btn btn-secondary',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+        
+            'colvis'
+        ]
+      
+    
+    } );
+} );
+    </script>
+
 
 
 </head>
@@ -70,21 +137,20 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- Header -->
                 <?php require_once('includes/header.php'); ?>
                 <!-- End of Header -->
-
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> Acknowledged Payments
-                            </h5>
+                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Verification
+                            <div id="wrapbutton" class="float-right"></div>    
+                        
+                        </h5>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
 
@@ -94,7 +160,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Tuition Fee</th>
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
-                                            <th>Course</th>
+                                            <th hidden>Course</th>
                                             <th hidden>S.Y</th>
                                             <th hidden>Semester</th>
                                             <th hidden>Term</th>
@@ -104,16 +170,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Total</th>
                                             <th>Amount</th>
                                             <th hidden>Change</th>
-                                            <th hidden>Sent Via</th>
+                                            <th>Sent Via</th>
                                             <th hidden>Payment Method</th>
                                             <th hidden>Notes</th>
-                                            <th hidden>Date of Payment</th>
+                                            <th>Date Paid</th>
+                                            <th>Time Paid</th>
                                             <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
+                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=? order by date_acknowledged";
                                         $data = array('Received');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
@@ -152,7 +219,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
-                                                        <td >' . $row['course'] . '</td>
+                                                        <td hidden>' . $row['course'] . '</td>
                                                         
 
                                                         <td hidden>' . $row['tfeepayment'] . '</td>
@@ -170,12 +237,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td class="currency">' . $row['amtpaid'] . '</td>
+                                                        <td class="currency" style="text-align:right;">' . $row['amtpaid'] . '</td>
                                                         <td hidden>' . $row['amtchange'] . '</td>
-                                                        <td hidden>' . $row['sentvia'] . '</td>
+                                                        <td>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
                                                         <td hidden>' . $row['note'] . '</td>
-                                                        <td hidden>' . $row['date_paid'] . '</td>
+                                                        <td>' . $row['date_paid'] . ' </td>
+                                                        <td>' . $row['time_paid'] . ' </td>
                                                         
 
                                                         <td> 
@@ -225,7 +293,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="modal-body">
                         <div class="form-group">
                            
-                            <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
+                            <input type="hidden" name="pv_ID" id="pv_ID" class="form-control">
                             <input type="hidden" name="sid" id="txtsid" class="form-control">
                             <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
                             <div class="form-group row">
@@ -236,7 +304,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Send</button>
+                                <button type="submit" class="btn btn-success" name="verifypayment"><i class="fas fa-hand"></i> Send</button>
                             </div>
                 </form>
             </div>
@@ -271,28 +339,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- DataTable CDN JS -->
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
 
 
 

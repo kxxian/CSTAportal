@@ -79,7 +79,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-receipt"></i> Receipts
+                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-check"></i> Verified / For Receipt
                             </h5>
                         </div>
                         <div class="card-body">
@@ -95,8 +95,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
                                             <th hidden>Course</th>
-                                            <th>Amount</th>
-                                            <th>Payment For</th>
+
                                             <th hidden>S.Y</th>
                                             <th hidden>Semester</th>
                                             <th hidden>Term</th>
@@ -151,12 +150,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['fullname'] . '</td>
+                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
                                                         <td hidden>' . $row['course'] . '</td>
-                                                        <td>Amount Here</td>
-                                                        <td>Tuition Fee</td>
+                                                       
 
                                                         <td hidden>' . $row['tfeepayment'] . '</td>
                                                         <td hidden>' . $row['schoolyr'] . '</td>
@@ -173,16 +171,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td >' . $row['amtpaid'] . '</td>
+                                                        <td class="currency">' . $row['amtpaid'] . '</td>
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td hidden>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
                                                         <td hidden>' . $row['note'] . '</td>
-                                                        <td hidden>' . $row['datepaid'] . '</td>
+                                                        <td hidden>' . $row['date_paid'] . '</td>
                                                         
 
                                                         <td> 
-                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
+                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
                                         }
@@ -227,15 +225,56 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                           
-                                    <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                                    <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
-                                    <input type="hidden" name="sid" id="txtsid" class="form-control">
-                                    <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
-                              
+
+                            <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
+                            <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
+                            <input type="hidden" name="sid" id="txtsid" class="form-control">
+                            <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
+
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">O.R/A.R No:</label>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label text-gray-900" for="flexCheckDefault">
+                                            Official Receipt
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label text-gray-900" for="flexCheckDefault">
+                                            Acknowledgement Receipt
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label class="font-weight-bold text-gray-900">O.R Number:</label>
+                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="font-weight-bold text-gray-900">Official Receipt:</label>
+                                    <input type="file" name="verif_code" id="verif_code" class="form-control" required>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    <label class="font-weight-bold text-gray-900">A.R Number:</label>
+                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="font-weight-bold text-gray-900">Acknowledgmenet Receipt:</label>
+                                    <input type="file" name="verif_code" id="verif_code" class="form-control" required>
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label class="font-weight-bold text-gray-900">Remarks:</label>
                                     <input type="text" name="verif_code" id="verif_code" class="form-control" required>
                                 </div>
 
@@ -256,22 +295,22 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/sweetalert.min.js"></script>
 
     <?php
-    if (isset($_SESSION['status']) && $_SESSION['status']!="") 
-    {
+    if (isset($_SESSION['status']) && $_SESSION['status'] != "") {
 
     ?>
-    <script>
-        swal({
-            title: "<?php echo $_SESSION['status']; ?>",
-            // text: ""
-            icon: "<?php echo $_SESSION['status_code']; ?>",
-            button: "Done",
-            timer: 5000
-        });
-    </script>
+        <script>
+            swal({
+                title: "<?php echo $_SESSION['status']; ?>",
+                // text: ""
+                icon: "<?php echo $_SESSION['status_code']; ?>",
+                button: "Done",
+                timer: 5000
+            });
+        </script>
 
     <?php
-    unset($_SESSION['status']);}
+        unset($_SESSION['status']);
+    }
     ?>
 
 

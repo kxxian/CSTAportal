@@ -125,7 +125,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     </label>
 
 
-                                                                    <input type="text" name="selsy" id="selsy" class="form-control">
+                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023">
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
@@ -185,7 +185,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div><br>
                                                             <label>
                                                                 <h5 class="font-weight-bold">Additional (Others Fees)</h5>
-                                                                <i style="font-size: 0.9rem;color:#808080">NOTE: Select all particulars indicated on your assessment/disbursement form </i>
+                                                                <i style="font-size: 0.9rem;color:#808080">*Select other fees indicated on your assessment / disbursement form </i>
                                                             </label>
 
                                                             <br><br>
@@ -244,14 +244,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <input type="text" class="form-control" id="totaldue1" name="totaldue1" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
                                                                 </div>
-                                                                <i style="font-size: 1rem;color:#808080">*Total amount should be same on what is on your receipt</i>
+                                                                <i style="font-size: 1rem;color:#808080">*Total amount should be same on what is on your proof of payment</i>
 
                                                             </div>
                                                         </fieldset>
 
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment Information</legend>
-                                                            <i style="font-size: 1rem;color:red">*NOTE: Fill all the details as reflected on your proof of payment</i>
+                                                            <i style="font-size: 1rem;color:red">*Fill all the details as reflected on your proof of payment for faster verification</i>
                                                             <div class="form-group row">
                                                                 <div class="col-lg-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>
@@ -299,7 +299,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 </div>
                                                                 <div class="col-lg-3">
                                                                     <label for="dop"><strong>Time</strong></label>
-                                                                    <input type="time" class="form-control" id="ToP" name="ToP" required>
+                                                                    <input type="time" step="1" class="form-control" id="ToP" name="ToP" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">

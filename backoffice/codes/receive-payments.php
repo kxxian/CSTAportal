@@ -6,6 +6,11 @@ require("../mailer/PHPMailer/src/SMTP.php");
 require("../mailer/PHPMailer/src/Exception.php");
 
 
+// current date and time
+date_default_timezone_set('Asia/Manila');
+$date = date('y-m-d h:i:s');
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 
 if (isset($_POST['email_data'])) {
@@ -16,8 +21,8 @@ if (isset($_POST['email_data'])) {
                         $email = $row['email'];
                         $name = $row['name'];
 
-                        $sql = "UPDATE paymentverif set payment_status=? where pv_ID IN ({$ids});";
-                        $data = array("Received");
+                        $sql = "UPDATE paymentverif set payment_status=?, date_acknowledged=? where pv_ID IN ({$ids});";
+                        $data = array("Received",$date);
                         $stmt = $con->prepare($sql);
                         $stmt->execute($data);
 
@@ -68,10 +73,7 @@ if (isset($_POST['email_data'])) {
         } catch (PDOException $e) {
                 echo $e->getMessage();
         }
-}
-
-
-else if (isset($_POST['acknowledge'])) {
+} else if (isset($_POST['acknowledge'])) {
         $pv_id = $_POST['pv_id'];
         $email =  $_POST['txtemail'];
         $name = $_POST['txtName'];
@@ -79,8 +81,8 @@ else if (isset($_POST['acknowledge'])) {
 
 
         try {
-                $sql = "UPDATE paymentverif set payment_status=? where pv_ID=?";
-                $data = array("Received", $pv_id);
+                $sql = "UPDATE paymentverif set payment_status=?, date_acknowledged=? where pv_ID=?";
+                $data = array("Received",$date, $pv_id);
                 $stmt = $con->prepare($sql);
                 $stmt->execute($data);
 
@@ -123,7 +125,7 @@ else if (isset($_POST['acknowledge'])) {
 
                 $mail->AltBody = "";
 
-               
+
 
                 if (!$mail->send()) {
                         echo "Email Not Sent: " . $mail->ErrorInfo;

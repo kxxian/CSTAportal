@@ -1,64 +1,46 @@
 $(document).ready(function () {
-    var verifcode = $("#verif_code").val();
-    var pv_ID = $("#verif_code").val();
+   
 
     $('.btnVerify').on('click', function() {
-   
-
-        if (verifcode.length==0){
-            norecord();
-            }else{
-                swal({
-                    title: "Are you sure?",
-                    text: "This action can not be undone",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((willVerify) => {
-                    if (willVerify) {
-                        $.ajax({
-                            type: "POST",
-                            url: "codes/verify-payments.php",
-                            data:
-                           {
-                                  verify: 1,
-                                  payment_ID: pv_ID,
-                                  verif_code:verif_code
-                              }
-                          }).success(function(){
-
-                            swal("Success!", "Payment Verified!", "success").then(function(){ 
-                                setTimeout(function(){ 
-                                    location.reload();
-                                  }, 500);
+                //   success: function () {
+               
+            // }
     
-                              
-                               }
-                            ); 
-
-                          }
-                          )
+        var verifcode = $("#verif_code").val();
+        var pv_ID = $("#pv_ID").val();
+                $.ajax({
+                    type: "POST",
+                    url: "codes/verify-payments.php",
+                    data:
+                    {
+                        verify: 1,
+                        payment_ID: pv_ID,
+                        verif_code:verifcode
+                         }
+                        }).done(function () {
+                            swal({
+                                title: "Good job", 
+                                text: "You clicked the button!", 
+                                type: "success"
+                              }).then(function(){ 
+   location.reload();
+   }
+);
                        
-                        
-                }else{
+                        });
 
-                }
-                  });
+
+
+
+ });
                 
-            }
-       
-
-
-
-    })
-   
 
 });
 
 
 //payment details on modal
 function loadRecord(payment_ID) {
+    
  
  $.ajax({
      type: "POST",
@@ -70,8 +52,8 @@ function loadRecord(payment_ID) {
        }
    }).done(function (rec) {
        var rowEdit = $.parseJSON(rec);
-       console.log(rec);
-    $("#txt_id").val(rowEdit['pv_ID']);
+    //    console.log(rec);
+    $("#pv_ID").val(rowEdit['pv_ID']);
     $("#txtemail").val(rowEdit['email']);
     $("#txtsid").val(rowEdit['sid']);
     $("#verifypayment").modal("show");

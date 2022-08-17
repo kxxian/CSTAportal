@@ -8,25 +8,30 @@ require_once('includes/functions.php');
 
 if (isset($_POST['uploadpayments'])) {
 
-    if(isset($_POST['selsy'])){
+    if (isset($_POST['selsy'])) {
         $pay_sy = $_POST['selsy'];
-    }else{
+    } else {
         $pay_sy = 1;
     }
 
-    if(isset($_POST['selsem'])){
+    if (isset($_POST['selsem'])) {
         $pay_sem = $_POST['selsem'];
-    }else{
+    } else {
         $pay_sem = 1;
     }
 
-    if(isset($_POST['selterm'])){
+    if (isset($_POST['selterm'])) {
         $payterm = $_POST['selterm'];
-    }else{
+    } else {
         $payterm = 1;
     }
+
+    // current date and time
+    date_default_timezone_set('Asia/Manila');
+    $date = date('y-m-d h:i:s');
     
-    
+
+
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
     $total_others = htmlspecialchars(trim($_POST['totalothers']));
     $amountdue = $_POST['totaldue'];
@@ -46,8 +51,8 @@ if (isset($_POST['uploadpayments'])) {
 
     try {
 
-        $sql = "INSERT INTO paymentverif (sid,date_of_payment,time_of_payment,schoolyr_ID,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $data = array($sid, $dop, $top, $pay_sy, $pay_sem, $payterm, $tfeeamount, $particulars, $total_others, $sentthru, $paymethod, $notes, $amountdue, $amtpaid);
+        $sql = "INSERT INTO paymentverif (sid,date_of_payment,time_of_payment,schoolyr_ID,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid,date_sent)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $data = array($sid, $dop, $top, $pay_sy, $pay_sem, $payterm, $tfeeamount, $particulars, $total_others, $sentthru, $paymethod, $notes, $amountdue, $amtpaid,$date);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
         $newname = $con->lastInsertId();
