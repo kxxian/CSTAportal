@@ -1,10 +1,55 @@
 $(document).ready(function () {
+
+    var table = $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        
+        buttons: [
+            {
+                extend: 'copyHtml5',
+                className:'btn btn-primary',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20],
+                    
+                }
+            },
+            // {
+            //     extend: 'csvHtml5',
+            //     className:'btn btn-info',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
+            {
+                extend: 'excelHtml5',
+                className:'btn btn-success',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                className:'btn btn-danger',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+            {
+                extend: 'print',
+                className:'btn btn-secondary',
+                exportOptions: {
+                    columns: [1,2,14,16,19,20]
+                }
+            },
+        
+            'colvis'
+        ]
+      
+    
+    } );
    
 
     $('.btnVerify').on('click', function() {
-                //   success: function () {
-               
-            // }
+           
     
         var verifcode = $("#verif_code").val();
         var pv_ID = $("#pv_ID").val();
@@ -23,9 +68,9 @@ $(document).ready(function () {
                                 text: "You clicked the button!", 
                                 type: "success"
                               }).then(function(){ 
-   location.reload();
-   }
-);
+                            location.reload();
+                            }
+                            );
                        
                         });
 
@@ -38,7 +83,7 @@ $(document).ready(function () {
 });
 
 
-//payment details on modal
+//verify payment modal
 function loadRecord(payment_ID) {
     
  
@@ -66,6 +111,8 @@ function loadRecord(payment_ID) {
     });
 
 }
+
+
 
 function norecord(){
     swal({

@@ -23,8 +23,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <title>CSTA Admin | Payment Verification</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+       <!-- Custom fonts for this template-->
+       <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -32,19 +32,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for  DataTable -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- JQuery -->
+    <script
+    src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+    crossorigin="anonymous"></script>
 
-    <!-- DataTable CDN CSS  -->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+     <!-- Bootstrap 4 -->
+     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    
+    <!--Jquery Datatables Bootstrap 4 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 
-    <!-- Bootstrap CSS  -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-
-    <!-- Bootstrap JS bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </head>
@@ -84,7 +86,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
 
@@ -180,6 +182,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         
 
                                                         <td> 
+                                                        <button class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
                                                         <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
@@ -213,7 +216,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="modal fade" id="verifypayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   
+
+    <div class="modal fade" id="sendreceipt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -222,25 +227,26 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="codes/verify-payments.php" method="post">
+                <!-- <form action="codes/verify-payments.php" method="post"> -->
                     <div class="modal-body">
                         <div class="form-group">
 
                             <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
-                            <input type="hidden" name="pv_ID" id="txt_id" class="form-control">
+                            <input type="hidden" name="pv_ID" id="pv_ID" class="form-control">
                             <input type="hidden" name="sid" id="txtsid" class="form-control">
                             <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
+                                <label class="font-weight-bold text-gray-900">Choose Receipt/s:</label><br>
                                     <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="" id="OR" onclick="toggle();">
                                         <label class="form-check-label text-gray-900" for="flexCheckDefault">
                                             Official Receipt
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <input class="form-check-input" type="checkbox" value="" id="AR" onclick="toggle();">
                                         <label class="form-check-label text-gray-900" for="flexCheckDefault">
                                             Acknowledgement Receipt
                                         </label>
@@ -253,44 +259,43 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="font-weight-bold text-gray-900">O.R Number:</label>
-                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                    <input type="text" name="OrNum" id="OrNum" class="form-control" disabled>
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="font-weight-bold text-gray-900">Official Receipt:</label>
-                                    <input type="file" name="verif_code" id="verif_code" class="form-control" required>
+                                    <input type="file" name="OReceipt" id="OReceipt" class="form-control" disabled>
                                 </div>
 
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="font-weight-bold text-gray-900">A.R Number:</label>
-                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                    <input type="text" name="ArNum" id="ArNum" class="form-control" disabled>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Acknowledgmenet Receipt:</label>
-                                    <input type="file" name="verif_code" id="verif_code" class="form-control" required>
+                                    <label class="font-weight-bold text-gray-900">Acknowledgement Receipt:</label>
+                                    <input type="file" name="AReceipt" id="AReceipt" class="form-control" disabled>
                                 </div>
 
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label class="font-weight-bold text-gray-900">Remarks:</label>
-                                    <input type="text" name="verif_code" id="verif_code" class="form-control" required>
+                                    <input type="text" name="Remarks" id="Remarks" class="form-control">
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success btnVerify" name="verifypayment"><i class="fas fa-hand"></i> Send</button>
+                                <button type="submit" class="btn btn-success btnSendReceipt" id="btnSendReceipt" name="btnSendReceipt" ><i class="fas fa-hand"></i> Send</button>
                             </div>
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>
 
-
-
+   
     <!-- scripts -->
-    <script src="js/verify-payments.js"></script>
+    <script src="js/send-receipt.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
 
@@ -315,28 +320,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- DataTable CDN JS -->
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
 
 
 

@@ -1,38 +1,38 @@
 <?php
 session_start();
-require_once 'includes/connect.php';
-require_once '../student/includes/functions.php';
-require("mailer/PHPMailer/src/PHPMailer.php");
-require("mailer/PHPMailer/src/SMTP.php");
-require("mailer/PHPMailer/src/Exception.php");
+require('../includes/connect.php');
+// require_once '/student/includes/functions.php';
+require("../mailer/PHPMailer/src/PHPMailer.php");
+require("../mailer/PHPMailer/src/SMTP.php");
+require("../mailer/PHPMailer/src/Exception.php");
 date_default_timezone_set("Etc/GMT-8");
 
 use PHPMailer\PHPMailer\PHPMailer;
+
 
 if (isset($_POST['submit'])) {
 
     $id = $_POST['enroll_id'];
     $sid = $_POST['sid'];
-    $date=date("m-d-y");
-    $datepverif="Verified {$date}";   
-   ;
+    $date = date("m-d-y");
+    $datepverif = "Verified {$date}";;
 
-    if(isset($_POST['assessnotes'])){
+    if (isset($_POST['assessnotes'])) {
         $note = $_POST['assessnotes'];
-    }else{
+    } else {
         $note = "";
     }
 
-    
+
     $file = "attachments/receipts/" . basename($_FILES['attachment']['name']);
     if (move_uploaded_file($_FILES['attachment']['tmp_name'], $file)) {
-       // $msg = "";
+        // $msg = "";
     } else {
-       // $msg = "Please check your attachment";
+        // $msg = "Please check your attachment";
     }
-   
-  
-   
+
+
+
 
 
     try {
@@ -69,17 +69,16 @@ if (isset($_POST['submit'])) {
 
         //  $sql2 = "Update enrollment set date_pverif=?, payment_status=?, enrollment_status=? where sid=? and
         //  schoolyr=?
-       
+
         //  ";
         //  $data2 = array($datepverif,'Verified','Enrolled', $sid);
         //  $stmt2 = $con->prepare($sql2);
         //  $stmt2->execute($data2);
 
-       
+
         $_SESSION['status'] = "Payment Verified!";
         $_SESSION['status_code'] = "success";
         header('location:payverif.php');
-
     } catch (PDOException $e) {
         $e->getMessage();
     }
@@ -137,7 +136,7 @@ if (isset($_POST['submit'])) {
     if (!$mail->send()) {
         echo "Email Not Sent: " . $mail->ErrorInfo;
     } else {
-       
+
         // $_SESSION['status'] = "Assessment Form Sent!";
         // $_SESSION['status_code'] = "success";
         // header('location:payverif.php');

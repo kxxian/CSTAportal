@@ -18,14 +18,14 @@ function cleaner() {
 
 function loadData(noteid) {
     Swal.fire({
-  title: 'Are you sure?',
-  width: 400,
-  text: "Your file will be edited",
-  icon: 'question',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, edit it!'
+    title: 'Are you sure?',
+    width: 400,
+    text: "Your file will be edited",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, edit it!'
 }).then((result) => {
   if (result.isConfirmed) {
       $('#modalNote').modal('show')

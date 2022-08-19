@@ -59,61 +59,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
     
-
-
-    <script type="text/javascript">
-        $(document).ready( function () {
-         var table = $('#myTable').DataTable( {
-        dom: 'Bfrtip',
-        
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                className:'btn btn-primary',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20],
-                    
-                }
-            },
-            // {
-            //     extend: 'csvHtml5',
-            //     className:'btn btn-info',
-            //     exportOptions: {
-            //         columns: [1,2,14,16,19,20]
-            //     }
-            // },
-            {
-                extend: 'excelHtml5',
-                className:'btn btn-success',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20]
-                }
-            },
-            {
-                extend: 'print',
-                className:'btn btn-secondary',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20]
-                }
-            },
-        
-            'colvis'
-        ]
-      
     
-    } );
-} );
-    </script>
-
-
-
 </head>
 
 

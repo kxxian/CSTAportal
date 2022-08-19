@@ -2,16 +2,8 @@
 
 $(document).ready(function () {
 
-    $('#dataTable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
+    $('#dataTable').DataTable();
    
-
- 
-
  
     //load payment details on button click
     $('.btnPaymentDetails').on('click', function() {
