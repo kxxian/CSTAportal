@@ -4,108 +4,91 @@
 
 $(document).ready(function () {
     $('#myTable').DataTable();
+    $("#OrNum").prop("disabled");
 
-    $('#btnSendReceipt').click(function () {
-           
-    
-        //let verifcode = $("#verif_code").val();
-        let pv_ID = $("#pv_ID").val();
-        let email = $("#txtemail").val();
-        let ORNum=$("#OrNum").val();
-        let OReceipt=$("#OReceipt").val();
-        let AReceipt=$("#AReceipt").val();
-        let ArNum=$("#ArNum").val();
-        let Remarks=$("#Remarks").val();
+    $('#btnsendreceipt').click(function (e) {
+        e.preventDefault();
+        let chkOR = document.getElementById("OR");
+        let chkAR = document.getElementById("AR");  
+         let OrNum=$("#OrNum").val();
+         let OReceipt=$("#OReceipt").val();
+         let AReceipt=$("#AReceipt").val();
+         let ArNum=$("#ArNum").val();
+         let Remarks=$("#Remarks").val();
 
-        let data =  ORNum + '^' + OReceipt + '^' + ArNum + '^' + AReceipt + '^' + email + '^' + pv_ID
-
-        if (ArNum==='' && ORNum==='' || OReceipt=='' || 
-        AReceipt=='' || OReceipt=='' || Remarks==''){
+        if ((chkOR.checked) && (OReceipt=="" || OrNum=="") || Remarks=="") {
             norecord();
-
-            //alert (OReceipt);
-
-        }else{
+        }
+        else if((chkAR.checked) && (AReceipt=="" || ArNum=="") || Remarks==""){
+            norecord();
+        }
+        else if(chkAR.checked==false && chkOR.checked==false){
+            norecord();
+        }
+        else{
             $.ajax({
 				type: 'POST',
 				url: 'codes/sendreceipt.php',
-				data: {
-					upsert: 1,
-					Data: data
-				}
-			}).done(function () {
-				$('#sendreceipt').modal('toggle')
-				if (id !== '') {
-					Swal.fire({
-						icon: 'success',
-						title: 'Success!',
-						width: 400,
-						text: 'Your work has been updated!',
-						showConfirmButton: false,
-						timer: 1300
-					})
-				} else {
-					Swal.fire({
-						icon: 'success',
-						title: 'Success!',
-						width: 400,
-						text: 'Your work has been saved!',
-						showConfirmButton: false,
-						timer: 1300
-					})	
-				}	
-				// recordLoader()
-			})
-		}
+				// data: {
+				// 	sendreceipt: 1,
+				// 	Data: data
+				// }
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(){
+                    swal("Success!", "Receipt has been sent!", "success");
+                    },
+                    error: function(){} 	        
+                    
+                    });
+                }
 	})
 })
-           
+
+// toggle controls
 function toggle() {
 var chk_OR=document.getElementById("OR");
 var chk_AR=document.getElementById("AR");
 var ORNum=document.getElementById("OrNum");
 var OReceipt= document.getElementById("OReceipt");
-
-
 var ArNum= document.getElementById("ArNum");
-var Areceipt= document.getElementById("AReceipt");
+var remarks= document.getElementById("Remarks");
+var btn= document.getElementById("btn");
 
-
-if (chk_OR.checked) {
-
-    OrNum.disabled = false;
-    ORNum.required = true;
-    OReceipt.disabled = false;
-    OReceipt.required = true;
-  
- 
-} else {
-    OrNum.disabled = true;
-    OReceipt.disabled = true;
-   
-}  
-if (chk_AR.checked) {
-    ArNum.disabled = false;
-    ArNum.required = true;
-    Areceipt.disabled = false;
-    Areceipt.required = true;
-   
-    
-} else {
-    ArNum.disabled = true;
-    Areceipt.disabled = true;
-   
-}  
-
+//Receipts checkboxes
+if ((chk_OR.checked)||(chk_AR.checked)){
+btn.disabled=false;
+OReceipt.disabled=false;
+remarks.disabled=false;
+}else{
+btn.disabled=true;  
+OReceipt.disabled=true;
+remarks.disabled=true;
 }
 
+//O.R number
+if(chk_OR.checked){
+    ORNum.disabled=false;
+    ORNum.required = true;
+}else{
+    ORNum.disabled=true;
+    ORNum.required = false;
+}
+//O.R number
+if(chk_AR.checked){
+    ArNum.disabled=false;
+    ArNum.required = true;
+}else{
+    ArNum.disabled=true;
+    ArNum.required = false;
+}}
 
 
 
 //verify payment modal
 function loadRecord(payment_ID) {
-    
- 
  $.ajax({
      type: "POST",
      url: "codes/pending-payments.php",
@@ -120,7 +103,10 @@ function loadRecord(payment_ID) {
     $("#pv_ID").val(rowEdit['pv_ID']);
     $("#txtemail").val(rowEdit['email']);
     $("#txtsid").val(rowEdit['sid']);
+    $("#txtname").val(rowEdit['fname']+' '+rowEdit['lname']);
     $("#sendreceipt").modal("show");
+    
+
    });
 
     //close payment details modal

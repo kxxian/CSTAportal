@@ -103,7 +103,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th hidden>Term</th>
                                             <th hidden>Others</th>
                                             <th hidden>Others Total</th>
-                                            <th>Attachment/s</th>
+                                            <th hidden>Attachment/s</th>
                                             <th hidden>Total</th>
                                             <th>Amount</th>
                                             <th hidden>Change</th>
@@ -117,7 +117,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <tbody>
                                         <?php
                                         $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
-                                        $data = array('Received');
+                                        $data = array("For Receipt");
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
                                         $result = $stmt->fetchAll();
@@ -167,7 +167,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         
 
 
-                                                        <td>
+                                                        <td hidden>
                                                         ' . $img . '
                                                         ' . $img2 . '
                                                         </td>
@@ -227,14 +227,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <!-- <form action="codes/verify-payments.php" method="post"> -->
+                 <form action="codes/sendreceipt.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="form-group">
 
                             <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
                             <input type="hidden" name="pv_ID" id="pv_ID" class="form-control">
                             <input type="hidden" name="sid" id="txtsid" class="form-control">
-                            <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
+                            <input type="hidden" name="txtemail" id="txtemail" class="form-control">
+                            <input type="hidden" name="txtname" id="txtname" class="form-control">
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
@@ -251,44 +252,36 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             Acknowledgement Receipt
                                         </label>
                                     </div>
-
                                 </div>
-
                             </div>
-
                             <div class="form-group row">
                                 <div class="col-lg-6">
                                     <label class="font-weight-bold text-gray-900">O.R Number:</label>
                                     <input type="text" name="OrNum" id="OrNum" class="form-control" disabled>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Official Receipt:</label>
-                                    <input type="file" name="OReceipt" id="OReceipt" class="form-control" disabled>
+                                    <label class="font-weight-bold text-gray-900">A.R Number:</label>
+                                    <input type="text" name="ArNum" id="ArNum" class="form-control"  disabled>
                                 </div>
-
+                                
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">A.R Number:</label>
-                                    <input type="text" name="ArNum" id="ArNum" class="form-control" disabled>
+                            <div class="col-lg-12">
+                                    <label class="font-weight-bold text-gray-900">Attachment/s:</label>
+                                    <input type="file" name="OReceipt[]" id="OReceipt" multiple="multiple" class="form-control" required disabled>
                                 </div>
-                                <div class="col-lg-6">
-                                    <label class="font-weight-bold text-gray-900">Acknowledgement Receipt:</label>
-                                    <input type="file" name="AReceipt" id="AReceipt" class="form-control" disabled>
-                                </div>
-
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
                                     <label class="font-weight-bold text-gray-900">Remarks:</label>
-                                    <input type="text" name="Remarks" id="Remarks" class="form-control">
+                                    <input type="text" name="Remarks" id="Remarks" value="Done" class="form-control text-gray-900" disabled>
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success btnSendReceipt" id="btnSendReceipt" name="btnSendReceipt" ><i class="fas fa-hand"></i> Send</button>
+                                <input type="submit" class="btn btn-success" id="btn" name="sendreceipt"  value="Send" disabled> 
                             </div>
-                <!-- </form> -->
+                </form>
             </div>
         </div>
     </div>

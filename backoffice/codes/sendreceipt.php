@@ -9,138 +9,90 @@ date_default_timezone_set("Etc/GMT-8");
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-
-if (isset($_POST['submit'])) {
-
-    $id = $_POST['enroll_id'];
-    $sid = $_POST['sid'];
-    $date = date("m-d-y");
-    $datepverif = "Verified {$date}";;
-
-    if (isset($_POST['assessnotes'])) {
-        $note = $_POST['assessnotes'];
-    } else {
-        $note = "";
-    }
-
-
-    $file = "attachments/receipts/" . basename($_FILES['attachment']['name']);
-    if (move_uploaded_file($_FILES['attachment']['tmp_name'], $file)) {
-        // $msg = "";
-    } else {
-        // $msg = "Please check your attachment";
-    }
-
-
-
-
+if (isset($_POST['sendreceipt'])) {
 
     try {
-        $sql = "select * from vwstudents where id=?";
-        $data = array($sid); // insert student id here
+        $OR = htmlspecialchars(trim($_POST['OrNum']));
+        $AR = htmlspecialchars(trim($_POST['ArNum']));
+    
+    
+        if (!isset($_POST['OrNum'])) {
+            $OR = "NA";
+        } elseif (!isset($_POST['ArNum'])) {
+            $AR = "NA";
+        } else {
+            $OR = htmlspecialchars(trim($_POST['OrNum']));
+            $AR = htmlspecialchars(trim($_POST['ArNum']));
+        }
+
+
+        $pv_ID = $_POST['pv_ID'];
+
+
+        $remarks = htmlspecialchars(trim($_POST['Remarks']));
+        $email = $_POST['txtemail'];
+        $name = $_POST['txtname'];
+
+
+        //update payment status
+        $sql = "Update paymentverif set OR_num=?, AR_num=?, remarks=? where pv_ID=? ";
+        $data = array($OR, $AR, $remarks, $pv_ID);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
-        $row = $stmt->fetch();
 
-        //fetch student data for email purposes
-        //$sid = $row['id'];
-        $fullname = $row['fname'] . ' ' . $row['mname'] . '' . ' ' . $row['lname'];
-        $fname = $row['fname'];
-        $lname = $row['lname'];
-        $email = $row['email'];
-        $mobile = $row['mobile'];
-        $address = strtolower($row['completeaddress']);
-        $region = $row['region'];
-        $snum = $row['snum'];
-        $bday = $row['bday'];
-        $gender = $row['gender'];
-        $username = $row['username'];
-        $yrlevel = $row['yrlevel'];
-        $course = $row['course'];
-        $guardian = $row['guardian'];
-        $guardiancontact = $row['guardiancontact'];
+        $mailTo = $email;
+
+        $body = "Hi Ma'am/Sir,<br><br>
+
+        Please see attached advance copy of Official Receipt for your reference.<br><br>
+        
+        You may get the Original Copy at CSTA Cashier Monday to Friday 9am-4pm. <br><br>
+        
+        Thank You & Keep Safe.<br><br>
+        
+    
+        ";
+
+        $mail = new PHPMailer();
+
+        // $mail->SMTPDebug = 3;
+        $mail->isSMTP();
+
+        //SMTP user credentials
+        include "../includes/smtp_config.php";
+
+        $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
+        $mail->FromName = "CSTA Accounting"; // employee name + Department 
+        $mail->addAddress($mailTo, $name); // recipient
+        $mail->SMTPOptions = array('ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => false
+        ));
+        $mail->isHTML(true);
+        $mail->Subject = "Receipt"; // email subject
+        $mail->Body = $body;
 
 
-        //update enrollment status
-        $sql1 = "Update paymentverif set payment_status=? where pv_ID=? ";
-        $data1 = array('Verified', $id);
-        $stmt1 = $con->prepare($sql1);
-        $stmt1->execute($data1);
+        //attachments
+        foreach ($_FILES["OReceipt"]["name"] as $k => $v) {
+            $mail->AddAttachment( $_FILES["OReceipt"]["tmp_name"][$k], $_FILES["OReceipt"]["name"][$k] );
+        }
 
-        //  $sql2 = "Update enrollment set date_pverif=?, payment_status=?, enrollment_status=? where sid=? and
-        //  schoolyr=?
+        if (!$mail->send()) {
+            // echo "<Email Not Sent: " . $mail->ErrorInfo;
+            $_SESSION['status'] = "Receipt Not Sent!";
+            $_SESSION['status_code'] = "error";
+            header('location:../for-receipt-issuance.php');
+        } else {
 
-        //  ";
-        //  $data2 = array($datepverif,'Verified','Enrolled', $sid);
-        //  $stmt2 = $con->prepare($sql2);
-        //  $stmt2->execute($data2);
-
-
-        $_SESSION['status'] = "Payment Verified!";
-        $_SESSION['status_code'] = "success";
-        header('location:payverif.php');
+            $_SESSION['status'] = "Receipt Sent!";
+            $_SESSION['status_code'] = "success";
+            header('location:../for-receipt-issuance.php');
+        
+        }
+        $mail->smtpClose();
     } catch (PDOException $e) {
-        $e->getMessage();
+        echo $e->getMessage();
     }
-
-
-    $mailTo = $email;
-
-    // if ($gender == "Male") {
-    //     $honorific = "Mr.";
-    // } else {
-    //     $honorific = "Ms.";
-    // }
-
-    $body = "Hi Ma'am/Sir,<br>
-
-    Please see attached advance copy of Official Receipt for your reference.<br>
-    
-    You may get the Original Copy at CSTA Cashier Monday to Friday 9am-4pm. 
-    
-    Thank You & Keep Safe.<br><br>
-    
-    {$note}
-    ";
-
-    $mail = new PHPMailer();
-
-    //$mail->SMTPDebug = 3;
-    $mail->isSMTP();
-
-    //SMTP user credentials
-    $mail->Host = "smtp-relay.sendinblue.com";
-    $mail->SMTPAuth = true;
-    $mail->Username = "jasonwafuu@gmail.com";
-    $mail->Password = "whxz2btTErLDGyjI";
-    $mail->SMTPSecure = "tls";
-    $mail->Port = "587";
-
-    $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
-    $mail->FromName = "CSTA Accounting"; // employee name + Department 
-    $mail->addAddress($mailTo, $fname . ' ' . $lname); // recipient
-    $mail->SMTPOptions = array('ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => false
-    ));
-    $mail->isHTML(true);
-    $mail->Subject = "Assessment Form"; // email subject
-    $mail->Body = $body;
-
-    $mail->addAttachment(path: "$file", name: "OR_{$lname}'.jpg'");
-
-    //$mail->AltBody="";
-
-
-    if (!$mail->send()) {
-        echo "Email Not Sent: " . $mail->ErrorInfo;
-    } else {
-
-        // $_SESSION['status'] = "Assessment Form Sent!";
-        // $_SESSION['status_code'] = "success";
-        // header('location:payverif.php');
-    }
-
-    $mail->smtpClose();
 }

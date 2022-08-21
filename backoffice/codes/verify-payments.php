@@ -14,7 +14,7 @@ if (isset($_POST['verifypayment'])) {
 
     try {
         $sql = "UPDATE paymentverif set payment_status=?, verif_code=?, date_verified=? where pv_ID =?";
-        $data = array("Verified", $verif_code, $date, $id);
+        $data = array("For Receipt", $verif_code, $date, $id);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
         session_start();
