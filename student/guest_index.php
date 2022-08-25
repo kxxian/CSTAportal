@@ -47,7 +47,9 @@
             <div id="content">
 
                 <!-- Topbar -->
-                
+                <?php 
+                    require('includes/guest_header.php');
+                ?>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

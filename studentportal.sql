@@ -35,7 +35,7 @@ CREATE TABLE `assessment` (
 insert  into `assessment`(`aid`,`assess_snum`,`assess_name`,`assess_email`,`assess_img_name`,`assess_img`) values 
 (18,'18-46799','Doe John','jdoe@mail.com','test123','18-46799_test123.png'),
 (23,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','test123','19-14677_test123.jpg'),
-(24,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','asdas','19-14677_asdas.jpg');
+(24,'19-14677','Kristian Ryan Bulos','kristianryanbulos@gmail.com','testing','19-14677_testing.jpg');
 
 /*Table structure for table `chat_message` */
 
@@ -85,21 +85,21 @@ CREATE TABLE `courses` (
   `course` varchar(255) NOT NULL,
   `visible` varchar(20) NOT NULL DEFAULT 'VISIBLE',
   PRIMARY KEY (`course_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `courses` */
 
 insert  into `courses`(`course_ID`,`deptid`,`course`,`visible`) values 
-(1,3,'Bachelor of Elementary Education Major in General','VISIBLE'),
-(2,3,'Bachelor of Elementary Education Major in Preschool','VISIBLE'),
-(3,3,'Bachelor of Secondary Education Major in English','VISIBLE'),
-(4,3,'Bachelor of Secondary Education Major in Filipino','VISIBLE'),
-(5,3,'Bachelor of Secondary Education Major in Mathematics','VISIBLE'),
-(6,3,'Bachelor of Secondary Education Major in Social Science','VISIBLE'),
-(7,2,'Bachelor of Science in Hospitality Management','VISIBLE'),
-(8,2,'Bachelor of Science in Tourism Management','VISIBLE'),
-(9,1,'Bachelor of Science in Information Technology','VISIBLE'),
-(10,4,'Certificate of Professional Education (CPE)','VISIBLE');
+(2,3,'Bachelor of Science in Elementary Education Major in General Education','VISIBLE'),
+(3,3,'Bachelor of Science in Elementary Education Major in Preschool Education','VISIBLE'),
+(4,3,'Bachelor of Science in Secondary Education Major in English','VISIBLE'),
+(5,3,'Bachelor of Science in Secondary Education Major in Filipino','VISIBLE'),
+(6,3,'Bachelor of Science in Secondary Education Major in Mathematics','VISIBLE'),
+(7,1,'Bachelor of Science in Secondary Education Major in Social Science','VISIBLE'),
+(8,2,'Bachelor of Science in Hospitality Management','VISIBLE'),
+(9,2,'Bachelor of Science in Tourism Management','VISIBLE'),
+(10,2,'Bachelor of Science in Information Technology','VISIBLE'),
+(11,4,'Certificate of Professional Education (CPE)','VISIBLE');
 
 /*Table structure for table `departments` */
 
@@ -225,14 +225,13 @@ CREATE TABLE `enrollment` (
   `date_or` varchar(100) DEFAULT NULL,
   `enrollment_status` varchar(60) NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`enrollment_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment` */
 
 insert  into `enrollment`(`enrollment_ID`,`sid`,`snum`,`mobile`,`yrlevel_ID`,`dept_ID`,`course_ID`,`schoolyr_ID`,`semester_ID`,`date_validated`,`date_enrolled`,`date_assessed`,`date_pverif`,`date_regform`,`payment_status`,`date_or`,`enrollment_status`) values 
 (83,22,'20-14789','09613397412',1,2,10,4,3,'Processing','Registered 07-11-22',NULL,NULL,NULL,NULL,NULL,'Pending'),
-(84,30,'19-14677','09128698224',1,1,7,4,3,'Processing','Registered 07-14-22',NULL,NULL,NULL,NULL,NULL,'Pending'),
-(85,31,'18-46799','09123456789',1,1,9,4,3,'Processing','Registered 08-11-22',NULL,NULL,NULL,NULL,NULL,'Pending');
+(84,30,'19-14677','09128698224',1,1,7,4,3,'Processing','Registered 07-14-22',NULL,NULL,NULL,NULL,NULL,'Pending');
 
 /*Table structure for table `enrollment_switch` */
 
@@ -275,18 +274,28 @@ insert  into `gradereq`(`gradereq_ID`,`sid`,`schoolyr_ID`,`semester_ID`,`yrlevel
 DROP TABLE IF EXISTS `guest_payments`;
 
 CREATE TABLE `guest_payments` (
-  `gpid` int(11) NOT NULL AUTO_INCREMENT,
-  `guest_fileName` varchar(100) NOT NULL,
-  `guest_fileImage` varchar(100) NOT NULL,
-  `guest_email` varchar(255) NOT NULL,
-  `guest_fullName` varchar(255) NOT NULL,
-  PRIMARY KEY (`gpid`)
+  `gid` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_dtPayment` datetime NOT NULL,
+  `guest_tfee` varchar(64) NOT NULL,
+  `guest_schoolYear` varchar(100) NOT NULL,
+  `guest_payMethod` varchar(100) NOT NULL,
+  `guest_sentVia` varchar(100) NOT NULL,
+  `guest_totalAmt` int(255) NOT NULL,
+  `guest_proofPayIMG` varchar(100) NOT NULL,
+  `gust_studName` varchar(255) NOT NULL,
+  `guest_email` varchar(100) NOT NULL,
+  PRIMARY KEY (`gid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `guest_payments` */
 
-insert  into `guest_payments`(`gpid`,`guest_fileName`,`guest_fileImage`,`guest_email`,`guest_fullName`) values 
-(6,'1million_dollars','1million_dollars.jpg','ericnewman@gmail.com','Eric A. Newman');
+insert  into `guest_payments`(`gid`,`guest_dtPayment`,`guest_tfee`,`guest_schoolYear`,`guest_payMethod`,`guest_sentVia`,`guest_totalAmt`,`guest_proofPayIMG`,`gust_studName`,`guest_email`) values 
+(1,'2022-08-01 01:03:00','Downpayment','4','2','1',3000,'sample@mail.com.jpg','John Doe','sample@mail.com'),
+(2,'2022-08-31 01:33:00','Downpayment','4','1','1',3000,'sample@mail.com.jpg','John Doe','sample@mail.com'),
+(3,'2022-08-23 17:22:00','Cash','4','2','2',14775,'same@mail.com.jpg','Samantha Eberg','same@mail.com'),
+(4,'2022-08-17 01:03:00','Downpayment','4','1','2',3000,'sample@mail.com.jpg','John Doe','sample@mail.com'),
+(5,'2022-08-18 01:33:21','Cash','4','2','1',14775,'testing@mail.com.jpg','Testing Test','testing@mail.com'),
+(6,'2022-08-17 01:22:33','Downpayment','4','1','1',21332,'gfsfd@mail.com.jpg','hdgfdgfd','gfsfd@mail.com');
 
 /*Table structure for table `guest_register` */
 
@@ -411,7 +420,7 @@ CREATE TABLE `notes` (
   `note_snum` varchar(255) NOT NULL,
   `note_text` varchar(255) NOT NULL,
   PRIMARY KEY (`note_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `notes` */
 
@@ -450,13 +459,13 @@ DROP TABLE IF EXISTS `paymentverif`;
 CREATE TABLE `paymentverif` (
   `pv_ID` int(10) NOT NULL AUTO_INCREMENT,
   `sid` int(10) NOT NULL,
-  `date` datetime NOT NULL,
-  `time` time NOT NULL,
+  `date_of_payment` datetime NOT NULL,
+  `time_of_payment` time NOT NULL,
   `schoolyr_ID` varchar(100) NOT NULL,
   `semester_ID` int(10) NOT NULL DEFAULT 1,
   `terms_ID` int(10) NOT NULL DEFAULT 1,
   `tfeeamount` decimal(7,2) DEFAULT NULL,
-  `particulars` blob DEFAULT NULL,
+  `particulars` varchar(255) NOT NULL DEFAULT 'NA',
   `particulars_total` decimal(7,2) DEFAULT NULL,
   `sentvia_ID` int(10) NOT NULL,
   `paymethod_ID` int(10) NOT NULL,
@@ -464,17 +473,19 @@ CREATE TABLE `paymentverif` (
   `gtotal` decimal(7,2) NOT NULL,
   `amtpaid` decimal(7,2) NOT NULL,
   `payment_status` varchar(100) NOT NULL DEFAULT 'Pending',
-  `date_sent` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `date_sent` datetime NOT NULL,
+  `date_acknowledged` datetime DEFAULT NULL,
+  `verif_code` varchar(100) DEFAULT NULL,
+  `date_verified` datetime DEFAULT NULL,
   PRIMARY KEY (`pv_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `paymentverif` */
 
-insert  into `paymentverif`(`pv_ID`,`sid`,`date`,`time`,`schoolyr_ID`,`semester_ID`,`terms_ID`,`tfeeamount`,`particulars`,`particulars_total`,`sentvia_ID`,`paymethod_ID`,`note`,`gtotal`,`amtpaid`,`payment_status`,`date_sent`) values 
-(26,22,'2022-07-16 00:00:00','00:22:00','2020-2021',2,3,3000.00,'.',0.00,2,2,'',3000.00,3000.00,'Pending','2022-07-22 00:51:27'),
-(27,23,'2022-07-17 00:00:00','11:24:00','2021-2022',2,3,3000.00,'.',0.00,2,2,'',3000.00,30000.00,'Pending','2022-07-22 09:22:41'),
-(28,22,'2022-07-19 00:00:00','22:23:00','2021-2022',3,5,5000.00,'.',0.00,2,1,'',5000.00,5000.00,'Pending','2022-07-22 00:51:33'),
-(29,22,'2022-07-19 00:00:00','22:24:00','2022-2023',3,3,3000.00,'.',0.00,2,2,'',3000.00,3000.00,'Pending','2022-07-22 00:51:38');
+insert  into `paymentverif`(`pv_ID`,`sid`,`date_of_payment`,`time_of_payment`,`schoolyr_ID`,`semester_ID`,`terms_ID`,`tfeeamount`,`particulars`,`particulars_total`,`sentvia_ID`,`paymethod_ID`,`note`,`gtotal`,`amtpaid`,`payment_status`,`date_sent`,`date_acknowledged`,`verif_code`,`date_verified`) values 
+(40,22,'2022-08-15 00:00:00','14:20:00','2021-2022',2,4,3432.00,'.',0.00,3,2,'',3432.00,3500.00,'Received','2022-08-15 09:20:42','2022-08-16 09:09:22','222222','2022-08-17 09:41:31'),
+(41,23,'2022-08-15 00:00:00','21:06:00','2021-2022',2,2,15223.00,'.',0.00,2,2,'',15223.00,15230.00,'Received','2022-08-15 09:23:52','2022-08-16 09:09:22','etlog','2022-08-19 12:49:48'),
+(42,22,'2022-08-16 00:00:00','23:45:43','2021-2022',2,2,3000.00,'.',0.00,2,2,'',3000.00,3000.00,'Pending','2022-08-16 11:46:24',NULL,NULL,NULL);
 
 /*Table structure for table `paymethod` */
 
@@ -504,7 +515,7 @@ CREATE TABLE `pwdreset` (
   `pwdresetToken` longtext NOT NULL,
   `pwdresetExpires` text NOT NULL,
   PRIMARY KEY (`pwdresetID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pwdreset` */
 
@@ -44405,7 +44416,7 @@ CREATE TABLE `schedules` (
   `sched_time` varchar(64) NOT NULL,
   `sched_prof` varchar(100) NOT NULL,
   PRIMARY KEY (`schedId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `schedules` */
 
@@ -44413,7 +44424,11 @@ insert  into `schedules`(`schedId`,`sched_snum`,`sched_subj`,`sched_day`,`sched_
 (1,'19-14677','Data Management System','MTTH','1:00am-4:00pm','John Doe'),
 (4,'18-46799','Intro to Computing','WF','1:00pm-3:30pm',''),
 (5,'19-14677','Video Editting','FS','3:30pm-6:30pm','Christian Maasin'),
-(8,'20-14789','Capstone Project 2','Sat','5:00pm-8:00pm','');
+(9,'20-14789','IT Elective 4','M','7:30am-10:30am','Prof. Noel Gagolinan'),
+(10,'20-14789','Information Assurance and Security 2','W/S','1:00pm-3:30pm','Prof. Roy Arsenal'),
+(11,'20-14789','The Contemporary World','Th','10:30am-1:30pm','Mr. Audie Alejandro Fulong'),
+(12,'20-14789','System Administration and Integration','F','7:30am-10:30am','Prof. Noel Gagolinan'),
+(13,'20-14789','Capstone Project 2','S','9:00am-12:00pm','Prof. Harold Lucero');
 
 /*Table structure for table `schoolyr` */
 
@@ -44510,10 +44525,10 @@ CREATE TABLE `students` (
 
 insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`course`,`gender`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`guardiancontact`,`username`,`pass`,`status`,`dor`) values 
 (22,'Munoz','Jason','Beltran','20-14789',5,10,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Julia Abad','09178297423','jmunoz123','619a7bf4f29ac53bf05fd8408bb1c6e8bc2b45b4','APPROVED','2022-07-17 21:05:51'),
-(23,'Taruc','Aila Marie','Boncacas','19-13781',1,1,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','Llano Road','13','1375','137501','137501171','Maria Teresa Taruc','09887666663','tarucaila','03ea38899b518ec52e6464dec0295b65984ca339','APPROVED','2022-07-07 16:48:02'),
+(23,'Taruc','Aila Marie','Boncacas','19-13781',1,7,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','Llano Road','13','1375','137501','137501171','Maria Teresa Taruc','09887666663','tarucaila','f870d7e15155445f55cf59d9ce83ff9908beef21','APPROVED','2022-08-15 21:38:52'),
 (26,'Tulfo','Raffy','','NA',1,1,'Male','2022-06-15','Filipino','09888653566','rafyy@sample.com','sample address','13','1374','137403','137403010','Mr. Tulfo','09223440000','raffy_tulfo','4cd5daf931c8f733b2b6e9c10f0b58163abece55','APPROVED','2022-06-30 18:40:55'),
 (30,'Bulos','Kristian Ryan','Binondo','19-14677',1,7,'Male','2000-07-26','Filipino','09128698224','kristianryanbulos@gmail.com','Blk 10 A Lot 14 Kingstown 1 Bagumbong, Caloocan City','13','1375','137501','137501173','Rizzalinda B. Roxas','09123456789','krbulos26','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-07-14 16:49:40'),
-(31,'John','Doe','','18-46799',1,9,'Male','2022-07-15','Filipino','09123456789','jdoe@mail.com','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678','13','1374','137402','137402001','Robert Doe','09123456789','jdoe_123','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-08-11 18:45:39');
+(31,'John','Doe','','18-46799',1,1,'Male','2022-07-15','Filipino','09123456789','jdoe@mail.com','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678','13','1374','137402','137402001','Robert Doe','09123456789','jdoe_123','7110eda4d09e062aa5e4a390b0a572ac0d2c0220','APPROVED','2022-07-15 20:14:57');
 
 /*Table structure for table `studreq` */
 
@@ -44688,7 +44703,9 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `pv_ID` int(10) ,
  `sid` int(10) ,
  `snum` varchar(8) ,
- `fullname` varchar(257) ,
+ `lname` varchar(128) ,
+ `fname` varchar(128) ,
+ `mname` varchar(128) ,
  `course` varchar(255) ,
  `tfeepayment` decimal(7,2) ,
  `schoolyr` varchar(100) ,
@@ -44696,7 +44713,7 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `term` varchar(68) ,
  `email` varchar(128) ,
  `mobile` varchar(11) ,
- `particulars` blob ,
+ `particulars` varchar(255) ,
  `particulars_total` decimal(7,2) ,
  `gtotal` decimal(7,2) ,
  `amtpaid` decimal(7,2) ,
@@ -44704,7 +44721,12 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `sentvia` varchar(68) ,
  `paymethod` varchar(68) ,
  `note` blob ,
- `datepaid` varchar(10) ,
+ `date_paid` varchar(10) ,
+ `time_paid` varchar(11) ,
+ `date_sent` datetime ,
+ `date_acknowledged` datetime ,
+ `verif_code` varchar(100) ,
+ `date_verified` datetime ,
  `payment_status` varchar(100) 
 )*/;
 
@@ -44785,7 +44807,7 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP TABLE IF EXISTS `vwpayverif` */;
 /*!50001 DROP VIEW IF EXISTS `vwpayverif` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,concat(`students`.`fname`,' ',`students`.`lname`) AS `fullname`,`courses`.`course` AS `course`,`paymentverif`.`tfeeamount` AS `tfeepayment`,`paymentverif`.`schoolyr_ID` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,`paymentverif`.`particulars_total` AS `particulars_total`,`paymentverif`.`gtotal` AS `gtotal`,`paymentverif`.`amtpaid` AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date`,'%m/%d/%Y') AS `datepaid`,`paymentverif`.`payment_status` AS `payment_status` from ((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`courses`.`course` AS `course`,`paymentverif`.`tfeeamount` AS `tfeepayment`,`paymentverif`.`schoolyr_ID` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,`paymentverif`.`particulars_total` AS `particulars_total`,`paymentverif`.`gtotal` AS `gtotal`,`paymentverif`.`amtpaid` AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date_of_payment`,'%m/%d/%Y') AS `date_paid`,time_format(`paymentverif`.`time_of_payment`,'%h:%i:%s %p') AS `time_paid`,`paymentverif`.`date_sent` AS `date_sent`,`paymentverif`.`date_acknowledged` AS `date_acknowledged`,`paymentverif`.`verif_code` AS `verif_code`,`paymentverif`.`date_verified` AS `date_verified`,`paymentverif`.`payment_status` AS `payment_status` from ((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
 
 /*View structure for view vwstudents */
 

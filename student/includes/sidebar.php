@@ -3,7 +3,7 @@
 if ($pageValue == 0) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -52,7 +52,7 @@ if ($pageValue == 0) {
 } else if ($pageValue == 1) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -101,7 +101,7 @@ if ($pageValue == 0) {
 } elseif ($pageValue == 2) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -150,7 +150,7 @@ if ($pageValue == 0) {
 } else if ($pageValue === 3) {	
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -199,7 +199,7 @@ if ($pageValue == 0) {
 } elseif ($pageValue === 4) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';

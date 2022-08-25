@@ -91,7 +91,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 												
 											<div class="col-sm-6 offset-sm-3">
 												
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" style="background-color: #65350f;">
 												<p style="color:red; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg?></p>
 											</div>
 											</div>

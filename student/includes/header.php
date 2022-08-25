@@ -14,7 +14,7 @@
       $dp=$sid.'.jpg';
    }
    
-$strheader='<nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#261f17; ">'; //#261f17--old
+$strheader='<nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2E1503; ">'; //#261f17--old
 $strheader.='<ul class="navbar-nav">';
 $strheader.='<li class="nav-item dropdown no-arrow">';
 $strheader.='<span class="mr-2 d-none d-lg-inline text-gray-100 medium"><strong>SY: '.$currentsyval.'</strong>  <strong>'.$currentsemval.' | Enrollment Status: <span style="color:'.$color.'">'.$enroll_status.'</span  ></strong> </span></li>';

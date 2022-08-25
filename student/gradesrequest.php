@@ -225,7 +225,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                     </div>
 
                                                     <div class="col-lg-6">
-                                                        <label for="sem1"><strong>School Year</strong></label>
+                                                        <label for="sem1"><strong>Semester</strong></label>
                                                         <input name="sem1" type="text" value="<?= $currentsemval ?>" class="form-control" disabled>
                                                     </div>
                                                 </div>

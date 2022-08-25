@@ -1,4 +1,4 @@
-<div class="row px-3">
+<div class="row px-3 mt-3" style="font-style: italic">
     <p class="text-gray-900 font-weight-bold px-1">NOTE: </p>
     <p class="px-1">before enrolling proceed to assessment first</p>
     <a href="assessment.php">click here.</a>

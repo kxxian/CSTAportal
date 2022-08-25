@@ -47,6 +47,9 @@
             <div id="content">
 
                 <!-- Topbar -->
+                <?php 
+                    require('includes/guest_header.php');
+                ?>
                 
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -56,7 +59,7 @@
                     <!-- Page Heading -->
                     
 
-                    <div class="card shadow mt-5">
+                    <div class="card shadow mt-5 mb-5">
                         <h5 class="card-header text-gray-900">
                         <i class="fas fa-tasks"></i>
                             &nbsp;
@@ -95,7 +98,7 @@
                                             <ul class="text-gray-900">
                                                 <li>Transcript of Record</li>
                                                 <li>Honorable Dismissal</li>
-                                                <li>Godd Moral Certificate</li>
+                                                <li>Good Moral Certificate</li>
                                                 <li>Birth Certificate (PSA)</li>
                                             </ul>
                                         </div>

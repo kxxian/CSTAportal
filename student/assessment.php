@@ -52,7 +52,7 @@ require_once("includes/sidebar.php");
             <div class="main-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h3 class="text-gray-900 font-weight-bold mb-3">Welcome, to Assessment Page!</h3>
+                        <h3 class="text-gray-900 font-weight-bold mb-3">Welcome, to Assessment!</h3>
                         <a href="enrollment.php" type="button" class="btn btn-primary mb-3" title="Back to enrollment page">Go back</a>
                         <div class="row">
                             <p class="text-gray-900 font-weight-bold mx-2">NOTE:</p>

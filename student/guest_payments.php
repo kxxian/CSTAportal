@@ -50,6 +50,9 @@
             <div id="content">
 
                 <!-- Topbar -->
+                <?php 
+                    require('includes/guest_header.php');
+                ?>
                 
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -57,15 +60,7 @@
                     <!-- Announcement card -->
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
-                    
-
-                    <div class="card shadow mt-5">
-                        <div class="card-header text-gray-900">
-                        <i class="fas fa-coins"></i>
-                            &nbsp;
-                            Payments
-                        </div>
-                        <div class="card-body text-gray-900">
+                        <div class="card-body text-gray-900 mb-5">
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="card shadow">
@@ -94,36 +89,12 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card shadow">
-                                        <div class="card-header">
-                                        <i class="fas fa-upload"></i>
-                                            &nbsp;
-                                            Upload Proof of Payment
-                                        </div>
-                                        <div class="card-body">
-                                            <form id="myForm">
-                                                <label for="fileName">File Name:</label>
-                                                <input type="text" id="fileName" name="fileName" class="form-control" placeholder="e.g proofPayment_JohnDoe" autofocus required>
-                                                <label for="fileUpload" class="mt-3">File Upload:</label>
-                                                <input type="file" id="file" name="file" class="form-control" required>
-                                                <label for="email" class="mt-3">Email:</label>
-                                                <input type="email" id="email" name="email" class="form-control" placeholder="Enter Current Email Address" required>
-                                                <label for="fullName" class="mt-3">Fullname:</label>
-                                                <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter Fullname" required>
-                                                <div class="mt-3">
-                                                    <button id="btnSubmit" class="btn btn-success">Submit</button>
-                                                </div>
-                                            </form>
+                                            <a href="guest_payments_insert.php" title="Click to continue">Proceed</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     
                 <!-- Content Row -->

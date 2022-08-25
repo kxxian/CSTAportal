@@ -47,13 +47,16 @@
             <div id="content">
 
                 <!-- Topbar -->
+                <?php 
+                    require('includes/guest_header.php');
+                ?>
 
                 <div>
-                    <h1 class="text-gray-900 ml-3 mb-3 mt-3">
+                    <h2 class="text-gray-900 ml-3 mb-3 mt-3">
                     <i class="fas fa-university"></i>
                     Courses Offered 
                     <i class="fas fa-university"></i>
-                    </h1>
+                    </h2>
                 </div>
                 
                 <!-- End of Topbar -->
@@ -65,7 +68,7 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <div class="card shadow">
+                            <div class="card shadow mb-5">
                                 <div class="card-header text-gray-900">
                                 <i class="fas fa-scroll"></i>
                                     &nbsp;
@@ -97,7 +100,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card shadow">
+                            <div class="card shadow mb-5">
                                 <div class="card-header text-gray-900">
                                 <i class="fas fa-user-graduate"></i>
                                     &nbsp;
