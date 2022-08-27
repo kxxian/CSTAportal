@@ -35,8 +35,8 @@ if (isset($_POST['sendreceipt'])) {
 
 
         //update payment status
-        $sql = "Update paymentverif set OR_num=?, AR_num=?, remarks=? where pv_ID=? ";
-        $data = array($OR, $AR, $remarks, $pv_ID);
+        $sql = "Update paymentverif set payment_status=?, OR_num=?, AR_num=?, remarks=? where pv_ID=? ";
+        $data = array('Verified', $OR, $AR, $remarks, $pv_ID);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
 

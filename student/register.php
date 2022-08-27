@@ -89,7 +89,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtSnum" class="form-label">Student Number</label>
-                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" placeholder="xx-xxxxx" autofocus>
+                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" placeholder="xx-xxxxx" required autofocus>
                                 </div>
 
                             </div>

@@ -3,7 +3,7 @@
 if ($pageValue == 1) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';#3d3125
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -25,7 +25,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -54,14 +54,14 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
        $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"> </span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -101,7 +101,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 2) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -123,7 +123,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -152,14 +152,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" ></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -197,7 +196,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue === 3) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -219,7 +218,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -248,14 +247,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -294,7 +292,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 4) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -315,7 +313,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -344,14 +342,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -388,7 +385,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 5) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -410,7 +407,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -439,14 +436,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -486,7 +482,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 6) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -508,7 +504,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -537,14 +533,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Online Payments:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id=""></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -583,7 +578,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 7) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -605,7 +600,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -634,14 +629,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -678,7 +672,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 8) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -700,7 +694,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -729,14 +723,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
        $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
@@ -776,7 +769,7 @@ if ($pageValue == 1) {
 } elseif ($pageValue == 9) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#3d3125;">';
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -798,7 +791,7 @@ if ($pageValue == 1) {
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="students.php">';
        $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-       $strSidebar .= '                <span>Registrations</span></a>';
+       $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
        //<!-- Nav Item - Enrollment -->
@@ -827,14 +820,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span>Payments</span>';
-       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment" id="ctr_pendingpayment"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
        $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
-       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">Verified / For Receipt <span class="badge badge-danger badge-counter"></span></a>';
+       $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"></span></a>';
        $strSidebar .= '                </div>';
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';

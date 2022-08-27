@@ -251,7 +251,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment Information</legend>
-                                                            <i style="font-size: 1rem;color:red">*Fill all the details as reflected on your proof of payment for faster verification</i>
+                                                            <i style="font-size: 1rem;color:red">*Fill all the details as indicated on your proof of payment</i>
                                                             <div class="form-group row">
                                                                 <div class="col-lg-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>

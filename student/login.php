@@ -93,10 +93,16 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 												
 												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" style="background-color: #65350f;">
 												<p style="color:red; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg?></p>
+												<p style="color:green; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg2?></p>
 											</div>
 											</div>
 										</div>
 										<div class="form-group">
+										<div class="col-lg-12">
+													<div class="text-center">
+														<a href="guest_index.php" class="text-primary">Continue as Guest</a>
+													</div>
+												</div>
 
 										<div class="col-lg-12">
 													<div class="text-center">
@@ -110,11 +116,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 													</div>
 												</div>
 
-												<div class="col-lg-12">
-													<div class="text-center">
-														<a href="guest_index.php" class="text-primary">Login as Guest?</a>
-													</div>
-												</div>
+												
 											
 										</div>
 									</form>

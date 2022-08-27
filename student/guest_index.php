@@ -60,8 +60,8 @@
 
                     <div class="card shadow mt-5">
                         <div class="card-body text-gray-900">
-                           <h5 class="card-title">Welcome, to CSTA Portal you are currently logged in as guest!</h5>
-                           <div class="card-body text-gray-900" style="text-align: justify;">Guest users must not have a student ID if so, just return and sign in. You are being informed that this website will collect personal data in order to fulfill any transactions and kindly provide the necessary information. Please wait for the response to be sent via Gmail after submitting we'll make sure that all provided information is protected. We really hope you enjoy your time at Colegio de Sta. Teresa de Avila. Enjoy your day! </div>
+                           <h5 class="card-title">Welcome to CSTA Student Portal. You are currently logged in as guest!</h5>
+                           <div class="card-body text-gray-900" style="text-align: justify;">Guest users must not have a student ID if so, just return and sign in. You are being informed that this website will collect personal data in order to fulfill every transaction and kindly provide the necessary information. Please wait for the response to be sent via <strong>email</strong>. After submitting, we'll make sure that all provided information is protected. We really hope you enjoy your time at Colegio de Sta. Teresa de Avila. Enjoy your day! </div>
                            <div class="card-body">
                                <a href="guest_main.php" title="Go to main page">Proceed</a>
                            </div>

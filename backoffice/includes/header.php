@@ -4,7 +4,7 @@ require_once("includes/fetchcurrentsyandsem.php");
 require_once("includes/fetchuserdetails.php");
 
 $strHeader='';
-$strHeader.='<nav class="navbar navbar-expand navbar-light bg topbar mb-4 static-top shadow" style="background-color: #261f17">';
+$strHeader.='<nav class="navbar navbar-expand navbar-light bg topbar mb-4 static-top shadow" style="background-color: #2e1503">';
 $strHeader.='<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">';
 $strHeader.='<i class="fa fa-bars"></i>';
 $strHeader.='</button>';

@@ -154,7 +154,7 @@
                                                         <input type="email" id="email" name="email" class="form-control" placeholder="e.g sample@mail.com" required>
                                                     </div>
                                                     <div class="col-md-4 mt-3">
-                                                        <button id="btnSubmit" class="btn btn-success">Sumbit</button>
+                                                        <button id="btnSubmit" class="btn btn-success">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>

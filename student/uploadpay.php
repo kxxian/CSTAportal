@@ -30,8 +30,6 @@ if (isset($_POST['uploadpayments'])) {
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
     
-
-
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
     $total_others = htmlspecialchars(trim($_POST['totalothers']));
     $amountdue = $_POST['totaldue'];
@@ -45,7 +43,7 @@ if (isset($_POST['uploadpayments'])) {
     if (isset($_POST['particulars'])) {
         $particulars = implode(", ", $_POST['particulars']);
     } else {
-        $particulars = ".";
+        $particulars = "NA";
     }
 
 
