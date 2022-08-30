@@ -3,7 +3,7 @@
 if ($pageValue == 1) {
        $strSidebar = '';
        // <!-- Sidebar -->
-       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">';#3d3125
+       $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
 
        // <!-- Sidebar - Brand -->
        $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
@@ -28,11 +28,18 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -126,11 +133,18 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -152,7 +166,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -221,11 +236,19 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
-       $strSidebar .= '        <li class="nav-item  active">';
+       //<!-- Nav Item - Assessment -->
+       $strSidebar .= '        <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -247,7 +270,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -316,15 +340,23 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
        $strSidebar .= '        </li>';
 
-       // <!-- Nav Item - Document -->
+
+       //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item active">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
+       $strSidebar .= '        </li>';
+
+       // <!-- Nav Item - Document -->
+       $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
        $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
        $strSidebar .= '            <span>Documents Request</span></a>';
@@ -342,7 +374,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -410,22 +443,30 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
        $strSidebar .= '        </li>';
 
-       // <!-- Nav Item - Document -->
+
+       //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
+       $strSidebar .= '        </li>';
+
+       // <!-- Nav Item - Document -->
+       $strSidebar .= '        <li class="nav-item active">';
        $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
        $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
        $strSidebar .= '            <span>Documents Request</span></a>';
        $strSidebar .= '     </li>';
 
        // <!-- Nav Item - Grades -->
-       $strSidebar .= '               <li class="nav-item active">';
+       $strSidebar .= '               <li class="nav-item">';
        $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
        $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
        $strSidebar .= '                   <span>Grades Requests</span></a>';
@@ -436,7 +477,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -507,11 +549,19 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -522,18 +572,19 @@ if ($pageValue == 1) {
        $strSidebar .= '     </li>';
 
        // <!-- Nav Item - Grades -->
-       $strSidebar .= '               <li class="nav-item">';
+       $strSidebar .= '               <li class="nav-item active">';
        $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
        $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
        $strSidebar .= '                   <span>Grades Requests</span></a>';
        $strSidebar .= '            </li>';
 
        //<!-- Nav Item - Payverif -->
-       $strSidebar .= '        <li class="nav-item active">';
+       $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Online Payments:</h6>';
@@ -603,11 +654,19 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -625,11 +684,12 @@ if ($pageValue == 1) {
        $strSidebar .= '            </li>';
 
        //<!-- Nav Item - Payverif -->
-       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '        <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -641,7 +701,7 @@ if ($pageValue == 1) {
        $strSidebar .= '       </li>';
 
        //<!-- Nav Item - Employees -->
-       $strSidebar .= '                <li class="nav-item active">';
+       $strSidebar .= '                <li class="nav-item">';
        $strSidebar .= '                    <a class="nav-link" href="users.php">';
        $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
        $strSidebar .= '                        <span>Admin / Users</span></a>';
@@ -697,11 +757,19 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -723,7 +791,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -737,7 +806,7 @@ if ($pageValue == 1) {
 
 
        //<!-- Nav Item - Employees -->
-       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                <li class="nav-item active">';
        $strSidebar .= '                    <a class="nav-link" href="users.php">';
        $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
        $strSidebar .= '                        <span>Admin / Users</span></a>';
@@ -745,7 +814,7 @@ if ($pageValue == 1) {
 
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item active">';
+       $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
@@ -794,11 +863,19 @@ if ($pageValue == 1) {
        $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
        $strSidebar .= '        </li>';
 
-       //<!-- Nav Item - Enrollment -->
+       //<!-- Nav Item - Assessment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="assessments.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
        $strSidebar .= '                <span>Assessment</span></a>';
+       $strSidebar .= '        </li>';
+
+
+       //<!-- Nav Item - Enrollment -->
+       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+       $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+       $strSidebar .= '                <span>Enrollment</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -820,7 +897,8 @@ if ($pageValue == 1) {
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
-       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';       $strSidebar .= '    </a>';
+       $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+       $strSidebar .= '    </a>';
        $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
        $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
        $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
@@ -839,7 +917,7 @@ if ($pageValue == 1) {
        $strSidebar .= '                </li>';
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
+       $strSidebar .= '        <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
        $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
        $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
@@ -861,6 +939,6 @@ if ($pageValue == 1) {
        //<!-- End of Sidebar -->
 }
 
+
+
 echo $strSidebar;
-
-

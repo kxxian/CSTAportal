@@ -65,7 +65,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 6;
+        $pageValue = 7;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 

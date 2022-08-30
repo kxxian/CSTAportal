@@ -52,7 +52,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 4;
+        $pageValue = 5;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -97,65 +97,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th hidden>#</th>
-                                            <th hidden>sid</th>
-                                            <th>Student No.</th>
-                                            <th>Name</th>
-                                            <th>Course</th>
-                                            <th hidden>Email</th>
-                                            <th hidden>Birthday</th>
-                                            <th hidden>Gender</th>
-                                            <th hidden>Year Graduated</th>
-                                            <th hidden>Last School Attended</th>
-                                            <th hidden>requesteddocs</th>
-                                            <th hidden>Purpose</th>
-                                            <th>Date Requested</th>
-                                            <th hidden>Status</th>
-                                            <th width="75">Actions</th>
+                                            
                                         </tr>
                                     </thead>
-
-                                    <tbody>
-                                        <?php
-                                        $sql = "SELECT * FROM vwdocreq WHERE status=?";
-                                        $data = array('PENDING');
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute($data);
-
-                                        while ($row = $stmt->fetch()) {
-                                            echo '<tr> 
-                                                        <td hidden>' . $row['docreq_ID'] . '</td>
-                                                        <td hidden>' . $row['sid'] . '</td>
-                                                        <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['fullname'] . '</td>
-                                                        <td>' . $row['course'] . '</td>
-                                                        <td hidden>' . $row['email'] . '</td>
-                                                        <td hidden>' . $row['bday'] . '</td>
-                                                        <td hidden>' . $row['gender'] . '</td>
-                                                        <td hidden>' . $row['year_graduated'] . '</td>
-                                                        <td hidden>' . $row['lastschool'] . '</td>
-                                                        <td hidden>' . $row['requesteddocs'] . '</td>
-                                                        <td hidden>' . $row['purpose'] . '</td>
-                                                        <td>' . $row['datereq'] . '</td>
-                                                        <td hidden>' . $row['status'] . '</td>
-                              
-                                                        <td> 
-                                                        <a href="#"><button" class="userinfo btn btn-info" title="Request Details">
-                                                        <i class="fa fa-list"></i></button></a> 
-
-                                                       
-                                                        
-                                                        <button type="button"  title="Send Message" class="btn btn-success sendassessment" >
-                                                        <i class="fa fa-comment"></i>
-                                                        </button>
-
-
-                                                        
-                                                            </td>
-                                                      </tr>';
-                                        }
-                                        ?>
-                                    </tbody>
+                                    <tbody> </tbody>
                                 </table>
                             </div>
                         </div>

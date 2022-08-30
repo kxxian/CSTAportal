@@ -71,25 +71,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <?php
-                    try {
-                        $sql = "SELECT * FROM vwforenrollment_students where schoolyr=? and semester=? and enrollment_status='Assessed'";
-                        $data = array($currentsyval, $currentsemval);
-                        $stmt = $con->prepare($sql);
-                        $stmt->execute($data);
-                        $row = $stmt->rowCount();
-
-                        // echo $row;
-                    } catch (PDOException $error) {
-                        echo $error->getMessage();
-                    }
-                    ?>
+                
 
 
                     <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Assessment <p class="link-success float-right">Assessed: <a href="assessed-students.php" title="View Assessed"><?= $row ?></a></p>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Assessment
                             </h6>
                         </div>
                         <div class="card-body">
@@ -97,68 +85,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th hidden>#</th>
-                                            <th hidden>sid</th>
-                                            <th>Picture</th>
-                                            <th>Student No.</th>
-                                            <th>Name</th>
-                                            <th hidden>Gender</th>
-                                            <th hidden>Year Level</th>
-                                            <th>Department</th>
-                                            <th>Course</th>
-                                            <th hidden>S.Y.</th>
-
-                                            <th hidden>Email</th>
-                                            <th width="75">Actions</th>
+                                            
                                         </tr>
                                     </thead>
-
-                                    <tbody>
-                                        <?php
-                                        $sql = "SELECT * FROM vwforenrollment_students WHERE enrollment_status='Pending' and schoolyr=? and semester=?";
-                                        $data = array($currentsyval, $currentsemval);
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute($data);
-
-                                        while ($row = $stmt->fetch()) {
-                                            $file = "../student/uploads/users/" . $row['sid'] . ".jpg";
-                                            if (file_exists($file)) {
-                                                $dp = $row['sid'] . '.jpg';
-                                            } else {
-
-                                                $dp = "default.jpg";
-                                            }
-                                            echo '<tr> 
-                                                        <td hidden>' . $row['enrollment_ID'] . '</td>
-                                                        <td> <img src="../student/uploads/users/' . $dp . '" class="img-profile rounded-circle" height="80" width="80"></td> 
-                                                        <td hidden>' . $row['sid'] . '</td>
-                                                        <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['fullname'] . '</td>
-                                                        <td hidden  >' . $row['gender'] . '</td>
-                                                        <td hidden>' . $row['yrlevel'] . '</td>
-                                                        <td>' . $row['dept'] . '</td>
-                                                        <td>' . $row['course'] . '</td>
-                                                        <td hidden>' . $row['schoolyr'] . '</td>
-                                                        
-                                                        <td hidden>' . $row['email'] . '</td>
-
-                                                        <td> 
-                                                        <a href="viewprofile.php?id=' . ($row['sid']) . '"><button" class="userinfo btn btn-info" title="View Profile">
-                                                        <i class="far fa-eye"></i></button></a> 
-
-                                                       
-                                                        
-                                                        <button type="button"  title="Send Assessment" class="btn btn-success sendassessment" >
-                                                        <i class="far fa-paper-plane"></i>
-                                                        </button>
-
-
-                                                        
-                                                            </td>
-                                                      </tr>';
-                                        }
-                                        ?>
-                                    </tbody>
+                                    <tbody> </tbody>
                                 </table>
                             </div>
                         </div>
@@ -193,7 +123,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Assessment Form</strong> </h5>
+                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Message</strong> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -211,40 +141,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                 </div><br>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">Assessment Form:</label>
-                                    <input type="file" name="attachment" id="attachment" class="form-control" accept=".jpg" required>
 
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label class="font-weight-bold text-gray-900" class="form-label">Admit To:</label>
-                                    <select id="upyrlvl" name="upyrlvl" class="form-control" required>
-                                        <option selected="" disabled>Select Year Level</option>
-                                        <?php
-                                        require_once("includes/connect.php");
 
-                                        $sql = "select * from yrlevel where status='VISIBLE'";
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute();
-
-                                        while ($row = $stmt->fetch()) {
-                                            echo '<option value=' . $row['yrlevel_ID'] . '>' . $row['yrlevel'] . '</option>';
-                                        }
-                                        $stmt = null;
-
-                                        ?>
-                                    </select>
-                                </div>
-
-                            </div>
 
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Notes (Optional):</label>
+                                    <label class="font-weight-bold text-gray-900">Message:</label>
                                     <textarea class="form-control" id="assessnotes" name="assessnotes" rows="3"></textarea>
                                 </div><br>
                             </div>
@@ -299,8 +202,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                 //fetch data from enrollment datatable
                 $('#assess_id').val(data[0]);
-                $('#sid').val(data[2]);
-                $('#name').val(data[4]);
+                $('#sid').val(data[1]);
+                $('#name').val(data[3]);
 
             });
         });

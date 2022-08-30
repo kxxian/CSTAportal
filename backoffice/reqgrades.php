@@ -53,7 +53,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 5;
+        $pageValue = 6;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -84,7 +84,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <tr>
                                             <th hidden>#</th>
                                             <th hidden>sid</th>
-                                            <th>Picture</th>
+                                            <th hidden>Picture</th>
                                             <th>Student No.</th>
                                             <th>Name</th>
 
@@ -115,7 +115,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             echo '<tr> 
                                                         <td hidden>' . $row['gradereq_ID'] . '</td>
                                                         <td hidden>' . $row['sid'] . '</td>
-                                                        <td> <img src="../student/uploads/users/' . $dp . '" class="img-profile rounded-circle" height="80" width="80"></td> 
+                                                        <td hidden> <img src="../student/uploads/users/' . $dp . '" class="img-profile rounded-circle" height="80" width="80"></td> 
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['fullname'] . '</td>
                                                   

@@ -5,17 +5,20 @@ require('../includes/connect.php');
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
 require("../mailer/PHPMailer/src/Exception.php");
-date_default_timezone_set("Etc/GMT-8");
 
 use PHPMailer\PHPMailer\PHPMailer;
 
 if (isset($_POST['sendreceipt'])) {
 
+    date_default_timezone_set('Asia/Manila');
+    $date = date('y-m-d h:i:s');
+
+
     try {
         $OR = htmlspecialchars(trim($_POST['OrNum']));
         $AR = htmlspecialchars(trim($_POST['ArNum']));
-    
-    
+
+
         if (!isset($_POST['OrNum'])) {
             $OR = "NA";
         } elseif (!isset($_POST['ArNum'])) {
@@ -35,8 +38,8 @@ if (isset($_POST['sendreceipt'])) {
 
 
         //update payment status
-        $sql = "Update paymentverif set payment_status=?, OR_num=?, AR_num=?, remarks=? where pv_ID=? ";
-        $data = array('Verified', $OR, $AR, $remarks, $pv_ID);
+        $sql = "Update paymentverif set payment_status=?, OR_num=?, AR_num=?, remarks=?, date_completed=? where pv_ID=? ";
+        $data = array('Verified', $OR, $AR, $remarks, $date, $pv_ID);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
 
@@ -76,7 +79,7 @@ if (isset($_POST['sendreceipt'])) {
 
         //attachments
         foreach ($_FILES["OReceipt"]["name"] as $k => $v) {
-            $mail->AddAttachment( $_FILES["OReceipt"]["tmp_name"][$k], $_FILES["OReceipt"]["name"][$k] );
+            $mail->AddAttachment($_FILES["OReceipt"]["tmp_name"][$k], $_FILES["OReceipt"]["name"][$k]);
         }
 
         if (!$mail->send()) {
@@ -89,7 +92,6 @@ if (isset($_POST['sendreceipt'])) {
             $_SESSION['status'] = "Receipt Sent!";
             $_SESSION['status_code'] = "success";
             header('location:../for-receipt-issuance.php');
-        
         }
         $mail->smtpClose();
     } catch (PDOException $e) {

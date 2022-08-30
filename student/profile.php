@@ -155,7 +155,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     echo '<img  src="uploads/users/' . $dp . '" alt="Admin" class="rounded-circle" width="120">';
                                                     ?>
                                                     <div class="mt-3">
-                                                        <h4 class="text-gray-900 font-weight-bold" ><?= $fullname ?></h4>
+                                                        <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?></h4>
                                                         <p class="text-secondary mb-1 text-gray-900"><?= $snum ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $yrlevel ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $course ?></p>

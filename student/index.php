@@ -100,7 +100,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <div type="button" onclick="location.href=' . $link . ';" class="card" style="width: 18rem;">
                                     <img class="card-img-top" src="img/menu/enroll.jpg" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-text text-gray-900"><strong>Online Enrollment</strong></h5>
+                                        <h5 class="card-text text-gray-900 text-center"><strong> Enrollment</strong></h5>
                                     </div>
                                 </div>
                             </div>
