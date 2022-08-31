@@ -136,6 +136,59 @@
 
                             </div>
                             <div class="form-group row">
+                                <div class="form-group col-md-3">
+                                    <label for="yrlevel" class="form-label">Year Level</label>
+                                    <select id="yrlevel" name="yrlevel" class="form-control" required>
+                                        <option selected="" disabled>Select Region</option>
+                                        <?php
+                                        require_once("includes/connect.php");
+
+                                        $sql = "select * from yrlevel where status='VISIBLE'";
+                                        $stmt = $con->prepare($sql);
+                                        $stmt->execute();
+
+                                        while ($row = $stmt->fetch()) {
+                                            echo '<option value=' . $row['yrlevel_ID'] . '>' . $row['yrlevel'] . '</option>';
+                                        }
+                                        $stmt = null;
+
+                                        ?>
+
+
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group col-md-5">
+                                    <label for="dept" class="form-label">Department</label>
+                                    <select id="dept" name="dept" class="form-control" required>
+                                    <option selected="" disabled>Select Region</option>
+                                        <?php
+                                        require_once("includes/connect.php");
+
+                                        $sql = "select * from departments";
+                                        $stmt = $con->prepare($sql);
+                                        $stmt->execute();
+
+                                        while ($row = $stmt->fetch()) {
+                                            echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
+                                        }
+                                        $stmt = null;
+
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="courses" class="form-label">Course</label>
+                                    <select id="courses" name="courses" class="form-control" required>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row">
 
                                 <div class="col-md-4">
                                     <label for="txtContactno" class="form-label">Mobile</label>

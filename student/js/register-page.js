@@ -6,7 +6,7 @@ $(document).ready(function() {
         if (regCode) {
             $.ajax({
                 type: 'POST',
-                url: 'codes/phlocation.php',
+                url: 'codes/register.php',
                 data: 'regCode=' + regCode,
                 success: function(html) {
                     $('#provinces').html(html);
@@ -21,7 +21,7 @@ $(document).ready(function() {
         if (provCode) {
             $.ajax({
                 type: 'POST',
-                url: 'codes/phlocation.php',
+                url: 'codes/register.php',
                 data: 'provCode=' + provCode,
                 success: function(html) {
                     $('#city').html(html);
@@ -38,7 +38,7 @@ $(document).ready(function() {
         if (citymunCode) {
             $.ajax({
                 type: 'POST',
-                url: 'codes/phlocation.php',
+                url: 'codes/register.php',
                 data: 'citymunCode=' + citymunCode,
                 success: function(html) {
                     $('#barangay').html(html);
@@ -83,6 +83,26 @@ $(document).ready(function() {
             $('#message').html("Passwords do not Match!").css('font-weight', 'bold');
         }
     });
+
+
+
+
+        //populate dpartments and courses
+        $('#dept').on('change', function() {
+            var dept_ID = $(this).val();
+            if (dept_ID) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'codes/register.php',
+                    data: 'dept_ID=' + dept_ID,
+                    success: function(html) {
+                        $('#courses').html(html);
+                    }
+                });
+            } else {
+                $('#courses').html('<option selected="" disabled>Select Course</option>');
+            }
+        })
 
 
 });

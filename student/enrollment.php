@@ -122,10 +122,10 @@ if ($status == 'CLOSED') { // display enrollment page if open
                             <div class="col-md-7 mb-3">
                                 <ul class="nav nav-pills" id="myTab">
                                     <li class="nav-item">
-                                        <a href="#profile" class="nav-link active"><i class="fas fa-edit"></i> Assessment</a>
+                                        <a href="#profile" class="nav-link active"><i class="fas fa-edit"></i> 1. Assessment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#subreq" class="nav-link"><i class="fas fa-file"></i> Enrollment</a>
+                                        <a href="#subreq" class="nav-link"><i class="fas fa-file"></i> 2. Enrollment</a>
                                     </li>
                                 </ul>
                             </div>
@@ -133,7 +133,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="profile">
                                 <div class="row gutters-sm">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-5">
                                         <form id="myForm">
                                             <div class="card shadow">
                                                 <div class="card-header text-gray-900 font-weight-bold">
@@ -145,30 +145,31 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                     <!-- <label for="filename" class="text-gray-900 font-weight-bold">File Name</label> -->
                                                     <!-- <input type="text" id="filename" name="filename" class="form-control mb-3" placeholder="e.g copyofgrades_2022_2023" required autofocus> -->
                                                     <label for="fileupload" class="text-gray-900 font-weight-bold">T.O.R / Copy of Grades</label>
-                                                    <input type="file" id="fileupload" name="fileupload" class="form-control mb-4" required>
+                                                    <input type="file" id="fileupload" name="fileupload" class="form-control mb-4">
 
                                                     <div class="col-lg-12">
-                                                        <div class="text-right"><button id="btnSubmit" class="btn btn-success w-100 ">Submit</button></div>
+                                                        <div class="text-right"><button id="btnSubmit" class="btn btn-success "><i class="fas fa-check"></i> Submit</button></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="col-lg-6" id="enrolldetailsdiv">
+                                    <div class="col-lg-7" id="enrolldetailsdiv">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
                                                 <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-file-alt"></i> Assessment Status</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                                                    <table class="table table-bordered " id="assesstable" width="100%" cellspacing="0">
                                                         <thead class="thead-dark">
                                                             <tr>
                                                                 <!-- <th>#</th> -->
-                                                                <th>Department</th>
+                                                                <th hidden>Department</th>
                                                                 <th>Course</th>
-                                                                <th hidden>SY</th>
+                                                                <th>SY</th>
                                                                 <th>Semester</th>
+                                                                <th>File</th>
                                                                 <th>Status</th>
                                                                 <th class="text-center">Edit</th>
                                                             </tr>
@@ -176,19 +177,20 @@ if ($status == 'CLOSED') { // display enrollment page if open
 
                                                         <tbody>
                                                             <?php // displays all the submitted requirements of the student
-                                                            $sql = "SELECT * FROM vwforenrollment_students where sid=? and schoolyr=? and semester=? ";
+                                                            $sql = "SELECT * FROM vwassessment where sid=? and schoolyr=? and semester=? ";
                                                             $data = array($sid, $currentsyval, $currentsemval); // sid of current user
                                                             $stmt = $con->prepare($sql);
                                                             $stmt->execute($data);
                                                             while ($row = $stmt->fetch()) {
-                                                                $enrolldate = $row['date_enrolled'];
+                                                                //$enrolldate = $row['date_enrolled'];
 
                                                                 echo '<tr> 
-                                                                <td>' . $row['dept'] . '</td>
+                                                                <td hidden>' . $row['dept'] . '</td>
                                                                 <td>' . $row['course'] . '</td>
-                                                                <td hidden>' . $row['schoolyr'] . '</td> 
+                                                                <td>' . $row['schoolyr'] . '</td> 
                                                                 <td>' . $row['semester'] . '</td>
-                                                                <td>' . $row['enrollment_status'] . '</td>
+                                                                <td>File Here</td>
+                                                                <td>' . $row['status'] . '</td>
                                                                 <td>
 
                                                                 <button" class="btn btn-warning" id="enrolledit" title="Edit">
