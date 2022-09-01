@@ -38,7 +38,7 @@
 			</div>
 			<h2>You have been able to submit successfuly!</h2>
 			<p>Your registration form will now be obtainable from the school's registrar's office. </p>
-            <p>NOTE: The registrar employee will email the registration form if there are any restrictions. </p>
+            <p><b>NOTE:</b> The registrar employee will email the registration form if there are any restrictions. </p>
 			<a href="guest_index.php">Go To Homepage</a>
 		</div>
 	</div>

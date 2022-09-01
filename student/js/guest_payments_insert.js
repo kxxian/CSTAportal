@@ -38,6 +38,30 @@ $(document).ready(function () {
         }
     });
 
+    $('#image2').change(function () { 
+        let image = this.files[0]
+        let fileType = image.type
+        const match = ['image/jpeg', 'image/jpg', 'image/png']
+
+        if(!(fileType === match[0] || fileType === match[1] || fileType === match[2])) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                width: 400,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                },
+                text: 'Only jpeg, jpg, and png are available filetypes to upload'
+            })
+
+
+            $('#image2').val('')
+        }
+    });
+
     $('#btnSubmit').click(function () { 
 
         let dateOfPayment = $('#dateOfPayment').val()
@@ -48,8 +72,9 @@ $(document).ready(function () {
         let image = $('#image').val()
         let studentName = $('#studentName').val()
         let email = $('#email').val()
+        let trackerId = $('#trackerId').val()
 
-        if (dateOfPayment === '' || tutionFee === '' || schoolYear === '' || paymentMethod === '' || sentVia === '' || totalAmount === '' || image === '' || studentName === '' || email === '') {
+        if (dateOfPayment === '' || tutionFee === '' || schoolYear === '' || paymentMethod === '' || sentVia === '' || totalAmount === '' || image === '' || studentName === '' || email === '' || trackerId === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',

@@ -1,3 +1,6 @@
+<?php 
+    require('includes/connect.php');
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal Guest | Payments</title>
+    <title>CSTA Portal Guest | Tracker</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">
@@ -60,36 +63,47 @@
                     <!-- Announcement card -->
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
+                    <div class="mb-3">
+                        <h1 class="text-gray-900">Payment Status</h1>
+                    </div>
+                    <div>
+                        <a href="guest_payments.php">
+                            <button class="btn btn-primary" title="Go back to account details">Go Back</button>
+                        </a>
+                    </div>         
                         <div class="card-body text-gray-900 mb-5">
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     <div class="card shadow">
-                                        <div class="card-header ">
-                                        <i class="fas fa-info-circle"></i>
+                                        <div class="card-header">
+                                        <i class="fas fa-search"></i>
                                             &nbsp;
-                                            CSTA Bank Details
+                                            Tracker Id
                                         </div>
                                         <div class="card-body">
-                                            <ul>
-                                                <li>METROBANK (MBTC)
-                                                    <ul>
-                                                        <li>Account Name: <b>COLEGIO DE STA. TERESA DE AVILA, INC.</b></li>
-                                                        <li>Account Number: <b>190-7-19081612-1</b></li>
-                                                    </ul>
-                                                </li>
-                                                <li>BANCO DE ORO (BDO)
-                                                    <ul>
-                                                        <li>Account Name: <b>COLEGIO DE STA. TERESA DE AVILA, INC.</b></li>
-                                                        <li>Account Number: <b>00127-149-55-95</b></li>
-                                                    </ul>
-                                                </li>
-                                                <li>CSTA GCASH
-                                                    <ul>
-                                                        <li>Gcash Number: <b>09664635789</b></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                            <a href="guest_payments_insert.php" title="Click to continue">Proceed</a>
+                                            <form id="myForm">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <input type="text" id="trackerId" name="trackerId" onInput="checkTrackerId()" class="form-control" placeholder="e.g 630ac94fe6622" required autofocus>
+                                                        <span id="valid_trackerId"></span>
+                                                    </div>
+                                                    <div class="col-md-12 mt-3">
+                                                        <button id="btnSubmit" class="btn btn-success">Done</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card shadow">
+                                        <div class="card-header">
+                                        <i class="fas fa-info-circle"></i>
+                                            &nbsp;
+                                            Payment Information
+                                        </div>
+                                        <div class="card-body"> 
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +134,8 @@
 
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="js/guest_payments.js"></script>
+    <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/guest_check_payment.js"></script>
 </body>
 
 </html>

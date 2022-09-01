@@ -81,7 +81,10 @@
                         </div>
                         <div class="col-md-12">
                             <div class="card shadow mb-5">
-                                <div class="card-header text-gray-900">Requirerment Form</div>
+                                <div class="card-header text-gray-900">
+                                <i class="fas fa-scroll"></i>
+                                    &nbsp;
+                                    Registration Form</div>
                                 <div class="card-body">
                                     <form id="myForm" class="row g-3">
                                         <div class="col-md-3">
