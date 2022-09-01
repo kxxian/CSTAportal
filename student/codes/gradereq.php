@@ -1,20 +1,20 @@
 <?php
 require_once('../includes/connect.php');
-require_once('../includes/fetchuserdetails.php'); //get snum value from userdetails(students accounts)
-require_once('../includes/fetchcurrentsyandsem.php');
-require_once('../includes/fetchstudenttable.php');
+require_once('../codes/fetchuserdetails.php'); //get snum value from userdetails(students accounts)
+require_once('../codes/fetchcurrentsyandsem.php');
+require_once('../codes/fetchstudenttable.php');
 
 
-date_default_timezone_set("Etc/GMT-8");
 
 if (isset($_POST['submit'])) {
    
-    $date=date("m-d-y");
+    date_default_timezone_set('Asia/Manila');
+    $date = date('y-m-d h:i:s');
 
 
     //count 
-    $sqlquery = "select * from vwgradereq where sid=? and schoolyr=?";
-    $info = array($sid, $currentsyval);
+    $sqlquery = "select * from vwgradereq where sid=? and schoolyr=? and semester=?";
+    $info = array($sid, $currentsyval,$currentsemval);
     $statement = $con->prepare($sqlquery);
     $statement->execute($info);
     $rc = $statement->rowCount(); //counter
@@ -27,13 +27,13 @@ if (isset($_POST['submit'])) {
             $stmt->execute($data);
             $_SESSION['status'] = "Grade Request Sent!";
             $_SESSION['status_code'] = "success";
-            header('location:gradesrequest.php');
+            header('location:../gradesrequest.php');
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     } 
 } else {
-    $_SESSION['status'] = "Enrollment Form Not Sent!";
+    $_SESSION['status'] = "Grade Request Not Sent!";
     $_SESSION['status_code'] = "error";
     header('location:enrollment.php');
 }

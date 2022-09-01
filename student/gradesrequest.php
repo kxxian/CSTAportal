@@ -164,7 +164,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                             <?php
 
                             try {
-                                $sql = "select * from gradereq where sid=? ";
+                                $sql = "select * from gradereq where sid=? order by date_req desc ";
                                 $data = array($sid);
                                 $stmt = $con->prepare($sql);
                                 $stmt->execute($data);
@@ -244,7 +244,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
 
 
                         </div>
-                        <div class="col-lg-6" id="enrolldetailsdiv">
+                        <div class="col-lg-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-file-alt"></i> Request Details</h6>

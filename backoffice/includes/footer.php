@@ -1,7 +1,7 @@
 <?php
 
 $strFooter='';
-$strFooter.='<footer class="sticky-footer bg" style="background-color: #261f17">';
+$strFooter.='<footer class="sticky-footer bg" style="background-color:#2e1503 ">';#261f17
 $strFooter.='<div class="container my-auto">';
 $strFooter.='<div class="copyright text-center my-auto">';
 $strFooter.='<span class="text-gray-100">Copyright &copy; CSTA 2022</span>';

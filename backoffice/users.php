@@ -53,7 +53,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 7;
+        $pageValue = 8;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 

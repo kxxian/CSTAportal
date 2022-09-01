@@ -31,7 +31,7 @@ if ($pageValue == 0) {
        // <!-- Nav Item - Class Schedules -->
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
-	$strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	$strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
@@ -80,7 +80,7 @@ if ($pageValue == 0) {
        // <!-- Nav Item - Class Schedules -->
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
-	$strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	$strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
@@ -129,7 +129,7 @@ if ($pageValue == 0) {
        // <!-- Nav Item - Class Schedules -->
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
-	   $strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	   $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
@@ -176,9 +176,9 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 	
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link active" href="schedules.php">';
-	   $strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	   $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
        //<!-- Nav Item - Enrollment -->
@@ -227,7 +227,7 @@ if ($pageValue == 0) {
        // <!-- Nav Item - Class Schedules -->
        $strSidebar .= '          <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
-	   $strSidebar .= '				<i class="fas fa-thumbtack"></i>';
+	   $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 

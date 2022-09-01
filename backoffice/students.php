@@ -86,7 +86,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-plus"></i> Registrations <p class="link-success float-right">Total Approved: <a href="approved-student-accounts.php" title="View Approved"><?= $row ?></a></p>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-plus"></i> Registrations 
                             </h6>
                         </div>
                         <div class="card-body">

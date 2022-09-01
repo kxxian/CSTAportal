@@ -59,7 +59,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 6;
+        $pageValue = 7;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -91,18 +91,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <tr>
 
                                             <th hidden>sid</th>
-                                            <th>Student No.</th>
+                                            <th>Student #</th>
                                             <th>Name</th>
-                                            <th hidden>Tuition Fee</th>
+                                            <th>Tuition Fee</th>
                                             <th hidden>Email</th>
                                             <th hidden>Mobile</th>
                                             <th hidden>Course</th>
 
-                                            <th hidden>S.Y</th>
-                                            <th hidden>Semester</th>
-                                            <th hidden>Term</th>
-                                            <th hidden>Others</th>
-                                            <th hidden>Others Total</th>
+                                        
+                                            <th >Applicable S.Y</th>
+                                            <th>Term</th>
+                                            <th>Others</th>
+                                            <th>Others Total</th>
                                             <th hidden>Attachment/s</th>
                                             <th hidden>Total</th>
                                             <th>Amount</th>
@@ -158,12 +158,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <td hidden>' . $row['course'] . '</td>
                                                        
 
-                                                        <td hidden>' . $row['tfeepayment'] . '</td>
-                                                        <td hidden>' . $row['schoolyr'] . '</td>
-                                                        <td hidden>' . $row['semester'] . '</td>
-                                                        <td hidden>' . $row['term'] . '</td>
-                                                        <td hidden>' . $row['particulars'] . '</td>
-                                                        <td hidden>₱ ' . $row['particulars_total'] . '</td>
+                                                        <td class="currency">' . $row['tfeepayment'] . '</td>
+                                                        <td >' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
+                                                      
+                                                        <td>' . $row['term'] . '</td>
+                                                        <td>' . $row['particulars'] . '</td>
+                                                        <td class="currency"> ' . $row['particulars_total'] . '</td>
                                                         
 
 
@@ -182,7 +182,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         
 
                                                         <td> 
-                                                        <button class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
+                                                        <button hidden class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
                                                         <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
                                                         </td>
                                                       </tr>';

@@ -11,6 +11,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 if (isset($_POST['submit'])) {
 
+    // current date and time
+    date_default_timezone_set('Asia/Manila');
+    $date = date('y-m-d h:i:s');
+
     $id = (int)$_POST['txtStudID'];
     $lname = htmlspecialchars(trim($_POST['txtLname']));
     $fname = htmlspecialchars(trim($_POST['txtFname']));
@@ -18,6 +22,11 @@ if (isset($_POST['submit'])) {
     $snum = htmlspecialchars(trim($_POST['txtSnum']));
     $gender = $_POST['selGender'];
     $bday = $_POST['dtBday'];
+
+    $yrlevel = $_POST['yrlevel'];
+    $dept = $_POST['dept'];
+    $course = $_POST['courses'];
+
     $citizen = htmlspecialchars(trim($_POST['txtCitizenship']));
     $mobile = htmlspecialchars(trim($_POST['txtContactno']));
     $email = htmlspecialchars(trim($_POST['txtEmail']));
@@ -50,8 +59,8 @@ if (isset($_POST['submit'])) {
             if ($responsekeys['success']) {
                 try {
 
-                    $sql = "INSERT INTO students (lname,fname,mname,snum,gender,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    $data = array($lname, $fname, $mname, $snum, $gender, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass);
+                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass,$date);
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();
@@ -67,19 +76,12 @@ if (isset($_POST['submit'])) {
 
                     $mailTo = $email;
 
-                    // if ($gender == "Male") {
-                    //     $honorific = "Mr.";
-                    // } else {
-                    //     $honorific = "Ms.";
-                    // }
-
                     $body = "Good Day Teresian!<br><br>
-                  Thank you for registering at CSTA Student Portal. <br><br>
-                  
-                  Please be patient while we validate your registration. We will notify you upon once account is activated.<br><br>
-                  
-                  Thank you. "
-                  ;
+                    Thank you for registering at CSTA Student Portal. <br><br>
+                    
+                    Please be patient while we validate your registration. We will notify you once account is activated.<br><br>
+                    
+                    Thank you. ";
 
                     $mail = new PHPMailer();
 
@@ -87,12 +89,7 @@ if (isset($_POST['submit'])) {
                     $mail->isSMTP();
 
                     //SMTP user credentials
-                    $mail->Host = "smtp-relay.sendinblue.com";
-                    $mail->SMTPAuth = true;
-                    $mail->Username = "jasonwafuu@gmail.com";
-                    $mail->Password = "whxz2btTErLDGyjI";
-                    $mail->SMTPSecure = "tls";
-                    $mail->Port = "587";
+                    include "../includes/smtp_config.php";
 
                     $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
                     $mail->FromName = "CSTA Registrar"; // employee name + Department 
@@ -106,7 +103,7 @@ if (isset($_POST['submit'])) {
                     $mail->Subject = "STUDENT PORTAL REGISTRATION"; // email subject
                     $mail->Body = $body;
 
-                   // $mail->addAttachment(path: "$file", name: "Grades_{$lname}'.jpg'");
+                    // $mail->addAttachment(path: "$file", name: "Grades_{$lname}'.jpg'");
 
                     //$mail->AltBody="";
 
