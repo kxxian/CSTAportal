@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +68,7 @@
                                         <div class="card-header ">
                                         <i class="fas fa-info-circle"></i>
                                             &nbsp;
-                                            CSTA Account Details
+                                            CSTA Bank Details
                                         </div>
                                         <div class="card-body">
                                             <ul>

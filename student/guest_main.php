@@ -52,11 +52,9 @@
                 ?>
 
                 <div>
-                    <h2 class="text-gray-900 ml-3 mb-3 mt-3">
-                    <i class="fas fa-university"></i>
+                    <h1 class="text-gray-900 ml-3 mb-3 mt-3">
                     Courses Offered 
-                    <i class="fas fa-university"></i>
-                    </h2>
+                    </h1>
                 </div>
                 
                 <!-- End of Topbar -->

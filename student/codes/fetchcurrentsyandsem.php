@@ -1,5 +1,6 @@
 <?php
-       //fetch active school year
+
+      //fetch active school year
        $sql="select * from schoolyr where status='ACTIVE'";
        $stmt = $con->prepare($sql);
        $stmt->execute();

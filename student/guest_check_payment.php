@@ -1,3 +1,6 @@
+<?php 
+    require('includes/connect.php');
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal Guest | Requirements</title>
+    <title>CSTA Portal Guest | Tracker</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">
@@ -20,6 +23,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="plugins/bootstrap.min.css">    
+
+    <!-- Animate CSS  -->
+    <link rel="stylesheet" href="plugins/animate_css/animate.min.css">
     
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,56 +63,52 @@
                     <!-- Announcement card -->
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
-                    
-
-                    <div class="card shadow mt-5 mb-5">
-                        <h5 class="card-header text-gray-900">
-                        <i class="fas fa-tasks"></i>
-                            &nbsp;
-                            Requirements
-                        </h5>
-                        <div class="card-body">
-                            <p><b class="text-gray-900">NOTE:</b> Submit the required documents to the school's registrar. </p>
-                            <p>*Hand-carried F137A must be in a sealed enveloped with flaps signed by the School Registrar.</p>
-                            <p>*It is not recommended to submit these papers online, physical copies are required unless there are constraints.</p>
+                    <div class="mb-3">
+                        <h1 class="text-gray-900">Payment Status</h1>
+                    </div>
+                    <div>
+                        <a href="guest_payments.php">
+                            <button class="btn btn-primary" title="Go back to account details">Go Back</button>
+                        </a>
+                    </div>         
+                        <div class="card-body text-gray-900 mb-5">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="card shadow">
-                                         <div class="card-header text-gray-900">
-                                         <i class="fas fa-male"></i>
+                                        <div class="card-header">
+                                        <i class="fas fa-search"></i>
                                             &nbsp;
-                                             Freshmen
-                                         </div>
-                                         <div class="card-body">
-                                            <ul class="text-gray-900">
-                                                <li>Form 138</li>
-                                                <li>Form 137A</li>
-                                                <li>Good Moral Certificate</li>
-                                                <li>Birth Certificate (PSA)</li>
-                                            </ul>
-                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card shadow">
-                                        <div class="card-header text-gray-900">
-                                        <i class="fas fa-exchange-alt"></i>
-                                            &nbsp;
-                                            Transferees
+                                            Tracker Id
                                         </div>
                                         <div class="card-body">
-                                            <ul class="text-gray-900">
-                                                <li>Transcript of Record</li>
-                                                <li>Honorable Dismissal</li>
-                                                <li>Good Moral Certificate</li>
-                                                <li>Birth Certificate (PSA)</li>
-                                            </ul>
+                                            <form id="myForm">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <input type="text" id="trackerId" name="trackerId" onInput="checkTrackerId()" class="form-control" placeholder="e.g 630ac94fe6622" required autofocus>
+                                                        <span id="valid_trackerId"></span>
+                                                    </div>
+                                                    <div class="col-md-12 mt-3">
+                                                        <button id="btnSubmit" class="btn btn-success">Done</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card shadow">
+                                        <div class="card-header">
+                                        <i class="fas fa-info-circle"></i>
+                                            &nbsp;
+                                            Payment Information
+                                        </div>
+                                        <div class="card-body"> 
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>  
-                    </div>
+                        </div>
 
                     
                 <!-- Content Row -->
@@ -130,6 +132,10 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="js/guest_check_payment.js"></script>
 </body>
 
 </html>

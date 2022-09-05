@@ -5,8 +5,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 	header('location:index.php');
 }
 	$msg="";
-	$msg2=""
-;	if(isset($_GET['login'])){
+	$msg2="";
+	if(isset($_GET['login'])){
 		$msg="Invalid Username or Password!";
 
 	}
