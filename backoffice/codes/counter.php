@@ -2,7 +2,7 @@
 <?php
 
 require_once '../includes/connect.php';
-require_once '../codes/fetchcurrentsyandsem.php';
+//require_once '../codes/fetchcurrentsyandsem.php';
      //pending payments
     if(isset($_POST['data'])){
         
@@ -64,17 +64,17 @@ echo $count;
 
 }
 
-if(isset($_POST['data6'])){
+// if(isset($_POST['data6'])){
         
-  $sql = "SELECT status from vwassessment where schoolyr=? AND semester=? AND status=?";
-  $data = array($currentsyval,$currentsemval,"Pending");
-  $stmt = $con->prepare($sql);
-  $stmt->execute($data);
-  $count=$stmt->rowCount();
+//   $sql = "SELECT status from vwassessment where schoolyr=? AND semester=? AND status=?";
+//   $data = array($currentsyval,$currentsemval,"Pending");
+//   $stmt = $con->prepare($sql);
+//   $stmt->execute($data);
+//   $count=$stmt->rowCount();
 
-echo $count;
+// echo $count;
 
-}
+// }
 
 
 

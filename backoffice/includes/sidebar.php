@@ -73,34 +73,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
-
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
 
@@ -178,33 +157,14 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
 
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
 
@@ -282,34 +242,14 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
-
+ 
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
 
@@ -386,32 +326,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
+   
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
 
@@ -489,34 +410,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
-
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
 
@@ -595,37 +495,17 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Users -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
-
-
 
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
+    
+
 } elseif ($pageValue == 7) {
        $strSidebar = '';
        // <!-- Sidebar -->
@@ -700,35 +580,18 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Employees -->
-       $strSidebar .= '                <li class="nav-item">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
+     
+
+         //<!-- Nav Item - Maintenance Collapse Menu -->
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
        $strSidebar .= '                </li>';
-
-
-       //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
-
-
        $strSidebar .= '   </ul>';
        //<!-- End of Sidebar -->
+
+
 } elseif ($pageValue == 8) {
        $strSidebar = '';
        // <!-- Sidebar -->
@@ -805,31 +668,14 @@ if ($pageValue == 1) {
 
 
 
-       //<!-- Nav Item - Employees -->
-       $strSidebar .= '                <li class="nav-item active">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
-       $strSidebar .= '                </li>';
-
-
        //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
+       $strSidebar .= '                <li class="nav-item ">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
+       $strSidebar .= '                </li>';
+       $strSidebar .= '   </ul>';
+       //<!-- End of Sidebar -->
 
 
        $strSidebar .= '   </ul>';
@@ -909,30 +755,13 @@ if ($pageValue == 1) {
        $strSidebar .= '            </div>';
        $strSidebar .= '       </li>';
 
-       //<!-- Nav Item - Employees -->
-       $strSidebar .= '                <li class="nav-item ">';
-       $strSidebar .= '                    <a class="nav-link" href="users.php">';
-       $strSidebar .= '                        <i class="fas fa-fw fa-user-tie"></i>';
-       $strSidebar .= '                        <span>Admin / Users</span></a>';
+       //<!-- Nav Item - Maintenance Collapse Menu -->
+       $strSidebar .= '                <li class="nav-item active">';
+       $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+       $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+       $strSidebar .= '                        <span>Maintenance</span></a>';
        $strSidebar .= '                </li>';
 
-       //<!-- Nav Item - Maintenance Collapse Menu -->
-       $strSidebar .= '        <li class="nav-item active">';
-       $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"';
-       $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
-       $strSidebar .= '           <i class="fas fa-fw fa-wrench"></i>';
-       $strSidebar .= '           <span>Maintenance</span>';
-       $strSidebar .= '    </a>';
-       $strSidebar .= '            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
-       $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
-       $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-       $strSidebar .= '                    <a class="collapse-item" href="sysetting.php">School Year</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="enrollmentsetting.php">Enrollment</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="coursesetting.php">Courses</a>';
-       $strSidebar .= '                    <a class="collapse-item" href="reqsetting.php">Requirements</a>';
-       $strSidebar .= '                </div>';
-       $strSidebar .= '            </div>';
-       $strSidebar .= '       </li>';
 
 
        $strSidebar .= '   </ul>';

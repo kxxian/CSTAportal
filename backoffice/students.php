@@ -105,6 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th class="text-center">Email</th>
                                             <th hidden>Status</th>
                                             <th class="text-center" width="90">Actions</th>
+                                            
                                         </tr>
                                     </thead>
 

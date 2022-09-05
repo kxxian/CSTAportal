@@ -2,13 +2,14 @@
 session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once('includes/fetchuserdetails.php');
+require_once 'includes/fetchstudentdetails.php';
+
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,31 +21,34 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Users</title>
+    <title>CSTA Admin | Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for  DataTable -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Bootstrap CSS  -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</head>
 
+</head>
 
 <body id="page-top">
 
@@ -53,7 +57,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 8;
+        $pageValue = 9;
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -67,314 +71,82 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <?php require_once('includes/header.php'); ?>
                 <!-- End of Header -->
 
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <?php
-                    try {
-                        $sql = "SELECT * FROM vwemployees ";
-                        $stmt = $con->prepare($sql);
-                        $stmt->execute();
-                        $row = $stmt->rowCount();
-
-                        // echo $row;
-                    } catch (PDOException $error) {
-                        echo $error->getMessage();
-                    }
-                    ?>
+                    <div class=" mb-4">
+                        <h1 class="h2 mb-0 text-gray-900 "><strong>Users</strong></h1>
+                    </div>
 
 
-                    <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-tie"></i> Users 
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-tie fa-fw"></i> Users
+                                <button type="button" id="addUser" data-toggle="modal" data-target="#usersModal" class="btn btn-success  float-right">Add User</button>
                             </h6>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6" style="margin-top:10px; margin-left:20px;">
-                                <button type="button" class="btn btn-primary addemp">
-                                    <i class="fas fa-plus"></i>
-                                    Add
-                                </button>
-                            </div>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table id="usersTable" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th hidden>#</th>
-                                            <th>Employee No.</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Gender</th>
-                                            <th>Mobile</th>
                                             <th>Department</th>
-                                            <!-- <th>Picture</th> -->
-                                            <th width="75">Actions</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
+                                            <th>isActive</th>
+                                            <th width="85">Actions</th>
                                         </tr>
+
                                     </thead>
-
-                                    <tbody>
-                                        <?php
-                                        $sql = "SELECT * FROM vwemployees";
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute();
-
-                                        while ($row = $stmt->fetch()) {
-                                            // $file = "../student/uploads/users/" . $row['username'] . '-' . $row['bday'] . ".jpg";
-                                            // if (file_exists($file)) {
-                                            //     $dp = $row['username'] . '-' . $row['bday'] . '.jpg';
-                                            // } else {
-
-                                            //     $dp = "default.jpg";
-                                            // }
-                                            echo '<tr> 
-                                                        <td hidden >' . $row['id'] . '</td>
-                                                        <td >' . $row['empnum'] . '</td>
-                                                     
-                                                        <td>' . $row['empname'] . '</td>
-                                                        <td>' . $row['email'] . '</td>
-                                                        <td>' . $row['gender'] . '</td>
-                                                        <td>' . $row['mobile'] . '</td>
-                                                        <td >' . $row['dept'] . '</td>
-                                                        
-
-                                                        <td> 
-                                                        <a href="viewprofile.php?id=' . ($row['id']) . '"><button" class="userinfo btn btn-info" title="View Profile">
-                                                        <i class="far fa-eye"></i></button></a> 
-
-                                                       
-                                                        
-                                                        <button type="button"  title="Send Assessment" class="btn btn-warning sendassessment" >
-                                                        <i class="far fa-edit"></i>
-                                                        </button>
-
-
-                                                        
-                                                            </td>
-                                                      </tr>';
-                                        }
-                                        ?>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
 
 
+
+
+            <!-- Content Row -->
+
+
+            <!-- /.container-fluid -->
             <!-- Footer -->
             <?php require_once('includes/footer.php'); ?>
             <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
+
 
     </div>
+    <!-- End of Content Wrapper -->
+
+
+    </div>
+
+
     <!-- End of Page Wrapper -->
 
-   
-
-
-    <!-- Send Assessment/change status Modal -->
-
-    <div class="modal fade" id="SendAssessment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Assessment Form</strong> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">To:</label>
-                                    <input type="hidden" name="enroll_id" id="assess_id" class="form-control">
-                                    <input type="hidden" name="sid" id="sid" class="form-control">
-                                    <input type="text" name="name" id="name" class="form-control" disabled>
-
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">Assessment Form:</label>
-                                    <input type="file" name="attachment" id="attachment" class="form-control" required>
-
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label class="font-weight-bold text-gray-900" class="form-label">Admit To:</label>
-                                    <select id="upyrlvl" name="upyrlvl" class="form-control" required>
-                                        <option selected="" disabled>Select Year Level</option>
-                                        <?php
-                                        require_once("includes/connect.php");
-
-                                        $sql = "select * from yrlevel where status='VISIBLE'";
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute();
-
-                                        while ($row = $stmt->fetch()) {
-                                            echo '<option value=' . $row['yrlevel_ID'] . '>' . $row['yrlevel'] . '</option>';
-                                        }
-                                        $stmt = null;
-
-                                        ?>
-                                    </select>
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Notes (Optional):</label>
-                                    <textarea class="form-control" id="assessnotes" name="assessnotes" rows="3"></textarea>
-                                </div><br>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="addemployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Add User</strong> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">To:</label>
-                                    <input type="hidden" name="enroll_id" id="assess_id" class="form-control">
-                                    <input type="hidden" name="sid" id="sid" class="form-control">
-                                    <input type="text" name="name" id="name" class="form-control" disabled>
-
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900" for="attachment">Assessment Form:</label>
-                                    <input type="file" name="attachment" id="attachment" class="form-control" required>
-
-                                </div><br>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label class="font-weight-bold text-gray-900" class="form-label">Admit To:</label>
-                                    <select id="upyrlvl" name="upyrlvl" class="form-control" required>
-                                        <option selected="" disabled>Select Year Level</option>
-                                        <?php
-                                        require_once("includes/connect.php");
-
-                                        $sql = "select * from yrlevel where status='VISIBLE'";
-                                        $stmt = $con->prepare($sql);
-                                        $stmt->execute();
-
-                                        while ($row = $stmt->fetch()) {
-                                            echo '<option value=' . $row['yrlevel_ID'] . '>' . $row['yrlevel'] . '</option>';
-                                        }
-                                        $stmt = null;
-
-                                        ?>
-                                    </select>
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Notes (Optional):</label>
-                                    <textarea class="form-control" id="assessnotes" name="assessnotes" rows="3"></textarea>
-                                </div><br>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
- <!-- Scroll to Top Button-->
- <a class="scroll-to-top rounded" href="#page-top">
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
 
 
-    <script>
-        //open assessment modal
-        $(document).ready(function() {
-            $('.addemp').on('click', function() {
-                $('#addemployee').modal('show');
-
-            });
-        });
-    </script>
-
-
-
-    <script>
-        //open assessment modal
-        $(document).ready(function() {
-            $('.sendassessment').on('click', function() {
-                $('#SendAssessment').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                //fetch data from enrollment datatable
-                $('#assess_id').val(data[0]);
-                $('#sid').val(data[1]);
-                $('#name').val(data[3]);
-
-            });
-        });
-
-        //close assessment modal
-        $(document).ready(function() {
-            $('.close').on('click', function() {
-                $('#SendAssessment').modal('hide');
-
-            });
-        });
-    </script>
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
 
 
     <!-- Bootstrap core JavaScript-->
@@ -388,17 +160,271 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
+    <!-- DataTable CDN JS -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
+
+
+
+
 
 
 
 </body>
 
 </html>
+
+<div id="usersModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" id="usersForm" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user-tie"></i> <span class="title">Add User</span></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
+                            <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
+                            <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
+                            <input type="text" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="gender" class="text-gray-900 font-weight-bold">Gender</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option selected="" disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
+                            <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile No..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
+                            <select id="dept" name="dept" class="form-control" required>
+                                <option selected="" disabled>Select Department</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from departments";
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute();
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="role" class="text-gray-900 font-weight-bold">Role</label>
+                            <select id="role" name="role" class="form-control" required>
+                                <option selected="" disabled>Select Role</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from role";
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute();
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['role_ID'] . '>' . $row['role'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="user_id" id="user_id">
+                        <input type="hidden" name="operation" id="operation">
+                        <button type="button" id="close"class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="submit" name="action" id="action"  class="btn btn-success" value="Register">
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#addUser').click(function() {
+            $('#usersForm')[0].reset();
+            $('.title').text(' Add User');
+            $('#action').val("Register");
+            $('#operation').val("Add");
+        })
+
+        var usersTable = $('#usersTable').dataTable({
+            "paging": true,
+            "processing": false,
+            "serverSide": true,
+            "order": [],
+            "info": true,
+            "ajax": {
+                url: "codes/fetch_users.php",
+                type: "POST"
+
+            },
+            "columnDefs": [{
+                "target": [0, 1, 2, 3, 4, 5,6],
+                "orderable": false,
+            }, ],
+        });
+
+        $(document).on('submit', '#usersForm', function(event) {
+            event.preventDefault();
+            var lname = $("#lname").val();
+            var fname = $("#fname").val();
+            var mname = $("#mname").val();
+            var gender = $("#gender").val();
+            var email = $("#email").val();
+            var gender = $("#gender").val();
+            var mobile = $("#mobile").val();
+            var dept = $("#dept").val();
+            var role = $("#role").val();
+
+
+            if (lname == "" || fname == "" || mname == "" || gender == "" || email == "" || mobile == "" || dept == "" ||
+                email == "" || gender == "" || mobile == "" || !dept || !role) {
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Insufficient Data!'
+                })
+            } else {
+                $.ajax({
+                    url: "codes/userscrud.php",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                      
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Record Updated!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                        $('#usersModal').modal('hide');
+                       
+                        $('#usersForm')[0].reset();
+
+                        usersTable.api().ajax.reload();
+                    }
+
+                })
+            }
+        })
+
+
+        $(document).on('click', '.update', function() {
+            var user_id = $(this).attr('id');
+
+
+            $.ajax({
+                url: "codes/userscrud.php",
+                method: "POST",
+                data: {
+                    user_id: user_id
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#usersModal').modal('show');
+                    $('#user_id').val(data.id);
+                    $('#lname').val(data.lname);
+                    $('#fname').val(data.fname);
+                    $('#mname').val(data.mname);
+                    $('#gender').val(data.Gender);
+                    $('#email').val(data.email);
+                    $('#mobile').val(data.mobile);
+                    $("#dept").val();
+                    $("#role").val();
+
+
+                    $('.title').text(' Edit User');
+                    $('#user_id').val(user_id);
+
+                    $('#operation').val("Edit");
+                    $('#action').val("Save");
+
+                }
+            })
+        })
+
+        $(document).on('click', '.delete', function() {
+            var user_id = $(this).attr('id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url:"codes/userscrud.php",
+                        method: "POST",
+                        data:
+                        {delete_id:user_id},
+                        success:function(data){
+                            usersTable.api().ajax.reload();
+                        }
+                    })
+                    Swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                    )
+                }
+            })
+
+        })
+
+        $(document).on('click', '.close', function() {
+            $('#usersModal').modal('hide');
+        })
+
+        $(document).on('click', '#close', function() {
+            $('#usersModal').modal('hide');
+        })
+
+
+    });
+</script>

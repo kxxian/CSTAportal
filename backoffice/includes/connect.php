@@ -1,5 +1,6 @@
 <?php 
-require_once('config.php');
+include("config.php");
+
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{
     $con=new PDO($dsn,$user,$pwd);
