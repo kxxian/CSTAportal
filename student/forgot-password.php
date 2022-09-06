@@ -14,8 +14,11 @@ if (isset($_GET['login'])) {
 <?php
 if (isset($_GET['reset'])) {
     if ($_GET['reset'] == "success") {
-        $msg="Please Check your Email.";
+        $msg="Password reset link sent! Please check your email.";
         $color="green";
+    }elseif($_GET['reset'] == "notfound"){
+        $msg="Email not found";
+        $color="red";
     }
 }
 ?>

@@ -1,37 +1,9 @@
-<<<<<<< HEAD
 
 <?php
 
 require_once '../includes/connect.php';
 
-    if(isset($_POST['data'])){
-        
-        $sql = "SELECT payment_status from vwpayverif where payment_status=?";
-        $data = array("Pending");
-        $stmt = $con->prepare($sql);
-        $stmt->execute($data);
-        $count=$stmt->rowCount();
 
-      echo $count;
-      
-    }
-
-    if(isset($_POST['data2'])){
-        
-      $sql = "SELECT payment_status from vwpayverif where payment_status=?";
-      $data = array("Received");
-      $stmt = $con->prepare($sql);
-      $stmt->execute($data);
-      $count=$stmt->rowCount();
-
-    echo $count;
-    
-  }
-
-
-=======
-
-<?php
 
 require_once '../includes/connect.php';
 //require_once '../codes/fetchcurrentsyandsem.php';
@@ -111,5 +83,5 @@ echo $count;
 
 
 
->>>>>>> 536b3d3d64cb9061c3e5943df89df904162c8de1
+
 ?>

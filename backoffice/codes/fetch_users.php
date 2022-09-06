@@ -8,9 +8,9 @@ $query .= "SELECT * from vwemployees ";
 
 if (isset($_POST["search"]["value"])) {
     $query .= 'WHERE empname LIKE "%' . $_POST["search"]["value"] . '%"';
-    $query .= 'OR email LIKE "%' . $_POST["search"]["value"] . '%"';
+  
     $query .= 'OR role LIKE "%' . $_POST["search"]["value"] . '%"';
-    $query .= 'OR mobile LIKE "%' . $_POST["search"]["value"] . '%"';
+ 
     $query .= 'OR dept LIKE "%' . $_POST["search"]["value"] . '%"';
 }
 
@@ -34,10 +34,11 @@ foreach($result as $row)
 {
     $sub_array=array();
     $sub_array[]=$row["empname"];
+    $sub_array[]=$row["office"];
     $sub_array[]=$row["dept"];
+  
+   
     $sub_array[]=$row["role"];
-    $sub_array[]=$row["email"];
-    $sub_array[]=$row["mobile"];
     $sub_array[]=$row["isActive"];
     $sub_array[]='<button type="button" name="update" id="'.$row["id"].'" 
     class="btn btn-warning btn-sm update" title="Edit"><i class="fa fa-fw fa-edit"></i></button>

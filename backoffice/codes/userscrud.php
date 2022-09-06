@@ -11,12 +11,13 @@ if (isset($_POST['operation'])) {
         $email = htmlspecialchars(trim($_POST['email']));
         $gender = $_POST['gender'];
         $mobile = htmlspecialchars(trim($_POST['mobile']));
+        $office = $_POST['office'];
         $dept = $_POST['dept'];
         $role = $_POST['role'];
 
-        $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,dept_ID,permission_ID) VALUES(?,?,?,?,?,?,?,?)");
+        $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,office,dept_ID,permission_ID) VALUES(?,?,?,?,?,?,?,?,?)");
 
-        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $dept, $role);
+        $data = array($lname, $fname, $mname, $email, $gender, $mobile,$office, $dept, $role);
         $result = $statement->execute($data);
     }
 
@@ -28,13 +29,14 @@ if (isset($_POST['operation'])) {
         $email = htmlspecialchars(trim($_POST['email']));
         $gender = $_POST['gender'];
         $mobile = htmlspecialchars(trim($_POST['mobile']));
+        $office = $_POST['office'];
         $dept = $_POST['dept'];
         $role = $_POST['role'];
 
-        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? ,dept_ID=? ,permission_ID=?  
+        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, dept_ID=? ,permission_ID=?  
          WHERE id=?");
 
-        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $dept, $role, $id);
+        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept, $role, $id);
         $result = $statement->execute($data);
     }
 }
@@ -52,6 +54,11 @@ if (isset($_POST['user_id'])) {
         $output['Gender'] = $row['Gender'];
         $output['email'] = $row['email'];
         $output['mobile'] = $row['mobile'];
+        $output['office'] = $row['office'];
+        $output['dept'] = $row['dept_ID'];
+        $output['role'] = $row['permission_ID'];
+        
+        
      
         
     }

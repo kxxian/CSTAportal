@@ -40,7 +40,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -92,10 +92,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Name</th>
+                                            <th>Office</th>
                                             <th>Department</th>
-                                            <th>Role</th>
-                                            <th>Email</th>
-                                            <th>Mobile</th>
+                                            <th>User Type</th>
                                             <th>isActive</th>
                                             <th width="85">Actions</th>
                                         </tr>
@@ -221,7 +220,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-6">
+
+                        <div class="col-md-4">
+                            <label for="office" class="text-gray-900 font-weight-bold">Office</label>
+                            <select id="office" name="office" class="form-control" required>
+                                <option selected="" disabled>Select Office</option>
+                                <option value="Accounting Office">Accounting Office</option>
+                                <option value="Dean's Office">Dean's Office</option>
+                                <option value="Registrar's Office">Registrar's Office</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-4">
                             <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
                             <select id="dept" name="dept" class="form-control" required>
                                 <option selected="" disabled>Select Department</option>
@@ -240,8 +250,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 ?>
                             </select>
                         </div>
-                        <div class="col-md-6">
-                            <label for="role" class="text-gray-900 font-weight-bold">Role</label>
+                        <div class="col-md-4">
+                            <label for="role" class="text-gray-900 font-weight-bold">User</label>
                             <select id="role" name="role" class="form-control" required>
                                 <option selected="" disabled>Select Role</option>
                                 <?php
@@ -263,8 +273,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="modal-footer">
                         <input type="hidden" name="user_id" id="user_id">
                         <input type="hidden" name="operation" id="operation">
-                        <button type="button" id="close"class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" name="action" id="action"  class="btn btn-success" value="Register">
+                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
 
                     </div>
                 </div>
@@ -275,156 +285,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#addUser').click(function() {
-            $('#usersForm')[0].reset();
-            $('.title').text(' Add User');
-            $('#action').val("Register");
-            $('#operation').val("Add");
-        })
-
-        var usersTable = $('#usersTable').dataTable({
-            "paging": true,
-            "processing": false,
-            "serverSide": true,
-            "order": [],
-            "info": true,
-            "ajax": {
-                url: "codes/fetch_users.php",
-                type: "POST"
-
-            },
-            "columnDefs": [{
-                "target": [0, 1, 2, 3, 4, 5,6],
-                "orderable": false,
-            }, ],
-        });
-
-        $(document).on('submit', '#usersForm', function(event) {
-            event.preventDefault();
-            var lname = $("#lname").val();
-            var fname = $("#fname").val();
-            var mname = $("#mname").val();
-            var gender = $("#gender").val();
-            var email = $("#email").val();
-            var gender = $("#gender").val();
-            var mobile = $("#mobile").val();
-            var dept = $("#dept").val();
-            var role = $("#role").val();
-
-
-            if (lname == "" || fname == "" || mname == "" || gender == "" || email == "" || mobile == "" || dept == "" ||
-                email == "" || gender == "" || mobile == "" || !dept || !role) {
-
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops!',
-                    text: 'Insufficient Data!'
-                })
-            } else {
-                $.ajax({
-                    url: "codes/userscrud.php",
-                    method: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    cache: false,
-                    success: function(data) {
-                      
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Record Updated!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-
-                        $('#usersModal').modal('hide');
-                       
-                        $('#usersForm')[0].reset();
-
-                        usersTable.api().ajax.reload();
-                    }
-
-                })
-            }
-        })
-
-
-        $(document).on('click', '.update', function() {
-            var user_id = $(this).attr('id');
-
-
-            $.ajax({
-                url: "codes/userscrud.php",
-                method: "POST",
-                data: {
-                    user_id: user_id
-                },
-                dataType: "json",
-                success: function(data) {
-                    $('#usersModal').modal('show');
-                    $('#user_id').val(data.id);
-                    $('#lname').val(data.lname);
-                    $('#fname').val(data.fname);
-                    $('#mname').val(data.mname);
-                    $('#gender').val(data.Gender);
-                    $('#email').val(data.email);
-                    $('#mobile').val(data.mobile);
-                    $("#dept").val();
-                    $("#role").val();
-
-
-                    $('.title').text(' Edit User');
-                    $('#user_id').val(user_id);
-
-                    $('#operation').val("Edit");
-                    $('#action').val("Save");
-
-                }
-            })
-        })
-
-        $(document).on('click', '.delete', function() {
-            var user_id = $(this).attr('id');
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url:"codes/userscrud.php",
-                        method: "POST",
-                        data:
-                        {delete_id:user_id},
-                        success:function(data){
-                            usersTable.api().ajax.reload();
-                        }
-                    })
-                    Swal.fire(
-                        'Deleted!',
-                        'User has been deleted.',
-                        'success'
-                    )
-                }
-            })
-
-        })
-
-        $(document).on('click', '.close', function() {
-            $('#usersModal').modal('hide');
-        })
-
-        $(document).on('click', '#close', function() {
-            $('#usersModal').modal('hide');
-        })
-
-
-    });
+<script src="js/users.js">
+    
 </script>
