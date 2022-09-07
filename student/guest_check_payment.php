@@ -1,6 +1,28 @@
 <?php 
     require('includes/connect.php');
- ?>
+
+    if (isset($_GET['trackerId'])) {
+        $trackerId = $_GET['trackerId'];
+        $sql = "SELECT * FROM vwguest_payments WHERE guest_trackerId=?";
+        $stmt = $con->prepare($sql);
+        $stmt->execute([$trackerId]);
+        $pull = $stmt->fetch();
+
+        // TODO: fetch guest payments based on tracker id
+        $guest_dtPayment = $pull['guest_dtPayment'];
+        $guest_tfee = $pull['guest_tfee'];
+        $guest_schoolYear = $pull['schoolyr'];
+        $guest_payMethod = $pull['paymethod'];
+        $guest_sentVia = $pull['sentvia'];
+        $guest_totalAmt = $pull['guest_totalAmt'];
+        $guest_proofPayIMG = $pull['guest_proofPayIMG'];
+        $guest_studName = $pull['guest_studName'];
+        $guest_email = $pull['guest_email'];
+        $guest_trackerId = $pull['guest_trackerId'];
+        $guest_assessForm = $pull['guest_assessForm'];
+        $guest_status = $pull['guest_status'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +125,104 @@
                                             Payment Information
                                         </div>
                                         <div class="card-body"> 
-                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="dateTimePayment">Date & Time of Payment:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_dtPayment ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>  
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="tfee">Tution Fee:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_tfee ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="schoolYear">School Year:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_schoolYear ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="payMethod">Payment Method:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_payMethod ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="sentVia">Sent Via:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_sentVia ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="totalAmount">Total Amount:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_totalAmt ?>" style="text-align:right;" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="0" style="text-align:right;" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="studentName">Student Name:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_studName ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="email">Email:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_email ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="trackerId">Tracker Id:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_trackerId ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label for="status">Payment Status:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <input type="text" class="form-control" value="<?php echo $guest_status ?>" readonly>
+                                                    <?php } else { ?>
+                                                        <input type="text" class="form-control" value="N/A" readonly>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label>Uploaded File 1:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <a href="uploads/guest/payments/<?php echo $guest_proofPayIMG ?>">Proof of Payment</a>
+                                                    <?php } else { ?>
+                                                        <a href="#">N/A</a>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <label>Uploaded File 2:</label>
+                                                    <?php if (isset($_GET['trackerId'])) { ?>
+                                                        <a href="uploads/guest/payments/<?php echo $guest_assessForm ?>">Assessment Form</a>
+                                                    <?php } else { ?>
+                                                        <a href="#">N/A</a>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
