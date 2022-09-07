@@ -377,13 +377,13 @@ CREATE TABLE `guest_payments` (
   `guest_sentVia` varchar(100) NOT NULL,
   `guest_totalAmt` decimal(7,2) NOT NULL,
   `guest_proofPayIMG` varchar(100) NOT NULL,
-  `gust_studName` varchar(255) NOT NULL,
+  `guest_studName` varchar(255) NOT NULL,
   `guest_email` varchar(100) NOT NULL,
   `guest_trackerId` varchar(100) NOT NULL,
   `guest_assessForm` varchar(100) NOT NULL,
   `guest_status` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -392,7 +392,7 @@ CREATE TABLE `guest_payments` (
 
 LOCK TABLES `guest_payments` WRITE;
 /*!40000 ALTER TABLE `guest_payments` DISABLE KEYS */;
-INSERT INTO `guest_payments` VALUES (7,'2022-09-01 10:37:22','Downpayment','4','1','2',3000.00,'jdoe@mail.com_63101ab0e20c2.jpg','John Doe','jdoe@mail.com','63101ab0e20c2','63101ab0e20c2.jpg','PENDING');
+INSERT INTO `guest_payments` VALUES (15,'2022-09-03 11:08:33','Downpayment','4','1','2',3000.00,'jdoe@mail.com_6312c512049c3.jpg','John Doe','jdoe@mail.com','6312c512049c3','6312c512049c3.jpg','PENDING'),(16,'2022-09-03 12:13:55','Downpayment','4','1','1',3000.00,'mj@mail.com_6312d432c97e9.jpg','Mary Jane','mj@mail.com','6312d432c97e9','6312d432c97e9.jpg','PENDING'),(17,'2022-09-06 16:02:33','Downpayment','4','1','2',3000.00,'kr@mail.com_6316fe7c1ee24.png','Kristian Ryan Bulos','kr@mail.com','6316fe7c1ee24','6316fe7c1ee24.png','PENDING');
 /*!40000 ALTER TABLE `guest_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1110,6 +1110,31 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Temporary table structure for view `vwguest_payments`
+--
+
+DROP TABLE IF EXISTS `vwguest_payments`;
+/*!50001 DROP VIEW IF EXISTS `vwguest_payments`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vwguest_payments` (
+  `gid` tinyint NOT NULL,
+  `guest_dtPayment` tinyint NOT NULL,
+  `guest_tfee` tinyint NOT NULL,
+  `schoolyr` tinyint NOT NULL,
+  `paymethod` tinyint NOT NULL,
+  `sentvia` tinyint NOT NULL,
+  `guest_totalAmt` tinyint NOT NULL,
+  `guest_proofPayIMG` tinyint NOT NULL,
+  `guest_studName` tinyint NOT NULL,
+  `guest_email` tinyint NOT NULL,
+  `guest_trackerId` tinyint NOT NULL,
+  `guest_assessForm` tinyint NOT NULL,
+  `guest_status` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Temporary table structure for view `vwpayverif`
 --
 
@@ -1305,6 +1330,25 @@ USE `studentportal`;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
+-- Final view structure for view `vwguest_payments`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vwguest_payments`*/;
+/*!50001 DROP VIEW IF EXISTS `vwguest_payments`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vwguest_payments` AS select `guest_payments`.`gid` AS `gid`,`guest_payments`.`guest_dtPayment` AS `guest_dtPayment`,`guest_payments`.`guest_tfee` AS `guest_tfee`,`schoolyr`.`schoolyr` AS `schoolyr`,`paymethod`.`paymethod` AS `paymethod`,`sentvia`.`sentvia` AS `sentvia`,`guest_payments`.`guest_totalAmt` AS `guest_totalAmt`,`guest_payments`.`guest_proofPayIMG` AS `guest_proofPayIMG`,`guest_payments`.`guest_studName` AS `guest_studName`,`guest_payments`.`guest_email` AS `guest_email`,`guest_payments`.`guest_trackerId` AS `guest_trackerId`,`guest_payments`.`guest_assessForm` AS `guest_assessForm`,`guest_payments`.`guest_status` AS `guest_status` from (((`guest_payments` join `schoolyr` on(`guest_payments`.`guest_schoolYear` = `schoolyr`.`schoolyr_ID`)) join `paymethod` on(`guest_payments`.`guest_payMethod` = `paymethod`.`paymethod_ID`)) join `sentvia` on(`guest_payments`.`guest_sentVia` = `sentvia`.`sentvia_ID`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vwpayverif`
 --
 
@@ -1370,4 +1414,4 @@ USE `studentportal`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-01 11:41:16
+-- Dump completed on 2022-09-07 23:28:42

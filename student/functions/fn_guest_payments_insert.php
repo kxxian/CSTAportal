@@ -45,7 +45,7 @@
         }
 
         if (isset($img_new_name) && isset($img_new_name2)) {
-            $sql = "INSERT INTO guest_payments (guest_dtPayment, guest_tfee, guest_schoolYear, guest_payMethod, guest_sentVia, guest_totalAmt, guest_proofPayIMG, gust_studName, guest_email, guest_trackerId, guest_assessForm, guest_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO guest_payments (guest_dtPayment, guest_tfee, guest_schoolYear, guest_payMethod, guest_sentVia, guest_totalAmt, guest_proofPayIMG, guest_studName, guest_email, guest_trackerId, guest_assessForm, guest_status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
             $stmt = $con->prepare($sql);
             $stmt->execute([$dateOfPayment, $tutionFee, $schoolYear, $paymentMethod, $sentVia, $totalAmount, $img_new_name, $studentName, $email, $trackerId, $img_new_name2, $guestStatus]);
         }

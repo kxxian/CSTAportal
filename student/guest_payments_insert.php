@@ -155,7 +155,7 @@
                                                     </div>
                                                     <div class="col-md-4 mt-3">
                                                         <label for="totalAmount">Total Amount (Minimum 3000):</label>
-                                                        <input type="number" id="" name="totalAmount" class="form-control" placeholder="0.00" required style="text-align:right;">
+                                                        <input type="number" id="" name="totalAmount" class="form-control" placeholder="0" style="text-align:right;" required>
                                                     </div>
                                                     <div class="col-md-4 mt-3">
                                                         <label for="image">Proof of Payment:</label>
