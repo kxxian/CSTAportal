@@ -46,7 +46,7 @@
 
 
     <!-- Google Recaptcha-->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
     <link rel="stylesheet" href="css/style2.css">
@@ -138,7 +138,8 @@
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtSnum" class="form-label">Student Number</label>
-                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" onKeyPress="if(this.value.length==8) return false;" placeholder="xx-xxxxx" required autofocus>
+                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" onkeypress="return (event.charCode > 47 && 
+	                                event.charCode < 58 || event.charCode==45) " placeholder="xx-xxxxx" maxlength="8" required autofocus>
                                 </div>
 
                             </div>
@@ -154,7 +155,7 @@
                                 <div class="col-sm-4">
                                     <label for="txtLname" class="form-label">Last Name</label>
                                     <input type="text" class="form-control" name="txtLname" id="txtLname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 " maxlength="20"  placeholder="Last Name" required>
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 " maxlength="20" placeholder="Last Name" required>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">
@@ -404,7 +405,20 @@
 
     <script src="js/register-page.js"></script>
 
+    <!-- Sweet Alert -->
+    <script src="js/sweetalert.min.js"></script>
+
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
    
+
+
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
