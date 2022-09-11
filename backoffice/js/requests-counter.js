@@ -19,7 +19,7 @@ $(document).ready(function() {
      
             //pending payments
             if(data>0){
-                    console.log(data);
+                    // console.log(data);
                 $(".ctr_pendingpayment").addClass('badge-danger');
                 $(".ctr_pendingpayment").text(data);
            

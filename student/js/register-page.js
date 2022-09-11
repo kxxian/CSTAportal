@@ -1,4 +1,43 @@
 $(document).ready(function() {
+    
+    $("#regForm").validate({
+        rules: {
+            txtSnum: "required",
+            txtLname:{
+                required: true,
+                minlength:2,
+            }
+        },
+
+        messages:{
+            txtLname:{
+                minlength: "Please enter at least 2 characters",
+               
+            }
+        }
+        
+    })
+
+    //Capitalize input fields
+    $('#txtLname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+    $('#txtFname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+    $('#txtMname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+    $('#txtCitizenship').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+    $('#txtguardian').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+
+
+
+
 
     //populate region, province, city, brgy
     $('#region').on('change', function() {
@@ -146,7 +185,7 @@ function validateReg() {
             },
 
             success: function(data) {
-                $("#regAlert").html(data);
+                $("#identityAlert").html(data);
                 // console.log(data);
             },
             error: function() {
@@ -168,8 +207,8 @@ function validateReg() {
             },
 
             success: function(data) {
-                $("#regAlert").html(data);
-                console.log(data);
+                $("#mobileAlert").html(data);
+                //console.log(data);
             },
             error: function() {}
         });

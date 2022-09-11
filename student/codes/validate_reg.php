@@ -17,7 +17,7 @@ if (isset($_POST['validate'])) {
 
 
     if ($stmt->rowCount() > 0) {
-        echo "<span style='color: red; font-weight:bold'>A user matched your registration. Forgot your password? Click <a href='forgot-password.php'>here</a></span>";
+        echo "<span style='color: #df4759; font-weight:bold'>A user matched your registration. Forgot your password? Click <a href='forgot-password.php'>here</a></span>";
         echo "<script>$('#submit').prop('disabled', true);</script>";
     } else {
         echo "<script>$('#submit').prop('disabled', false);</script>";
@@ -38,7 +38,7 @@ if (isset($_POST['validate2'])) {
     $stmt2->execute($data2);
     
     if ($stmt2->rowCount() > 0) {
-        echo "<span style='color: red; font-weight:bold;'>Mobile number already registered</span>        ";
+        echo "<span style='color: #df4759; font-weight:bold;'>Mobile number already registered</span>        ";
         echo "<script>$('#submit').prop('disabled', true);</script>";
     } else {
         echo "<script>$('#submit').prop('disabled', false);</script>";
@@ -58,7 +58,7 @@ if (isset($_POST['validate2'])) {
     if ($stmt3->rowCount() > 0) {
         echo "
         
-        <span class='float-right' style='color: red; font-weight:bold; text-align:right'>Email already registered</span>
+        <span class='float-right' style='color: #df4759; font-weight:bold; text-align:right'>Email already registered</span>
         
         ";
         echo "<script>$('#submit').prop('disabled', true);</script>";
@@ -80,7 +80,7 @@ if (isset($_POST['validate3'])) {
     $stmt3->execute($data3);
     
     if ($stmt3->rowCount() > 0) {
-        echo "<span style='color: red; font-weight:bold'>A user already registered with this student number. Forgot your password? Click <a href='forgot-password.php'>here</a></span>";
+        echo "<span style='color: #df4759; font-weight:bold'>Student number is already in use. <a href='forgot-password.php'> Forgot Password?</a></span>";
         echo "<script>$('#submit').prop('disabled', true);</script>";
     } else {
         echo "<script>$('#submit').prop('disabled', false);</script>";
