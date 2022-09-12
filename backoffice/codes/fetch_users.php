@@ -39,13 +39,26 @@ foreach($result as $row)
   
    
     $sub_array[]=$row["role"];
-    $sub_array[]=$row["isActive"];
+    $isActive=$sub_array[]=$row["isActive"];
+
+    if( $isActive=='No'){
+        $color="success";
+        $title="Activate";
+        $button="activate";
+
+    }else{
+        $color="danger";
+        $title="Deactivate";
+        $button="restrict";
+    }
+
+
     $sub_array[]='<button type="button" name="update" id="'.$row["id"].'" 
     class="btn btn-warning btn-sm update" title="Edit"><i class="fa fa-fw fa-edit"></i></button>
 
     
     <button type="button" name="delete" id="'.$row["id"].'" 
-    class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-fw fa-trash"></i></button>
+    class="btn btn-'.$color.' btn-sm '.$button.'" title="'.$title.'"><i class="fa fa-fw fa-power-off"></i></button>
     ';
 
  

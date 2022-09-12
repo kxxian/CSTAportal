@@ -66,10 +66,18 @@ if (isset($_POST['user_id'])) {
 }
 
 
-if (isset($_POST['delete_id'])){
-    $id=$_POST['delete_id'];
+if (isset($_POST['restrict_id'])){
+    $id=$_POST['restrict_id'];
 
     $statement=$con->prepare('UPDATE employees set isActive=? where id=?');
     $data=array('No',$id);
+    $result=$statement->execute($data);
+}
+
+if (isset($_POST['activate_id'])){
+    $id=$_POST['activate_id'];
+
+    $statement=$con->prepare('UPDATE employees set isActive=? where id=?');
+    $data=array('Yes',$id);
     $result=$statement->execute($data);
 }

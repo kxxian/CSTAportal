@@ -23,9 +23,9 @@ $(document).ready(function() {
         }, ],
     });
 
-    //Auto refresh table every sec
-    setInterval(function () {
-        usersTable.api().ajax.reload();}, 1000);
+    // //Auto refresh table every sec
+    // setInterval(function () {
+    //     usersTable.api().ajax.reload();}, 1000);
 
 
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
                     $('#usersModal').modal('hide');
 
-                    $('#usersForm')[0].reset();
+                    // $('#usersForm')[0].reset();
 
                     usersTable.api().ajax.reload();
                 }
@@ -116,37 +116,73 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', '.delete', function() {
+    $(document).on('click', '.restrict', function() {
         var user_id = $(this).attr('id');
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Confirm',
+            text: "Are you sure you want to restrict this user?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     url: "codes/userscrud.php",
                     method: "POST",
                     data: {
-                        delete_id: user_id
+                        restrict_id: user_id
                     },
                     success: function(data) {
                         usersTable.api().ajax.reload();
                     }
                 })
                 Swal.fire(
-                    'Deleted!',
-                    'User has been deleted.',
+                    'Success!',
+                    'User has been restricted.',
                     'success'
                 )
             }
         })
 
     })
+
+    $(document).on('click', '.activate', function() {
+        var user_id = $(this).attr('id');
+        Swal.fire({
+            title: 'Confirm',
+            text: "Are you sure you want to activate this user?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "codes/userscrud.php",
+                    method: "POST",
+                    data: {
+                        activate_id: user_id
+                    },
+                    success: function(data) {
+                        usersTable.api().ajax.reload();
+                    }
+                })
+                Swal.fire(
+                    'Success!',
+                    'User has been activated.',
+                    'success'
+                )
+            }
+        })
+
+    })
+
+
+
+
 
     $(document).on('click', '.close', function() {
         $('#usersModal').modal('hide');

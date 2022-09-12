@@ -12,14 +12,42 @@
     <title>Register</title>
     <link rel="icon" type="image/x-icon" href="img/logo1.png">
 
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
-
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- jquery validation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <!-- Google Recaptcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 
     <link rel="stylesheet" href="css/style2.css">
     <style type="text/css">
@@ -61,6 +89,27 @@
             background-color: red;
             opacity: 0.5;
         }
+
+        .error {
+            color: #df4759;
+            font-size: 1rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        input.error {
+            border: 2px solid #df4759;
+            font-weight: 300;
+            color: #df4759;
+        }
+
+        select.error {
+            border: 2px solid #df4759;
+            font-weight: 300;
+
+        }
     </style>
 
 
@@ -82,32 +131,43 @@
 
                             <h1 class="h4 text-black-900 mb-4"><strong>CSTA Student Portal Registration</strong></h1><br><br>
                         </div>
-                        <form action="./codes/addstudent.php" method="POST" enctype="multipart/form-data">
+                        <form action="./codes/addstudent.php" id="regForm" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="txtStudID" id="txtStudID" value="<?= $id ?>">
                             <h6>STUDENT INFORMATION</h6>
 
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtSnum" class="form-label">Student Number</label>
-                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" placeholder="xx-xxxxx" required autofocus>
+                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" onkeypress="return (event.charCode > 47 && 
+	                                event.charCode < 58 || event.charCode==45) " placeholder="xx-xxxxx" maxlength="8" required autofocus>
                                 </div>
 
                             </div>
 
                             <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <div id="regAlert">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <div class="col-sm-4">
                                     <label for="txtLname" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" name="txtLname" id="txtLname" oninput="validateReg()" placeholder="Last Name" required>
+                                    <input type="text" class="form-control" name="txtLname" id="txtLname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 " maxlength="20" placeholder="Last Name" required>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtFname" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" name="txtFname" id="txtFname" oninput="validateReg()" placeholder="First Name" required>
+                                    <input type="text" class="form-control" name="txtFname" id="txtFname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="First Name" required>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtMname" class="form-label">Middle Name</label>
-                                    <input type="text" class="form-control" name="txtMname" id="txtMname" oninput="validateReg()" placeholder="Leave Blank if None ">
+                                    <input type="text" class="form-control" name="txtMname" id="txtMname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave Blank if None ">
                                 </div>
 
                             </div>
@@ -116,7 +176,8 @@
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtCitizenship" class="form-label">Citizenship</label>
-                                    <input type="text" class="form-control" id="txtCitizenship" name="txtCitizenship" placeholder="Citizenship" required>
+                                    <input type="text" class="form-control" id="txtCitizenship" name="txtCitizenship" placeholder="Citizenship" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" required>
                                 </div>
 
                                 <div class="form-group col-md-4">
@@ -134,6 +195,12 @@
                                     <input type="date" class="form-control" name="dtBday" id="dtBday" placeholder="Birthday" onchange="validateReg()" required>
                                 </div>
 
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <div id="identityAlert">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="form-group col-md-3">
@@ -162,7 +229,7 @@
                                 <div class="form-group col-md-5">
                                     <label for="dept" class="form-label">Department</label>
                                     <select id="dept" name="dept" class="form-control" required>
-                                    <option selected="" disabled>Select Region</option>
+                                        <option selected="" disabled>Select Region</option>
                                         <?php
                                         require_once("includes/connect.php");
 
@@ -203,13 +270,14 @@
                                 </div>
 
                             </div>
-
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <div id="regAlert">
+                                    <div id="mobileAlert">
                                     </div>
                                 </div>
                             </div>
+
+
 
 
 
@@ -265,12 +333,13 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="txtguardian" class="form-label">Guardian</label>
-                                    <input type="text" class="form-control" id="txtguardian" name="txtguardian" placeholder="Guardian's Name" required>
+                                    <input type="text" class="form-control" id="txtguardian" name="txtguardian" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32" placeholder="Guardian's Name" maxlength="50" required>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <label for="txtguradiancontact" class="form-label">Contact Number</label>
-                                    <input type="number" class="form-control" id="txtguardiancontact" name="txtguardiancontact" placeholder="Contact Number" required>
+                                    <input type="number" class="form-control" id="txtguardiancontact" name="txtguardiancontact" onKeyPress="if(this.value.length==11) return false;" placeholder="Contact Number" required>
                                 </div>
                             </div>
 
@@ -310,7 +379,7 @@
 
                             <div class="che-box text-center">
                                 <label class="checkbox-in">
-                                    <input name="checkbox" type="checkbox" tabindex="" id="remember" required> <span></span>
+                                    <input name="checkbox" type="checkbox" tabindex="" id="agree    " name="agree   " required> <span></span>
                                     I have read and understand the <a target="__blank" href="terms.php">Data Privacy and Policy</a> of using this service.
                                 </label>
                             </div><br>
@@ -336,9 +405,19 @@
 
     <script src="js/register-page.js"></script>
 
-    <?php
-    require_once "includes/scripts.php";
-    ?>
+    <!-- Sweet Alert -->
+    <script src="js/sweetalert.min.js"></script>
+
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+   
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

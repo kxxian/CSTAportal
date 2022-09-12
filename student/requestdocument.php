@@ -12,6 +12,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+
+</style>
+
 <head>
 
     <meta charset="utf-8">
@@ -22,18 +26,36 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <title>CSTA Portal | Request Documents</title>
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="img/CSTA_SMALL.png">
-
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- jquery validation -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function() {
@@ -43,72 +65,28 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             });
         });
     </script>
-
     <style>
-        .address {
-            text-transform: capitalize;
-        }
-
-        /* 
-    .card{
-     
-      background-color: #e9e7e5;
-
-    } */
-
-
-        .picture-container {
-            position: relative;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .picture {
-            width: 106px;
-            height: 106px;
-            background-color: #999999;
-            border: 4px solid #CCCCCC;
-            color: #FFFFFF;
-            border-radius: 50%;
-            margin: 0px auto;
-            overflow: hidden;
-            transition: all 0.2s;
-            -webkit-transition: all 0.2s;
-        }
-
-        .picture:hover {
-            border-color: gray;
-        }
-
-        .picture input[type="file"] {
-            cursor: pointer;
+        .error {
+            color: #df4759;
+            font-size: 1rem;
+            font-weight: bold;
             display: block;
-            height: 100%;
-            left: 0;
-            opacity: 0 !important;
-            position: absolute;
-            top: 0;
+            margin-top: 5px;
             width: 100%;
         }
 
-        .picture-src {
-            width: 100%;
+        /* input.error {
+            border: 2px solid #df4759;
+            font-weight: 300;
+            color: #df4759;
+        } */
 
-        }
-
-        /*Profile Pic End*/
-
-        .tago {
-            display: none;
-
-        }
-
-        .show {
-            display: block;
+        select.error {
+            border: 2px solid #df4759;
+            font-weight: 300;
 
         }
     </style>
-
 
 
 </head>
@@ -156,13 +134,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                     <div class="card-body text-gray-900">
 
-                                        <form action="reqdoc.php" method="POST" enctype="multipart/form-data">
-
+                                        <form method="POST" id="reqdocx" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
                                                         <label><strong>Course</strong></label>
-                                                        <select class="form-control" name="selcourse">
+                                                        <select class="form-control" id="selcourse" name="selcourse" required>
                                                             <option selected="" disabled>Select Course</option>
                                                             <?php
                                                             $sql = "select * from courses where visible=? order by course asc";
@@ -182,7 +159,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
                                                         <label><strong>Year Graduated</strong> <i style="font-size: 0.9rem;color:#808080"><br>NOTE: If UNDERGRADUATE, indicate last SY. and Semester Attended</i></label>
-                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 ">
+                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 " required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -193,64 +170,70 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 </div>
 
 
-                                                <div class="form-group row">
-                                                    <div class="col-lg-12">
-                                                        <label><strong>Documents</strong> <i style="font-size: 0.9rem;color:#808080">NOTE: Select all the documents to be requested </i> </label>
-                                                        <?php
-                                                        $sql = "select * from documents where isActive=?";
-                                                        $data = array('1');
-                                                        $stmt = $con->prepare($sql);
-                                                        $stmt->execute($data);
+                                                <div class="form-group documents">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
 
-                                                        while ($row = $stmt->fetch()) {
-                                                            echo '
-                                                                <div class="form-check id="chkdoc" ">
+                                                            <label><strong>Documents</strong> <i style="font-size: 0.9rem;color:#808080">NOTE: Select all the documents to be requested </i> </label>
+
+                                                            <?php
+                                                            $sql = "select * from documents where isActive=?";
+                                                            $data = array('1');
+                                                            $stmt = $con->prepare($sql);
+                                                            $stmt->execute($data);
+
+                                                            while ($row = $stmt->fetch()) {
+                                                                echo '
+                                                                <div class="form-check documents" id="chkdoc">
                                                                 <input class="form-check-input" type="checkbox" value="' . $row['doc'] . '" id="doc" name="doc[]">
                                                                 <label class="form-check-label" for="">
                                                                     ' . $row['doc'] . '
                                                                 </label>
                                                                 </div>';
-                                                        }
-                                                        $stmt = null;
-                                                        ?>
+                                                            }
+                                                            $stmt = null;
+                                                            ?>
 
+                                                        </div>
 
                                                     </div>
 
                                                 </div>
-                                                <div class="form-group row">
-                                                    <div class="col-lg-12">
-                                                        <label><strong>Purpose of Request</strong></label>
-                                                        <?php
-                                                        $sql = "select * from docreq_purpose where isActive=?";
-                                                        $data = array('1');
-                                                        $stmt = $con->prepare($sql);
-                                                        $stmt->execute($data);
+                                                <div class="form-group purpose">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <label><strong>Purpose of Request</strong></label>
+                                                            <?php
+                                                            $sql = "select * from docreq_purpose where isActive=?";
+                                                            $data = array('1');
+                                                            $stmt = $con->prepare($sql);
+                                                            $stmt->execute($data);
 
-                                                        while ($row = $stmt->fetch()) {
-                                                            echo '
-                                                                <div class="form-check ">
+                                                            while ($row = $stmt->fetch()) {
+                                                                echo '
+                                                                <div class="form-check" id="chkpurpose">
                                                                 <input class="form-check-input" type="checkbox" value="' . $row['purpose'] . '" id="purpose" name="purpose[]">
                                                                 <label class="form-check-label" for="">
                                                                     ' . $row['purpose'] . '
                                                                 </label>
                                                                 </div>';
-                                                        }
-                                                        $stmt = null;
-                                                        ?>
+                                                            }
+                                                            $stmt = null;
+                                                            ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-lg-12">
                                                         <label><strong>Others (Specify)</strong></label>
-                                                        <input name="otherpurpose" type="text" class="form-control" placeholder="Specify if purpose is not listed above">
+                                                        <input id="otherpurpose" name="otherpurpose" type="text" class="form-control" placeholder="Specify if purpose is not listed above" required>
                                                     </div>
                                                 </div>
 
 
 
                                                 <div class="col-lg-12">
-                                                    <div class="text-right"><button type="submit" class="btn btn-success" name="submit" id="submit"><i class="fas fa-check"></i> Submit</button></div>
+                                                    <div class="text-right"> <input type="submit" name="action" id="action" class="btn btn-success" value="Submit"></div>
                                                 </div>
                                         </form>
 
@@ -264,89 +247,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                         </div>
 
-                        <!-- Request Details -->
-                        <div class="col-lg-6" id="docreqdetailsdiv">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-file-alt"></i> Request Details</h6>
-                                </div>
 
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th hidden>#</th>
-                                                    <th hidden>sid</th>
-                                                    <th hidden>Student No.</th>
-                                                    <th hidden>Fullname</th>
-                                                    <th hidden>Course</th>
-                                                    <th hidden>Email</th>
-                                                    <th hidden>Bday</th>
-                                                    <th hidden>Gender</th>
-                                                    <th hidden>yeargrad</th>
-                                                    <th hidden>lschool</th>
-                                                    <th hidden>Document/s</th>
-                                                    <th hidden>Purpose</th>
-                                                    <th>Date Requested</th>
-                                                    <th>Status</th>
-                                                    <th width="125">Actions</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-
-                                                <?php
-
-
-                                                $sql = "select * from vwdocreq where sid=?";
-                                                $data = array($sid);
-                                                $stmt = $con->prepare($sql);
-                                                $stmt->execute($data);
-                                                $count=$stmt->rowCount();
-
-                                             
-                                                while ($row = $stmt->fetch()) {
-                                                   
-                                                    echo '<tr> 
-                                                        <td hidden>' . $row['docreq_ID'] . '</td>
-                                                        <td hidden>' . $row['sid'] . '</td>
-                                                        <td hidden>' . $row['snum'] . '</td>
-                                                        <td hidden>' . $row['fullname'] . '</td>
-                                                        <td hidden>' . $row['course'] . '</td>
-                                                        <td hidden>' . $row['email'] . '</td>
-                                                        <td hidden>' . $row['gender'] . '</td>
-                                                        <td hidden>' . $row['year_graduated'] . '</td>
-                                                        <td hidden>' . $row['lastschool'] . '</td>
-                                                        <td hidden>' . $row['requesteddocs'] . '</td>
-                                                        <td hidden>' . $row['purpose'] . '</td>
-                                                        <td>' . $row['datereq'] . '</td>
-                                                        <td>' . $row['status'] . '</td>
-                                                        <td>
-                                                        <button title="View Full Details" class="btn btn-info viewdetails" >
-                                                        <i class="fa fa-list fa-fw"></i>
-                                                        </button>
-
-                                        
-                                                        <button "   title="Cancel" class="btn btn-danger" >
-                                                        <i class="fa fa-times fa-fw"></i>
-                                                        </button>
-                                                        
-                                                        </td>
-                                                        
-                                                </tr>';
-                                                }
-                                            
-                                           
-
-
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -420,7 +321,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-info" id="done" name="done"> Done</button>
-                                   
+
                                 </div>
                         </form>
                     </div>
@@ -443,52 +344,57 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <script>
         //View Full Request Details Modal
-        $(document).ready(function() {
-            $('.viewdetails').on('click', function() {
-                $('#viewfulldetails').modal('show');
+        // $(document).ready(function() {
+        //     $('.viewdetails').on('click', function() {
+        //         $('#viewfulldetails').modal('show');
 
-                $tr = $(this).closest('tr');
+        //         $tr = $(this).closest('tr');
 
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
+        //         var data = $tr.children("td").map(function() {
+        //             return $(this).text();
+        //         }).get();
 
-                console.log(data);
+        //         console.log(data);
 
-                //fetch data from request documents datatable
-                $('#assess_id').val(data[4]);
-                $('#lschool').val(data[8]);
-                $('#course').val(data[4]);
-                $('#ygrad').val(data[7]);
-                $('#docrq').val(data[9]);
-                $('#docp').val(data[10]);
-                $('#datereq').val(data[11]);
-                $('#status').val(data[12]);
+        //         //fetch data from request documents datatable
+        //         $('#assess_id').val(data[4]);
+        //         $('#lschool').val(data[8]);
+        //         $('#course').val(data[4]);
+        //         $('#ygrad').val(data[7]);
+        //         $('#docrq').val(data[9]);
+        //         $('#docp').val(data[10]);
+        //         $('#datereq').val(data[11]);
+        //         $('#status').val(data[12]);
 
-            });
-        });
+        //     });
+        // });
 
-        //close details modal
-        $(document).ready(function() {
-            $('.close').on('click', function() {
-                $('#viewfulldetails').modal('hide');
+        // //close details modal
+        // $(document).ready(function() {
+        //     $('.close').on('click', function() {
+        //         $('#viewfulldetails').modal('hide');
 
-            });
-        });
-        $(document).ready(function() {
-            $('#done').on('click', function() {
-                $('#viewfulldetails').modal('hide');
+        //     });
+        // });
+        // $(document).ready(function() {
+        //     $('#done').on('click', function() {
+        //         $('#viewfulldetails').modal('hide');
 
-            });
-        });
+        //     });
+        // });
     </script>
 
     <?php
-    include_once("includes/scripts.php");
+    // include_once("includes/scripts.php");
     ?>
 
 
 
+    <script type="text/javascript" src="js/requestdocument.js">
+
+    </script>
 </body>
+
+
 
 </html>
