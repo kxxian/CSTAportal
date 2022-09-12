@@ -1,4 +1,6 @@
 <?php 
+	/* setlocale(LC_MONETARY, 'en_PH'); */
+
     require('includes/connect.php');
 
     if (isset($_GET['trackerId'])) {
@@ -8,7 +10,6 @@
         $stmt->execute([$trackerId]);
         $pull = $stmt->fetch();
 
-        // TODO: fetch guest payments based on tracker id
         $guest_dtPayment = $pull['guest_dtPayment'];
         $guest_tfee = $pull['guest_tfee'];
         $guest_schoolYear = $pull['schoolyr'];
@@ -21,6 +22,12 @@
         $guest_trackerId = $pull['guest_trackerId'];
         $guest_assessForm = $pull['guest_assessForm'];
         $guest_status = $pull['guest_status'];
+
+
+		/* $fmt_totalAmt = money_format("%i", $guest_totalAmt); */
+
+		$fmt_totalAmt = "PHP ".number_format($guest_totalAmt, 2, '.', ',');
+
     }
 ?>
 <!DOCTYPE html>
@@ -169,9 +176,9 @@
                                                 <div class="col-md-6 mt-2">
                                                     <label for="totalAmount">Total Amount:</label>
                                                     <?php if (isset($_GET['trackerId'])) { ?>
-                                                        <input type="text" class="form-control" value="<?php echo $guest_totalAmt ?>" style="text-align:right;" readonly>
+                                                        <input type="text" class="form-control" value="<?php echo $fmt_totalAmt ?>" style="text-align:right;" readonly>
                                                     <?php } else { ?>
-                                                        <input type="text" class="form-control" value="0" style="text-align:right;" readonly>
+                                                        <input type="number" class="form-control" value="0.00" style="text-align:right;" readonly>
                                                     <?php } ?>
                                                 </div>
                                                 <div class="col-md-6 mt-2">
