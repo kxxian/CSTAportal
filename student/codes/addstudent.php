@@ -14,11 +14,11 @@ if (isset($_POST['submit'])) {
     // current date and time
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
-
+    echo ucwords($date);
     $id = (int)$_POST['txtStudID'];
-    $lname = htmlspecialchars(trim($_POST['txtLname']));
-    $fname = htmlspecialchars(trim($_POST['txtFname']));
-    $mname = htmlspecialchars(trim($_POST['txtMname']));
+    $lname = ucwords(htmlspecialchars(trim($_POST['txtLname'])));
+    $fname = ucwords(htmlspecialchars(trim($_POST['txtFname'])));
+    $mname = ucwords(htmlspecialchars(trim($_POST['txtMname'])));
     $snum = htmlspecialchars(trim($_POST['txtSnum']));
     $gender = $_POST['selGender'];
     $bday = $_POST['dtBday'];
@@ -27,15 +27,15 @@ if (isset($_POST['submit'])) {
     $dept = $_POST['dept'];
     $course = $_POST['courses'];
 
-    $citizen = htmlspecialchars(trim($_POST['txtCitizenship']));
+    $citizen = ucwords(htmlspecialchars(trim($_POST['txtCitizenship'])));
     $mobile = htmlspecialchars(trim($_POST['txtContactno']));
     $email = htmlspecialchars(trim($_POST['txtEmail']));
-    $cityadd = htmlspecialchars(trim($_POST['txtCityadd']));
+    $cityadd = ucwords(htmlspecialchars(trim($_POST['txtCityadd'])));
     $region = $_POST['region'];
     $province = $_POST['provinces'];
     $city = $_POST['city'];
     $brgy = $_POST['barangay'];
-    $guardian = htmlspecialchars(trim($_POST['txtguardian']));
+    $guardian = ucwords((htmlspecialchars(trim($_POST['txtguardian']))));
     $guardiancontact = htmlspecialchars(trim($_POST['txtguardiancontact']));
     $uname = htmlspecialchars(trim($_POST['txtUsername']));
     $pass = sha1(trim($_POST['txtPassword']));

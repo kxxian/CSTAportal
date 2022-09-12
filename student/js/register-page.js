@@ -34,7 +34,11 @@ $(document).ready(function() {
     $('#txtguardian').keyup(function(){
         $(this).css("text-transform", "capitalize");
     });
+    $('#txtCityadd').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
 
+   
 
 
 
