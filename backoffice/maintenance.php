@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once 'includes/fetchstudentdetails.php';
+require_once 'includes/fetchuserdetails.php';
 
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {

@@ -167,7 +167,7 @@
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtMname" class="form-label"><b>Middle Name</b></label>
                                     <input type="text" class="form-control" name="txtMname" id="txtMname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave Blank if None ">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave blank if n one ">
                                 </div>
 
                             </div>
@@ -334,7 +334,7 @@
                                 <div class="col-sm-6">
                                     <label for="txtguardian" class="form-label"><b>Guardian</b></label>
                                     <input type="text" class="form-control" id="txtguardian" name="txtguardian" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32" placeholder="Guardian's Name" maxlength="50" required>
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==46" placeholder="Guardian's Name" maxlength="50" required>
                                 </div>
 
                                 <div class="col-sm-6">

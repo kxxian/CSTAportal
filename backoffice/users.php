@@ -2,7 +2,7 @@
 session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once 'includes/fetchstudentdetails.php';
+require_once 'includes/fetchuserdetails.php';
 
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
@@ -210,9 +210,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <label for="office" class="text-gray-900 font-weight-bold">Office</label>
                             <select id="office" name="office" class="form-control" required>
                                 <option selected="" disabled>Select Office</option>
-                                <option value="Accounting Office">Accounting Office</option>
-                                <option value="Dean's Office">Dean's Office</option>
-                                <option value="Registrar's Office">Registrar's Office</option>
+                                <option value="Accounting">Accounting</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Registrar">Registrar</option>
 
                             </select>
                         </div>

@@ -2,12 +2,19 @@
 session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once 'includes/fetchstudentdetails.php';
+require_once 'includes/fetchuserdetails.php';
 
+//assign usertype for page
+// $office="Accounting";
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
     header('location:login.php');
+
+//user access
 }
+// elseif ($usertype!=$role || $Office!=$office){
+//     header('location:https://www.youtube.com');
+// }
 ?>
 
 <!DOCTYPE html>

@@ -11,18 +11,8 @@
         //$sid=$row['id'];
         $empname=$row['empname'];
         $dept=$row['dept'];
-        // $email=$row['email'];
-        // $mobile=$row['mobile'];
-        // $address=strtolower($row['completeaddress']);
-        // $region=$row['region'];
-        // $snum=$row['snum'];
-        // $bday=$row['bday'];
-        // $username=$row['username'];
-        // $yrlevel=$row['yrlevel'];
-        // $course=$row['course'];  
-        // $guardian=$row['guardian'];  
-        // $guardiancontact=$row['guardiancontact'];
-        $pass=$row['pass'];
+        $usertype=$row['role'];
+        $Office=$row['office'];
        }
        
        catch(PDOException $e){

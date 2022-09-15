@@ -17,7 +17,7 @@ if (isset($_GET['reset'])) {
         $msg="Password reset link sent! Please check your email.";
         $color="green";
     }elseif($_GET['reset'] == "notfound"){
-        $msg="Email not found";
+        $msg="Email address not found";
         $color="red";
     }
 }
