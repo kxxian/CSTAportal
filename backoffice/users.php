@@ -4,6 +4,9 @@ require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
 
+//get office from fetchuserdetails.php
+$office=$Office;
+
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -61,7 +64,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 9;
+        if ($office=="Accounting"){
+            $pageValue = 3;
+        }elseif($office=="Dean"){
+            $pageValue = 3;
+        }elseif($office=="Registrar"){
+            $pageValue = 6;
+        }
+
+        
+        if ($usertype!="Admin"){
+            header("Location:index.php");
+        }
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -148,6 +162,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/pending-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+   
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -175,15 +190,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
-                            <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name..">
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="lname" id="lname" class="form-control" placeholder="Last Name..">
                         </div>
                         <div class="col-md-4">
                             <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
-                            <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name..">
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name..">
                         </div>
                         <div class="col-md-4">
                             <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
-                            <input type="text" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -201,7 +219,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="col-md-4">
                             <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
-                            <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Enter Mobile No..">
+                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -267,9 +285,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </div>
     </form>
 </div>
-
+<script src="js/users.js"></script>
 </div>
 
-<script src="js/users.js">
-    
-</script>

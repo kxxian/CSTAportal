@@ -155,7 +155,7 @@
                                 <div class="col-sm-4">
                                     <label for="txtLname" class="form-label"><b>Last Name</b> (indicate suffix if any..)</label>
                                     <input type="text" class="form-control" name="txtLname" id="txtLname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 " maxlength="20" placeholder="Dela Cruz Jr." required>
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46" maxlength="20" placeholder="Dela Cruz Jr." required>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">

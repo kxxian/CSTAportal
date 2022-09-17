@@ -4,6 +4,7 @@ require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
 
+$office=$Office;
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -54,7 +55,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 9;
+        if ($office=="Accounting"){
+            $pageValue = 3;
+        }elseif($office=="Dean"){
+            $pageValue = 3;
+        }elseif($office=="Registrar"){
+            $pageValue = 6;
+        }
+
+        
+        if ($usertype!="Admin"){
+            header("Location:index.php");
+        }
+
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 

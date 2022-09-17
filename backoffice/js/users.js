@@ -1,4 +1,22 @@
 $(document).ready(function() {
+     //Capitalize input fields
+     $('#lname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+    $('#fname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+
+    $('#mname').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+
+
+
+
+
+
+
     $('#addUser').click(function() {
         $('#usersForm')[0].reset();
         $('.title').text(' Add User');
@@ -22,12 +40,6 @@ $(document).ready(function() {
             "orderable": false,
         }, ],
     });
-
-    // //Auto refresh table every sec
-    // setInterval(function () {
-    //     usersTable.api().ajax.reload();}, 1000);
-
-
 
     $(document).on('submit', '#usersForm', function(event) {
         event.preventDefault();
@@ -179,10 +191,6 @@ $(document).ready(function() {
         })
 
     })
-
-
-
-
 
     $(document).on('click', '.close', function() {
         $('#usersModal').modal('hide');

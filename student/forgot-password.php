@@ -23,7 +23,6 @@ if (isset($_GET['reset'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -71,7 +70,7 @@ if (isset($_GET['reset'])) {
                     <div class="col-md-6 offset-md-3">
                         <div class="panel panel-login">
                             <div class="logo-top">
-                                <a href="#"><img src="img/logologo.png" alt="" /></a><br><br>
+                                <a href="login.php"><img src="img/logologo.png" alt="" /></a><br><br>
                             </div>
                             <div class="panel-body">
                                 <div class="row">

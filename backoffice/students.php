@@ -3,6 +3,8 @@ session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchuserdetails.php');
 
+//get office from fetchuserdetails.php
+$office=$Office;
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -50,7 +52,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 2;
+        if ($office=="Registrar"){
+            $pageValue = 2;
+        }else{
+            header("Location:index.php");
+        }
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 

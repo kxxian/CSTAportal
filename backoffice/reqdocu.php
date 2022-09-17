@@ -4,6 +4,9 @@ require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once('includes/fetchuserdetails.php');
 
+//get office from fetchuserdetails.php
+$office=$Office;
+
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
@@ -52,7 +55,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 5;
+
+        if ($office == "Registrar") {
+            $pageValue = 4;
+        }else{
+            header("Location:indx.php");
+        }
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -97,7 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody> </tbody>

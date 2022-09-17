@@ -4,17 +4,11 @@ require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
 
-//assign usertype for page
-// $office="Accounting";
+$office = $Office;
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
-
-//user access
 }
-// elseif ($usertype!=$role || $Office!=$office){
-//     header('location:https://www.youtube.com');
-// }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +22,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Dashboard</title>
+    <title>CSTA Admin | Maintenance</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -79,287 +73,70 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
                 <div class="container-fluid">
 
                     <div class=" mb-4">
-                        <h1 class="h2 mb-0 text-gray-900 "><strong>Welcome, CSTA Admin</strong></h1>
+                        <h1 class="h2 mb-0 text-gray-900 "><strong>Welcome CSTA Admin</strong></h1>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Pending Student Request Card  -->
+                        <!-- Pending Payments Card  -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <a class="text-warning" href="students.php">Pending Registrations</a>
+                                                <a class="text-danger" href="students.php">Pending</a>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-
-                                                try {
-                                                    $sql = "SELECT * FROM vwstudents WHERE status='PENDING'";
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute();
-                                                    $row = $stmt->rowCount();
-
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-
-                                                ?>
+                                                1,223
 
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-user-plus fa-2x text-gray-800"></i>
+                                            <i class="fas fa-credit-card fa-2x text-gray-800"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pending Enrollment For Current School Year and Semester  -->
+                        <!-- Acknowledged Payments Card  -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
+                            <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-warning" href="assessments.php"> Pending Assessments</a>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-info" href="students.php">Acknowledged</a>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                try {
-                                                    $sql = "SELECT * FROM vwforenrollment_students where schoolyr=? and semester=? and enrollment_status=?";
-                                                    $data = array($currentsyval, $currentsemval, 'Pending');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
 
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-                                                ?>
+                                                330
+
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-pen fa-2x text-gray-800"></i>
+                                            <i class="fas fa-money-check fa-2x text-gray-800"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Request of Documents Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                <a href="reqdocu.php" class="text-warning">
-                                                    Document Requests
-                                                </a>
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 ">
-                                                        <?php
-
-                                                        try {
-                                                            $sql = "SELECT * FROM vwdocreq WHERE status=?";
-                                                            $data = array('PENDING');
-                                                            $stmt = $con->prepare($sql);
-                                                            $stmt->execute($data);
-                                                            $row = $stmt->rowCount();
-
-                                                            echo $row;
-                                                        } catch (PDOException $error) {
-                                                            echo $error->getMessage();
-                                                        }
-
-                                                        ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-folder fa-2x text-gray-800"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Payment Verification Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                <a class="text-warning" href="payverif.php"> Pending Payments</a>
-
-
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-
-                                                try {
-                                                    $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
-                                                    $data = array('Pending');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
-
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-money-check-alt fa-2x text-gray-800"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
-
-
-                        <!-- Pending Enrollment For Current School Year and Semester  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-success" href="assessed-students.php"> For Enrollment</a>
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                try {
-                                                    $sql = "SELECT * FROM vwforenrollment_students where schoolyr=? and semester=? and enrollment_status=?";
-                                                    $data = array($currentsyval, $currentsemval, 'Assessed');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
-
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-user-check fa-2x text-gray-800"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Student Request Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="col-xl-3 col-md-6">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                <a class="text-success" href="enrolled-students.php">Enrolled</a>
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-900">
-                                                <?php
-
-                                                try {
-                                                    $sql = "SELECT * FROM vwforenrollment_students WHERE enrollment_status=?";
-                                                    $data = array('Enrolled');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
-
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-
-                                                ?>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-800"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Employees -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-success" href="reqgrades.php"> Grades Request</a>
+                                                <a class="text-warning" href="students.php">For Receipt</a>
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
-                                                try {
-                                                    $sql = "SELECT * FROM vwgradereq where status=?";
-                                                    $data = array('Pending');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
 
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-award fa-2x text-gray-800"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Payment Verification Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card  shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-success" href="verified-payments.php"> Verified Payments</a>
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <?php
+                                                330
 
-                                                try {
-                                                    $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
-                                                    $data = array('Verified');
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                    $row = $stmt->rowCount();
-
-                                                    echo $row;
-                                                } catch (PDOException $error) {
-                                                    echo $error->getMessage();
-                                                }
-
-                                                ?>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -369,7 +146,31 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Verified Payments Card  -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card border shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-success" href="students.php">Verified</a>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                                9,999
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-check fa-2x text-gray-800"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
 
 
                     <!-- Content Row -->
@@ -434,7 +235,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
 
-  
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -446,7 +247,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-   
+    <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
@@ -454,7 +255,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) ) {
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Page level custom scripts -->
-   
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
 
 
