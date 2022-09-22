@@ -4,12 +4,12 @@
 
     $username=htmlspecialchars(trim($_POST['username']));
     $pass=sha1(trim($_POST['password']));
-    $approved="APPROVED";
+    $verified="Verified";
 
     //validation
     try{
         $sql="select * from students where username=? and pass=? and status=?";
-        $data=array($username,$pass,$approved);
+        $data=array($username,$pass,$verified);
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
         $rc=$stmt->rowCount();

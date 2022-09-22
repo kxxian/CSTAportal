@@ -1,4 +1,3 @@
-  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +20,7 @@
   <!-- Google Recaptcha-->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  
+
 
 
 
@@ -54,7 +53,9 @@
 
 
   <?php
-    if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
+
+    if (isset($_SESSION['status']) && $_SESSION['status'] != '' ||
+    isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
     }
     ?>
 
@@ -62,10 +63,10 @@
   <script>
       swal({
           title: "<?php echo $_SESSION['status']; ?>",
-          //text: "",
+          text: "<?php echo $_SESSION['msg']; ?>",
           icon: "<?php echo $_SESSION['status_code']; ?>",
-          button: "Done",
-          timer: 2000
+          button: false,
+          timer: 4000
       });
   </script>
 

@@ -173,10 +173,12 @@ html, body{
 	vertical-align: middle;
 }
 .logo-top{
-	padding: 30px 0px;
+	margin-top: 0;
+	padding: 20px 0px;
 	padding-left: 30px;
 	text-align: center;
 	background: rgba(255,255,255,0.5);
+
 	
 }
 

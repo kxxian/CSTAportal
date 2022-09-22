@@ -22,11 +22,9 @@ if (isset($_POST['submit'])) {
     $snum = htmlspecialchars(trim($_POST['txtSnum']));
     $gender = $_POST['selGender'];
     $bday = $_POST['dtBday'];
-
     $yrlevel = $_POST['yrlevel'];
     $dept = $_POST['dept'];
     $course = $_POST['courses'];
-
     $citizen = ucwords(htmlspecialchars(trim($_POST['txtCitizenship'])));
     $mobile = htmlspecialchars(trim($_POST['txtContactno']));
     $email = htmlspecialchars(trim($_POST['txtEmail']));
@@ -39,6 +37,11 @@ if (isset($_POST['submit'])) {
     $guardiancontact = htmlspecialchars(trim($_POST['txtguardiancontact']));
     $uname = htmlspecialchars(trim($_POST['txtUsername']));
     $pass = sha1(trim($_POST['txtPassword']));
+
+    //Generate Verification key
+    $vkey =sha1(time().$uname);
+
+    echo $vkey;
 
     //google recaptcha
     if (isset($_POST['g-recaptcha-response'])) {
@@ -59,28 +62,30 @@ if (isset($_POST['submit'])) {
             if ($responsekeys['success']) {
                 try {
 
-                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass,$date);
+                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass,vkey,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass,$vkey,$date);
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();
 
 
-                    $_SESSION['status'] = "Registration Success!";
-                    $_SESSION['status_code'] = "success";
-                    // $_SESSION['msg'] = "Check Your Email Regularly For Account Approval";
-                    header('location:login.php');
+                    // $_SESSION['status'] = "Registration Success!";
+                    // $_SESSION['status_code'] = "success";
+                    // // $_SESSION['msg'] = "Check Your Email Regularly For Account Approval";
+                    // header('location:login.php');
 
 
                     ##email
 
                     $mailTo = $email;
-
+                   
                     $body = "Good Day Teresian!<br><br>
                     Thank you for registering at CSTA Student Portal. <br><br>
                     
-                    Please be patient while we validate your registration. We will notify you once account is activated.<br><br>
+                    Please click the <a href='http://localhost/CSTAportal/student/verify.php?vkey=$vkey'>link</a> to verify your account. <br>
                     
+
+                    <br>
                     Thank you. ";
 
                     $mail = new PHPMailer();
@@ -112,8 +117,9 @@ if (isset($_POST['submit'])) {
                         echo "Email Not Sent: " . $mail->ErrorInfo;
                     } else {
 
-                        $_SESSION['status'] = "Registration Success!";
+                        $_SESSION['status'] = "Success!";
                         $_SESSION['status_code'] = "success";
+                       $_SESSION['msg'] = "We have sent you an email.";
                         header('location: ../login.php');
                     }
 

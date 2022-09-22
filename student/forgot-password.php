@@ -4,21 +4,20 @@ session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
     header('location:index.php');
 }
-$msg = "";
-if (isset($_GET['login'])) {
-    $msg = "Invalid Username or Password!";
-    $color="red";
-}
+
 ?>
 
 <?php
 if (isset($_GET['reset'])) {
     if ($_GET['reset'] == "success") {
-        $msg="Password reset link sent! Please check your email.";
-        $color="green";
-    }elseif($_GET['reset'] == "notfound"){
-        $msg="Email address not found";
-        $color="red";
+        $_SESSION['status'] = "Success!";
+        $_SESSION['msg'] = "Password reset link sent to your email.";
+        $_SESSION['status_code'] = "success";
+
+    } elseif ($_GET['reset'] == "notfound") {
+        $_SESSION['status'] = "Oops!";
+        $_SESSION['msg'] = "Email address not found.";
+        $_SESSION['status_code'] = "warning";
     }
 }
 ?>
@@ -86,8 +85,7 @@ if (isset($_GET['reset'])) {
                                                     <div class="col-sm-12">
                                                         <input type="submit" name="reset-request-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="reset password via email">
 
-                                                        <p style="color:<?=$color?>; font-weight:bold; text-align:center;padding-top:10px;"><?= $msg ?></p>
-                
+
                                                     </div>
                                                 </div>
                                             </div>

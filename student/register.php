@@ -155,7 +155,7 @@
                                 <div class="col-sm-4">
                                     <label for="txtLname" class="form-label"><b>Last Name</b> (indicate suffix if any..)</label>
                                     <input type="text" class="form-control" name="txtLname" id="txtLname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46" maxlength="20" placeholder="Dela Cruz Jr." required>
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46 || (event.charCode)==165|| (event.charCode)==164" maxlength="20" placeholder="Dela Cruz Jr." required>
                                 </div>
 
                                 <div class="col-sm-4 mb-3 mb-sm-0">
@@ -167,7 +167,7 @@
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <label for="txtMname" class="form-label"><b>Middle Name</b></label>
                                     <input type="text" class="form-control" name="txtMname" id="txtMname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave blank if n one ">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave blank if none ">
                                 </div>
 
                             </div>
@@ -229,7 +229,7 @@
                                 <div class="form-group col-md-5">
                                     <label for="dept" class="form-label"><b>Department</b></label>
                                     <select id="dept" name="dept" class="form-control" required>
-                                        <option selected="" disabled>Select Region</option>
+                                        <option selected="" disabled>Select Department</option>
                                         <?php
                                         require_once("includes/connect.php");
 
@@ -334,7 +334,7 @@
                                 <div class="col-sm-6">
                                     <label for="txtguardian" class="form-label"><b>Guardian</b></label>
                                     <input type="text" class="form-control" id="txtguardian" name="txtguardian" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==46" placeholder="Guardian's Name" maxlength="50" required>
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46" placeholder="Guardian's Name" maxlength="50" required>
                                 </div>
 
                                 <div class="col-sm-6">
@@ -347,7 +347,6 @@
                             <div class="form-group row">
 
                             </div>
-
 
                             <div class="form-group row">
                                 <div class="col-sm-4 mb-3 mb-sm-0">
@@ -379,7 +378,7 @@
 
                             <div class="che-box text-center">
                                 <label class="checkbox-in">
-                                    <input name="checkbox" type="checkbox" tabindex="" id="agree    " name="agree   " required> <span></span>
+                                    <input name="checkbox" type="checkbox" tabindex="" id="chkagree" name="chkagree" required> <span></span>
                                     I have read and understand the <a target="__blank" href="terms.php">Data Privacy and Policy</a> of using this service.
                                 </label>
                             </div><br>

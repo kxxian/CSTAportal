@@ -183,7 +183,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <h6 class="mb-0 text-gray-900 font-weight-bold">Birthday</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <?= $bday ?>
+                                                        <?= $bday 
+                                                        ?>
                                                     </div>
                                                 </div>
                                                 <hr>

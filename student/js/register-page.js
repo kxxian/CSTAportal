@@ -6,17 +6,19 @@ $(document).ready(function() {
             txtLname:{
                 required: true,
                 minlength:2,
-            }
+            },
+            chkagree:{required:true},
         },
-
-        messages:{
-            txtLname:{
-                minlength: "Please enter at least 2 characters",
-               
+   
+        messages: {
+            chkagree: {
+                required: "You must check at least 1 box",
+                // maxlength: "Check no more than {0} boxes"
             }
         }
-        
-    })
+    });
+
+
 
     //Capitalize input fields
     $('#txtLname').keyup(function(){

@@ -15,7 +15,9 @@
         $address=strtolower($row['completeaddress']);
         $region=$row['region'];
         $snum=$row['snum'];
-        $bday=$row['bday'];
+
+        $bdate=date_create($row['bday']);
+        $bday= date_format($bdate,"F j, Y");
         $username=$row['username'];
         $yrlevel=$row['yrlevel'];
         $course=$row['course'];  
