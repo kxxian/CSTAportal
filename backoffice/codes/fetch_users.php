@@ -1,17 +1,19 @@
 <?php
 
 include '../includes/connect.php';
-include 'function_users.php';
+include 'functions.php';
 $query = '';
 $output = array();
 $query .= "SELECT * from vwemployees ";
 
 if (isset($_POST["search"]["value"])) {
-    $query .= 'WHERE empname LIKE "%' . $_POST["search"]["value"] . '%"';
+    $query .= 'WHERE (empname LIKE "%' . $_POST["search"]["value"] . '%"
   
-    $query .= 'OR role LIKE "%' . $_POST["search"]["value"] . '%"';
+     OR role LIKE "%' . $_POST["search"]["value"] . '%"
  
-    $query .= 'OR dept LIKE "%' . $_POST["search"]["value"] . '%"';
+     OR dept LIKE "%' . $_POST["search"]["value"] . '%")';
+
+     
 }
 
 if (isset($_POST["order"])) {
@@ -68,7 +70,7 @@ foreach($result as $row)
 $output=array(
 "draw"              => intval($_POST["draw"]),
 "recordsTotal"      => $filtered_rows,
-"recordsFiltered"   =>get_total_all_records(),
+"recordsFiltered"   =>get_users(),
 "data"              =>$data
 
 );

@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/connect.php';
-require_once 'function_users.php';
+require_once 'functions.php';
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
 require("../mailer/PHPMailer/src/Exception.php");
@@ -19,11 +19,12 @@ if (isset($_POST['operation'])) {
         $mobile = htmlspecialchars(trim($_POST['mobile']));
         $office = $_POST['office'];
         $dept = $_POST['dept'];
+        $position = $_POST['position'];
         $role = $_POST['role'];
 
-        $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,office,dept_ID,permission_ID) VALUES(?,?,?,?,?,?,?,?,?)");
+        $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,office,dept_ID,position,permission_ID) VALUES(?,?,?,?,?,?,?,?,?,?)");
 
-        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept, $role);
+        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept,$position, $role);
         $result = $statement->execute($data);
 
 
@@ -111,11 +112,12 @@ if (isset($_POST['operation'])) {
         $office = $_POST['office'];
         $dept = $_POST['dept'];
         $role = $_POST['role'];
+        $position = $_POST['position'];
 
-        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, dept_ID=? ,permission_ID=?  
+        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, dept_ID=? , position=?, permission_ID=?  
          WHERE id=?");
 
-        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept, $role, $id);
+        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept, $position, $role, $id);
         $result = $statement->execute($data);
     }
 }
@@ -136,6 +138,7 @@ if (isset($_POST['user_id'])) {
         $output['mobile'] = $row['mobile'];
         $output['office'] = $row['office'];
         $output['dept'] = $row['dept_ID'];
+        $output['position'] = $row['position'];
         $output['role'] = $row['permission_ID'];
     }
     echo json_encode($output);

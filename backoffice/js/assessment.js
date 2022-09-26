@@ -1,37 +1,17 @@
 $(document).ready(function() {
-     //Capitalize input fields
-     $('#lname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-    $('#fname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#mname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-
-    $('#addUser').click(function() {
-        $('#usersForm')[0].reset();
-        $('.title').text(' Add User');
-        $('#action').val("Register");
-        $('#operation').val("Add");
-    })
-
-    var usersTable = $('#usersTable').dataTable({
+    var assessTable = $('#assessTable').dataTable({
         "paging": true,
         "processing": false,
         "serverSide": true,
         "order": [],
         "info": true,
         "ajax": {
-            url: "codes/fetch_users.php",
+            url: "codes/fetch_assessments.php",
             type: "POST"
 
         },
         "columnDefs": [{
-            "target": [0, 1, 2, 3, 4,5],
+            "target": [0, 1, 2, 3,4,5],
             "orderable": false,
         }, ],
     });
@@ -48,12 +28,10 @@ $(document).ready(function() {
         var office = $("#office").val();
         var dept = $("#dept").val();
         var role = $("#role").val();
-        var position = $("#position").val();
 
 
         if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role
-            || position=="") {
+            email == "" || gender == "" || mobile == "" || !office || !dept || !role) {
 
             Swal.fire({
                 icon: 'warning',
@@ -82,7 +60,7 @@ $(document).ready(function() {
 
                     // $('#usersForm')[0].reset();
 
-                    usersTable.api().ajax.reload();
+                    assessTable.api().ajax.reload();
                 }
 
             })
@@ -112,9 +90,7 @@ $(document).ready(function() {
                 $('#mobile').val(data.mobile);
                 $("#office").val(data.office);
                 $("#dept").val(data.dept);
-                $("#position").val(data.position);
                 $("#role").val(data.role);
-                
 
 
                 $('.title').text(' Edit User');
@@ -127,69 +103,69 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', '.restrict', function() {
-        var user_id = $(this).attr('id');
-        Swal.fire({
-            title: 'Confirm',
-            text: "Are you sure you want to restrict this user?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "codes/userscrud.php",
-                    method: "POST",
-                    data: {
-                        restrict_id: user_id
-                    },
-                    success: function(data) {
-                        usersTable.api().ajax.reload();
-                    }
-                })
-                Swal.fire(
-                    'Success!',
-                    'User has been restricted.',
-                    'success'
-                )
-            }
-        })
+    // $(document).on('click', '.restrict', function() {
+    //     var user_id = $(this).attr('id');
+    //     Swal.fire({
+    //         title: 'Confirm',
+    //         text: "Are you sure you want to restrict this user?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             $.ajax({
+    //                 url: "codes/userscrud.php",
+    //                 method: "POST",
+    //                 data: {
+    //                     restrict_id: user_id
+    //                 },
+    //                 success: function(data) {
+    //                     usersTable.api().ajax.reload();
+    //                 }
+    //             })
+    //             Swal.fire(
+    //                 'Success!',
+    //                 'User has been restricted.',
+    //                 'success'
+    //             )
+    //         }
+    //     })
 
-    })
+    // })
 
-    $(document).on('click', '.activate', function() {
-        var user_id = $(this).attr('id');
-        Swal.fire({
-            title: 'Confirm',
-            text: "Are you sure you want to activate this user?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "codes/userscrud.php",
-                    method: "POST",
-                    data: {
-                        activate_id: user_id
-                    },
-                    success: function(data) {
-                        usersTable.api().ajax.reload();
-                    }
-                })
-                Swal.fire(
-                    'Success!',
-                    'User has been activated.',
-                    'success'
-                )
-            }
-        })
+    // $(document).on('click', '.activate', function() {
+    //     var user_id = $(this).attr('id');
+    //     Swal.fire({
+    //         title: 'Confirm',
+    //         text: "Are you sure you want to activate this user?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             $.ajax({
+    //                 url: "codes/userscrud.php",
+    //                 method: "POST",
+    //                 data: {
+    //                     activate_id: user_id
+    //                 },
+    //                 success: function(data) {
+    //                     usersTable.api().ajax.reload();
+    //                 }
+    //             })
+    //             Swal.fire(
+    //                 'Success!',
+    //                 'User has been activated.',
+    //                 'success'
+    //             )
+    //         }
+    //     })
 
-    })
+    // })
 
     $(document).on('click', '.close', function() {
         $('#usersModal').modal('hide');

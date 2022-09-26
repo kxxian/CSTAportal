@@ -5,7 +5,7 @@ require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
 
 //get office from fetchuserdetails.php
-$office=$Office;
+$office = $Office;
 
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
@@ -24,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Dashboard</title>
+    <title>CSTA Admin | Users</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -42,7 +42,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    
+
     <!-- datatables -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
@@ -64,16 +64,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        if ($office=="Accounting"){
+        if ($office == "Accounting") {
             $pageValue = 3;
-        }elseif($office=="Dean"){
+        } elseif ($office == "Dean") {
             $pageValue = 3;
-        }elseif($office=="Registrar"){
+        } elseif ($office == "Registrar") {
             $pageValue = 6;
         }
 
-        
-        if ($usertype!="Admin"){
+
+        if ($usertype != "Admin") {
             header("Location:index.php");
         }
         require_once('includes/sidebar.php'); ?>
@@ -162,7 +162,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/pending-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
-   
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -173,7 +173,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- DataTable CDN JS -->
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-   
+
 </body>
 
 </html>
@@ -191,7 +191,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-4">
                             <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="lname" id="lname" class="form-control" placeholder="Last Name..">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name..">
                         </div>
                         <div class="col-md-4">
                             <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
@@ -234,7 +234,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
                             <select id="dept" name="dept" class="form-control" required>
                                 <option selected="" disabled>Select Department</option>
@@ -253,7 +253,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 ?>
                             </select>
                         </div>
-                        <div class="col-md-4">
+
+                    </div>
+                    <div class="form-group row">
+                    <div class="col-md-6">
+                            <label for="role" class="text-gray-900 font-weight-bold">Position</label>
+                          <input type="text" name="position" id="position" class="form-control">
+                        </div>
+                        <div class="col-md-6">
                             <label for="role" class="text-gray-900 font-weight-bold">User</label>
                             <select id="role" name="role" class="form-control" required>
                                 <option selected="" disabled>Select Role</option>
@@ -287,4 +294,3 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 </div>
 <script src="js/users.js"></script>
 </div>
-

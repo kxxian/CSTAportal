@@ -2,16 +2,17 @@
 session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once('includes/fetchuserdetails.php');
+require_once 'includes/fetchuserdetails.php';
 
 //get office from fetchuserdetails.php
 $office=$Office;
 
+
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,30 +24,38 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Enrollment</title>
+    <title>CSTA Admin | Assessment</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Custom styles for  DataTable -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></script>
-    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Bootstrap CSS  -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</head>
 
+</head>
 
 <body id="page-top">
 
@@ -58,6 +67,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
          if ($office=="Dean"){
             $pageValue = 2;
         }else{
+            header("Location:index.php");
+        }
+        
+        if ($usertype!="Admin"){
             header("Location:index.php");
         }
         require_once('includes/sidebar.php'); ?>
@@ -73,49 +86,66 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <?php require_once('includes/header.php'); ?>
                 <!-- End of Header -->
 
-
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                
+              
 
 
-                    <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Assessment
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-book fa-fw"></i> Assessment
+                                
                             </h6>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table id="assessTable" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            
+                                            <th>Student No.</th>
+                                            <th>Name</th>
+                                            <th>Year Level</th>
+                                            <th>Course</th>
+                                            <th>Status</th>
+                                            <th width="85">Actions</th>
                                         </tr>
+
                                     </thead>
-                                    <tbody> </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
 
 
+
+
+            <!-- Content Row -->
+
+
+            <!-- /.container-fluid -->
             <!-- Footer -->
             <?php require_once('includes/footer.php'); ?>
             <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
+
 
     </div>
+    <!-- End of Content Wrapper -->
+
+
+    </div>
+
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -123,120 +153,133 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-
-    <!-- Send Assessment/change status Modal -->
-
-    <div class="modal fade" id="SendAssessment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Message</strong> </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">To:</label>
-                                    <input type="hidden" name="enroll_id" id="assess_id" class="form-control">
-                                    <input type="hidden" name="sid" id="sid" class="form-control">
-                                    <input type="text" name="name" id="name" class="form-control" disabled>
-
-                                </div><br>
-                            </div>
-
-
-
-
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Message:</label>
-                                    <textarea class="form-control" id="assessnotes" name="assessnotes" rows="3"></textarea>
-                                </div><br>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>
-
-
-
-
-
-    <script>
-        //open assessment modal
-        $(document).ready(function() {
-            $('.sendassessment').on('click', function() {
-                $('#SendAssessment').modal('show');
-
-                $tr = $(this).closest('tr');
-
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-
-                console.log(data);
-
-                //fetch data from enrollment datatable
-                $('#assess_id').val(data[0]);
-                $('#sid').val(data[1]);
-                $('#name').val(data[3]);
-
-            });
-        });
-
-        //close assessment modal
-        $(document).ready(function() {
-            $('.close').on('click', function() {
-                $('#SendAssessment').modal('hide');
-
-            });
-        });
-    </script>
-
-
-    <?php
-    require_once 'includes/scripts.php';
-
-    ?>
-
     <!-- scripts -->
     <script src="js/pending-payments.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+   
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- DataTable CDN JS -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+   
 </body>
 
 </html>
+
+<div id="usersModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" id="usersForm" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user-tie"></i> <span class="title">Add User</span></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="lname" id="lname" class="form-control" placeholder="Last Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="gender" class="text-gray-900 font-weight-bold">Gender</label>
+                            <select id="gender" name="gender" class="form-control" required>
+                                <option selected="" disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
+                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-md-4">
+                            <label for="office" class="text-gray-900 font-weight-bold">Office</label>
+                            <select id="office" name="office" class="form-control" required>
+                                <option selected="" disabled>Select Office</option>
+                                <option value="Accounting">Accounting</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Registrar">Registrar</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
+                            <select id="dept" name="dept" class="form-control" required>
+                                <option selected="" disabled>Select Department</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from departments";
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute();
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="role" class="text-gray-900 font-weight-bold">User</label>
+                            <select id="role" name="role" class="form-control" required>
+                                <option selected="" disabled>Select Role</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from role";
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute();
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['role_ID'] . '>' . $row['role'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="user_id" id="user_id">
+                        <input type="hidden" name="operation" id="operation">
+                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+</div>
+<script src="js/assessment.js"></script>
+</div>
+
