@@ -36,8 +36,8 @@
 			<div class="notfound-404">
 				<h1>Success</h1>
 			</div>
-			<h2>You were able to register successfully!</h2>
-			<p>You can now wait for your assessment form to be emailed to you by the Registrar, following which you can proceed with payments. </p>
+			<h2>You have been able to submit successfully!</h2>
+			<p><b>NOTE: </b>Hard copies must still be submitted on-site, Online submission are entirely for validation purposes. </p>
 			<a href="guest_index.php">Go To Homepage</a>
 		</div>
 	</div>

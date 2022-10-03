@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal Guest | Payments</title>
+    <title>CSTA Portal Guest | Payment Verification</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">
@@ -64,14 +64,6 @@
                     <!-- Announcement card -->
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
-                    <div class="mb-3">
-                        <h1 class="text-gray-900">Payments</h1>
-                    </div>
-                    <div>
-                        <a href="guest_payments.php">
-                            <button class="btn btn-primary" title="Go back to account details">Go Back</button>
-                        </a>
-                    </div>         
                         <div class="card-body text-gray-900 mb-5">
                             <div class="row">
                                 <div class="col-md-11">
@@ -80,22 +72,57 @@
                                             <div class="card-header ">
                                             <i class="fas fa-coins"></i>
                                                 &nbsp;
-                                                Payment
+                                                Payment Verification Form
                                             </div>
                                             <div class="card-body">
+												<div>
+													<p>
+													  <button class="btn btn-info" type="button" title="Click to toggle" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+													<i class="fas fa-info-circle"></i>
+														 <!-- &nbsp; -->
+														 CSTA Bank Details
+													  </button>
+													</p>
+													<div class="collapse" id="collapseExample">
+														<div class="row mb-3">
+															<div class="col-md-8">
+																<div class="card shadow card-body">
+																	<ul class="text-gray-900">
+																		<li>METROBANK (MBTC)
+																			<ul>
+																				<li>Account Name: <b>COLEGIO DE STA. TERESA DE AVILA, INC.</b></li>
+																				<li>Account Number: <b>190-7-19081612-1</b></li>
+																			</ul>
+																		</li>
+																		<li>BANCO DE ORO (BDO)
+																			<ul>
+																				<li>Account Name: <b>COLEGIO DE STA. TERESA DE AVILA, INC.</b></li>
+																				<li>Account Number: <b>00127-149-55-95</b></li>
+																			</ul>
+																		</li>
+																		<li>CSTA GCASH
+																			<ul>
+																				<li>Gcash Number: <b>09664635789</b></li>
+																			</ul>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>         
                                                 <div class="card shadow mb-3">
                                                     <div class="card-body">
                                                         <p class="text-gray-600"><b class="text-gray-900">NOTE:</b> Please use the same email address you used to register.</p>
                                                         <div class="row mb-3">
-                                                    <div class="col-md-4">
-                                                            <label for="trackerId" class="font-weight-bold">Tracker Id:</label>
-                                                            <input type="text" id="trackerId" name="trackerId" value="<?php echo uniqid()?>" class="form-control" placeholder="Match the tracker Id shown above" required readonly>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <span>*If you wish to monitor your payment status, save your tracker id.</span>
-                                                    </div>
-                                                    </div>
-                                                        <a href="guest_check_payment.php" title="Click to continue">Check Payment Status</a>
+															<div class="col-md-4">
+																	<label for="trackerId" class="font-weight-bold">Tracker Id:</label>
+																	<input type="text" id="trackerId" name="trackerId" value="<?php echo uniqid()?>" class="form-control" placeholder="Match the tracker Id shown above" required readonly>
+															</div>
+															<div class="col-md-12 mt-2">
+																<span>*If you wish to monitor your payment status, save your tracker id.</span>
+															</div>
+														</div>
                                                     </div>
                                                 </div>
                                                 

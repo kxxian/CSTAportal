@@ -56,12 +56,6 @@
                 <?php 
                     require('includes/guest_header.php');
                 ?>
-             
-
-                <div>
-                    <h1 class="text-gray-900 ml-3 mb-3 mt-3">Guest Registration</h1>
-                </div>
-                
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -69,22 +63,12 @@
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
                     <div class="row">
-                        <a href="guest_main.php">
-                                <button class="btn btn-primary mb-5" title="Go back to main page">
-                                  Go Back
-                                </button>
-                        </a>
-                        <div class="col-md-12">
-                            <p><b class="text-gray-900">NOTE:</b> Please provide the needed requirements after registering.
-                                <a href="guest_requirements.php">Click Here</a>
-                            </p>
-                        </div>
                         <div class="col-md-12">
                             <div class="card shadow mb-5">
                                 <div class="card-header text-gray-900">
                                 <i class="fas fa-scroll"></i>
                                     &nbsp;
-                                    Registration Form</div>
+                                    Online Enrollment Form</div>
                                 <div class="card-body">
                                     <form id="myForm" class="row g-3">
                                         <div class="col-md-3">
@@ -145,6 +129,15 @@
                                             <label for="guardianEmail" class="text-gray-900">Guardian Email:</label>
                                             <input type="text" id="guardianEmail" name="guardianEmail" class="form-control" placeholder="Enter Guardian Email" required>
                                         </div>
+										<div class="col-md-2 mt-3">
+											<label for="studType" class="text-gray-900">Student Type:</label>
+											<select id="studType" name="studType" class="form-control" required>
+												<option value="" selected disabled>Choose...</option>
+												<option value="Freshmen">Freshmen</option>
+												<option value="Transferee">Transferee</option>
+												<option value="Old Student">Old Student</option>
+											</select>
+										</div>
                                         <div class="col-md-12">
                                             <button id="btnSubmit" class="btn btn-success mt-3">Submit</button>
                                         </div>

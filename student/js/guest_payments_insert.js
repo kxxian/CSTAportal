@@ -30,7 +30,7 @@ $(document).ready(function () {
                 hideClass: {
                     popup: 'animate__animated animate__fadeOutUp'
                 },
-                text: 'Only jpeg, jpg, and png are available filetypes to upload'
+                text: 'Only jpeg, jpg and png are available filetypes to upload'
             })
 
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
         } else {
             Swal.fire({
                 icon: 'success',
-                title: 'success',
+                title: 'Success',
                 width: 400,
                 position: 'top-right',
                 showClass: {

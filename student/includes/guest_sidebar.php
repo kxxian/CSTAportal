@@ -21,20 +21,6 @@
     $strSidebar .= '                <span>Home</span></a>';
     $strSidebar .= '        </li>';
 
-    // <!-- Nav Item - Requirements -->
-    $strSidebar .= '        <li class="nav-item">'; 
-    $strSidebar .= '            <a class="nav-link" href="guest_requirements.php">';
-    $strSidebar .= '                <i class="fas fa-tasks"></i>';
-    $strSidebar .= '                <span>Requirements</span></a>';
-    $strSidebar .= '        </li>';
-
-    // <!-- Nav Item - Payments -->
-    $strSidebar .= '        <li class="nav-item">'; 
-    $strSidebar .= '            <a class="nav-link" href="guest_payments.php">';
-    $strSidebar .= '                <i class="fas fa-coins"></i>';
-    $strSidebar .= '                <span>Payments</span></a>';
-    $strSidebar .= '        </li>';
-
     $strSidebar .= '        <li class="nav-item">'; 
     $strSidebar .= '            <a class="nav-link" href="login.php">';
     $strSidebar .= '               <i class="fas fa-sign-in-alt"></i>';
