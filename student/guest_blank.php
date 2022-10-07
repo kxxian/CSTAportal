@@ -38,7 +38,6 @@
 			</div>
 			<h2>You were able to register successfully!</h2>
 			<p>You can now wait for your assessment form to be emailed to you by the Registrar, following which you can proceed with payments. </p>
-			<p><b>NOTE:</b> Please submit the appropriate prerequisites first if you are a transferee in order to be reviewed and issued an assessment form. </p>
 			<a href="guest_index.php">Go To Homepage</a>
 		</div>
 	</div>

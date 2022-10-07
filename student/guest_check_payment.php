@@ -92,14 +92,6 @@
                     <!-- Announcement card -->
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
-                    <div class="mb-3">
-                        <h1 class="text-gray-900">Payment Status</h1>
-                    </div>
-                    <div>
-                        <a href="guest_payments.php">
-                            <button class="btn btn-primary" title="Go back to account details">Go Back</button>
-                        </a>
-                    </div>         
                         <div class="card-body text-gray-900 mb-5">
                             <div class="row">
                                 <div class="col-md-5">
@@ -117,7 +109,7 @@
                                                         <span id="valid_trackerId"></span>
                                                     </div>
                                                     <div class="col-md-12 mt-3">
-                                                        <button id="btnSubmit" class="btn btn-success">Done</button>
+                                                        <button id="btnSubmit" class="btn btn-success">Track</button>
                                                     </div>
                                                 </div>
                                             </form>

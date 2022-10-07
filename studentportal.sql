@@ -383,7 +383,7 @@ CREATE TABLE `guest_payments` (
   `guest_assessForm` varchar(100) NOT NULL,
   `guest_status` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -392,7 +392,7 @@ CREATE TABLE `guest_payments` (
 
 LOCK TABLES `guest_payments` WRITE;
 /*!40000 ALTER TABLE `guest_payments` DISABLE KEYS */;
-INSERT INTO `guest_payments` VALUES (15,'2022-09-03 11:08:33','Downpayment','4','1','2',3000.00,'jdoe@mail.com_6312c512049c3.jpg','John Doe','jdoe@mail.com','6312c512049c3','6312c512049c3.jpg','PENDING'),(16,'2022-09-03 12:13:55','Downpayment','4','1','1',3000.00,'mj@mail.com_6312d432c97e9.jpg','Mary Jane','mj@mail.com','6312d432c97e9','6312d432c97e9.jpg','PENDING'),(17,'2022-09-06 16:02:33','Downpayment','4','1','2',3000.00,'kr@mail.com_6316fe7c1ee24.png','Kristian Ryan Bulos','kr@mail.com','6316fe7c1ee24','6316fe7c1ee24.png','PENDING');
+INSERT INTO `guest_payments` VALUES (15,'2022-09-03 11:08:33','Downpayment','4','1','2',3000.00,'jdoe@mail.com_6312c512049c3.jpg','John Doe','jdoe@mail.com','6312c512049c3','6312c512049c3.jpg','PENDING'),(16,'2022-09-03 12:13:55','Downpayment','4','1','1',3000.00,'mj@mail.com_6312d432c97e9.jpg','Mary Jane','mj@mail.com','6312d432c97e9','6312d432c97e9.jpg','PENDING'),(17,'2022-09-06 16:02:33','Downpayment','4','1','2',3000.00,'kr@mail.com_6316fe7c1ee24.png','Kristian Ryan Bulos','kr@mail.com','6316fe7c1ee24','6316fe7c1ee24.png','PENDING'),(18,'2022-09-12 16:44:59','Cash','4','1','2',14775.00,'milan@mail.com_631ef17faf947.png','Casa Milan','milan@mail.com','631ef17faf947','631ef17faf947.png','PENDING'),(19,'2022-09-23 13:12:17','Downpayment','4','2','2',3000.00,'wilson@mail.com_632d402534034.png','Albert Wilson','wilson@mail.com','632d402534034','632d402534034.png','PENDING'),(21,'2022-09-30 19:52:44','Downpayment','4','1','2',3000.00,'cott@mail.com_6336d8245e835.jpg','Apri Cott','cott@mail.com','6336d8245e835','6336d8245e835.jpg','PENDING'),(22,'2022-10-26 20:00:13','Cash','4','2','2',12898.00,'maria@mail.com_63397d07f02ac.png','Abe Maria','maria@mail.com','63397d07f02ac','63397d07f02ac.png','PENDING'),(23,'2022-10-02 22:00:08','Downpayment','4','1','1',3000.00,'dim@mail.com_6339995d97225.jpg','Solena Dim','dim@mail.com','6339995d97225','6339995d97225.jpg','PENDING');
 /*!40000 ALTER TABLE `guest_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,8 +417,9 @@ CREATE TABLE `guest_register` (
   `guest_guardian` varchar(255) NOT NULL,
   `guest_guardian_no` varchar(11) NOT NULL,
   `guest_guardian_email` varchar(255) NOT NULL,
+  `guest_studType` varchar(100) NOT NULL,
   PRIMARY KEY (`gid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -427,7 +428,7 @@ CREATE TABLE `guest_register` (
 
 LOCK TABLES `guest_register` WRITE;
 /*!40000 ALTER TABLE `guest_register` DISABLE KEYS */;
-INSERT INTO `guest_register` VALUES (9,'Kristian Ryan','Bulos','Binondo','','Blk 10 Lot 14 B Kingstown 1 Bagumbong, Caloocan City','kristianryanbulos@gmail.com','09128698224','9905014','9','Rizzalinda B. Roxas','09123456789','sample@gmail.com');
+INSERT INTO `guest_register` VALUES (11,'John','Doe','','','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.','jdoe@mail.com','09123456789','12345678','8','Robert Jeggins','09123456789','rjegs@mail.com','Freshmen'),(12,'Alexander','Newman','','','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.','newman@mail.com','09123456789','12345678','6','Rose Jackman','09123456789','rosejackman@mail.com','Transferee'),(13,'asdasd','asdas','asda','','asdasad','asdaa@mail.com','09123456789','12345678','2','asdad','1231212312','asdasdads@email.com','Freshmen');
 /*!40000 ALTER TABLE `guest_register` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,6 +465,36 @@ LOCK TABLES `guest_register_tesda` WRITE;
 /*!40000 ALTER TABLE `guest_register_tesda` DISABLE KEYS */;
 INSERT INTO `guest_register_tesda` VALUES (2,'John','Doe','','I','Robert Robertson, 1234 NW Bobcat Lane, St. Robert, MO 65584-5678.','johndoe@mail.com','09123456789','9907687','4','Albert Breadcrumbs','09123456789','albertcrumbs@mail.com');
 /*!40000 ALTER TABLE `guest_register_tesda` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `guest_requirements`
+--
+
+DROP TABLE IF EXISTS `guest_requirements`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `guest_requirements` (
+  `gid` int(11) NOT NULL AUTO_INCREMENT,
+  `guest_studName` varchar(100) NOT NULL,
+  `guest_studType` varchar(100) NOT NULL,
+  `guest_email` varchar(100) NOT NULL,
+  `guest_form138` varchar(100) NOT NULL,
+  `guest_form137a` varchar(100) NOT NULL,
+  `guest_gmc` varchar(100) NOT NULL,
+  `guest_psa` varchar(100) NOT NULL,
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guest_requirements`
+--
+
+LOCK TABLES `guest_requirements` WRITE;
+/*!40000 ALTER TABLE `guest_requirements` DISABLE KEYS */;
+INSERT INTO `guest_requirements` VALUES (3,'John Doe','Freshmen','jdoe@mail.com','1_John Doe_jdoe@mail.com.png','2_John Doe_jdoe@mail.com.png','3_John Doe_jdoe@mail.com.png','4_John Doe_jdoe@mail.com.png'),(6,'adsadadas','Freshmen','adsdsa@mail.com','1_adsadadas_adsdsa@mail.com.jpg','2_adsadadas_adsdsa@mail.com.jpg','3_adsadadas_adsdsa@mail.com.jpg','4_adsadadas_adsdsa@mail.com.jpg'),(7,'Alu Bakman','Freshmen','bakman@mail.com','1_Alu Bakman_bakman@mail.com.png','2_Alu Bakman_bakman@mail.com.png','3_Alu Bakman_bakman@mail.com.png','4_Alu Bakman_bakman@mail.com.png'),(8,'Jane Doe','Transferee','jane@mail.com','1_Jane Doe_jane@mail.com.png','2_Jane Doe_jane@mail.com.png','3_Jane Doe_jane@mail.com.png','4_Jane Doe_jane@mail.com.png'),(9,'asdasd','Transferee','asda@mail.com','1_asdasd_asda@mail.com.png','2_asdasd_asda@mail.com.png','3_asdasd_asda@mail.com.png','4_asdasd_asda@mail.com.png'),(10,'American White','Transferee','whiteam@mail.com','1_American White_whiteam@mail.com.jpg','2_American White_whiteam@mail.com.jpg','3_American White_whiteam@mail.com.jpg','4_American White_whiteam@mail.com.jpg');
+/*!40000 ALTER TABLE `guest_requirements` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1414,4 +1445,4 @@ USE `studentportal`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-07 23:28:42
+-- Dump completed on 2022-10-03 17:52:09

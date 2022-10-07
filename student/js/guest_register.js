@@ -11,8 +11,9 @@ $(document).ready(function () {
         let guardian = $('#guardian').val()       
         let guardianNo = $('#guardianNo').val()       
         let guardianEmail = $('#guardianEmail').val()     
+		let studType = $('#studType').val()
         
-        if (firstName === '' || lastName === '' || address === '' || email === '' || mobile === '' || course === '' || guardian === '' || guardianNo === '' || guardianEmail === '') {
+        if (firstName === '' || lastName === '' || address === '' || email === '' || mobile === '' || course === '' || guardian === '' || guardianNo === '' || guardianEmail === '' || studType === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -38,6 +39,13 @@ $(document).ready(function () {
                 icon: 'success',
                 title: 'Success!',
                 width: 400,
+				position: 'top-right',
+				showClass: {
+					popup: 'animate__animated animate__fadeInDown'
+				},
+				hideClass: {
+					popup: 'animate__animated animate__fadeOutUp'
+				},
                 text: 'You have been able to register successfuly!',
                 showConfirmButton: false,
                 timer: 1500

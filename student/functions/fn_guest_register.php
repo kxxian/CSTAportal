@@ -15,9 +15,10 @@
         $guardian = htmlspecialchars(trim($_POST['guardian']));
         $guardianNo = htmlspecialchars(trim($_POST['guardianNo']));
         $guardianEmail = htmlspecialchars(trim($_POST['guardianEmail']));
+		$studType = $_POST['studType'];
 
-        $sql = "INSERT INTO guest_register (guest_first_name, guest_last_name, guest_middle_name, guest_suffix, guest_address, guest_email, guest_mobile, guest_telephone, guest_course, guest_guardian, guest_guardian_no, guest_guardian_email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO guest_register (guest_first_name, guest_last_name, guest_middle_name, guest_suffix, guest_address, guest_email, guest_mobile, guest_telephone, guest_course, guest_guardian, guest_guardian_no, guest_guardian_email, guest_studType) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $con->prepare($sql);
-        $stmt->execute([$firstName, $lastName, $middleName, $suffixes, $address, $email, $mobile, $telno, $course, $guardian, $guardianNo, $guardianEmail]);
+        $stmt->execute([$firstName, $lastName, $middleName, $suffixes, $address, $email, $mobile, $telno, $course, $guardian, $guardianNo, $guardianEmail, $studType]);
     }
 ?>

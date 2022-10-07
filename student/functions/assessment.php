@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 <?php 
     require('../includes/connect.php');
     require('../codes/fetchuserdetails.php');
 
 
-    if (isset($_POST['filename'])) {
-        $filename = htmlspecialchars(trim($_POST['filename']));
+    if (isset($_POST['fileupload'])) {
         $stud_num = $snum;
         $stud_name = $fullname;
         $stud_email = $email;
@@ -31,7 +29,6 @@
             $stmt->execute([$stud_num, $stud_name, $stud_email, $filename, $img_new_name]);
         }        
     }
-=======
 <?php 
     require('../includes/connect.php');
     require('../codes/fetchuserdetails.php');
@@ -64,8 +61,5 @@
             }
 
 
-        }        
 
-
->>>>>>> 536b3d3d64cb9061c3e5943df89df904162c8de1
 ?>

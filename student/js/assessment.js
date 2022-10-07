@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 $(document).ready(function () {
     $('#myForm').on('submit', function (e) {
@@ -61,44 +62,11 @@ $(document).ready(function () {
        }
     });
 
+=======
+>>>>>>> 67cc5c0628eefb2e28e6dc6f93c60711b2ed1e81
 $(document).ready(function () {
-
-    setInterval(function () {
-        $.post("codes/counter.php",
-        {data6:'get'},function(data6){
-            //console.log(data6)
-            //pending payments
-            if(data6>0){
-                    //console.log(data);
-                $("#btnSubmit").prop('disabled',true);
-                $("#fileupload").prop('disabled',true);
-               // $(".ctr_pendingpayment").text(dat6);
-           
-            }else{
-                $("#btnSubmit").prop('disabled',false);
-                $("#fileupload").prop('disabled',false);
-                // $(".ctr_pendingpayment").text('');
-            }
-        });
-    },200)
-
-
-
-
-
     $('#myForm').on('submit', function (e) {
         e.preventDefault();
-
-        if( document.getElementById("fileupload").files.length == 0 ){
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                width: 400,
-                text: 'File is Empty',
-                showConfirmButton: false,
-                timer: 1300
-            })
-        }else{
 
         $.ajax({
             type: 'POST',
@@ -106,22 +74,72 @@ $(document).ready(function () {
             data: new FormData(this),
             dataType: 'json',
             contentType: false,
-            processData: false,
-            cache: false,
+            processData: false,m
+            cache: false
         })
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            width: 400,
-            text: 'File successfuly uploaded!',
-            showConfirmButton: false,
-            timer: 1300
-        })
-        setTimeout(function () {
-        location.reload();
-        }, 700)
-    }
     });
+
+$(document).ready(function () {
+
+    //setInterval(function () {
+    //    $.post("codes/counter.php",
+    //    {data6:'get'},function(data6){
+    //        //console.log(data6)
+    //        //pending payments
+    //        if(data6>0){
+    //                //console.log(data);
+    //            $("#btnSubmit").prop('disabled',true);
+    //            $("#fileupload").prop('disabled',true);
+    //           // $(".ctr_pendingpayment").text(dat6);
+           
+    //        }else{
+    //            $("#btnSubmit").prop('disabled',false);
+    //            $("#fileupload").prop('disabled',false);
+    //            // $(".ctr_pendingpayment").text('');
+    //        }
+    //    });
+    //},200)
+
+
+
+
+
+    // $('#myForm').on('submit', function (e) {
+    //     e.preventDefault();
+
+    //     if( document.getElementById("fileupload").files.length == 0 ){
+    //         Swal.fire({
+    //             icon: 'warning',
+    //             title: 'Oops!',
+    //             width: 400,
+    //             text: 'File is Empty',
+    //             showConfirmButton: false,
+    //             timer: 1300
+    //         })
+    //     }else{
+
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: 'functions/assessment.php',
+    //         data: new FormData(this),
+    //         dataType: 'json',
+    //         contentType: false,
+    //         processData: false,
+    //         cache: false,
+    //     })
+    //     Swal.fire({
+    //         icon: 'success',
+    //         title: 'Success!',
+    //         width: 400,
+    //         text: 'File successfuly uploaded!',
+    //         showConfirmButton: false,
+    //         timer: 1300
+    //     })
+    //     setTimeout(function () {
+    //     location.reload();
+    //     }, 700)
+    // }
+    // });
 
     $('#fileupload').change(function () {
         let image = this.files[0]
@@ -141,10 +159,10 @@ $(document).ready(function () {
         }
     })
 
-    // $('#btnSubmit').click(function () { 
-    //    let filename = $('#filename').val()
-    //    let fileupload = $('#fileupload').val()
+    $('#btnSubmit').click(function () { 
+       let fileupload = $('#fileupload').val()
 
+<<<<<<< HEAD
     //    if (filename === '' || fileupload === '') {
     //         Swal.fire({
     //             icon: 'error',
@@ -171,3 +189,29 @@ $(document).ready(function () {
     // });
 
 });
+=======
+       if (fileupload === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                width: 400,
+                text: 'Insufficient Data',
+                showConfirmButton: false,
+                timer: 1300
+            })
+       } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                width: 400,
+                text: 'File successfuly uploaded!',
+                showConfirmButton: false,
+                timer: 1300
+            })
+            setTimeout(function () {
+                $('#fileupload').val('')
+            }, 500)
+       }
+    });
+});
+>>>>>>> 67cc5c0628eefb2e28e6dc6f93c60711b2ed1e81
