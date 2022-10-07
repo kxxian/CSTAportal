@@ -437,5 +437,5 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 </body>
-
+<script src="js/header.js"></script>
 </html>

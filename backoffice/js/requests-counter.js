@@ -87,6 +87,38 @@ $(document).ready(function() {
             }
         });
 
+
+    //dashboard counter for assessments
+    $.post("codes/counter.php",
+    {data6:'get'},function(data6){
+        
+        if(data6>0){
+                // console.log(data6);
+            
+            $(".for_assessment").text(data6.toLocaleString());
+       
+        }else{
+          
+            $(".for_assessment").text('0');
+        }
+    });
+
+       //dashboard counter for assessed students
+       $.post("codes/counter.php",
+       {data7:'get'},function(data7){
+       
+           if(data7>0){
+                //    console.log(data7);
+               $(".assessed_students").text(data7.toLocaleString());
+           }else{
+              
+                $(".assessed_students").text("0");
+           }
+       });
+
+
+
+
     },1000);
     
 

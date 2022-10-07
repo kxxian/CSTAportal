@@ -38,8 +38,7 @@ foreach($result as $row)
     $sub_array[]=$row["empname"];
     $sub_array[]=$row["office"];
     $sub_array[]=$row["dept"];
-  
-   
+    $sub_array[]=$row["position"];
     $sub_array[]=$row["role"];
     $isActive=$sub_array[]=$row["isActive"];
 
@@ -47,7 +46,6 @@ foreach($result as $row)
         $color="success";
         $title="Activate";
         $button="activate";
-
     }else{
         $color="danger";
         $title="Deactivate";

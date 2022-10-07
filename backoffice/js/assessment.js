@@ -1,5 +1,40 @@
 $(document).ready(function() {
     var assessTable = $('#assessTable').dataTable({
+        dom: 'Bfrtip',
+        
+        buttons: [
+            
+            // {
+            //     extend: 'csvHtml5',
+            //     className:'btn btn-info',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
+            {
+                extend: 'excelHtml5',
+                className:'btn btn-success',
+                exportOptions: {
+                    columns: [0,1,2,3]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                className:'btn btn-danger',
+                exportOptions: {
+                    columns: [0,1,2,3]
+                }
+            },
+            {
+                extend: 'print',
+                className:'btn btn-secondary',
+                exportOptions: {
+                    columns: [0,1,2,3]
+                }
+            },
+        
+            'colvis'
+        ],
         "paging": true,
         "processing": false,
         "serverSide": true,
@@ -11,27 +46,20 @@ $(document).ready(function() {
 
         },
         "columnDefs": [{
-            "target": [0, 1, 2, 3,4,5],
+            "target": [0,1,2,3],
             "orderable": false,
         }, ],
     });
 
-    $(document).on('submit', '#usersForm', function(event) {
+    $(document).on('submit', '#assessForm', function(event) {
         event.preventDefault();
-        var lname = $("#lname").val();
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var gender = $("#gender").val();
+        var fullname = $("#fullname").val();
         var email = $("#email").val();
-        var gender = $("#gender").val();
-        var mobile = $("#mobile").val();
-        var office = $("#office").val();
-        var dept = $("#dept").val();
-        var role = $("#role").val();
+        var attachment = $("#attachment").val();
+        
 
 
-        if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role) {
+        if (fullname == "" || email == "" || attachment == "" ){
 
             Swal.fire({
                 icon: 'warning',
@@ -40,7 +68,7 @@ $(document).ready(function() {
             })
         } else {
             $.ajax({
-                url: "codes/userscrud.php",
+                url: "codes/sendassessment.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -51,12 +79,13 @@ $(document).ready(function() {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Record Updated!',
+                        title: 'Success!',
+                        text: 'Assessment Form Sent!',
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 3000
                     })
 
-                    $('#usersModal').modal('hide');
+                    $('#assessModal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
@@ -67,112 +96,44 @@ $(document).ready(function() {
         }
     })
 
-
-    $(document).on('click', '.update', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.sendassessment', function() {
+        var enroll_id = $(this).attr('id');
 
 
         $.ajax({
-            url: "codes/userscrud.php",
+            url: "codes/sendassessment.php",
             method: "POST",
             data: {
-                user_id: user_id
+                enroll_id: enroll_id
             },
             dataType: "json",
             success: function(data) {
-                $('#usersModal').modal('show');
-                $('#user_id').val(data.id);
-                $('#lname').val(data.lname);
-                $('#fname').val(data.fname);
-                $('#mname').val(data.mname);
-                $('#gender').val(data.Gender);
+                $('#assessModal').modal('show');
+                $('#enroll_id').val(data.id);
+                $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
                 $('#mobile').val(data.mobile);
-                $("#office").val(data.office);
-                $("#dept").val(data.dept);
-                $("#role").val(data.role);
+               
 
 
-                $('.title').text(' Edit User');
-                $('#user_id').val(user_id);
+                $('.title').text(' Send Assessment');
+                $('#enroll_id').val(enroll_id);
 
-                $('#operation').val("Edit");
-                $('#action').val("Save");
+                $('#operation').val("Send");
+                $('#action').val("Send");
 
             }
         })
     })
 
-    // $(document).on('click', '.restrict', function() {
-    //     var user_id = $(this).attr('id');
-    //     Swal.fire({
-    //         title: 'Confirm',
-    //         text: "Are you sure you want to restrict this user?",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             $.ajax({
-    //                 url: "codes/userscrud.php",
-    //                 method: "POST",
-    //                 data: {
-    //                     restrict_id: user_id
-    //                 },
-    //                 success: function(data) {
-    //                     usersTable.api().ajax.reload();
-    //                 }
-    //             })
-    //             Swal.fire(
-    //                 'Success!',
-    //                 'User has been restricted.',
-    //                 'success'
-    //             )
-    //         }
-    //     })
-
-    // })
-
-    // $(document).on('click', '.activate', function() {
-    //     var user_id = $(this).attr('id');
-    //     Swal.fire({
-    //         title: 'Confirm',
-    //         text: "Are you sure you want to activate this user?",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             $.ajax({
-    //                 url: "codes/userscrud.php",
-    //                 method: "POST",
-    //                 data: {
-    //                     activate_id: user_id
-    //                 },
-    //                 success: function(data) {
-    //                     usersTable.api().ajax.reload();
-    //                 }
-    //             })
-    //             Swal.fire(
-    //                 'Success!',
-    //                 'User has been activated.',
-    //                 'success'
-    //             )
-    //         }
-    //     })
-
-    // })
+  
 
     $(document).on('click', '.close', function() {
-        $('#usersModal').modal('hide');
+        $('#assessModal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#usersModal').modal('hide');
+        $('#assessModal').modal('hide');
     })
 
 

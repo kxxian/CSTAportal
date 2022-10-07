@@ -4,6 +4,10 @@ require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once('includes/fetchuserdetails.php');
 
+//get office from fetchuserdetails.php
+$office=$Office;
+
+
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
@@ -20,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Enrollment</title>
+    <title>Enrollment</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -52,7 +56,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 3;
+          if ($office=="Registrar"){
+            $pageValue = 3;
+        }else{
+            header("Location:index.php");
+        }
+
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -66,27 +75,31 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <?php require_once('includes/header.php'); ?>
                 <!-- End of Header -->
 
+
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Enrollees for S.Y. <?= $currentsyval ?> <?= $currentsemval ?></h1>
-                    </div> -->
+                    <?php
+                    try {
+                        $sql = "SELECT * FROM vwforenrollment_students where schoolyr=? and semester=? and enrollment_status='Assessed'";
+                        $data = array($currentsyval, $currentsemval);
+                        $stmt = $con->prepare($sql);
+                        $stmt->execute($data);
+                        $row = $stmt->rowCount();
 
-                    <!-- Breadcrumb -->
-                    <!-- <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Enrollees </li>
-                        </ol>
-                    </nav> -->
-                    <!-- End of Breadcrumb -->
+                        // echo $row;
+                    } catch (PDOException $error) {
+                        echo $error->getMessage();
+                    }
+                    ?>
 
-                    <!-- DataTales Example -->
+
+                    <!-- For Assessment Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> List of enrollees S.Y. <?= $currentsyval ?> <?= $currentsemval ?></h6>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> For Enrollment 
+                            </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -95,15 +108,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <tr>
                                             <th hidden>#</th>
                                             <th hidden>sid</th>
+                                            <th hidden>Picture</th>
                                             <th>Student No.</th>
                                             <th>Name</th>
-                                            <th>Gender</th>
-                                            <th>Year Level</th>
+                                            <th hidden>Gender</th>
+                                            <th hidden>Year Level</th>
+                                            <th>Department</th>
                                             <th>Course</th>
-                                            <th>S.Y.</th>
-                                            <th>Picture</th>
+                                            <th hidden>S.Y.</th>
+
                                             <th hidden>Email</th>
-                                            <th width="120">Actions</th>
+                                            <th width="75">Actions</th>
                                         </tr>
                                     </thead>
 
@@ -115,23 +130,25 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         $stmt->execute($data);
 
                                         while ($row = $stmt->fetch()) {
-                                            $file = "../student/uploads/users/" . $row['username'] . '-' . $row['bday'] . ".jpg";
+                                            $file = "../student/uploads/users/" . $row['sid'] . ".jpg";
                                             if (file_exists($file)) {
-                                                $dp = $row['username'] . '-' . $row['bday'] . '.jpg';
+                                                $dp = $row['sid'] . '.jpg';
                                             } else {
 
                                                 $dp = "default.jpg";
                                             }
                                             echo '<tr> 
                                                         <td hidden>' . $row['enrollment_ID'] . '</td>
-                                                        <td hidden>'.$row['sid'].'</td>
+                                                        <td hidden> <img src="../student/uploads/users/' . $dp . '" class="img-profile rounded-circle" height="80" width="80"></td> 
+                                                        <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['fullname'] . '</td>
-                                                        <td>' . $row['gender'] . '</td>
-                                                        <td>' . $row['yrlevel'] . '</td>
+                                                        <td hidden  >' . $row['gender'] . '</td>
+                                                        <td hidden>' . $row['yrlevel'] . '</td>
+                                                        <td>' . $row['dept'] . '</td>
                                                         <td>' . $row['course'] . '</td>
-                                                        <td>' . $row['schoolyr'] . '</td>
-                                                        <td> <img src="../student/uploads/users/' . $dp . '" class="img-profile rounded-circle" height="80" width="80"></td> 
+                                                        <td hidden>' . $row['schoolyr'] . '</td>
+                                                        
                                                         <td hidden>' . $row['email'] . '</td>
 
                                                         <td> 
@@ -145,7 +162,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </button>
 
 
-                                                        <button class="btn btn-warning" title="Send Deficiencies"><i class="far fa-thumbs-down"></i></button>
+                                                        
                                                             </td>
                                                       </tr>';
                                         }
@@ -192,27 +209,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 </div>
                 <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-                    
+
                         <div class="form-group">
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label for="assess_id">To:</label>
-                                    <input type="text" name="assess_id" id="assess_id"  class="form-control" disabled >
-                                    <input type="text" name="sid" id="sid"  class="form-control" disabled >
+                                    <label class="font-weight-bold text-gray-900">To:</label>
+                                    <input type="hidden" name="enroll_id" id="assess_id" class="form-control">
+                                    <input type="hidden" name="sid" id="sid" class="form-control">
                                     <input type="text" name="name" id="name" class="form-control" disabled>
-                                    
+
                                 </div><br>
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label for="attachment">Assessment Form:</label>
-                                    <input type="file" name="attachment" id="attachment" class="form-control" required>
+                                    <label class="font-weight-bold text-gray-900" for="attachment">Assessment Form:</label>
+                                    <input type="file" name="attachment" id="attachment" class="form-control" accept=".jpg" required>
 
                                 </div><br>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-12">
-                                <label for="upyrlvl" class="form-label">Admitted To:</label>
+                                    <label class="font-weight-bold text-gray-900" class="form-label">Admit To:</label>
                                     <select id="upyrlvl" name="upyrlvl" class="form-control" required>
                                         <option selected="" disabled>Select Year Level</option>
                                         <?php
@@ -230,20 +247,20 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         ?>
                                     </select>
                                 </div>
-                                   
-                                </div>
+
+                            </div>
 
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label for="assessment_id">Notes (Optional):</label>
+                                    <label class="font-weight-bold text-gray-900">Notes (Optional):</label>
                                     <textarea class="form-control" id="assessnotes" name="assessnotes" rows="3"></textarea>
                                 </div><br>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" name="send"><i class="fas fa-paper-plane"></i> Send</button>
+                            <button type="submit" class="btn btn-success" name="submit"><i class="fas fa-paper-plane"></i> Send</button>
                         </div>
                 </form>
             </div>
@@ -273,6 +290,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
+
+
     <script>
         //open assessment modal
         $(document).ready(function() {
@@ -289,11 +308,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                 //fetch data from enrollment datatable
                 $('#assess_id').val(data[0]);
-                $('#sid').val(data[1]);
-                $('#name').val(data[3]);
-
-                
-         
+                $('#sid').val(data[2]);
+                $('#name').val(data[4]);
 
             });
         });
@@ -306,6 +322,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             });
         });
     </script>
+
+
+    <?php
+    require_once 'includes/scripts.php';
+
+    ?>
+
+    <!-- scripts -->
+    <script src="js/pending-payments.js"></script>
+    <script src="js/requests-counter.js"></script>
+    <script src="js/sweetalert.min.js"></script>
+
+
 
 </body>
 

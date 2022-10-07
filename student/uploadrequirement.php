@@ -1,7 +1,8 @@
 <?php
+session_start();
 require_once('includes/connect.php');
-require_once('includes/fetchuserdetails.php'); //get snum value from userdetails(students accounts)
-require_once('includes/fetchcurrentsyandsem.php');
+require_once('codes/fetchuserdetails.php'); //get snum value from userdetails(students accounts)
+require_once('codes/fetchcurrentsyandsem.php');
 date_default_timezone_set("Etc/GMT-8");
 if (isset($_POST['uploadReq'])) {
 
@@ -43,11 +44,13 @@ if (isset($_POST['uploadReq'])) {
 
                     if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
 
-                        $_SESSION['status'] = "Requirement Uploaded!";
+                        $_SESSION['status'] = "Success!";
+                        $_SESSION['msg'] = "Document Uploaded!";
                         $_SESSION['status_code'] = "success";
                         header('location:requirements.php');
                     } else {
-                        $_SESSION['status'] = "Requirement Upload Failed!";
+                        $_SESSION['status'] = "Error!";
+                        $_SESSION['msg'] = "Upload Failed!";
                         $_SESSION['status_code'] = "error";
                         header('location:requirements.php');
                     }
@@ -76,13 +79,15 @@ if (isset($_POST['uploadReq'])) {
                     $uploadfile = $upload_directory . $newname . "." . end($tmp);
 
                     if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-                        $_SESSION['status'] = "Requirement Updated!";
+                        $_SESSION['status'] = "Success!";
+                        $_SESSION['msg'] = "Document Uploaded!";
                         $_SESSION['status_code'] = "success";
                         header('location:requirements.php');
 
                         //echo "<script>alert('File Successfully Updated!');document.location='profile.php'</script>";
                     } else {
-                        $_SESSION['status'] = "Requirement Update Failed!";
+                        $_SESSION['status'] = "Error!";
+                        $_SESSION['msg'] = "Upload Failed!";
                         $_SESSION['status_code'] = "error";
                         header('location:requirements.php');
                         //echo "<script>alert('File Update Failed');document.location='profile.php'</script>";

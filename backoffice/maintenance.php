@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Maintenance</title>
+    <title>Maintenance</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->

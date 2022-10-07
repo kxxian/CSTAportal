@@ -1,12 +1,11 @@
 
 <?php
-
+session_start();
 require_once '../includes/connect.php';
+require_once 'fetchcurrentsyandsem.php';
+require_once 'fetchuserdetails.php';
 
 
-
-require_once '../includes/connect.php';
-//require_once '../codes/fetchcurrentsyandsem.php';
      //pending payments
     if(isset($_POST['data'])){
         
@@ -67,18 +66,31 @@ if(isset($_POST['data5'])){
 echo $count;
 
 }
-
-// if(isset($_POST['data6'])){
+ //Dashboard Card -- For Assessment Students 
+if(isset($_POST['data6'])){
         
-//   $sql = "SELECT status from vwassessment where schoolyr=? AND semester=? AND status=?";
-//   $data = array($currentsyval,$currentsemval,"Pending");
-//   $stmt = $con->prepare($sql);
-//   $stmt->execute($data);
-//   $count=$stmt->rowCount();
+  $sql = "SELECT enrollment_status from vwforenrollment_students where dept=? AND schoolyr=? AND semester=? AND enrollment_status=?";
+  $data = array($dept,$currentsyval,$currentsemval,"For Assessment");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
 
-// echo $count;
+echo $count;
 
-// }
+}
+
+ //Dashboard Card -- For Assessment Students 
+ if(isset($_POST['data7'])){
+        
+  $sql = "SELECT enrollment_status from vwforenrollment_students where dept=? AND schoolyr=? AND semester=? AND enrollment_status=?";
+  $data = array($dept,$currentsyval,$currentsemval,"Assessed");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
 
 
 

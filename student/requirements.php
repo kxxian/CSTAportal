@@ -1,7 +1,7 @@
 <?php
 
 require_once("includes/connect.php");
-require_once("includes/fetchuserdetails.php");
+require_once("codes/fetchuserdetails.php");
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');

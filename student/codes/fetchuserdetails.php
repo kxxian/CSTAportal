@@ -1,6 +1,6 @@
 <?php
        session_start();
-      
+    //    require_once('includes/connect.php');
        try{
         $sql="select * from vwstudents where username=? and pass=? ";
         $data=array($_SESSION['username'],$_SESSION['password']);

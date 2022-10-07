@@ -1,4 +1,5 @@
 <?php
+// session_start();
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
 require_once("codes/fetchcurrentsyandsem.php");
@@ -47,6 +48,8 @@ if ($status == 'CLOSED') { // display enrollment page if open
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+    <!-- bootstrap5 cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -86,126 +89,155 @@ if ($status == 'CLOSED') { // display enrollment page if open
                         include('step_wizard_bar.php');
                         ?>
                         <br>
-                        <p>
-                            <a class="btn btn-info float-right" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            <i class="fas fa-info"></i> Info
-                            </a>
-
-                        </p>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card shadow my-5">
-                                <div class="card-header text-gray-900 font-weight-bold">
-                                    <i class="fas fa-chalkboard-teacher"></i>
-                                    &nbsp;
-                                    Enrollment Guidelines
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p><b class="text-gray-900 ">For Old Students</b> - Submit a copy of your grades emailed by the Registar Office.</p>
-                                            <p><b class="text-gray-900 ">For New Students</b> - Provide an original hard copy of your Form 137A, Form 138, Good Moral and Birth Certificates.</p>
-                                            <p>*Hand-carried F137A must be in a sealed envelope with flaps signed by the School Registrar.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-
-                            </div>
-                        </div>
-
-                        <!--TAB MENU-->
                         <div class="row gutters-sm">
                             <div class="col-md-7 mb-3">
                                 <ul class="nav nav-pills" id="myTab">
                                     <li class="nav-item">
-                                        <a href="#profile" class="nav-link active"><i class="fas fa-edit"></i> 1. Assessment</a>
+                                        <a href="#enrollment" class="nav-link active"><i class="fas fa-fw fa-edit"></i> 1. Enrollment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#subreq" class="nav-link"><i class="fas fa-file"></i> 2. Enrollment</a>
+                                        <a href="#validation" class="nav-link"><i class="fas fa-fw fa-user-check"></i> 2. Validation</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="profile">
+                            <div class="tab-pane fade show active" id="enrollment">
                                 <div class="row gutters-sm">
-                                    <div class="col-lg-5">
-                                        <form id="myForm">
-                                            <div class="card shadow">
-                                                <div class="card-header text-gray-900 font-weight-bold">
-                                                    <i class="fas fa-tasks"></i>
-                                                    &nbsp;
-                                                    Assessment
+                                    <div class="row">
+                                        <div class="col-lg-6" id="enrolldiv">
+                                            <!-- Basic Card Example -->
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> Enrollment Form</h6>
                                                 </div>
                                                 <div class="card-body">
-                                                    <!-- <label for="filename" class="text-gray-900 font-weight-bold">File Name</label> -->
-                                                    <!-- <input type="text" id="filename" name="filename" class="form-control mb-3" placeholder="e.g copyofgrades_2022_2023" required autofocus> -->
-                                                    <label for="fileupload" class="text-gray-900 font-weight-bold">T.O.R / Copy of Grades</label>
-                                                    <input type="file" id="fileupload" name="fileupload" class="form-control mb-4">
+                                                    <form action="codes/enroll.php" method="POST" enctype="multipart/form-data">
 
-                                                    <div class="col-lg-12">
-                                                        <div class="text-right"><button id="btnSubmit" class="btn btn-success "><i class="fas fa-check"></i> Submit</button></div>
-                                                    </div>
+                                                        <div class="form-group">
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-6">
+                                                                    <label for="sy" class="text-gray-900"><b>School Year</b></label>
+                                                                    <input type="text" class="form-control" value="<?= $currentsyval ?>" disabled>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label for="sem" class="text-gray-900"><b>Semester</b></label>
+                                                                    <input type="text" class="form-control" value="<?= $currentsemval ?>" disabled>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-12">
+                                                                    <label for="seldept" class="text-gray-900"><b>Department</b></label>
+                                                                    <select class="form-control" id="seldept" name="seldept" required>
+                                                                        <option selected="" disabled>Select Department..</option>
+                                                                        <?php
+                                                                        $sql = "select * from departments";
+                                                                        $stmt = $con->prepare($sql);
+                                                                        $stmt->execute();
+
+                                                                        while ($row = $stmt->fetch()) {
+                                                                            echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
+                                                                        }
+                                                                        $stmt = null;
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-6">
+                                                                    <label for="selyrlevel" class="text-gray-900"><b>Year Level</b></label>
+                                                                    <select class="form-control" name="selyrlevel" required>
+                                                                        <option selected value="">Select Year Level..</option>
+                                                                        <option value="1">1st Year</option>
+                                                                        <option value="2">2nd Year</option>
+                                                                        <option value="3">3rd Year</option>
+                                                                        <option value="4">4th Year</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <label for="selCourse" class="text-gray-900"><b>Course</b></label>
+                                                                    <select class="form-control" id="selCourse" name="selCourse" required>
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+
+
+
+
+
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <label for="fileupload" class="text-gray-900"><b>Copy of Grades</b><i> *previous semester</i></label>
+                                                                    <input type="file" id="grade" name="grade" accept=".jpg" class="form-control mb-4" required>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="text-right"><button type="submit" class="btn btn-success" name="enroll"><i class="fas fa-check"></i> Submit</button></div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-lg-7" id="enrolldetailsdiv">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-file-alt"></i> Assessment Status</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered " id="assesstable" width="100%" cellspacing="0">
-                                                        <thead class="thead-dark">
-                                                            <tr>
-                                                                <!-- <th>#</th> -->
-                                                                <th hidden>Department</th>
-                                                                <th>Course</th>
-                                                                <th>SY</th>
-                                                                <th>Semester</th>
-                                                                <th>File</th>
-                                                                <th>Status</th>
-                                                                <th class="text-center">Edit</th>
-                                                            </tr>
-                                                        </thead>
+                                        </div>
 
-                                                        <tbody>
-                                                            <?php // displays all the submitted requirements of the student
-                                                            $sql = "SELECT * FROM vwassessment where sid=? and schoolyr=? and semester=? ";
-                                                            $data = array($sid, $currentsyval, $currentsemval); // sid of current user
-                                                            $stmt = $con->prepare($sql);
-                                                            $stmt->execute($data);
-                                                            while ($row = $stmt->fetch()) {
-                                                                //$enrolldate = $row['date_enrolled'];
+                                        <div class="col-lg-6" id="enrolldetails">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-alt"></i> Enrollment Application Details</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                                                            <thead class="thead-dark">
+                                                                <tr>
+                                                                    <!-- <th>#</th> -->
+                                                                    <!-- <th>Department</th> -->
+                                                                    <th class="text-center">Year Level</th>
+                                                                    <th class="text-center">Course</th>
+                                                                    <th hidden>SY</th>
+                                                                    <th hidden class="text-center">Semester</th>
+                                                                    <th class="text-center">Attachment</th>
+                                                                    <th class="text-center">Status</th>
+                                                                    <th class="text-center">Cancel</th>
+                                                                </tr>
+                                                            </thead>
 
-                                                                echo '<tr> 
-                                                                <td hidden>' . $row['dept'] . '</td>
-                                                                <td>' . $row['course'] . '</td>
-                                                                <td>' . $row['schoolyr'] . '</td> 
-                                                                <td>' . $row['semester'] . '</td>
-                                                                <td>File Here</td>
-                                                                <td>' . $row['status'] . '</td>
-                                                                <td>
+                                                            <tbody>
+                                                                <?php
+                                                                $sql = "SELECT * FROM vwforenrollment_students where sid=? and schoolyr=? and semester=? ";
+                                                                $data = array($sid, $currentsyval, $currentsemval); // sid of current user
+                                                                $stmt = $con->prepare($sql);
+                                                                $stmt->execute($data);
+                                                                while ($row = $stmt->fetch()) {
+                                                                    $enrolldate = $row['date_enrolled'];
 
-                                                                <button" class="btn btn-warning" id="enrolledit" title="Edit">
-                                                                <i class="fas fa-edit"></i>
+                                                                    echo '<tr> 
+                                                        <td class="text-center text-gray-900 font-weight-bold">' . $row['yrlevel'] . '</td>
+                                                                <td class="text-center text-gray-900 font-weight-bold">' . $row['course'] . '</td>
+                                                                <td hidden>' . $row['schoolyr'] . '</td> 
+                                                                <td hidden>' . $row['semester'] . '</td>
+                                                                <td class="text-center"><a class="font-weight-bold" href="uploads/copygrades/' . $row['enrollment_ID'] . '.jpg">Grades</a></td>
+                                                                <td class="text-center  text-gray-900 font-weight-bold">' . $row['enrollment_status'] . '</td>
+                                                                <td class="text-center">
+
+                                                                <button" class="btn btn-danger btn-sm cancel_enroll" id="' . $row['enrollment_ID'] . '" title="Cancel">
+                                                                <i class="fas fa-fw fa-times "></i>
                                                                 </button>
-                                                                
-
-                                                                
-                                                                                
+                                                                         
                                                                 </td>
                                                             </tr>';
-                                                            }
-                                                            ?>
-                                                        </tbody>
-                                                    </table>
+                                                                }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,136 +245,89 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="subreq">
-
+                            <div class="tab-pane fade" id="validation">
                                 <div class="row">
-                                    <div class="col-lg-6" id="enrolldiv">
+                                    <div class="col-lg-6">
                                         <!-- Basic Card Example -->
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> Enrollment Form</h6>
+                                                <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-check"></i> Validation</h6>
                                             </div>
                                             <div class="card-body">
-                                                <form action="codes/enroll.php" method="POST" enctype="multipart/form-data">
+                                                <form action="codes/enroll_validate.php" method="POST" enctype="multipart/form-data">
 
                                                     <div class="form-group">
-                                                        <div class="form-group row">
-                                                            <div class="col-lg-6">
-                                                                <label for="exampleFormControlSelect1">School Year</label>
-                                                                <input type="text" class="form-control" value="<?= $currentsyval ?>" disabled>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <label for="exampleFormControlSelect1">Semester</label>
-                                                                <input type="text" class="form-control" value="<?= $currentsemval ?>" disabled>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <label for="enroll_receipt" class="text-gray-900"><b>Official Receipt</b></label>
+                                                                <input type="file" id="enroll_receipt" name="enroll_receipt" accept=".jpg" class="form-control mb-4" required>
                                                             </div>
                                                         </div>
-
-                                                        <div class="form-group row">
-                                                            <div class="col-lg-6">
-                                                                <label for="exampleFormControlSelect1">Department</label>
-                                                                <select class="form-control" id="seldept" name="seldept" required>
-                                                                    <option selected="" disabled>Select Department..</option>
-                                                                    <?php
-                                                                    $sql = "select * from departments";
-                                                                    $stmt = $con->prepare($sql);
-                                                                    $stmt->execute();
-
-                                                                    while ($row = $stmt->fetch()) {
-                                                                        echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
-                                                                    }
-                                                                    $stmt = null;
-                                                                    ?>
-                                                                </select>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <label for="enroll_assessment_form" class="text-gray-900"><b>Assessment Form</b></label>
+                                                                <input type="file" id="enroll_assessment_form" name="enroll_assessment_form" accept=".jpg" class="form-control mb-4" required>
                                                             </div>
-                                                            <div class="col-lg-6">
-                                                                <label for="exampleFormControlSelect1">Course</label>
-                                                                <select class="form-control" id="selCourse" name="selCourse" required>
-                                                                    <?php
-
-                                                                    $sql = 'SELECT * FROM courses';
-                                                                    $stmt = $con->query($sql);
-
-                                                                    foreach ($stmt as $rows) {
-                                                                        echo '<option value=' . $rows['course_ID'] . '>' . $rows['course'] . '</option>';
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <label for="exampleFormControlSelect1" hidden>School Year</label>
-                                                            <select class="form-control" id="exampleFormControlSelect1" hidden>
-                                                                <?php
-                                                                $sql = "select * from schoolyr where status='ACTIVE'";
-                                                                $stmt = $con->prepare($sql);
-                                                                $stmt->execute();
-
-                                                                while ($row = $stmt->fetch()) {
-                                                                    echo '<option selected value=' . $row['schoolyr_ID'] . '>' . $row['schoolyr'] . '</option>';
-                                                                }
-                                                                $stmt = null;
-                                                                ?>
-                                                            </select>
                                                         </div>
 
 
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <div class="text-right"><button type="submit" class="btn btn-success" name="enroll" id="btnEnroll"><i class="fas fa-check"></i> Submit</button></div>
+                                                        <div class="text-right"><button type="submit" class="btn btn-success mb-3" name="ev"><i class="fas fa-check"></i> Submit</button></div>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-6" id="enrolldetailsdiv">
+                                    <div class="col-lg-6" id="enrolldetails">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-gray-800"><i class="fas fa-file-alt"></i> Enrollment Details</h6>
+                                                <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-alt"></i> Enrollment Validation</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                                                         <thead class="thead-dark">
                                                             <tr>
-                                                                <!-- <th>#</th> -->
-                                                                <th>Department</th>
-                                                                <th>Course</th>
-                                                                <th hidden>SY</th>
-                                                                <th>Semester</th>
-                                                                <th>Status</th>
-                                                                <th class="text-center">Edit</th>
+                                                                
+                                                                <th class="text-center">Files</th>
+                                                                <th class="text-center">Status</th>
+                                                                <th class="text-center">Actions</th>
+
                                                             </tr>
                                                         </thead>
 
                                                         <tbody>
-                                                            <?php // displays all the submitted requirements of the student
-                                                            $sql = "SELECT * FROM vwforenrollment_students where sid=? and schoolyr=? and semester=? ";
-                                                            $data = array($sid, $currentsyval, $currentsemval); // sid of current user
-                                                            $stmt = $con->prepare($sql);
-                                                            $stmt->execute($data);
-                                                            while ($row = $stmt->fetch()) {
-                                                                $enrolldate = $row['date_enrolled'];
+                                                        <?php
+                                                                $sql = "SELECT * FROM vwenroll_validate where sid=? and schoolyr=? and semester=? ";
+                                                                $data = array($sid, $currentsyval, $currentsemval); // sid of current user
+                                                                $stmt = $con->prepare($sql);
+                                                                $stmt->execute($data);
+                                                                while ($row = $stmt->fetch()) {
+                                                                    
 
-                                                                echo '<tr> 
-                                                                <td>' . $row['dept'] . '</td>
-                                                                <td>' . $row['course'] . '</td>
-                                                                <td hidden>' . $row['schoolyr'] . '</td> 
-                                                                <td>' . $row['semester'] . '</td>
-                                                                <td>' . $row['enrollment_status'] . '</td>
-                                                                <td>
+                                                                    echo '<tr> 
+                                                                    <td class="text-center">
+                                                                    <a type="button" name="sendassessment" target="_blank" href="uploads/enroll_val/enroll_receipt/' . $row['ev_ID'] . '.jpg" id="' . $row["ev_ID"] . '" 
+                                                                        class="btn btn-success btn-sm sendassessment" title="Official Receipt"><i class="fa fa-fw fa-receipt"></i></a>
 
-                                                                <button" class="btn btn-warning" id="enrolledit" title="Edit">
-                                                                <i class="fas fa-edit"></i>
+                                                                        <a type="button" name="sendassessment" target="_blank" href="uploads/enroll_val/enroll_assess/' . $row['ev_ID'] . '.jpg" id="' . $row["ev_ID"] . '" 
+                                                                        class="btn btn-warning btn-sm sendassessment" title="Assessment Form"><i class="fa fa-fw fa-book"></i></a>
+                                                                    </td>
+                                                               
+                                                                <td class="text-center  text-gray-900 font-weight-bold">' . $row['status'] . '</td>
+                                                                
+                                                                <td class="text-center">
+
+                                                                <button" class="btn btn-danger btn-sm cancel_enroll_validate" id="' . $row['ev_ID'] . '" title="Cancel">
+                                                                <i class="fas fa-fw fa-times "></i>
                                                                 </button>
-                                                                
-
-                                                                
-                                                                                
+                                                                         
                                                                 </td>
                                                             </tr>';
-                                                            }
-                                                            ?>
+                                                                }
+                                                                ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -375,6 +360,7 @@ include("includes/scripts.php");
 
 <script src="plugins/jquery/jquery.min.js"></script>
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-<script src="js/assessment.js"></script>
+<script src="js/header.js"></script>
+<script src="js/enrollment.js"></script>
 
 </html>

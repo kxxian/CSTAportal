@@ -112,6 +112,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Name</th>
                                             <th>Office</th>
                                             <th>Department</th>
+                                            <th>Designation</th>
                                             <th>User Type</th>
                                             <th>isActive</th>
                                             <th width="85">Actions</th>
@@ -257,8 +258,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     </div>
                     <div class="form-group row">
                     <div class="col-md-6">
-                            <label for="role" class="text-gray-900 font-weight-bold">Position</label>
-                          <input type="text" name="position" id="position" class="form-control">
+                            <label for="position" class="text-gray-900 font-weight-bold">Designation</label>
+                          <input type="text" name="position" id="position" class="form-control" placeholder="Designation.." 
+                          onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46">
                         </div>
                         <div class="col-md-6">
                             <label for="role" class="text-gray-900 font-weight-bold">User</label>

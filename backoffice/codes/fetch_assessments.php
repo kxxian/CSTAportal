@@ -12,13 +12,17 @@ $output = array();
 $query .= "SELECT * from vwforenrollment_students ";
 
 if (isset($_POST["search"]["value"])) {
-    $query .= 'WHERE enrollment_status="Pending" ';
+    $query .= 'WHERE enrollment_status="For Assessment" ';
 
     $query .= 'AND dept= "'.$dept.'" ';
 
     $query .= 'AND (snum LIKE "%' . $_POST["search"]["value"] . '%"';
   
-    $query .= 'OR fullname LIKE "%' . $_POST["search"]["value"] . '%"';
+    $query .= 'OR lname LIKE "%' . $_POST["search"]["value"] . '%"';
+
+    $query .= 'OR fname LIKE "%' . $_POST["search"]["value"] . '%"';
+
+    $query .= 'OR mname LIKE "%' . $_POST["search"]["value"] . '%"';
  
     $query .= 'OR yrlevel LIKE "%' . $_POST["search"]["value"] . '%"';
 
@@ -27,7 +31,7 @@ if (isset($_POST["search"]["value"])) {
    
 }
 
-$query .= 'AND enrollment_status="Pending" ';
+$query .= 'AND enrollment_status="For Assessment" ';
 
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].'
@@ -47,33 +51,29 @@ $filtered_rows=$statement->rowCount();
 
 
 foreach ($result as $row) {
+    $lname= $row["lname"];
+    $fname= $row["fname"];
+    $mname= $row["mname"];
+
     $sub_array = array();
     $sub_array[] = $row["snum"];
-    $sub_array[] = $row["fullname"];
+    $sub_array[] = $lname.', '.$fname.' '.$mname;
     $sub_array[] = $row["yrlevel"];
 
 
     $sub_array[] = $row["course"];
    
-    // $isActive=$sub_array[]=$row["isActive"];
-
-    // if( $isActive=='No'){
-    //     $color="success";
-    //     $title="Activate";
-    //     $button="activate";
-
-    // }else{
-    //     $color="danger";
-    //     $title="Deactivate";
-    //     $button="restrict";
-    // }
+  
     $sub_array[] = $row["enrollment_status"];
+    $sub_array[] = '<a target="_blank" href="../student/uploads/copygrades/'.$row['enrollment_ID'].'.jpg">
+    Copy of Grades</a>';
+    
+    
+    $sub_array[] =
+     '
 
-    $sub_array[] = '<button type="button" name="update" id="' . $row["enrollment_ID"] . '" 
-    class="btn btn-info btn-sm update" title="View Requirement"><i class="fa fa-fw fa-eye"></i></button>
-
-    <button type="button" name="update" id="' . $row["enrollment_ID"] . '" 
-    class="btn btn-success btn-sm update" title="Send Assessment"><i class="fa fa-fw fa-paper-plane"></i></button>
+    <button type="button" name="sendassessment" id="' . $row["enrollment_ID"] . '" 
+    class="btn btn-success btn-sm sendassessment" title="Send Assessment"><i class="fa fa-fw fa-paper-plane"></i></button>
     
     ';
 

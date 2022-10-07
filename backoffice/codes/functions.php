@@ -13,7 +13,18 @@ function get_assessments(){
     include '../includes/connect.php';
     include 'fetchuserdetails.php';
     $statement=$con->prepare("SELECT * from vwforenrollment_students WHERE dept=? AND enrollment_status=?");
-    $data=array($dept,'Pending');
+    $data=array($dept,'For Assessment');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
+function get_enrollments(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwenroll_validate WHERE status=?");
+    $data=array('Pending');
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();

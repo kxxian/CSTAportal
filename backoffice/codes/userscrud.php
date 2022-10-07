@@ -19,7 +19,7 @@ if (isset($_POST['operation'])) {
         $mobile = htmlspecialchars(trim($_POST['mobile']));
         $office = $_POST['office'];
         $dept = $_POST['dept'];
-        $position = $_POST['position'];
+        $position = ucwords(htmlspecialchars(trim($_POST['position'])));
         $role = $_POST['role'];
 
         $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,office,dept_ID,position,permission_ID) VALUES(?,?,?,?,?,?,?,?,?,?)");
@@ -112,7 +112,7 @@ if (isset($_POST['operation'])) {
         $office = $_POST['office'];
         $dept = $_POST['dept'];
         $role = $_POST['role'];
-        $position = $_POST['position'];
+        $position = ucwords(htmlspecialchars(trim($_POST['position'])));
 
         $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, dept_ID=? , position=?, permission_ID=?  
          WHERE id=?");
@@ -122,6 +122,7 @@ if (isset($_POST['operation'])) {
     }
 }
 
+//fetch 
 if (isset($_POST['user_id'])) {
     $id = $_POST['user_id'];
     $output = array();

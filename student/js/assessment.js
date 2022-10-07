@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 $(document).ready(function () {
     $('#myForm').on('submit', function (e) {
         e.preventDefault();
@@ -60,7 +60,7 @@ $(document).ready(function () {
             }, 500)
        }
     });
-=======
+
 $(document).ready(function () {
 
     setInterval(function () {
@@ -169,5 +169,5 @@ $(document).ready(function () {
     //         }, 500)
     //    }
     // });
->>>>>>> 536b3d3d64cb9061c3e5943df89df904162c8de1
+
 });

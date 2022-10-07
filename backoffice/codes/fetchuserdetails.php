@@ -8,11 +8,13 @@
         $stmt->execute($data);
         $row=$stmt->fetch();
         
-        //$sid=$row['id'];
+        $empid=$row['id'];
+
         $empname=$row['empname'];
         $dept=$row['dept'];
         $usertype=$row['role'];
         $Office=$row['office'];
+        $useremail=$row['email'];
        }
        
        catch(PDOException $e){

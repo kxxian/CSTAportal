@@ -11,6 +11,10 @@ $(document).ready(function() {
         $(this).css("text-transform", "capitalize");
     });
 
+    $('#position').keyup(function(){
+        $(this).css("text-transform", "capitalize");
+    });
+
 
     $('#addUser').click(function() {
         $('#usersForm')[0].reset();

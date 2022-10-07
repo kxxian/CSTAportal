@@ -307,8 +307,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -365,8 +365,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -423,8 +423,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -481,8 +481,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -539,8 +539,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -597,8 +597,8 @@ elseif ($office == "Registrar") {
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
-              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
-              $strSidebar .= '                <span>Registrations <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
               $strSidebar .= '        </li>';
 
 

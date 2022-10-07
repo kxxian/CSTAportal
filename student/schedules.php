@@ -196,6 +196,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Scripts -->
     <script src="js/schedules.js"></script>
     <script src="js/notes.js"></script>
+    <script src="js/header.js"></script>
 </body>
 
 </html>

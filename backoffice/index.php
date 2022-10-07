@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Maintenance</title>
+    <title>Dashboard</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -42,6 +42,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <!-- Bootstrap CSS  -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+
+
 
     <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -73,14 +75,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
 
                     <div class=" mb-4">
-                        <h1 class="h2 mb-0 text-gray-900 "><strong>Welcome CSTA Admin</strong></h1>
+                        <h3 class="h3 mb-0 text-gray-900 "><strong>Dashboard</strong></h3>
                     </div>
 
                     <!-- Content Row -->
+                       <!-- Accounting Cards -->
                     <div class="row">
 
                         <!-- Pending Payments Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-3">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -101,7 +104,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             </div>
                         </div>
                         <!-- Acknowledged Payments Card  -->
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-3">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -124,8 +127,103 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
 
                     </div>
+
+                 
                     <div class="row">
-                    <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-warning" href="students.php">For Receipt</a>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                                330
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-receipt fa-2x text-gray-800"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Verified Payments Card  -->
+                        <div class="col-xl-3 col-md-6 mb-3">
+                            <div class="card border shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-success" href="students.php">Verified</a>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+
+                                                9,999
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-check fa-2x text-gray-800"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dean's Cards -->
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card border shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-warning" href="assessments.php">For Assessment</a>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 for_assessment" >
+
+                                            
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-receipt fa-2x text-gray-800"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assessed Students  -->
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card border shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                <a class="text-success" href="students.php">Assessed</a>
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800 assessed_students">
+
+                                          
+
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-check fa-2x text-gray-800"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Registrar's Cards -->
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -148,7 +246,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
 
                         <!-- Verified Payments Card  -->
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -247,7 +345,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
@@ -255,8 +353,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
     <script src="js/demo/datatables-demo.js"></script>
 
 

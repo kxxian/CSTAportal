@@ -65,8 +65,8 @@ if (isset($_POST['uploadpayments'])) {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-
-    $_SESSION['status'] = "Payment Proof Sent!";
+    $_SESSION['status'] = "Success!";
+    $_SESSION['msg'] = "Payment Proof Sent!";
     $_SESSION['status_code'] = "success";
     header('location:payverif.php');
 }
