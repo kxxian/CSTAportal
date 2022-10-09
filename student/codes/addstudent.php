@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                     $body = "Good Day Teresian!<br><br>
                     Thank you for registering at CSTA Student Portal. <br><br>
                     
-                    Please click the <a href='http://localhost/CSTAportal/student/verify.php?vkey=$vkey'>link</a> to verify your account. <br>
+                    Please click the <a href='http://localhost/CSTAportal/student/verify.php?vkey=$vkey'>link</a> to verify your email address. <br>
                     
 
                     <br>

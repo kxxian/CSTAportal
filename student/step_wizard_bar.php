@@ -26,8 +26,6 @@
             <li class="step-wizard-item" id="third_step">
                 <span class="progress-count"><i id="third_step_icon"></i></span>
                 <span class="progress-label">Validation</span>
-
-          
             <li class="step-wizard-item" id="fourth_step">
                 <span class="progress-count"><i id="fourth_step_icon"></i></span>
                 <span class="progress-label">Enrolled</span>

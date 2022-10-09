@@ -12,7 +12,7 @@ $output = array();
 $query .= "SELECT * from vwforenrollment_students ";
 
 if (isset($_POST["search"]["value"])) {
-    $query .= 'WHERE enrollment_status="For Assessment" ';
+    $query .= 'WHERE enrollment_status="Assessment" ';
 
     $query .= 'AND dept= "'.$dept.'" ';
 
@@ -31,7 +31,7 @@ if (isset($_POST["search"]["value"])) {
    
 }
 
-$query .= 'AND enrollment_status="For Assessment" ';
+$query .= 'AND enrollment_status="Assessment" ';
 
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].'

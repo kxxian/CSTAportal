@@ -1,16 +1,4 @@
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 
 
@@ -23,40 +11,26 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+ 
   <?php
 
-    if (isset($_SESSION['status']) && $_SESSION['status'] != '' ||
-    isset($_SESSION['msg']) && $_SESSION['msg'] != '') {
-    }
+    if (
+        
+    (isset($_SESSION['status']) && $_SESSION['status'] != '') 
+    
+    ||
+    
+    
+    (isset($_SESSION['msg']) && $_SESSION['msg'] != '') 
+    
+    ||  
+    
+    
+    (isset($_SESSION['status_code']) && $_SESSION['status_code'] != '')  
+    
+    ) {
+    
     ?>
 
   <!-- success swal -->
@@ -71,65 +45,12 @@
   </script>
 
   <?php
+    }
     unset($_SESSION['status']);
+     unset($_SESSION['msg']);
+      unset($_SESSION['status_code']);
     ?>
-  <script>
-      $(document).ready(function() {
-
-
-          $('.deletereqbtn').click(function(e) {
-              e.preventDefault;
-              var deleteid = $(this).closest("tr").find('.deletereqval').val();
-              console.log(deleteid);
-
-              swal({
-                      title: "Are you sure?",
-                      text: "Once deleted, you will not be able to recover this file!",
-                      icon: "warning",
-                      buttons: true,
-                      dangerMode: true,
-                  })
-                  .then((willDelete) => {
-                      if (willDelete) {
-                          $.ajax({
-                              type: "POST",
-                              url: "deletereq.php",
-                              data: {
-                                  "delete_btn_set": 1,
-                                  "delete_id": deleteid,
-                              },
-                              success: function(response) {
-                                  swal("File Deleted!", {
-                                      icon: "success",
-                                  }).then((result) => {
-                                      location.replace("requirements.php");
-                                  });
-                              }
-                          });
-                      }
-                  });
-          });
-      });
-  </script>
-
-
-  <script>
-      swal({
-              title: "<?php echo $_SESSION['conf_question'] ?>",
-              // text: "Once deleted, you will not be able to recover this imaginary file!",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-              if (willDelete) {
-                  swal("<?php echo $_SESSION['conf_msg'] ?>", {
-                      icon: "<?php echo $_SESSION['conf_code'] ?>",
-                  });
-              }
-          });
-  </script>
-
+  
 
 
 

@@ -8,8 +8,8 @@
 
     //validation
     try{
-        $sql="select * from students where username=? and pass=? and status=?";
-        $data=array($username,$pass,$verified);
+        $sql="select * from students where username=? and pass=? and status=? and isAccepted=?";
+        $data=array($username,$pass,$verified,'1');
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
         $rc=$stmt->rowCount();

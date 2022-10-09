@@ -71,11 +71,11 @@ if (isset($_POST['validate3'])) {
     $snum =  $_POST['snum'];
 
     # check if student number already registered to a student
-    $sql2 = "SELECT snum
+    $sql2 = "SELECT snum, isAccepted
             FROM  students
-            WHERE snum=?";
+            WHERE snum=? and isAccepted=?";
 
-    $data3 = array($snum);
+    $data3 = array($snum,'1');
     $stmt3 = $con->prepare($sql2);
     $stmt3->execute($data3);
     

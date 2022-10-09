@@ -30,6 +30,17 @@ function get_enrollments(){
     return $statement->rowCount();
 }
 
+function get_registrations(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwstudents WHERE isAccepted=?");
+    $data=array('0');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

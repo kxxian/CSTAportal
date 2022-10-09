@@ -2,10 +2,10 @@
 $office = $Office;
 $userType = $usertype;
 
-if ($userType=='Admin') {
-       $visibility="";
-}elseif($userType=='User'){
-       $visibility="hidden";
+if ($userType == 'Admin') {
+       $visibility = "";
+} elseif ($userType == 'User') {
+       $visibility = "hidden";
 }
 
 
@@ -51,14 +51,14 @@ if ($office == "Accounting") {
               $strSidebar .= '       </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '       </ul>';
-       }elseif ($pageValue == 2){
+       } elseif ($pageValue == 2) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -98,14 +98,14 @@ if ($office == "Accounting") {
               $strSidebar .= '       </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '       </ul>';
-       }elseif ($pageValue == 3){
+       } elseif ($pageValue == 3) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -145,7 +145,7 @@ if ($office == "Accounting") {
               $strSidebar .= '       </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item active" '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item active" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
@@ -154,7 +154,7 @@ if ($office == "Accounting") {
               $strSidebar .= '       </ul>';
        }
        echo $strSidebar;
-} 
+}
 
 #####################################################################3
 
@@ -189,7 +189,7 @@ elseif ($office == "Dean") {
               $strSidebar .= '        </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
@@ -198,7 +198,7 @@ elseif ($office == "Dean") {
 
               $strSidebar .= '   </ul>';
               //        //<!-- End of Sidebar -->
-       }else if ($pageValue == 2) {
+       } else if ($pageValue == 2) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -228,7 +228,7 @@ elseif ($office == "Dean") {
               $strSidebar .= '        </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
@@ -237,7 +237,7 @@ elseif ($office == "Dean") {
 
               $strSidebar .= '   </ul>';
               //        //<!-- End of Sidebar -->
-       }else if ($pageValue == 3) {
+       } else if ($pageValue == 3) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -267,7 +267,7 @@ elseif ($office == "Dean") {
               $strSidebar .= '        </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item active" '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item active" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
@@ -278,7 +278,7 @@ elseif ($office == "Dean") {
               //        //<!-- End of Sidebar -->
        }
        echo $strSidebar;
-} 
+}
 ##################################################################3
 
 
@@ -302,6 +302,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            <a class="nav-link" href="index.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
+              $strSidebar .= '        </li>';
+
+
+              // <!-- Nav Item - Registrations -->
+              $strSidebar .= '          <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+              $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
@@ -334,14 +342,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }else if ($pageValue == 2) {
+       } else if ($pageValue == 2) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -361,6 +369,78 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
               $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+              $strSidebar .= '          <li class="nav-item active">';
+              $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+              $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+              $strSidebar .= '        </li>';
+
+              // <!-- Nav Item - Students -->
+              $strSidebar .= '          <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="students.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
+              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '        </li>';
+
+
+              //<!-- Nav Item - Enrollment -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment</span></a>';
+              $strSidebar .= '        </li>';
+
+              // <!-- Nav Item - Document -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
+              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '            <span>Documents Request</span></a>';
+              $strSidebar .= '     </li>';
+
+              // <!-- Nav Item - Grades -->
+              $strSidebar .= '               <li class="nav-item">';
+              $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
+              $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
+              $strSidebar .= '                   <span>Grades Requests</span></a>';
+              $strSidebar .= '            </li>';
+
+              //        //<!-- Nav Item - Maintenance Collapse Menu -->
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
+              $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+              $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+              $strSidebar .= '                        <span>Maintenance</span></a>';
+              $strSidebar .= '                </li>';
+
+              $strSidebar .= '            </ul>';
+       } else if ($pageValue == 3) {
+              $strSidebar = '';
+              // <!-- Sidebar -->
+              $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
+
+              // <!-- Sidebar - Brand -->
+              $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
+              $strSidebar .= '            <div class="sidebar-brand-icon rotate-n-10">';
+              $strSidebar .= '               <img src="img/CSTA_SMALL.png" width="100" style="margin-top:100px; margin-bottom:50px;" alt="">';
+              $strSidebar .= '            </div>';
+              $strSidebar .= '        </a>';
+              $strSidebar .= '        <br><br>';
+              $strSidebar .= '        <div class="sidebar-brand-text text-center text-gray-100"><strong>CSTA Admin</strong></div>';
+              $strSidebar .= '        <br>';
+              // <!-- Nav Item - Dashboard -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="index.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
+              $strSidebar .= '                <span>Dashboard</span></a>';
+              $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+               $strSidebar .= '          <li class="nav-item">';
+               $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+               $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item active">';
@@ -392,14 +472,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }else if ($pageValue == 3) {
+       } else if ($pageValue == 4) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -419,6 +499,13 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
               $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+               $strSidebar .= '          <li class="nav-item">';
+               $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+               $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
@@ -450,14 +537,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }else if ($pageValue == 4) {
+       } else if ($pageValue == 5) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -477,6 +564,13 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
               $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+               $strSidebar .= '          <li class="nav-item">';
+               $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+               $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
@@ -508,14 +602,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }else if ($pageValue == 5) {
+       } else if ($pageValue == 6) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -535,6 +629,13 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
               $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+               $strSidebar .= '          <li class="nav-item">';
+               $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+               $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
@@ -566,14 +667,15 @@ elseif ($office == "Registrar") {
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item " '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }else if ($pageValue == 6) {
+       }
+       else if ($pageValue == 7) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -593,6 +695,13 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
               $strSidebar .= '                <span>Dashboard</span></a>';
               $strSidebar .= '        </li>';
+
+               // <!-- Nav Item - Registrations -->
+               $strSidebar .= '          <li class="nav-item">';
+               $strSidebar .= '            <a class="nav-link" href="registrations.php">';
+               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
+               $strSidebar .= '                <span>Registrations <div class="badge badge-danger"></div></span></a>';
+               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
@@ -617,14 +726,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '     </li>';
 
               // <!-- Nav Item - Grades -->
-              $strSidebar .= '               <li class="nav-item">';
+              $strSidebar .= '               <li class="nav-item active">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests</span></a>';
               $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
-              $strSidebar .= '                <li class="nav-item active" '.$visibility.'>';
+              $strSidebar .= '                <li class="nav-item active" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
               $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
               $strSidebar .= '                        <span>Maintenance</span></a>';
@@ -632,6 +741,8 @@ elseif ($office == "Registrar") {
 
               $strSidebar .= '            </ul>';
        }
+
+       
 
 
 

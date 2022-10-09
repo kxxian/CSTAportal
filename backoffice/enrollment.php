@@ -82,7 +82,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
           if ($office=="Registrar"){
-            $pageValue = 3;
+            $pageValue = 4;
         }else{
             header("Location:index.php");
         }
