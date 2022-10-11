@@ -19,7 +19,8 @@ if (isset($_POST['verifypayment'])) {
         $stmt->execute($data);
         session_start();
 
-        $_SESSION['status'] = "Payment Verified";
+        $_SESSION['status'] = "Success";
+        $_SESSION['msg'] = "Payment Verified";
         $_SESSION['status_code'] = "success";
 
         header("location:../received-payments.php");

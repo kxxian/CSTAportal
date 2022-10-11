@@ -41,6 +41,17 @@ function get_registrations(){
     return $statement->rowCount();
 }
 
+function get_pendingpayments(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwpayverif WHERE payment_status=?");
+    $data=array('Pending');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

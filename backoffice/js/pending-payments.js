@@ -1,138 +1,133 @@
+$(document).ready(function() {
+    var pendingpaymentsTable = $('#pendingpaymentsTable').dataTable({
+        dom: 'Bfrtip',
+        
+        buttons: [
+            
+            // {
+            //     extend: 'csvHtml5',
+            //     className:'btn btn-info',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
+            {
+                extend: 'excelHtml5',
+                className:'btn btn-success',
+                exportOptions: {
+                    columns: [0,1,2,3,4]
+                }
+            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2,3,4]
+            //     }
+            // },
+            {
+                extend: 'print',
+                className:'btn btn-secondary',
+                exportOptions: {
+                    columns: [0,1,2,3,4]
+                }
+            },
+        
+            'colvis'
+        ],
+        "paging": true,
+        "processing": false,
+        "serverSide": true,
+        "order": [],
+        "info": true,
+        "bDestroy": true,
+        "ajax": {
+            url: "codes/fetchpending.php",
+            type: "POST"
 
-
-$(document).ready(function () {
-
-    $('#dataTable').DataTable();
+        },
+        "columnDefs": [{
+            "target": [0,1,2,3,4,5],
+            "orderable": false,
+        }, ],
+    });
    
- 
-    //load payment details on button click
-    $('.btnPaymentDetails').on('click', function() {
-        $('#sendreceipt').modal('show');
-        paymentdetails();
-    })
 
-        //receive multiple
-    $('.bulkReceive').on("click",function(){
-        var id=[];
-        var email_data = [];
+    $(document).on('submit', '#ackForm', function(event) {
+        event.preventDefault();
       
-        $(":checkbox:checked").each(function(key){
-            id[key] = $(this).val();
-        });
+            $.ajax({
+                url: "codes/acknowledge.php",
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function(data) {
 
-        if (id.length===0){
-           norecord();
-        }else{
-            $('.single_select').each(function(){
-                if($(this).prop('checked')==true){
-                    
-                    email_data.push({
-                        id:$(this).data('id'),
-                        email: $(this).data("email"),
-                        name:$(this).data('name')
-                    });
-                }console.log(email_data);
-            });          
-            swal({
-                title: "Are you sure?",
-                text: "This action can not be undone!",
-                icon: "info",
-                buttons: true,
-                dangerMode: false,
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Payment Acknowledged!',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+
+                    $('#assessModal').modal('hide');
+                    pendingpaymentsTable.api().ajax.reload();
+                    $('#paymentdetailsModal').modal('hide');
+                }
+
             })
-                .then((willReceive) => {
-                    if (willReceive) {
-                        $.ajax({
-                            method: "POST",
-                            url: "codes/receive-payments.php",
-                            data:
-                            {
-                               email_data:email_data
         
-                              
-                            }, beforeSend:function(){
-                                $('.bulkReceive').html('Please Wait...');
-                                $('.bulkReceive').addClass('btn-danger');
-                            },
-                            success:function(){
-
-                                swal("Success!", "Payment Acknowledged!", "success").then(function(){ 
-                                    setTimeout(function(){ 
-                                        location.reload();
-                                      }, 500);
-        
-                                  
-                                   }
-                                );
-                              
-                            }
-                        })
-                        
-                 
-                       
-                    }
-                });
-        }
-
-    });
-});
-
-
-
-
-//payment details on modal
-function loadRecord(payment_ID) {
-
- $.ajax({
-     type: "POST",
-     url: "codes/pending-payments.php",
-     data:
-    {
-           viewpaydetails: 1,
-           payment_ID: payment_ID,
-       }
-   }).done(function (rec) {
-       var rowEdit = $.parseJSON(rec);
-    //console.log(rec);
-    $("#pv_id").val(rowEdit['pv_ID']);
-    $("#txtemail").val(rowEdit['email']);
-    $("#txtsid").val(rowEdit['sid']);
-    $("#txtsnum").val(rowEdit['snum']);
-    $("#dtDatePaid").val(rowEdit['date_paid']);
-    $("#timePaid").val(rowEdit['time_paid']);
-    $("#txtName").val(rowEdit['lname']+', '+rowEdit['fname']+' '+rowEdit['mname']);
-    // $("#txtFname").val("First Year");
-    $("#txtCourse").val(rowEdit['course']);
-    $("#txtTfee").val(rowEdit['tfeepayment']);
-    $("#txtTerm").val(rowEdit['term']);
-    $("#txtSySem").val(rowEdit['schoolyr']+' '+rowEdit['semester']);
-    $("#txtOthers").val(rowEdit['particulars_total']);
-    $("#txtParticulars").val(rowEdit['particulars']);
-    $("#txtPaymethod").val(rowEdit['paymethod']);
-    $("#txtSentVia").val(rowEdit['sentvia']);
-    $("#txtGtotal").val(rowEdit['gtotal']);
-    $("#txtNotes").val(rowEdit['note']);
-
-    $("#viewpaydetails").modal("show");
-   });
-
-    //close payment details modal
-    $('.close').on('click', function() {
-        $('#viewpaydetails').modal('hide');
-
-    });
-
-}
-
-//no record selected alert message
-function norecord(){
-    swal({
-        title: "Oops!",
-        text: "No Record Selected!",
-        icon: "warning",
-        buttons: false,
-        timer: 2000
     })
-}
+    $(document).on('click', '.paymentdetails', function() {
+        var payment_id = $(this).attr('id');
 
 
+        $.ajax({
+            url: "codes/acknowledge.php",
+            method: "POST",
+            data: {
+                payment_id: payment_id
+            },
+            dataType: "json",
+            success: function(data) {
+                $('#paymentdetailsModal').modal('show');
+                $('#payment_id').val(data.id);
+                $('#fullname').val(data.fullname);
+                $('#email').val(data.email);
+                $('#date').val(data.date);
+                $('#time').val(data.time);
+                $('#tfee').val(data.tfeeamount);
+                $('#appsy').val(data.appsy);
+                $('#term').val(data.term);
+                $('#others').val(data.others);
+                $("#others_total").val(data.others_total);
+                $("#paymethod").val(data.paymethod);
+                $("#sentvia").val(data.sentvia);
+                $("#gtotal").val(data.gtotal);
+                $("#note").val(data.note);
+                
+                $('.title').text('Payment Details');
+                $('#enroll_id').val(payment_id);
+            
+                $('#operation').val("ack");
+                $('#action').val("Acknowledge");
+
+            }
+        })
+    })
+
+
+    $(document).on('click', '.close', function() {
+        $('#paymentdetailsModal').modal('hide');
+    })
+
+    $(document).on('click', '#close', function() {
+        $('#paymentdetailsModal').modal('hide');
+    })
+
+   
+});

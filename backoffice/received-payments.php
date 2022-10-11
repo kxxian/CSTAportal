@@ -5,7 +5,7 @@ require_once('includes/fetchcurrentsyandsem.php');
 require_once('includes/fetchuserdetails.php');
 
 //get office from fetchuserdetails.php
-$office=$Office;
+$office = $Office;
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -23,7 +23,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Online Payments | For Verification</title>
+    <title>For Verification</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -36,16 +36,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- JQuery -->
-    <script
-    src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
-     <!-- Bootstrap 4 -->
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-    
+    <!-- Bootstrap 4 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+
     <!--Jquery Datatables Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 
     <!-- Bootstrap core JavaScript-->
@@ -61,8 +58,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
-    
-    
+
+
 </head>
 
 
@@ -74,12 +71,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         //office conditions for sidebar menu
-        if ($office=="Accounting"){
+        if ($office == "Accounting") {
             $pageValue = 2;
-        }else{
+        } else {
             header("Location:index.php");
         }
-        
+
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -98,10 +95,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-users"></i> For Verification
-                            <div id="wrapbutton" class="float-right"></div>    
-                        
-                        </h5>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-money-bill fa-fw"></i> For Verification
+                            </h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -247,7 +242,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <form action="codes/verify-payments.php" method="post">
                     <div class="modal-body">
                         <div class="form-group">
-                           
+
                             <input type="hidden" name="pv_ID" id="pv_ID" class="form-control">
                             <input type="hidden" name="sid" id="txtsid" class="form-control">
                             <input type="hidden" name="name" id="txtemail" class="form-control" disabled>
@@ -274,29 +269,47 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/sweetalert.min.js"></script>
 
     <?php
-    if (isset($_SESSION['status']) && $_SESSION['status'] != "") {
 
-    ?>
-        <script>
-            swal({
-                title: "<?php echo $_SESSION['status']; ?>",
-                // text: ""
-                icon: "<?php echo $_SESSION['status_code']; ?>",
-                button: "Done",
-                timer: 5000
-            });
-        </script>
-
-    <?php
-        unset($_SESSION['status']);
-    }
-    ?>
-
-
-
+if (
     
+(isset($_SESSION['status']) && $_SESSION['status'] != '') 
 
-    
+||
+
+
+(isset($_SESSION['msg']) && $_SESSION['msg'] != '') 
+
+||  
+
+
+(isset($_SESSION['status_code']) && $_SESSION['status_code'] != '')  
+
+) {
+
+?>
+
+<!-- success swal -->
+<script>
+  swal({
+      title: "<?php echo $_SESSION['status']; ?>",
+      text: "<?php echo $_SESSION['msg']; ?>",
+      icon: "<?php echo $_SESSION['status_code']; ?>",
+      button: false,
+      timer: 4000
+  });
+</script>
+
+<?php
+}
+unset($_SESSION['status']);
+ unset($_SESSION['msg']);
+  unset($_SESSION['status_code']);
+?>
+
+
+
+
+
 
 
 

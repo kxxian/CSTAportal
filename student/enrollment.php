@@ -93,10 +93,10 @@ if ($status == 'CLOSED') { // display enrollment page if open
                             <div class="col-md-7 mb-3">
                                 <ul class="nav nav-pills" id="myTab">
                                     <li class="nav-item">
-                                        <a href="#enrollment" class="nav-link active"><i class="fas fa-fw fa-edit"></i> 1. Enrollment</a>
+                                        <a href="#enrollment" class="nav-link active"><i class="fas fa-fw fa-edit"></i> 1. Assessment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#validation" class="nav-link"><i class="fas fa-fw fa-user-check"></i> 2. Validation</a>
+                                        <a href="#validation" class="nav-link"><i class="fas fa-fw fa-user-check"></i> 2. Enrollment</a>
                                     </li>
                                 </ul>
                             </div>

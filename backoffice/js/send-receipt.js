@@ -1,5 +1,41 @@
 $(document).ready(function () {
-    $('#myTable').DataTable();
+    var forreceiptTable = $('#forreceiptTable').dataTable({
+        dom: 'Bfrtip',
+        
+        buttons: [
+            
+            // {
+            //     extend: 'csvHtml5',
+            //     className:'btn btn-info',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
+            {
+                extend: 'excelHtml5',
+                className:'btn btn-success',
+                exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+                }
+            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+            //     }
+            // },
+            {
+                extend: 'print',
+                className:'btn btn-secondary',
+                exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+                }
+            },
+        
+            'colvis'
+        ],
+    });
     $("#OrNum").prop("disabled");
 
     $('#btnsendreceipt').click(function (e) {

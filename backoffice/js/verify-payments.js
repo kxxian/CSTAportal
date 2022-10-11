@@ -4,14 +4,14 @@ $(document).ready(function () {
         dom: 'Bfrtip',
         
         buttons: [
-            {
-                extend: 'copyHtml5',
-                className:'btn btn-primary',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20],
+            // {
+            //     extend: 'copyHtml5',
+            //     className:'btn btn-primary',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20],
                     
-                }
-            },
+            //     }
+            // },
             // {
             //     extend: 'csvHtml5',
             //     className:'btn btn-info',
@@ -26,13 +26,13 @@ $(document).ready(function () {
                     columns: [1,2,14,16,19,20]
                 }
             },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [1,2,14,16,19,20]
-                }
-            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [1,2,14,16,19,20]
+            //     }
+            // },
             {
                 extend: 'print',
                 className:'btn btn-secondary',

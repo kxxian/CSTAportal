@@ -23,33 +23,52 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Payment Verification</title>
+    <title>For Receipt</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
        <!-- Custom fonts for this template-->
-       <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- JQuery -->
-    <script
-    src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-    crossorigin="anonymous"></script>
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-     <!-- Bootstrap 4 -->
-     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
-    
+    <!-- datatable css -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
     <!--Jquery Datatables Bootstrap 4 -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Export -->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
 
 </head>
@@ -89,37 +108,35 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-check"></i> Verified / For Receipt
-                            </h5>
+                    <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-money-bill fa-fw"></i> For Receipt
+
+                            </h6>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="forreceiptTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th hidden>sid</th>
                                             <th>Student #</th>
                                             <th>Name</th>
+                                            <th>Course</th>
                                             <th>Tuition Fee</th>
-                                            <th hidden>Email</th>
-                                            <th hidden>Mobile</th>
-                                            <th hidden>Course</th>
-
-                                        
-                                            <th >Applicable S.Y</th>
+                                            <th>Applicable S.Y</th>
                                             <th>Term</th>
                                             <th>Others</th>
                                             <th>Others Total</th>
-                                            <th hidden>Attachment/s</th>
-                                            <th hidden>Total</th>
-                                            <th>Amount</th>
-                                            <th hidden>Change</th>
-                                            <th hidden>Sent Via</th>
-                                            <th hidden>Payment Method</th>
-                                            <th hidden>Notes</th>
-                                            <th hidden>Date of Payment</th>
+                                            <th hidden>SentVia</th>
+                                            <th hidden>Method</th>
+                                            <th hidden>Date</th>
+                                            <th hidden>Time</th>
+                                            <th hidden>Verification Code</th>
+                                            <th hidden>OR</th>
+                                            <th hidden>AR</th>
+                                            <th hidden>Remarks</th>
+                              
                                             <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -159,35 +176,34 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                              
 
 
-                                                        <td hidden>' . $row['sid'] . '</td>
+                                                       
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td hidden>' . $row['email'] . '</td>
-                                                        <td hidden>' . $row['mobile'] . '</td>
-                                                        <td hidden>' . $row['course'] . '</td>
-                                                       
-
-                                                        <td class="currency">' . $row['tfeepayment'] . '</td>
+                                                        <td>' . $row['course'] . '</td>
+                                                        <td>' . $row['tfeepayment'] . '</td>
                                                         <td >' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
                                                       
                                                         <td>' . $row['term'] . '</td>
                                                         <td>' . $row['particulars'] . '</td>
-                                                        <td class="currency"> ' . $row['particulars_total'] . '</td>
+                                                        <td> ' . $row['particulars_total'] . '</td>
+                                                        <td hidden>' . $row['sentvia'] . '</td>
+                                                        <td hidden>' . $row['paymethod'] . '</td>
+                                                        <td hidden>' . $row['date_paid'] . '</td>
+                                                        <td hidden>' . $row['time_paid'] . '</td>
+                                                        <td hidden>' . $row['verif_code'] . '</td>
+                                                        <td hidden>' . $row['OR'] . '</td>
+                                                        <td hidden>' . $row['AR'] . '</td>
+                                                        <td hidden>' . $row['remarks'] . '</td>
                                                         
 
 
-                                                        <td hidden>
-                                                        ' . $img . '
-                                                        ' . $img2 . '
-                                                        </td>
                                                        
-                                                        <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td class="currency">' . $row['amtpaid'] . '</td>
-                                                        <td hidden>' . $row['amtchange'] . '</td>
-                                                        <td hidden>' . $row['sentvia'] . '</td>
-                                                        <td hidden>' . $row['paymethod'] . '</td>
-                                                        <td hidden>' . $row['note'] . '</td>
-                                                        <td hidden>' . $row['date_paid'] . '</td>
+                                                       
+                                                       
+                                                        
+                                                        
+                                                       
+                                                        
                                                         
 
                                                         <td> 
@@ -300,6 +316,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/send-receipt.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- DataTable CDN JS -->
+    <!-- <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
 
     <?php
     if (isset($_SESSION['status']) && $_SESSION['status'] != "") {

@@ -44,7 +44,7 @@ if ($office == "Accounting") {
               $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
               $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
               $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
-              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
+              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">For Verification <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
               $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"> </span></a>';
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
@@ -91,7 +91,7 @@ if ($office == "Accounting") {
               $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
               $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
               $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
-              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
+              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">For Verification <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
               $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"> </span></a>';
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
@@ -138,7 +138,7 @@ if ($office == "Accounting") {
               $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
               $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
               $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
-              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">Acknowledged <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
+              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">For Verification <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
               $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"> </span></a>';
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
