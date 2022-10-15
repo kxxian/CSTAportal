@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand topbar mb-4 static-top shadow" style="background-color: #2e1503;">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <span class="mr-2 d-none d-lg-inline text-gray-100 medium"><b>Current School Year & Semester: <?php echo $currentsyval ?>, <?php echo $currentsemval ?></b></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-100 medium"><b>SY: <?php echo $currentsyval ?>  <?php echo $currentsemval ?></b></span>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

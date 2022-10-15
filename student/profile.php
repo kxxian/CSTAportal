@@ -2,6 +2,7 @@
 
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
+require_once("codes/fetchstudenttable.php");
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -19,7 +20,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | My Profile</title>
+    <title>My Profile</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">
@@ -126,7 +127,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-900">My Profile</h1>
+                    <h1 class="h4 mb-4 text-gray-900 font-weight-bold">My Profile</h1>
                     <div class="main-body">
                         <div class="row gutters-sm">
                             <div class="col-md-7 mb-3">
@@ -186,7 +187,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <h6 class="mb-0 text-gray-900 font-weight-bold">Birthday</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <?= $bday 
+                                                        <?= $bday
                                                         ?>
                                                     </div>
                                                 </div>
@@ -237,11 +238,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <span class="address"> <?= $guardiancontact ?></span>
                                                     </div>
                                                 </div>
+                                                <hr>
 
 
-                                                <!-- <div class="col-sm-12">
-                                                    <a class="btn btn-primary " target="__blank" href="#">Edit</a>
-                                                </div> -->
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-info editinfo" id="<?= $sid ?>">
+                                                        Edit
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -277,6 +281,129 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     include("includes/scripts.php");
     ?>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
 </body>
-<script src="js/header.js"></script>
+
+
 </html>
+
+<script src="js/header.js"></script>
+<script src="js/edit_info.js"></script>
+
+<div id="editinfoModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" id="editinfoForm" action="codes/editinfo.php" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user"></i> <span class="title">Edit Information</span></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <span class="   font-weight-bold" style="color:red;">*Reselect District, City and Barangay when editing your information</span>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="bday" class="text-gray-900 font-weight-bold">Birthday</label>
+                            <input type="date" name="bday" id="bday" class="form-control">
+
+                        </div>
+                        <div class="col-md-4">
+                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
+                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-md-8">
+                            <label for="cityadd" class="text-gray-900 font-weight-bold">City Address</label>
+                            <input type="text" name="cityadd" id="cityadd" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="district" class="text-gray-900 font-weight-bold">District</label>
+                            <select id="district" name="district" class="form-control" required>
+                            <option selected="" disabled>Select District</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refprovince where regCode=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['provCode'] . '>' . $row['provDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="city" class="text-gray-900 font-weight-bold">City</label>
+                            <select id="city" name="city" class="form-control" required>
+
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="barangay" class="text-gray-900 font-weight-bold">Barangay</label>
+                            <select id="barangay" name="barangay" class="form-control" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="guardian" class="text-gray-900 font-weight-bold mb-3">Guardian</label>
+                            <input type="text" name="guardian" id="guardian" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Guardian Contact</label>
+                            <input type="text" name="gcontact" id="gcontact" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="user_id" id="user_id">
+                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="submit" name="save" id="action" class="btn btn-success" value="Save">
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+</div>

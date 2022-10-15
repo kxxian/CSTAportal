@@ -11,6 +11,7 @@ $(document).ready(function() {
                if($.trim(data1)=="Assessment"){
                   $(".enroll_status").css({"color": "#ffc107"});
                   $("#enrolldetails").css({"display":"block"});
+                  $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 1
                   $("#not_enrolled").removeClass("current-item");
@@ -21,6 +22,8 @@ $(document).ready(function() {
                }else if($.trim(data1)=="Waiting Payment"){
                   $(".enroll_status").css({"color": "#ffc107"});
                   $("#enrolldetails").css({"display":"block"});
+                  $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
+                  
 
                   //STEP WIZARD 2
                   $("#not_enrolled").removeClass("current-item");
@@ -32,6 +35,8 @@ $(document).ready(function() {
                   $("#not_enrolled").removeClass("current-item");
                   $(".enroll_status").css({"color": "#ffc107"});
                   $("#enrolldetails").css({"display":"block"});
+                  $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#enrolldetails").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 3
                   $("#not_enrolled").removeClass("current-item");
@@ -44,6 +49,10 @@ $(document).ready(function() {
                }else if($.trim(data1)=="Enrolled"){
                   $(".enroll_status").css({"color": "lime"});
                   $("#enrolldetails").css({"display":"block"});
+                  $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#enrolldetails").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#validation").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#enrollvaldetails").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 4
                   $("#not_enrolled").removeClass("current-item");
@@ -66,7 +75,7 @@ $(document).ready(function() {
 
    
 
-    },1000);
+    },500);
     
 
 });

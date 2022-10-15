@@ -118,6 +118,86 @@ $(document).ready(function() {
 
 
 
+       //dashboard counter for pending payments
+       $.post("codes/counter.php",
+       {data8:'get'},function(data8){
+       
+           if(data8>0){
+                //    console.log(data7);
+               $(".pending_payments").text(data8.toLocaleString());
+           }else{
+              
+                $(".pending_payments").text("0");
+           }
+       });
+
+         //dashboard counter for acknowledged payments
+         $.post("codes/counter.php",
+         {data9:'get'},function(data9){
+         
+             if(data9>0){
+                  //    console.log(data7);
+                 $(".received_payments").text(data9.toLocaleString());
+             }else{
+                
+                  $(".received_payments").text("0");
+             }
+         });
+
+           //dashboard counter for acknowledged payments
+           $.post("codes/counter.php",
+           {data10:'get'},function(data10){
+           
+               if(data10>0){
+                    //    console.log(data7);
+                   $(".for_receipt").text(data10.toLocaleString());
+               }else{
+                  
+                    $(".for_receipt").text("0");
+               }
+           });
+
+          //dashboard counter for acknowledged payments
+           $.post("codes/counter.php",
+           {data11:'get'},function(data11){
+           
+               if(data11>0){
+                    //    console.log(data7);
+                   $(".verified").text(data11.toLocaleString());
+               }else{
+                  
+                    $(".verified").text("0");
+               }
+           });
+
+           //dashboard counter for pending registrations
+           $.post("codes/counter.php",
+           {data12:'get'},function(data12){
+           
+               if(data12>0){
+                    //    console.log(data7);
+                   $(".pendingusers").text(data12.toLocaleString());
+               }else{
+                  
+                    $(".pendingusers").text("0");
+               }
+           });
+              //dashboard counter for total registered students
+              $.post("codes/counter.php",
+              {data13:'get'},function(data13){
+              
+                  if(data13>0){
+                       //    console.log(data7);
+                      $(".accepted").text(data13.toLocaleString());
+                  }else{
+                     
+                       $(".accepted").text("0");
+                  }
+              });
+
+
+
+
 
     },1000);
     

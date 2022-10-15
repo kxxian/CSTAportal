@@ -38,8 +38,8 @@ if ($pageValue == 0) {
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-cogs"></i>';
-       $strSidebar .= '                <span>Settings</span></a>';
+       $strSidebar .= '                <i class="fas fa-fw fa-key"></i>';
+       $strSidebar .= '                <span>Change Password</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -87,8 +87,8 @@ if ($pageValue == 0) {
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-cogs"></i>';
-       $strSidebar .= '                <span>Settings</span></a>';
+       $strSidebar .= '                <i class="fas fa-fw fa-key"></i>';
+       $strSidebar .= '                <span>Change Password</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -136,8 +136,8 @@ if ($pageValue == 0) {
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-cogs"></i>';
-       $strSidebar .= '                <span>Settings</span></a>';
+       $strSidebar .= '                <i class="fas fa-fw fa-key"></i>';
+       $strSidebar .= '                <span>Change Password</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -184,8 +184,8 @@ if ($pageValue == 0) {
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-cogs"></i>';
-       $strSidebar .= '                <span>Settings</span></a>';
+       $strSidebar .= '                <i class="fas fa-fw fa-key"></i>';
+       $strSidebar .= '                <span>Change Password</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->
@@ -234,8 +234,8 @@ if ($pageValue == 0) {
        //<!-- Nav Item - Enrollment -->
        $strSidebar .= '        <li class="nav-item active">';
        $strSidebar .= '            <a class="nav-link" href="settings.php">';
-       $strSidebar .= '                <i class="fas fa-fw fa-cogs"></i>';
-       $strSidebar .= '                <span>Settings</span></a>';
+       $strSidebar .= '                <i class="fas fa-fw fa-key"></i>';
+       $strSidebar .= '                <span>Change Password</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Document -->

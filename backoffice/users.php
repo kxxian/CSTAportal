@@ -238,7 +238,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-8">
                             <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
                             <select id="dept" name="dept" class="form-control" required>
-                                <option selected="" disabled>Select Department</option>
+                                <option selected disabled>Select Department</option>
                                 <?php
                                 require_once("includes/connect.php");
 

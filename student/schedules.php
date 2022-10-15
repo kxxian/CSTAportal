@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>CSTA Portal | Class Schedules</title>
+  <title>Class Schedules</title>
 
   <!-- Site Icons -->
   <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
@@ -65,7 +65,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Class Schedules</h1>
+          <h1 class="h4 mb-4 text-gray-900 font-weight-bold">Class Schedules</h1>
 
           <div class="main-body">
             <div class="main-body">
@@ -193,6 +193,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <!-- Scripts -->
     <script src="js/schedules.js"></script>
     <script src="js/notes.js"></script>

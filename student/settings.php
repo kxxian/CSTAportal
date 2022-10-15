@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | Settings</title>
+    <title>Change Password</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
@@ -117,7 +117,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Settings</h1>
+                    <!-- <h1 class="h4 mb-4 text-gray-900 font-weight-bold">Change Password</h1> -->
 
                     <div class="main-body">
 
@@ -131,7 +131,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                         <div class="main-body">
                             <div class="row gutters-sm">
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-4 mb-3" hidden>
                                     <div class="card">
                                         <div class="card-header py-3">
                                             <h6 class="m-0 font-weight-bold text-gray-900 text-center"><i class="fa fa-user-circle" aria-hidden="true"></i> Profile Picture</h6>
@@ -144,11 +144,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="picture">
 
                                                     <?php
-                                                    $file = 'uploads/users/' . $sid. '.jpg';
+                                                    $file = 'uploads/users/' . $sid . '.jpg';
                                                     if (!file_exists($file)) {
                                                         $dp = 'default.jpg';
                                                     } else {
-                                                        $dp = $sid.'.jpg';
+                                                        $dp = $sid . '.jpg';
                                                     }
                                                     echo '<img  src="uploads/users/' . $dp . '" class="picture-src" id="wizardPicturePreview" width="150" title="Choose Picture">' ?>
                                                     <input type="file" id="wizard-picture" name="picture" accept=".jpg" class="">
@@ -161,60 +161,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     </div>
                                 </div>
 
-                                <div class="col-md-8">
+                                <div class="col-sm-12">
                                     <div class="card mb-3">
                                         <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-gray-900 text-center"><i class="fa fa-phone" aria-hidden="true"></i> Contact Details</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <form action="updatecontact.php" method="POST">
-                                                <div class="row">
-
-                                                    <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Mobile</h6>
-                                                    </div>
-                                                    <div class="col-sm-9 text-secondary text-gray-900">
-
-                                                        <input type="text" class="form-control" value="<?= $mobile ?>" name="txtMobile">
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Email</h6>
-                                                    </div>
-                                                    <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <input type="email" class="form-control" value="<?= $email ?>" name="txtEmail">
-                                                    </div>
-                                                </div>
-                                                <hr>
-
-                                                <div class="col-sm-12">
-                                                    <button type="submit" class="btn btn-primary float-right" name="save"><i class="fas fa-save"></i> Save</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row gutters-sm">
-
-                                <div class="col-md-4">
-                                    <p style="color:red; font-weight:bold;" class="text-center"></p>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <div class="card mb-3">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-gray-900 text-center"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</h6>
+                                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Change Password</h6>
                                         </div>
                                         <div class="card-body">
                                             <form action="changepass.php" method="POST">
                                                 <div class="row">
 
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Current Password</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Current Password</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
 
@@ -224,7 +181,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">New Password</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">New Password</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtnewpass" id="txtnewpass">
@@ -234,7 +191,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Re-type Password</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Re-type Password</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtrepass" id="txtrepass">
@@ -243,13 +200,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 </div>
                                                 <hr>
                                                 <div class="col-sm-12">
-                                                    <button type="submit" class="btn btn-primary float-right" name="changepass"><i class="fas fa-save" ></i> Save</button>
+                                                    <button type="submit" class="btn btn-success float-right" name="changepass"><i class="fa fa-check fa-fw"></i> Save</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                         
 
 
                         </div>
@@ -348,8 +307,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <?php
         include_once("includes/scripts.php");
         ?>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
 <script src="js/header.js"></script>
+
 </html>

@@ -66,7 +66,7 @@ if (isset($_GET['newpwd'])) {
 <body>
     <div class="main-form-box">
 
-        <div class="container-fluid" width="100%">
+        <div class="container-fluid" height="100%">
             <div class="logo-top float-left">
                 <a href="#"><img width="390" src="img/logologo.png" alt="" /></a><br><br>
             </div>
@@ -178,23 +178,8 @@ if (isset($_GET['newpwd'])) {
                                         <br><br>
 
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cum odit, ab possimus esse, fuga neque dolorem illum iusto minus nemo quibusdam tempore, ipsa vero vitae nostrum eius suscipit nisi.
-                                        Debitis, aperiam quaerat corrupti cum quasi architecto natus facere quidem praesentium iste voluptatibus. Eveniet, aliquam quos! Error provident ea totam, aut odio dignissimos odit quam repellendus dolorum modi vel mollitia!
-                                        Voluptatibus iure pariatur cupiditate exercitationem nulla officiis doloremque? Odio explicabo quod repellat beatae commodi facilis. Nisi quasi sed error tenetur commodi fugit alias? Numquam, laboriosam? Voluptas similique excepturi maxime fugit!
-                                        Sit amet atque rem, excepturi pariatur nisi sed sunt nemo delectus vitae at doloremque eligendi consectetur quod ducimus hic velit accusamus eius! Quibusdam, iusto? Blanditiis odio dolore vel ut tenetur.
-                                        Molestias laborum corrupti unde in. Provident quam illo quia consequatur vero accusantium voluptatibus voluptas minus rem voluptates vitae, fugiat libero, placeat sapiente vel omnis magnam harum, velit modi. Amet, reprehenderit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut fugit et voluptas quibusdam animi iusto aperiam. Ex distinctio voluptates odio obcaecati omnis, beatae quia nihil, aperiam dignissimos quas tempore tempora?
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, vero quisquam fugit deserunt cum exercitationem, iusto nesciunt doloremque, amet laudantium repellat. Quisquam recusandae deserunt pariatur eos ab repellat sint dicta.
-                                        Impedit alias porro earum inventore officiis natus, aliquam architecto culpa iusto sequi nam atque voluptatum voluptas tempore ut placeat consectetur modi. Neque repellendus qui, nesciunt nemo suscipit tenetur iusto quam!
-                                        Eius, id quaerat magnam blanditiis eos est perspiciatis tenetur nam nesciunt corporis totam eligendi consequatur! Perspiciatis aliquid suscipit tempora ut neque, aspernatur officiis consequatur sint, odio commodi illo modi. Quo!
-                                        Inventore eveniet veniam reiciendis soluta nam eum incidunt aliquam possimus culpa debitis iure, laudantium illum dolorem consequatur. Quibusdam, iste adipisci. Nobis cumque accusamus quae. Aliquam quaerat hic iste repudiandae sint.
-                                        Iure praesentium dolores magni corporis eum deserunt quos explicabo autem quas non aliquid suscipit beatae qui id temporibus ratione, dolor voluptate distinctio? Rem enim accusamus illum officia vel dignissimos ipsam!
-                                        Exercitationem ad dignissimos quam vero sapiente consequatur provident neque explicabo harum laudantium amet nulla pariatur, repellat, iure accusantium voluptatem id? Excepturi aliquam a consectetur vel natus, iusto quidem maxime ipsum.
-                                        Incidunt qui, numquam dicta laudantium nesciunt quae quis, molestias odit accusamus minima provident aliquam hic. Aliquam praesentium fugiat itaque maxime quibusdam nostrum eum asperiores quam cumque illum! Aliquid, sapiente soluta.
-                                        Velit recusandae illo quos dicta iste eos eum autem alias quidem harum incidunt aut unde repellat ipsum, excepturi perferendis, voluptate animi vero provident sunt. Natus omnis consequuntur optio doloremque eius.
-                                        Fuga magni repellendus incidunt sint laboriosam beatae voluptatum temporibus optio labore, ad, velit aliquid iure, corrupti fugit nemo aut. Consequuntur est natus tempora placeat! Fugit omnis aliquam neque atque ducimus!
-                                        Provident rerum enim similique non explicabo amet deleniti omnis quia adipisci accusamus laborum ut veritatis, vitae earum dolor ullam neque dolorum deserunt doloremque assumenda? Temporibus perferendis facere praesentium repellat incidunt.
-                                        Quos, mollitia dicta placeat quod sunt fugit, incidunt voluptate sed excepturi pariatur laudantium dolores, laboriosam ipsum esse obcaecati cum molestias in eius quam rerum aliquid. Architecto saepe laborum placeat illo!
-                                        Hic nemo, voluptates, error cupiditate ratione odit nihil dignissimos provident minima facere blanditiis eius expedita, fugit culpa ut sequi magni earum placeat tempora velit iure obcaecati! At sapiente aspernatur rerum?
-                                        Voluptas deserunt alias soluta. Ipsa culpa praesentium natus delectus nulla iure, quos incidunt, officia rerum debitis tenetur repellat aliquam voluptatibus ad quibusdam est animi, eos eveniet qui. Tenetur, enim minus?
+                                    
+                                        <br><br>
                                         
                                     </p>
 
@@ -226,6 +211,9 @@ if (isset($_GET['newpwd'])) {
     require_once('includes/scripts.php');
 
     ?>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

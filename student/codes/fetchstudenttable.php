@@ -2,7 +2,7 @@
 
 <?php
 //session_start();
-       require_once("../includes/connect.php");
+       require_once("includes/connect.php");
        try{
         $sql="select * from students where username=? and pass=? ";
         $data=array($_SESSION['username'],$_SESSION['password']);
@@ -10,6 +10,8 @@
         $stmt->execute($data);
         $row=$stmt->fetch();
         $count=$stmt->rowCount();
+
+        $province=$row['province'];
 
         $yrlevelid=$row['yrlevel'];
         //$sid=$row['sid'];

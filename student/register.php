@@ -297,9 +297,10 @@
                                         <?php
                                         require_once("includes/connect.php");
 
-                                        $sql = "select * from refregion where regCode=13";
+                                        $sql = "select * from refregion where regCode=?";
+                                        $data=array('13');
                                         $stmt = $con->prepare($sql);
-                                        $stmt->execute();
+                                        $stmt->execute($data);
 
                                         while ($row = $stmt->fetch()) {
                                             echo '<option value=' . $row['regCode'] . '>' . $row['regDesc'] . '</option>';

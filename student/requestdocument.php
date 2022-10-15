@@ -24,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | Request Documents</title>
+    <title>Document Request</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,6 +56,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <!-- Bootstrap JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -123,58 +124,46 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <!-- <h3 class="h3 mb-4 text-gray-900">Request of Documents</h3> -->
                     <div class="main-body">
                         <div class="row">
-                            <div class="col-lg-6" id="gradereqform">
+                            <div class="col-sm-12" id="gradereqform">
                                 <!-- Basic Card Example -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-upload"></i> Request Document</h6>
                                     </div>
-
-
-
                                     <div class="card-body text-gray-900">
 
                                         <form method="POST" id="reqdocx" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <div class="form-group row">
-                                                    <div class="col-lg-12">
-                                                        <label><strong>Course</strong></label>
-                                                        <select class="form-control" id="selcourse" name="selcourse" required>
-                                                            <option selected="" disabled>Select Course</option>
-                                                            <?php
-                                                            $sql = "select * from courses where visible=? order by course asc";
-                                                            $data = array('VISIBLE');
-                                                            $stmt = $con->prepare($sql);
-                                                            $stmt->execute($data);
+                                                    <div class="col-sm-6">
+                                                        <label><strong>Place of Birth </strong>(City or Municipality Only)</label>
+                                                        <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="eg. Quezon City">
 
-                                                            while ($row = $stmt->fetch()) {
-                                                                echo '<option value=' . $row['course_ID'] . '>' . $row['course'] . '</option>';
-                                                            }
-                                                            $stmt = null;
-                                                            ?>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label><strong>Student Status</strong></label>
+                                                        <select name="" id="" class="form-control">
+                                                            <option value="Graduate">Graduate</option>
+                                                            <option value="Undergraduate">Undergraduate</option>
                                                         </select>
 
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <div class="col-lg-12">
-                                                        <label><strong>Year Graduated</strong> <i style="font-size: 0.9rem;color:#808080"><br>NOTE: If UNDERGRADUATE, indicate last SY. and Semester Attended</i></label>
-                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 " required>
+                                                    <div class="col-sm-6">
+                                                        <label><strong>Year Graduated</strong> (If <strong>UNDERGRADUATE</strong>, Add Last Semester Attended) </label>
+                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 First Semester " required>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-lg-12">
+                                                    <div class="col-sm-6">
                                                         <label><strong>Last School Attended Before CSTA</strong></label>
                                                         <input name="lastSchool" id="lastSchool" type="text" class="form-control" placeholder="e.g. STI College Novaliches" required>
                                                     </div>
                                                 </div>
-
-
                                                 <div class="form-group documents">
                                                     <div class="row">
-                                                        <div class="col-lg-12">
+                                                        <div class="col-sm-12">
 
-                                                            <label><strong>Documents</strong> <i style="font-size: 0.9rem;color:#808080">NOTE: Select all the documents to be requested </i> </label>
+                                                            <label><strong>Certifications</strong> </label>
 
                                                             <?php
                                                             $sql = "select * from documents where isActive=?";
@@ -201,33 +190,64 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 </div>
                                                 <div class="form-group purpose">
                                                     <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <label><strong>Purpose of Request</strong></label>
-                                                            <?php
-                                                            $sql = "select * from docreq_purpose where isActive=?";
-                                                            $data = array('1');
-                                                            $stmt = $con->prepare($sql);
-                                                            $stmt->execute($data);
+                                                        <div class="col-sm-6">
+                                                            <label><strong>Transcript of Records - First Copy</strong> (Enter Purpose of Request)</label>
+                                                            <input type="text" name="" id="" class="form-control" placeholder="eg. Visa Application, Employment">
 
-                                                            while ($row = $stmt->fetch()) {
-                                                                echo '
-                                                                <div class="form-check" id="chkpurpose">
-                                                                <input class="form-check-input" type="checkbox" value="' . $row['purpose'] . '" id="purpose" name="purpose[]">
-                                                                <label class="form-check-label" for="">
-                                                                    ' . $row['purpose'] . '
-                                                                </label>
-                                                                </div>';
-                                                            }
-                                                            $stmt = null;
-                                                            ?>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label><strong>Transcript of Records - Duplicate Copy</strong> (Attach Copy of Original TOR)</label>
+                                                            <input type="file" name="" id="" class="form-control">
+
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <div class="col-lg-12">
-                                                        <label><strong>Others (Specify)</strong></label>
-                                                        <input id="otherpurpose" name="otherpurpose" type="text" class="form-control" placeholder="Specify if purpose is not listed above" required>
+                                                    <div class="col-sm-12">
+
+                                                        <label><strong>Authentication/Certified True Copy</strong> </label>
+
+                                                        <?php
+                                                        $sql = "select * from documents where isActive=?";
+                                                        $data = array('1');
+                                                        $stmt = $con->prepare($sql);
+                                                        $stmt->execute($data);
+
+                                                        while ($row = $stmt->fetch()) {
+                                                            echo '
+                                                            <div class="form-check documents" id="chkdoc">
+                                                            <input class="form-check-input" type="checkbox" value="' . $row['doc'] . '" id="doc" name="doc[]">
+                                                            <label class="form-check-label" for="">
+                                                                ' . $row['doc'] . '
+                                                            </label>
+                                                            </div>';
+                                                        }
+                                                        $stmt = null;
+                                                        ?>
+
                                                     </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label><strong>Receiver/Representative</strong></label>
+                                                        <input type="text" name="" id="" class="form-control" placeholder="Enter Name of Receiver">
+
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <label><strong>Contact Number</strong></label>
+                                                        <input type="text" name="" id="" class="form-control" placeholder="Enter Receiver's Contact Number">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label><strong>Delivery Address</strong>(Unit/House Number, Street Name, Subdivision/Village, Barangay/District Name, City/Municipality)</label>
+                                                        <input type="text" name="" id="" class="form-control" placeholder="eg. #124, Don Vicente St., Brgy. Bagong Silangan, Quezon City">
+
+                                                    </div>
+
+
                                                 </div>
 
 
@@ -342,50 +362,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     </div>
 
-    <script>
-        //View Full Request Details Modal
-        // $(document).ready(function() {
-        //     $('.viewdetails').on('click', function() {
-        //         $('#viewfulldetails').modal('show');
-
-        //         $tr = $(this).closest('tr');
-
-        //         var data = $tr.children("td").map(function() {
-        //             return $(this).text();
-        //         }).get();
-
-        //         console.log(data);
-
-        //         //fetch data from request documents datatable
-        //         $('#assess_id').val(data[4]);
-        //         $('#lschool').val(data[8]);
-        //         $('#course').val(data[4]);
-        //         $('#ygrad').val(data[7]);
-        //         $('#docrq').val(data[9]);
-        //         $('#docp').val(data[10]);
-        //         $('#datereq').val(data[11]);
-        //         $('#status').val(data[12]);
-
-        //     });
-        // });
-
-        // //close details modal
-        // $(document).ready(function() {
-        //     $('.close').on('click', function() {
-        //         $('#viewfulldetails').modal('hide');
-
-        //     });
-        // });
-        // $(document).ready(function() {
-        //     $('#done').on('click', function() {
-        //         $('#viewfulldetails').modal('hide');
-
-        //     });
-        // });
-    </script>
 
     <?php
-    // include_once("includes/scripts.php");
+    include_once("includes/scripts.php");
     ?>
 
 
@@ -393,6 +372,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script type="text/javascript" src="js/requestdocument.js">
 
     </script>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 <script src="js/header.js"></script>
 

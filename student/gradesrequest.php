@@ -1,5 +1,7 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
 require_once("codes/fetchcurrentsyandsem.php");
@@ -34,8 +36,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!--Jquery Datatables Bootstrap 4 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -92,7 +113,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-upload"></i> Request Grades</h6>
                                     </div>
-                            
+
 
 
 
@@ -102,12 +123,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
                                             <div class="form-group row">
-                                                <div class="col-lg-6">
+                                                <div class="col-sm-6">
                                                     <label for="sy1"><strong>School Year</strong></label>
                                                     <input name="sy1" type="text" value="<?= $currentsyval ?>" class="form-control">
                                                 </div>
 
-                                                <div class="col-lg-6">
+                                                <div class="col-sm-6">
                                                     <label for="sem1" class="text-gray-900"><b>Semester</b></label>
                                                     <select class="form-control" id="sem1" name="sem1" required>
                                                         <option selected="" disabled>Select Semester..</option>
@@ -118,21 +139,16 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         $stmt->execute($data);
 
                                                         while ($row = $stmt->fetch()) {
-                                                            echo '<option value=' . $row['semester_ID'] . '>' . $row['semester'] . '</option>';
+                                                            echo '<option value=' . $row['semester'] . '>' . $row['semester'] . '</option>';
                                                         }
                                                         $stmt = null;
                                                         ?>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-lg-12">
-                                                    <label for="purpose"><strong>Purpose of Request</strong></label>
-                                                    <input name="purpose" type="text" class="form-control" required>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-lg-12">
+
+                                            <div class="col-sm-12">
                                                 <div class="text-right"><button type="submit" class="btn btn-success" name="submit"><i class="fas fa-check"></i> Submit</button></div>
                                             </div>
 
@@ -145,7 +161,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                             </div>
 
-                            <div class="col-lg-7">
+                            <div class="col-sm-7">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-alt"></i> Request History</h6>
@@ -153,49 +169,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                                            <table class="table table-bordered " id="reqTable" width="100%" cellspacing="0">
                                                 <thead class="thead-dark">
                                                     <tr>
-                                                        <!-- <th>#</th> -->
-                                                        <!-- <th>Course</th> -->
                                                         <th>S.Y.</th>
                                                         <th>Semester</th>
                                                         <th>Requested</th>
                                                         <th class="text-center">Status</th>
-                                                        <th class="text-center">Actions</th>
+                                                        <th class="text-center" width="40">Actions</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    <?php // displays the submitted request of the student
-                                                    $sql = "select * from vwgradereq where sid=?";
-                                                    $data = array($sid);
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute($data);
-                                                  
-                                                    while ($row = $stmt->fetch()) {
 
-                                                        echo '<tr> 
-                                                
-                                                <td>' . $row['schoolyr'] . '</td> 
-                                                <td>' . $row['semester'] . '</td> 
-                                                <td class="text-center">' . $row['date_req'] . '</td>
-                                                <td class="text-center">' . $row['status'] . '</td>
-                                                <td> 
-
-                                                <button type="button" id="' . $row["gradereq_ID"] . '" 
-                                                class="btn btn-warning btn-sm sendassessment" title="Resend Request"><i class="fa fa-fw fa-redo"></i></button>
-                                                
-                                                <button type="button" id="' . $row["gradereq_ID"] . '" 
-                                                class="btn btn-danger btn-sm sendassessment" title="Cancel Request"><i class="fa fa-fw fa-times"></i></button>
-                                                
-                                                
-                                                </td>
-
-
-                                                </tr>';
-                                                    }
-                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -233,6 +219,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 </body>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
+<!-- DataTable CDN JS -->
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+<!-- <script src="plugins/jquery/jquery.min.js"></script> -->
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="js/header.js"></script>
+<script src="js/gradereq.js"></script>
 
 </html>

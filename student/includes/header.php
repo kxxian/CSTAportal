@@ -17,7 +17,8 @@
 $strheader='<nav class="navbar navbar-expand navbar-light  topbar mb-4 static-top shadow" style="background-color:#2E1503; ">'; //#261f17--old
 $strheader.='<ul class="navbar-nav">';
 $strheader.='<li class="nav-item dropdown no-arrow">';
-$strheader.='<span class="mr-2 d-none d-lg-inline text-gray-100 medium"><strong>SY: '.$currentsyval.'</strong>  <strong>'.$currentsemval.' | Enrollment Status: <span class="enroll_status"></span></strong> </span></li>';
+$strheader.='<span class="mr-2 d-none d-lg-inline text-gray-100 medium"><strong>SY: '.$currentsyval.'</strong>  <strong>'.$currentsemval.' | Enrollment Status: <span class="enroll_status font-weight-bold"></span></strong> </span>
+</li>';
 $strheader.='</ul>';
 
 
@@ -84,7 +85,7 @@ $strheader.=' </li>';
 $strheader.='</li>';
 $strheader.='<li class="nav-item dropdown no-arrow">';
 $strheader.='  <a class="nav-link dropdown-toggle" href="profile.php"  role="button"\>';    
-$strheader.='        <span class="mr-2 d-none d-lg-inline text-gray-100 medium">Welcome, <strong>'. $fullname.'</strong> </span>';
+$strheader.='        <span class="mr-2 d-none d-lg-inline text-gray-100 medium">Welcome <strong>'. $fullname.' </strong> </span>';
 $strheader.='       <img class="img rounded-circle"';
 $strheader.='            src="uploads/users/'.$dp.'" width="40" height="40">';
 $strheader.=' </a>';

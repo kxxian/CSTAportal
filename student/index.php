@@ -34,7 +34,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-   
+
 </head>
 
 <body id="page-top">
@@ -199,7 +199,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-                 </div>
+                </div>
                 <!-- Content Row -->
                 <div class="row">
                     <?php echo $note ?>
@@ -228,7 +228,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <?php
     include_once("includes/scripts.php");
     ?>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 <script src="js/header.js"></script>
+
 </html>

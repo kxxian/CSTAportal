@@ -52,6 +52,18 @@ function get_pendingpayments(){
     return $statement->rowCount();
 }
 
+function get_gradereq(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwgradereq WHERE status=?");
+    $data=array('Pending');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
+
 
 
 

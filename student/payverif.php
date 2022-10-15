@@ -386,7 +386,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script>
         $(document).ready(function() {
 
-         
+
             // Get value on keyup function
             $("#tfeeamount, #totalothers, #amtpaid").keyup(function() {
 
@@ -402,15 +402,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 //input displayed
                 $('#totaldue1').val(total);
 
-               
+
                 //Philippine Currency
                 let amtdue = total.toLocaleString("fil-PH", {
                     style: "currency",
                     currency: "PHP"
                 })
-                var total_amt=document.getElementById("totaldue1");
-                
-                total_amt.value=amtdue;
+                var total_amt = document.getElementById("totaldue1");
+
+                total_amt.value = amtdue;
 
 
                 //Amounts Validation
@@ -434,8 +434,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <?php
     include_once("includes/scripts.php");
     ?>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
 <script src="js/header.js"></script>
+
 </html>

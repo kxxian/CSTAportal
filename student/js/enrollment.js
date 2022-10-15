@@ -1,4 +1,66 @@
 $(document).ready(function() {
+
+  var enrollTable = $('#enrollTable').dataTable({
+    dom: 'Bfrtip',
+  
+    "paging": true,
+    "processing": false,
+    "serverSide": true,
+    "order": [],
+    "info": true,
+    searching: false, 
+    paging: false,
+    info: false,
+    "ajax": {
+        url: "codes/fetch_enroll.php",
+        type: "POST"
+
+    },
+    "columnDefs": [{
+        "target": [0,1,2,3,4],
+        "orderable": false,
+    }, ],
+
+    
+});
+
+var enrollvalTable = $('#enrollvalTable').dataTable({
+  dom: 'Bfrtip',
+
+  "paging": true,
+  "processing": false,
+  "serverSide": true,
+  "order": [],
+  "info": true,
+  searching: false, 
+  paging: false,
+  info: false,
+  "ajax": {
+      url: "codes/fetch_enrollval.php",
+      type: "POST"
+
+  },
+  "columnDefs": [{
+      "target": [0,1,2],
+      "orderable": false,
+  }, ],
+
+  
+});
+
+setInterval (function() {
+  enrollTable.api().ajax.reload();
+  enrollvalTable.api().ajax.reload();
+},10000)
+
+
+
+
+
+
+
+
+
     
     $(document).on('click', '.cancel_enroll', function() {
         var enroll_id = $(this).attr('id');
@@ -29,8 +91,8 @@ $(document).ready(function() {
                 'success'
               )
               setTimeout(function(){// wait for 5 secs(2)
-                location.reload(); // then reload the page.(3)
-           }, 1500); 
+                enrollTable.api().ajax.reload();
+           }, 500); 
             
             }
            
@@ -67,8 +129,8 @@ $(document).ready(function() {
               'success'
             )
             setTimeout(function(){// wait for 5 secs(2)
-              location.reload(); // then reload the page.(3)
-         }, 1500); 
+              enrollvalTable.api().ajax.reload();
+         }, 500); 
           
           }
          

@@ -92,6 +92,87 @@ echo $count;
 
 }
 
+ //Dashboard Card -- Pending payments 
+ if(isset($_POST['data8'])){
+        
+  $sql = "SELECT payment_status from vwpayverif where payment_status=?";
+  $data = array("Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+ //Dashboard Card -- for verification payments 
+ if(isset($_POST['data9'])){
+        
+  $sql = "SELECT payment_status from vwpayverif where payment_status=?";
+  $data = array("Received");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+ //Dashboard Card -- for verification payments 
+ if(isset($_POST['data10'])){
+        
+  $sql = "SELECT payment_status from vwpayverif where payment_status=?";
+  $data = array("For Receipt");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+ //Dashboard Card -- for verified payments 
+ if(isset($_POST['data11'])){
+        
+  $sql = "SELECT payment_status from vwpayverif where payment_status=?";
+  $data = array("Verified");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+//Dashboard Card -- for pending registrations 
+if(isset($_POST['data12'])){
+        
+  $sql = "SELECT status from vwstudents where status=? or isAccepted=?";
+  $data = array("Pending",0);
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+//Dashboard Card -- for pending registrations 
+if(isset($_POST['data13'])){
+        
+  $sql = "SELECT status from vwstudents where status=? and isAccepted=?";
+  $data = array("Verified",1);
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+
+
+
 
 
 

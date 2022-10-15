@@ -1,7 +1,12 @@
 <?php
-       session_start();
-    //    require_once('includes/connect.php');
+ //require_once('includes/connect.php');
+       if(!isset($_SESSION)) 
+       { 
+           session_start(); 
+       } 
+        
        try{
+       
         $sql="select * from vwstudents where username=? and pass=? ";
         $data=array($_SESSION['username'],$_SESSION['password']);
         $stmt=$con->prepare($sql);
@@ -30,6 +35,8 @@
            $e->getMessage();
        }
 
+
+      
     
 
 ?>
