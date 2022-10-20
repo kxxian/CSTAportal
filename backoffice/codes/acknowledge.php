@@ -74,12 +74,6 @@ if (isset($_POST['operation'])) {
         $mail->smtpClose();
 
 
-
-
-
-
-
-
     }
 }
 

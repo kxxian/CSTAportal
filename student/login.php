@@ -168,17 +168,17 @@ if (isset($_GET['newpwd'])) {
 
                         <div class="panel-body" style="height:398px">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-sm-12">
                                     <h4 style="color:#65350f" class="h4">Announcements</h4>
                                 </div>
-                                <div class=" col-md-12">
+                                <div class=" col-sm-12">
                                     <p style="overflow-y:auto; height:300px; color:black">
                                         <b>CSTA Registrar</b><br>
                                         <small> Sept. 19, 2022 <span>5:12 PM</span></small>
                                         <br><br>
 
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cum odit, ab possimus esse, fuga neque dolorem illum iusto minus nemo quibusdam tempore, ipsa vero vitae nostrum eius suscipit nisi.
-                                    
+                                        
                                         <br><br>
                                         
                                     </p>

@@ -73,11 +73,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="col-md-9 mb-3">
                   <div class="card shadow">
                     <div class="card-header">
-                      <h6 class="m-0 font-weight-bold text-gray-900">Add Class Schedule
-                        <button id="btnSched" class="btn btn-success w-20 float-right" data-toggle="modal">
+                      <h6 class="m-0 font-weight-bold text-gray-900">
+                        <button id="btnSched" class="btn btn-success btn-sm w-20 float-sm-right" data-toggle="modal">
                           <i class="fas fa-plus"></i>
                           &nbsp;
-                          Add Schedule
+                          
                         </button>
                       </h6>
 
@@ -85,7 +85,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="card-body">
 
                       <div class="card-body">
-                        <table class="table table-bordered table-primary">
+                        <table class="table table-bordered table-warning">
                           <thead>
                             <tr>
                               <th scope="col" class="text-gray-900">Subject</th>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                   <div class="card shadow">
                     <div class="card-header font-weight-bold text-gray-900" style="background: #fff3cd">
                       Side Notes
-                      <button id="btnNote" data-toggle="modal" class="btn btn-success btn-sm float-md-right" title="Add new side note"><i class="fas fa-plus"></i></button>
+                      <button id="btnNote" data-toggle="modal" class="btn btn-success btn-sm float-sm-right" title="Add new side note"><i class="fas fa-plus"></i></button>
                     </div>
                     <div class="card-body" style="background: #fff3cd">
                       <table>
@@ -125,7 +125,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title text-gray-900" id="modal-title">
-                    <i class="fas fa-thumbtack"></i>
+                    <i class="fas fa-fw fa-thumbtack"></i>
                     &nbsp;
                     Class Schedule
                   </h5>

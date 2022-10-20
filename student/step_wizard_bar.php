@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <div class="row">
+        <div class="col-sm-12 float-right mb-2">
+            <span class="float-right">
+                <button class="btn btn-info btn-sm" title="What's This?">
+                    <i class="fa fa-question fa-fw"></i>
+                </button>
+            </span>
+        </div>
+    </div>
     <section class="step-wizard">
         <ul class="step-wizard-list">
         <li class="step-wizard-item current-item" id="not_enrolled">

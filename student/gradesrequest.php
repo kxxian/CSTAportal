@@ -139,7 +139,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         $stmt->execute($data);
 
                                                         while ($row = $stmt->fetch()) {
-                                                            echo '<option value=' . $row['semester'] . '>' . $row['semester'] . '</option>';
+                                                            echo '<option value="' . $row['semester'] . '">' . $row['semester'] . '</option>';
                                                         }
                                                         $stmt = null;
                                                         ?>

@@ -92,4 +92,19 @@ function validate_enroll_assessment($fname, $newname)
     return $res;
 }
 
+function uploadtor($fname, $newname)
+{
+    $upload_directory = "../uploads/reqdoc/tor_copy/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
 ?>

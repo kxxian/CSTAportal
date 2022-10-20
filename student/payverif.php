@@ -103,7 +103,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tuition">
                                 <div class="row gutters-sm">
-                                    <div class="col-lg-12">
+                                    <div class="col-sm-12">
 
                                         <!-- Basic Card Example -->
                                         <div class="card shadow mb-4">
@@ -119,7 +119,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 <h5 class="font-weight-bold">Tuition Fee</h5>
                                                             </label>
                                                             <div class="form-group row" id="inputtfee">
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         School Year
                                                                     </label>
@@ -127,7 +127,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                                     <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023">
                                                                 </div>
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         Semester
                                                                     </label>
@@ -152,7 +152,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div>
 
                                                             <div class="form-group row" id="inputtfee2">
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         Term
                                                                     </label>
@@ -175,7 +175,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         Amount
                                                                     </label>
@@ -190,7 +190,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                             <br><br>
                                                             <div class="form-group" id="othersopt">
-                                                                <div class="col-lg-12">
+                                                                <div class="col-sm-12">
 
                                                                     <?php
                                                                     $sql = "select * from particulars where isActive='Active'";
@@ -210,7 +210,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     ?>
                                                                 </div><br>
                                                                 <div class="form-group row">
-                                                                    <div class="col-lg-6">
+                                                                    <div class="col-sm-6">
                                                                         <label class="font-weight-bold">
                                                                             Total (Other Fees)
                                                                         </label>
@@ -218,7 +218,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
                                                                     </div>
 
-                                                                    <div class="col-lg-6" id="reqform">
+                                                                    <div class="col-s-6" id="reqform">
                                                                         <label for=""><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
                                                                         <input type="file" accept=".jpg" class="form-control-file" name="reqform">
                                                                     </div>
@@ -233,7 +233,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Total</legend>
                                                             <div class="form-group row">
-                                                                <div class="col-lg-3">
+                                                                <div class="col-sm-3">
 
                                                                     <?php
                                                                     ?>
@@ -253,12 +253,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <legend class="scheduler-border">Payment Information</legend>
                                                             <i style="font-size: 1rem;color:red">*Fill all the details as indicated on your proof of payment</i>
                                                             <div class="form-group row">
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>
                                                                     <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" class="form-control" name="amtpaid" id="amtpaid" placeholder="0.00" style="text-align:right;" required>
                                                                     <p class="font-weight-bold" id="errmsg" style="display:none; color:red">Please Enter a Valid Amount !</p>
                                                                 </div>
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
 
                                                                     <label for="sentthru"><strong>Sent Thru</strong></label>
                                                                     <select class="form-control" id="sentthru" name="sentthru" required>
@@ -277,7 +277,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="paymethod"><strong>Payment Method</strong></label>
                                                                     <select class="form-control" id="paymethod" name="paymethod" required>
                                                                         <option selected="" disabled>..</option>
@@ -293,30 +293,30 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         ?>
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-lg-3">
+                                                                <div class="col-sm-3">
                                                                     <label for="dop"><strong>Payment Date</strong></label>
                                                                     <input type="date" class="form-control" id="DoP" name="DoP" required>
                                                                 </div>
-                                                                <div class="col-lg-3">
+                                                                <div class="col-sm-3">
                                                                     <label for="dop"><strong>Time</strong></label>
                                                                     <input type="time" step="1" class="form-control" id="ToP" name="ToP" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <div class="col-lg-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="paymentproof"><strong>Proof of Payment</strong></label>
                                                                     <input type="file" accept=".jpg" class="form-control-file" name="paymentproof" required>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
-                                                                <div class="col-lg-12">
+                                                                <div class="col-sm-12">
                                                                     <label for="tuitionpaynote"><strong>Notes (Optional)</strong></label>
                                                                     <textarea class="form-control" id="note" name="note" rows="4" maxlength="200" placeholder="Maximum of 200 characters.."></textarea>
                                                                 </div>
                                                             </div>
                                                         </fieldset>
                                                     </div>
-                                                    <div class="col-lg-12">
+                                                    <div class="col-sm-12">
                                                         <div class="text-right"><button type="submit" class="btn btn-success" name="uploadpayments"><i class="fas fa-check"></i> Submit</button></div>
                                                     </div>
                                                 </form>

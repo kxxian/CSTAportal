@@ -83,7 +83,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <?php
          //office conditions for sidebar menu
          if ($office=="Accounting"){
-            $pageValue = 2;
+            $pageValue = 3;
         }else{
             header("Location:index.php");
         }

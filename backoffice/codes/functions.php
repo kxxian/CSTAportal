@@ -63,6 +63,28 @@ function get_gradereq(){
     return $statement->rowCount();
 }
 
+function get_docureq(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwdocureq WHERE status=?");
+    $data=array('Sent');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+function get_clearance(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwclearance WHERE status=?");
+    $data=array('Sent');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
+
 
 
 

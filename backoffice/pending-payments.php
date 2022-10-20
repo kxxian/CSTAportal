@@ -82,7 +82,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         if ($office == "Accounting") {
-            $pageValue = 2;
+            $pageValue = 3;
         } else {
             header("Location:index.php");
         }

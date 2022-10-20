@@ -67,26 +67,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         });
     </script>
     <style>
-        .error {
-            color: #df4759;
-            font-size: 1rem;
-            font-weight: bold;
-            display: block;
-            margin-top: 5px;
-            width: 100%;
-        }
 
-        /* input.error {
-            border: 2px solid #df4759;
-            font-weight: 300;
-            color: #df4759;
-        } */
-
-        select.error {
-            border: 2px solid #df4759;
-            font-weight: 300;
-
-        }
     </style>
 
 
@@ -132,17 +113,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     </div>
                                     <div class="card-body text-gray-900">
 
-                                        <form method="POST" id="reqdocx" enctype="multipart/form-data">
+                                        <form method="POST" action="codes/reqdoc.php" id="reqdocx" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
                                                         <label><strong>Place of Birth </strong>(City or Municipality Only)</label>
-                                                        <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="eg. Quezon City">
+                                                        <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="eg. Quezon City" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32">
 
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label><strong>Student Status</strong></label>
-                                                        <select name="" id="" class="form-control">
+                                                        <select name="studstat" id="studstat" class="form-control">
                                                             <option value="Graduate">Graduate</option>
                                                             <option value="Undergraduate">Undergraduate</option>
                                                         </select>
@@ -152,11 +134,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
                                                         <label><strong>Year Graduated</strong> (If <strong>UNDERGRADUATE</strong>, Add Last Semester Attended) </label>
-                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 First Semester " required>
+                                                        <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 First Semester " onkeypress="return (event.charCode > 64 && 
+	                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode>=48 && event.charCode<=57) 
+                                                        || (event.charCode==45)" maxlength="30" required>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label><strong>Last School Attended Before CSTA</strong></label>
-                                                        <input name="lastSchool" id="lastSchool" type="text" class="form-control" placeholder="e.g. STI College Novaliches" required>
+                                                        <input name="lastSchool" id="lastSchool" type="text" class="form-control" placeholder="e.g. STI College Novaliches" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="100" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group documents">
@@ -188,18 +173,33 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
 
                                                 </div>
-                                                <div class="form-group purpose">
+                                                <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-sm-6">
                                                             <label><strong>Transcript of Records - First Copy</strong> (Enter Purpose of Request)</label>
-                                                            <input type="text" name="" id="" class="form-control" placeholder="eg. Visa Application, Employment">
+                                                            <input type="text" name="tor" id="tor" class="form-control" placeholder="eg. Visa Application / Employment / Copy for <Name of School>" onkeypress="return (event.charCode > 64 && 
+	                                                          event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32">
 
                                                         </div>
                                                         <div class="col-sm-6">
                                                             <label><strong>Transcript of Records - Duplicate Copy</strong> (Attach Copy of Original TOR)</label>
-                                                            <input type="file" name="" id="" class="form-control">
+                                                            <input type="file" name="tor2" id="tor2" class="form-control">
 
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label><strong>Diploma</strong></label><br>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="diploma" id="diploma" value="1st Copy">
+                                                            <label class="form-check-label" for="inlineRadio1">1st Copy</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="diploma" id="diploma" value="2nd Copy">
+                                                            <label class="form-check-label" for="inlineRadio2">2nd Copy (Affidavit of Loss is required.)</label>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -208,7 +208,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <label><strong>Authentication/Certified True Copy</strong> </label>
 
                                                         <?php
-                                                        $sql = "select * from documents where isActive=?";
+                                                        $sql = "select * from ctc_authentication where isActive=?";
                                                         $data = array('1');
                                                         $stmt = $con->prepare($sql);
                                                         $stmt->execute($data);
@@ -216,9 +216,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         while ($row = $stmt->fetch()) {
                                                             echo '
                                                             <div class="form-check documents" id="chkdoc">
-                                                            <input class="form-check-input" type="checkbox" value="' . $row['doc'] . '" id="doc" name="doc[]">
+                                                            <input class="form-check-input" type="checkbox" value="' . $row['document'] . '" id="doc" name="ctc[]">
                                                             <label class="form-check-label" for="">
-                                                                ' . $row['doc'] . '
+                                                                ' . $row['document'] . '
                                                             </label>
                                                             </div>';
                                                         }
@@ -230,12 +230,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
                                                         <label><strong>Receiver/Representative</strong></label>
-                                                        <input type="text" name="" id="" class="form-control" placeholder="Enter Name of Receiver">
+                                                        <input type="text" name="rep" id="rep" class="form-control" placeholder="Enter Name of Receiver" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32">
 
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <label><strong>Contact Number</strong></label>
-                                                        <input type="text" name="" id="" class="form-control" placeholder="Enter Receiver's Contact Number">
+                                                        <input type="number" name="repmob" id="repmob" class="form-control" placeholder="Enter Receiver's Contact Number" onKeyPress="if(this.value.length==11) return false;">
 
                                                     </div>
 
@@ -243,7 +244,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
                                                         <label><strong>Delivery Address</strong>(Unit/House Number, Street Name, Subdivision/Village, Barangay/District Name, City/Municipality)</label>
-                                                        <input type="text" name="" id="" class="form-control" placeholder="eg. #124, Don Vicente St., Brgy. Bagong Silangan, Quezon City">
+                                                        <input type="text" name="deladd" id="deladd" class="form-control" placeholder="eg. #124, Don Vicente St., Brgy. Bagong Silangan, Quezon City" onkeypress="return (event.charCode > 64 && 
+	                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode>=48 && event.charCode<=57) 
+                                                        || (event.charCode==45)">
 
                                                     </div>
 
@@ -252,8 +255,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-                                                <div class="col-lg-12">
-                                                    <div class="text-right"> <input type="submit" name="action" id="action" class="btn btn-success" value="Submit"></div>
+                                                <div class="col-sm-12">
+                                                    <div class="text-right"> <input type="submit" name="submit" id="action" class="btn btn-success" value="Submit"></div>
                                                 </div>
                                         </form>
 
@@ -275,78 +278,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             </div>
             <!-- End of Main Content -->
 
-            <!-- FULL DETAILS OF REQUEST -->
-            <div class="modal fade" id="viewfulldetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg " role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="fa fa-list"></i><strong> Request Details</strong> </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="sendassessment.php" method="POST" enctype="multipart/form-data">
-                            <div class="modal-body">
-
-
-                                <div class="form-group">
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="font-weight-bold text-gray-900">Date Requested:</label>
-                                            <input type="hidden" name="enroll_id" id="assess_id" class="form-control">
-                                            <input type="hidden" name="sid" id="sid" class="form-control">
-                                            <input type="text" name="datereq" id="datereq" class="form-control" readonly>
-
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label class="font-weight-bold text-gray-900">Status:</label>
-                                            <input type="text" name="status" id="status" class="form-control" readonly>
-
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group row">
-                                        <div class="col-lg-12">
-                                            <label class="font-weight-bold text-gray-900">Course:</label>
-                                            <input type="text" name="course" id="course" class="form-control" readonly>
-
-                                        </div><br>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="font-weight-bold text-gray-900" for="attachment">Last School Attended:</label>
-                                            <input type="text" name="lschool" id="lschool" class="form-control" readonly>
-
-                                        </div><br>
-                                        <div class="col-md-6">
-                                            <label class="font-weight-bold text-gray-900" class="form-label">Year Graduated:</label>
-                                            <input type="text" name="ygrad" id="ygrad" class="form-control" readonly>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <label class="font-weight-bold text-gray-900">Documents Requested:</label>
-                                            <textarea class="form-control" id="docrq" name="docrq" rows="4" readonly></textarea>
-                                        </div><br>
-                                        <div class="col-lg-6">
-                                            <label class="font-weight-bold text-gray-900">Purpose of Request:</label>
-                                            <textarea class="form-control" id="docp" name="docp" rows="4" readonly></textarea>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-info" id="done" name="done"> Done</button>
-
-                                </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -383,6 +314,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </body>
 <script src="js/header.js"></script>
+<script src="js/reqdoc.js"></script>
 
 
 </html>

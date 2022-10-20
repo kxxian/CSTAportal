@@ -24,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registrations</title>
+    <title>Clearance</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -81,9 +81,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-          if ($office=="Registrar"){
+           if ($office == "Accounting") {
             $pageValue = 2;
-        }else{
+        } else {
+            header("Location:index.php");
+        }
+
+        if ($usertype != "Admin") {
             header("Location:index.php");
         }
 
@@ -104,24 +108,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-plus fa-fw"></i> Registrations
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-clipboard-list fa-fw"></i> For Clearance
                                 
                             </h6>
 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="regTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="clearanceTable" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Stud No.</th>
                                             <th>Student Name</th>
-                                            <th>Year Level</th>
-                                            <th>Department</th>
                                             <th>Course</th>
-                                            <th width="76">Actions</th>
+                                            <th width="80">Actions</th>
                                         </tr>
-
                                     </thead>
                                 </table>
                             </div>
@@ -183,55 +184,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </html>
 
-<div id="declineModal" class="modal fade">
-    <div class="modal-dialog modal-md">
-        <form method="POST" id="declineForm" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900 font-weight-bold"> <i class="far fa-fw fa-thumbs-down"></i> <span class="title"></span></h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="fullname" class="text-gray-900 font-weight-bold">To:</label>
-                            <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="fullname" id="fullname" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" readonly>
-                        </div>
-                        
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="email" class="text-gray-900"><strong>Reason</strong> (Separate by comma if multiple)</label>
-                            <input type="text" name="reason" id="reason" class="form-control" placeholder="Enter Reason..">
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <input type="hidden" name="id" id="id">
-                        <input type="hidden" name="operation" id="operation">
-                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" name="action" id="action" class="btn btn-success" value="Decline">
 
-                    </div>
-                </div>
-            </div>
-    </div>
-    </form>
-</div>
-
-
-
-
-
-
-<script src="js/registrations.js"></script>
+<script src="js/clearance.js"></script>
 </div>
 

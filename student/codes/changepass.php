@@ -1,6 +1,11 @@
 <?php
+ if(!isset($_SESSION)) 
+ { 
+     session_start(); 
+ } 
+  
     require_once('../includes/connect.php');
-    require_once('../includes/fetchuserdetails.php');
+    require_once('../codes/fetchuserdetails.php');
 
 
     if(isset($_POST['changepass'])){ 
@@ -18,10 +23,11 @@
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
 
-        
-        $_SESSION['status'] = "Password Successfully Updated!";
+        header('location:../logout.php');
+        $_SESSION['status'] = "Success!";
+        $_SESSION['msg'] = "Password Updated!";
         $_SESSION['status_code'] = "success";
-        header('location:logout.php');
+       
     
         }catch(PDOException $e){
             $e->getMessage();
@@ -30,9 +36,10 @@
         }else  if (!(($currentpass==$pass) && ($newpass==$confirmpass))){
 
        
-            $_SESSION['status'] = "Password Not Changed!";
+            $_SESSION['status'] = "Error!";
+            $_SESSION['msg'] = "Old Password Incorrect!";
             $_SESSION['status_code'] = "error";
-            header('location:settings.php');
+            header('location:../settings.php');
         }
 
 

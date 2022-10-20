@@ -167,7 +167,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <h6 class="m-0 font-weight-bold text-gray-900"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Change Password</h6>
                                         </div>
                                         <div class="card-body">
-                                            <form action="changepass.php" method="POST">
+                                            <form action="codes/changepass.php" method="POST">
                                                 <div class="row">
 
                                                     <div class="col-sm-3">

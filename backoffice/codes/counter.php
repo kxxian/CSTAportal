@@ -70,7 +70,7 @@ echo $count;
 if(isset($_POST['data6'])){
         
   $sql = "SELECT enrollment_status from vwforenrollment_students where dept=? AND schoolyr=? AND semester=? AND enrollment_status=?";
-  $data = array($dept,$currentsyval,$currentsemval,"For Assessment");
+  $data = array($dept,$currentsyval,$currentsemval,"Assessment");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count=$stmt->rowCount();
@@ -169,6 +169,60 @@ if(isset($_POST['data13'])){
 echo $count;
 
 }
+
+//sidebar counter -- for pending registrations 
+if(isset($_POST['data14'])){
+        
+  $sql = "SELECT status from vwclearance where status=?";
+  $data = array("Sent");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+//sidebar counter -- for enrollment 
+if(isset($_POST['data15'])){
+        
+  $sql = "SELECT status from vwenroll_validate where status=?";
+  $data = array("Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+//sidebar counter -- for request of documents
+if(isset($_POST['data16'])){
+        
+  $sql = "SELECT status from vwdocureq where status=?";
+  $data = array("Sent");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+if(isset($_POST['data17'])){
+        
+  $sql = "SELECT status from vwgradereq where status=?";
+  $data = array("Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count=$stmt->rowCount();
+
+echo $count;
+
+}
+
+
+
 
 
 

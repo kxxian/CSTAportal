@@ -52,7 +52,7 @@ $statement->execute($data);
 
 $_SESSION['status'] = "Success!";
 $_SESSION['status_code'] = "success";
-$_SESSION['msg'] = "Information Updated!.";
+$_SESSION['msg'] = "Information Updated!";
 header('location: ../profile.php');
 
 
