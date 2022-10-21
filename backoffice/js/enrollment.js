@@ -79,7 +79,7 @@ $(document).ready(function() {
                         position: 'center',
                         icon: 'success',
                         title: 'Success!',
-                        text: 'Assessment Form Sent!',
+                        text: 'Registration Form Sent!',
                         showConfirmButton: false,
                         timer: 3000
                     })

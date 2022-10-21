@@ -68,7 +68,7 @@ $(document).ready(function() {
             })
         } else {
             $.ajax({
-                url: "codes/sendassessment.php",
+                url: "codes/reqgrades.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -80,12 +80,12 @@ $(document).ready(function() {
                         position: 'center',
                         icon: 'success',
                         title: 'Success!',
-                        text: 'Assessment Form Sent!',
+                        text: 'Grades Sent!',
                         showConfirmButton: false,
                         timer: 3000
                     })
 
-                    $('#assessModal').modal('hide');
+                    $('#reqgradesModal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
@@ -97,27 +97,27 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '.sendgrades', function() {
-        var enroll_id = $(this).attr('id');
-
+        var gradereq_ID = $(this).attr('id');
+        //console.log(gradereq_ID);
 
         $.ajax({
-            url: "codes/sendassessment.php",
+            url: "codes/reqgrades.php",
             method: "POST",
             data: {
-                enroll_id: enroll_id
+                gradereq_ID: gradereq_ID
             },
             dataType: "json",
             success: function(data) {
-                $('#assessModal').modal('show');
-                $('#enroll_id').val(data.id);
+                $('#reqgradesModal').modal('show');
+                $('#gradereq_ID').val(data.id);
                 $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
-                $('#mobile').val(data.mobile);
+                //$('#mobile').val(data.mobile);
                
 
 
                 $('.title').text(' Send Grades');
-                $('#enroll_id').val(enroll_id);
+                $('#gradereq_ID').val(gradereq_ID);
 
                 $('#operation').val("Send");
                 $('#action').val("Send");
@@ -129,11 +129,11 @@ $(document).ready(function() {
   
 
     $(document).on('click', '.close', function() {
-        $('#assessModal').modal('hide');
+        $('#reqgradesModal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#assessModal').modal('hide');
+        $('#reqgradesModal').modal('hide');
     })
 
 

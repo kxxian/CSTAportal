@@ -152,17 +152,7 @@ if (isset($_POST['operation'])) {
             $mail->AddAttachment($_FILES["attachment"]["tmp_name"][$k], $_FILES["attachment"]["name"][$k]);
         }
 
-        if (!$mail->send()) {
-            // echo "<Email Not Sent: " . $mail->ErrorInfo;
-            // $_SESSION['status'] = "Receipt Not Sent!";
-            // $_SESSION['status_code'] = "error";
-            // header('location:../for-receipt-issuance.php');
-        } else {
-
-            // $_SESSION['status'] = "Receipt Sent!";
-            // $_SESSION['status_code'] = "success";
-            // header('location:../for-receipt-issuance.php');
-        }
+        $mail->send();
         $mail->smtpClose();
 
 

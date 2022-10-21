@@ -16,7 +16,7 @@ if (isset($_POST["search"]["value"])) {
 
  
 
-    $query .= 'WHERE snum LIKE "%' . $_POST["search"]["value"] . '%"';
+    $query .= 'WHERE (snum LIKE "%' . $_POST["search"]["value"] . '%"';
   
     $query .= 'OR fullname LIKE "%' . $_POST["search"]["value"] . '%"';
  
@@ -24,7 +24,7 @@ if (isset($_POST["search"]["value"])) {
 
     $query .= 'OR course LIKE "%' . $_POST["search"]["value"] . '%"';
     $query .= 'OR schoolyr LIKE "%' . $_POST["search"]["value"] . '%"';
-    $query .= 'OR semester LIKE "%' . $_POST["search"]["value"] . '%"';
+    $query .= 'OR semester LIKE "%' . $_POST["search"]["value"] . '%")';
     
    
 }

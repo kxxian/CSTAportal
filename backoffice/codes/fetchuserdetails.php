@@ -15,6 +15,7 @@
         $usertype=$row['role'];
         $Office=$row['office'];
         $useremail=$row['email'];
+        $position=$row['position'];
        }
        
        catch(PDOException $e){
