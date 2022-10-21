@@ -80,8 +80,8 @@ foreach ($result as $row) {
     $sub_array[] =
      '
 
-    <button type="button" name="sendassessment" id="' . $row["ev_ID"] . '" 
-    class="btn btn-success btn-sm sendassessment" title="Send Assessment"><i class="fa fa-fw fa-paper-plane"></i></button>
+    <button type="button" name="sendassessment" id="' . $row["ev_ID"] . '"  sid="' . $row["sid"] . '"
+    class="btn btn-success btn-sm sendregform" title="Send Registration Form"><i class="fa fa-fw fa-paper-plane"></i></button>
     
     ';
 

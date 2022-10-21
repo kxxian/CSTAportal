@@ -189,12 +189,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </html>
 
-<div id="assessModal" class="modal fade">
-    <div class="modal-dialog modal-sm">
-        <form method="POST" id="assessForm" enctype="multipart/form-data">
+<div id="enrollModal" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <form method="POST" id="enrollForm" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-gray-900 font-weight-bold"> <i class="far fa-fw fa-envelope"></i> <span class="title">Add User</span></h5>
+                    <h5 class="modal-title text-gray-900 font-weight-bold"> <i class="far fa-fw fa-envelope"></i> <span class="title"></span></h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -202,26 +202,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-12">
                             <label for="fullname" class="text-gray-900 font-weight-bold">To:</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="fullname" id="fullname" class="form-control" >
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="fullname" id="fullname" class="form-control" readonly >
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email.." readonly>
                         </div>
                         
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="email" class="text-gray-900 font-weight-bold">Assessment Form</label>
-                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email..">
+                            <label for="email" class="text-gray-900 font-weight-bold">Certificate of Registration</label>
+                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email.." required>
                         </div>
                         
                     </div>
                     
                     <div class="modal-footer">
-                        <input type="hidden" name="enroll_id" id="enroll_id">
+                        <input type="hidden" name="sid" id="sid">
+                        <input type="hidden" name="ev_ID" id="ev_ID">
                         <input type="hidden" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Register">

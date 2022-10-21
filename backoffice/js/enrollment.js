@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var assessTable = $('#enrollTable').dataTable({
+    var enrollTable = $('#enrollTable').dataTable({
         dom: 'Bfrtip',
         
         buttons: [
@@ -51,14 +51,13 @@ $(document).ready(function() {
         }, ],
     });
 
-    $(document).on('submit', '#assessForm', function(event) {
+    $(document).on('submit', '#enrollForm', function(event) {
         event.preventDefault();
         var fullname = $("#fullname").val();
         var email = $("#email").val();
         var attachment = $("#attachment").val();
         
-
-
+        
         if (fullname == "" || email == "" || attachment == "" ){
 
             Swal.fire({
@@ -68,7 +67,7 @@ $(document).ready(function() {
             })
         } else {
             $.ajax({
-                url: "codes/sendassessment.php",
+                url: "codes/sendregform.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -85,39 +84,40 @@ $(document).ready(function() {
                         timer: 3000
                     })
 
-                    $('#assessModal').modal('hide');
+                    $('#enrollModal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
-                    assessTable.api().ajax.reload();
+                    enrollTable.api().ajax.reload();
                 }
 
             })
         }
     })
 
-    $(document).on('click', '.sendassessment', function() {
-        var enroll_id = $(this).attr('id');
+    $(document).on('click', '.sendregform', function() {
+        var ev_ID = $(this).attr('id');
+        var sid = $(this).attr('sid');
 
+        // alert (sid);
 
         $.ajax({
-            url: "codes/sendassessment.php",
+            url: "codes/sendregform.php",
             method: "POST",
             data: {
-                enroll_id: enroll_id
+                ev_ID: ev_ID
             },
             dataType: "json",
             success: function(data) {
-                $('#assessModal').modal('show');
-                $('#enroll_id').val(data.id);
+                $('#enrollModal').modal('show');
+                $('#ev_ID').val(data.id);
+                $('#sid').val(data.sid);
                 $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
                 $('#mobile').val(data.mobile);
                
-
-
-                $('.title').text(' Send Assessment');
-                $('#enroll_id').val(enroll_id);
+                $('.title').text(' Send Registration Form');
+                $('#ev_ID').val(ev_ID);
 
                 $('#operation').val("Send");
                 $('#action').val("Send");
@@ -129,11 +129,11 @@ $(document).ready(function() {
   
 
     $(document).on('click', '.close', function() {
-        $('#assessModal').modal('hide');
+        $('#enrollModal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#assessModal').modal('hide');
+        $('#enrollModal').modal('hide');
     })
 
 
