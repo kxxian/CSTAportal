@@ -167,7 +167,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <h6 class="m-0 font-weight-bold text-gray-900"><i class="fa fa-key fa-fw" aria-hidden="true"></i> Change Password</h6>
                                         </div>
                                         <div class="card-body">
-                                            <form action="codes/changepass.php" method="POST">
+                                            <form action="codes/changepass.php" method="POST" id="myForm">
+                                            <!-- <form id="myForm"> -->
                                                 <div class="row">
 
                                                     <div class="col-sm-3">
@@ -175,7 +176,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
 
-                                                        <input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass">
+													<input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass">
+													<input type="checkbox" onclick="showPassword()"> Show Password
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -185,6 +187,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtnewpass" id="txtnewpass">
+														<input type="checkbox" onclick="showPassword2()"> Show Password
                                                         <p id="length" style="font-weight:bold;"></p>
                                                     </div>
                                                 </div>
@@ -195,12 +198,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtrepass" id="txtrepass">
+														<input type="checkbox" onclick="showPassword3()"> Show Password
                                                         <p id="message" style="font-weight:bold;"></p>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="col-sm-12">
-                                                    <button type="submit" class="btn btn-success float-right" name="changepass"><i class="fa fa-check fa-fw"></i> Save</button>
+                                                    <button type="submit" id="btnSubmit" class="btn btn-success float-right" name="changepass"><i class="fa fa-check fa-fw"></i> Save</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -231,7 +235,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         </div>
         <!-- End of Page Wrapper -->
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript">
             $(function() {
                 $("#changepw").click(function() {
@@ -294,8 +297,36 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     $('#message').html("Passwords do not Match!").css('color', 'red');
                 }
             });
-        </script>
+		</script>
 
+		<script type="text/javascript">
+			function showPassword(){
+				let show=document.getElementById("txtcurrentpass");	
+				if(show.type == "password"){
+					show.type="text"
+				}else{
+					show.type="password"
+				}
+			}
+
+			function showPassword2(){
+				let show=document.getElementById("txtnewpass");	
+				if(show.type == "password"){
+					show.type="text"
+				}else{
+					show.type="password"
+				}
+			}
+
+			function showPassword3(){
+				let show=document.getElementById("txtrepass");	
+				if(show.type == "password"){
+					show.type="text"
+				}else{
+					show.type="password"
+				}
+			}
+		</script>
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
@@ -310,8 +341,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
+		<!-- <script src="js/header.js"></script> -->
+		<!-- <script src="js/settings.js"></script> -->
+		<script src="plugins/jquery/jquery.min.js"></script>
+		<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 </body>
-<script src="js/header.js"></script>
 
 </html>

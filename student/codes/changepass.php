@@ -23,38 +23,22 @@
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
 
-        header('location:../logout.php');
         $_SESSION['status'] = "Success!";
         $_SESSION['msg'] = "Password Updated!";
         $_SESSION['status_code'] = "success";
        
+        header('location:../logout.php');
     
         }catch(PDOException $e){
             $e->getMessage();
         }
         
-        }else  if (!(($currentpass==$pass) && ($newpass==$confirmpass))){
+		}else  if (!($currentpass==$pass)){
 
-       
             $_SESSION['status'] = "Error!";
-            $_SESSION['msg'] = "Old Password Incorrect!";
+            $_SESSION['msg'] = "Password Incorrect!";
             $_SESSION['status_code'] = "error";
             header('location:../settings.php');
-        }
-
-
-
-    
-       
-    
-
-
-                   }
-               
-    
-
-
-
-
-
+		}
+}
 ?>
