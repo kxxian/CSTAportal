@@ -34,6 +34,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+    </style>
 
 </head>
 
@@ -234,5 +239,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </body>
 <script src="js/header.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
 
 </html>

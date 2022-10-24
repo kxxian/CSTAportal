@@ -233,5 +233,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="js/header.js"></script>
 <script src="js/gradereq.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
 
 </html>

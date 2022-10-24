@@ -2,12 +2,17 @@
 session_start();
 require_once '../includes/connect.php';
 require_once 'fetchuserdetails.php';
+require_once 'fetchcurrentsyandsem.php';
 require_once 'functions.php';
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
 require("../mailer/PHPMailer/src/Exception.php");
 
 use PHPMailer\PHPMailer\PHPMailer;
+
+// current date and time
+date_default_timezone_set('Asia/Manila');
+$date = date('y-m-d h:i:s');
 
 
 if (isset($_POST['operation'])) {
@@ -105,23 +110,36 @@ if (isset($_POST['operation'])) {
 
     if ($_POST["operation"] == "Send") {
         $id = $_POST['enroll_id'];
+        $sid = $_POST['sid'];
         $fullname = ucwords(htmlspecialchars(trim($_POST['fullname'])));
-      
-        $email = htmlspecialchars(trim($_POST['email']));
-       
-        $statement = $con->prepare("UPDATE enrollment set enrollment_status=? WHERE enrollment_ID=?");
 
-        $data = array('Waiting Payment',$id);
+        $email = htmlspecialchars(trim($_POST['email']));
+
+        $statement = $con->prepare("UPDATE enrollment set enrollment_status=? WHERE enrollment_ID=?");
+        $data = array('Waiting Payment', $id);
         $result = $statement->execute($data);
+
+
+        //insert notification
+        $notif = "Please check your email for your assessment form.";
+        $icon = "fas fa-check text-white";
+        $link = "#";
+
+        $sql2 = "INSERT INTO notif (sid,notification,icon,link,date)VALUES(?,?,?,?,?)";
+        $data2 = array($sid, $notif, $icon, $link, $date);
+        $stmt2 = $con->prepare($sql2);
+        $stmt2->execute($data2);
 
 
         $mailTo = $email;
 
         $body = "Good Day Teresian!<br><br>
 
-        Please see attached assessment form.<br><br>
+        Here's a copy of the assessment form. Minimum down payment is Php. 3,000.00. <br>
+        Payment can be made thru Bank Deposit or Online Bank Transfer. Kindly send your proof of payment together with your assessment form to https://bit.ly/cstapayverif for<br>
+        verification and Official Receipt purposes.<br><br><br>
         
-        Thank You & Keep Safe.<br><br>
+        Thank you. God Bless and Keep safe..<br>
         
     
         ";
@@ -143,7 +161,7 @@ if (isset($_POST['operation'])) {
             'allow_self_signed' => false
         ));
         $mail->isHTML(true);
-        $mail->Subject = "Assessment Form"; // email subject
+        $mail->Subject = "Assessment for $currentsemval A.Y. $currentsyval"; // email subject
         $mail->Body = $body;
 
 
@@ -154,14 +172,6 @@ if (isset($_POST['operation'])) {
 
         $mail->send();
         $mail->smtpClose();
-
-
-
-
-
-
-
-
     }
 }
 
@@ -174,11 +184,8 @@ if (isset($_POST['enroll_id'])) {
     $result = $statement->fetchAll();
     foreach ($result as $row) {
         $output['id'] = $row['enrollment_ID'];
-        $output['fullname'] = $row['lname'].', '.$row['fname'].' '.$row['mname'];
+        $output['fullname'] = $row['lname'] . ', ' . $row['fname'] . ' ' . $row['mname'];
         $output['email'] = $row['email'];
     }
     echo json_encode($output);
 }
-
-
-

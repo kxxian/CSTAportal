@@ -35,7 +35,7 @@ $strheader.='</a>';
 $strheader.='<!-- Dropdown - Messages -->';
 $strheader.='<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"';
 $strheader.='aria-labelledby="messagesDropdown">';
-$strheader.='<h6 class="dropdown-header" style="background-color:#261f17; border-color:#261f17">';
+$strheader.='<h6 class="dropdown-header" style="background-color:#2E1503; border-color:#2E1503">';
 $strheader.='        Messages';
 $strheader.='</h6>';
 $strheader.='<a class="dropdown-item d-flex align-items-center" href="#">';
@@ -53,36 +53,32 @@ $strheader.='    <a class="dropdown-item text-center small text-gray-500" href="
 $strheader.='</div>';
 
 #notifications
-$strheader.='<li class="nav-item dropdown no-arrow mx-1">';
-$strheader.='<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"';
-$strheader.='data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notificatons">';
+$strheader.='<li class="nav-item dropdown no-arrow mx-1 " >';
+$strheader.='<a class="nav-link dropdown-toggle notif_button" href="#" id="'.$sid.'" role="button" ';
+$strheader.='data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Notifications">';
 $strheader.='<i class="fas fa-bell fa-fw"></i>';
 $strheader.=' <!-- Counter - Alerts -->';
-$strheader.=' <span class="badge badge-danger badge-counter"></span>';#counter
+$strheader.=' <span class="badge badge-danger badge-counter ctr_notif"></span>';#counter
 $strheader.='</a>';
 $strheader.='<!-- Dropdown - Alerts -->';
-$strheader.='<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"';
+
+$strheader.='<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in overflow-auto" style="max-height:400px"';
 $strheader.='aria-labelledby="alertsDropdown">';
-$strheader.=' <h6 class="dropdown-header" style="background-color:#261f17; border-color:#261f17">';
+$strheader.=' <h6 class="dropdown-header " style="background-color:#2E1503; border-color:#2E1503">';
 $strheader.='Notifications';
 $strheader.='</h6>';
-$strheader.='<a class="dropdown-item d-flex align-items-center" href="#">';
-$strheader.=' <div class="mr-3">';
-$strheader.=' <div class="icon-circle bg-primary" hidden>';
-$strheader.=' <i class="fas fa-file-alt text-white" hidden></i>';
-$strheader.=' </div>';
-$strheader.='</div>';
+
+##notifications
+$strheader.='<div id="notifications">';
 $strheader.='<div>';
-$strheader.=' <div class="small text-gray-500" hidden>December 12, 2019</div>';
-$strheader.=' <span class=""><i>No Notifications</i></span>';
-$strheader.=' </div>';
-$strheader.=' </a>';
-                            
-                               
-$strheader.='<a class="dropdown-item text-center small text-gray-500" href="#" hidden>Show All Alerts</a>';
+
+
+
+
 $strheader.='</div>';
 $strheader.=' </li>';
 $strheader.='</li>';
+
 $strheader.='<li class="nav-item dropdown no-arrow">';
 $strheader.='  <a class="nav-link dropdown-toggle" href="profile.php"  role="button"\>';    
 $strheader.='        <span class="mr-2 d-none d-lg-inline text-gray-100 medium">Welcome <strong>'. $fullname.' </strong> </span>';
@@ -90,6 +86,8 @@ $strheader.='       <img class="img rounded-circle"';
 $strheader.='            src="uploads/users/'.$dp.'" width="40" height="40">';
 $strheader.=' </a>';
 $strheader.=' </li>';
+
+
 
 
 

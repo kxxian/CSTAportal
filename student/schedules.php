@@ -77,7 +77,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <button id="btnSched" class="btn btn-success btn-sm w-20 float-sm-right" data-toggle="modal">
                           <i class="fas fa-plus"></i>
                           &nbsp;
-                          
+
                         </button>
                       </h6>
 
@@ -200,6 +200,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/schedules.js"></script>
     <script src="js/notes.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/notifications.js"></script>
 </body>
 
 </html>

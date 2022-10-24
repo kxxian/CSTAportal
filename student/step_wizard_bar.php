@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-sm-12 float-right mb-2">
             <span class="float-right">
-                <button class="btn btn-info btn-sm" title="What's This?">
+                <button class="btn btn-info btn-sm" title="What's This?"  data-toggle="modal" data-target="#instruct">
                     <i class="fa fa-question fa-fw"></i>
                 </button>
             </span>

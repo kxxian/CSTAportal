@@ -440,5 +440,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </body>
 <script src="js/header.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
 
 </html>

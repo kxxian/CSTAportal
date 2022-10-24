@@ -78,6 +78,10 @@ if ($status == 'CLOSED') { // display enrollment page if open
 
 </head>
 
+<style>
+
+</style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -337,5 +341,28 @@ include("includes/scripts.php");
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="js/header.js"></script>
 <script src="js/enrollment.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
 
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="instruct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-bold text-gray-900" id="exampleModalLabel">Enrollment Guide</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+          <!-- <span aria-hidden="true">&times;</span> -->
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="img/BG1.jpg" alt="" width="100%" height="400px">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

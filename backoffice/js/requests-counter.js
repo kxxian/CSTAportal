@@ -99,7 +99,7 @@ $(document).ready(function() {
        
         }else{
           
-            $(".for_assessment").text('0');
+            $(".for_assessment").text('');
         }
     });
 

@@ -53,20 +53,11 @@ $(document).ready(function() {
 
     $(document).on('submit', '#assessForm', function(event) {
         event.preventDefault();
-        var fullname = $("#fullname").val();
-        var email = $("#email").val();
-        var attachment = $("#attachment").val();
-        
-
-
-        if (fullname == "" || email == "" || attachment == "" ){
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Insufficient Data!'
-            })
-        } else {
+        // var fullname = $("#fullname").val();
+        // var email = $("#email").val();
+        // var attachment = $("#attachment").val();
+        //var sid=$(this).attr("sid");
+    
             $.ajax({
                 url: "codes/sendassessment.php",
                 method: "POST",
@@ -93,11 +84,13 @@ $(document).ready(function() {
                 }
 
             })
-        }
+   
     })
 
     $(document).on('click', '.sendassessment', function() {
         var enroll_id = $(this).attr('id');
+        var sid = $(this).attr('sid');
+        alert(sid);
 
 
         $.ajax({
@@ -118,6 +111,7 @@ $(document).ready(function() {
 
                 $('.title').text(' Send Assessment');
                 $('#enroll_id').val(enroll_id);
+                $('#sid').val(sid);
 
                 $('#operation').val("Send");
                 $('#action').val("Send");

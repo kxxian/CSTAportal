@@ -204,26 +204,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-12">
                             <label for="fullname" class="text-gray-900 font-weight-bold">To:</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="fullname" id="fullname" class="form-control" >
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32"  name="fullname" id="fullname" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email.." readonly>
                         </div>
                         
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Assessment Form</label>
-                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email..">
+                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email.." required>
                         </div>
                         
                     </div>
                     
                     <div class="modal-footer">
                         <input type="hidden" name="enroll_id" id="enroll_id">
+                        <input type="hidden" name="sid" id="sid">
                         <input type="hidden" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Register">

@@ -13,7 +13,7 @@ function get_assessments(){
     include '../includes/connect.php';
     include 'fetchuserdetails.php';
     $statement=$con->prepare("SELECT * from vwforenrollment_students WHERE dept=? AND enrollment_status=?");
-    $data=array($dept,'For Assessment');
+    $data=array($dept,'Assessment');
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
@@ -83,6 +83,29 @@ function get_clearance(){
     $result=$statement->fetchAll();
     return $statement->rowCount();
 }
+function get_sy(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from schoolyr WHERE isVisible=?");
+    $data=array(1);
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
+function get_sem(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from semester WHERE isVisible=?");
+    $data=array(1);
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
+
 
 
 

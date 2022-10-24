@@ -29,11 +29,22 @@ if (isset($_POST['ev'])) {
             $stmt->execute($data);
             $newname = $con->lastInsertId();
 
-            //update enrollment_status
+            //update enrollment_status to validating
             $sql3 = "UPDATE enrollment set enrollment_status=? where sid=? and schoolyr_ID=? and semester_ID=?";
             $data3 = array("Validating", $sid, $currentsy, $currentsem);
             $stmt3 = $con->prepare($sql3);
             $stmt3->execute($data3);
+
+            
+            //insert notification
+            $notif = "We are now validating your enrollment!";
+            $icon = "fas fa-check text-white";
+            $link="enrollment.php";
+
+            $sql2 = "INSERT INTO notif (sid,notification,icon,link,date)VALUES(?,?,?,?,?)";
+            $data2 = array($sid, $notif, $icon,$link, $date);
+            $stmt2 = $con->prepare($sql2);
+            $stmt2->execute($data2);
 
 
          

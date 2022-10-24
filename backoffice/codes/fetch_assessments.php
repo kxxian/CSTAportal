@@ -72,7 +72,7 @@ foreach ($result as $row) {
     $sub_array[] =
      '
 
-    <button type="button" name="sendassessment" id="' . $row["enrollment_ID"] . '" 
+    <button type="button" name="sendassessment" id="' . $row["enrollment_ID"] . '" sid="'.$row['sid'].'"
     class="btn btn-success btn-sm sendassessment" title="Send Assessment"><i class="fa fa-fw fa-paper-plane"></i></button>
     
     ';

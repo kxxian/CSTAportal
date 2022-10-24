@@ -168,7 +168,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         </div>
                                         <div class="card-body">
                                             <form action="codes/changepass.php" method="POST" id="myForm">
-                                            <!-- <form id="myForm"> -->
+                                                <!-- <form id="myForm"> -->
                                                 <div class="row">
 
                                                     <div class="col-sm-3">
@@ -176,8 +176,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
 
-													<input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass">
-													<input type="checkbox" onclick="showPassword()"> Show Password
+                                                        <input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass">
+                                                        <input type="checkbox" onclick="showPassword()"> Show Password
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -187,7 +187,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtnewpass" id="txtnewpass">
-														<input type="checkbox" onclick="showPassword2()"> Show Password
+                                                        <input type="checkbox" onclick="showPassword2()"> Show Password
                                                         <p id="length" style="font-weight:bold;"></p>
                                                     </div>
                                                 </div>
@@ -198,7 +198,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <input type="password" class="form-control" name="txtrepass" id="txtrepass">
-														<input type="checkbox" onclick="showPassword3()"> Show Password
+                                                        <input type="checkbox" onclick="showPassword3()"> Show Password
                                                         <p id="message" style="font-weight:bold;"></p>
                                                     </div>
                                                 </div>
@@ -212,7 +212,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 </div>
                             </div>
 
-                         
+
 
 
                         </div>
@@ -297,36 +297,36 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     $('#message').html("Passwords do not Match!").css('color', 'red');
                 }
             });
-		</script>
+        </script>
 
-		<script type="text/javascript">
-			function showPassword(){
-				let show=document.getElementById("txtcurrentpass");	
-				if(show.type == "password"){
-					show.type="text"
-				}else{
-					show.type="password"
-				}
-			}
+        <script type="text/javascript">
+            function showPassword() {
+                let show = document.getElementById("txtcurrentpass");
+                if (show.type == "password") {
+                    show.type = "text"
+                } else {
+                    show.type = "password"
+                }
+            }
 
-			function showPassword2(){
-				let show=document.getElementById("txtnewpass");	
-				if(show.type == "password"){
-					show.type="text"
-				}else{
-					show.type="password"
-				}
-			}
+            function showPassword2() {
+                let show = document.getElementById("txtnewpass");
+                if (show.type == "password") {
+                    show.type = "text"
+                } else {
+                    show.type = "password"
+                }
+            }
 
-			function showPassword3(){
-				let show=document.getElementById("txtrepass");	
-				if(show.type == "password"){
-					show.type="text"
-				}else{
-					show.type="password"
-				}
-			}
-		</script>
+            function showPassword3() {
+                let show = document.getElementById("txtrepass");
+                if (show.type == "password") {
+                    show.type = "text"
+                } else {
+                    show.type = "password"
+                }
+            }
+        </script>
         <!-- Scroll to Top Button-->
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
@@ -341,10 +341,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- <script src="js/header.js"></script> -->
-		<!-- <script src="js/settings.js"></script> -->
-		<script src="plugins/jquery/jquery.min.js"></script>
-		<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- <script src="js/header.js"></script> -->
+        <!-- <script src="js/settings.js"></script> -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+        <script src="js/counter.js"></script>
+        <script src="js/notifications.js"></script>
 </body>
 
 </html>

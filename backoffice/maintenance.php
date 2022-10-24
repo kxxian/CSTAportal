@@ -92,7 +92,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="row">
 
                         <!-- Users -->
-                        <div class="col-xl-2 col-md-6 mb-4">
+                        <div class="col-xl-2 col-sm-6 mb-4">
                             <!-- <div class="card border shadow h-100 py-2"> -->
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -113,13 +113,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
                         <!-- School Year -->
-                        <div class="col-xl-2 col-md-6 mb-4" hidden>
+                        <div class="col-xl-2 col-sm-6 mb-4" >
                             <!-- <div class="card border shadow h-100 py-2"> -->
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-center text-uppercase mb-1">
-                                            <a class="text-success" href="sysetting.php"><img src="img/calendar (1).png" width="100" alt="">
+                                            <a class="text-success" href="acadyear.php"><img src="img/calendar (1).png" width="100" alt="">
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-center text-gray-900">
                                             School Year</a>
@@ -133,7 +133,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
 
                         <!-- Courses -->
-                        <div class="col-xl-2 col-md-6 mb-4" hidden>
+                        <div class="col-xl-2 col-sm-6 mb-4" >
                             <!-- <div class="card border shadow h-100 py-2"> -->
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -153,7 +153,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
 
                         <!-- Courses -->
-                        <div class="col-xl-2 col-md-6 mb-4" hidden>
+                        <div class="col-xl-2 col-sm-6 mb-4" >
                             <!-- <div class="card border shadow h-100 py-2"> -->
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">

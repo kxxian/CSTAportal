@@ -296,6 +296,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 <script src="js/header.js"></script>
 <script src="js/edit_info.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
 
 <div id="editinfoModal" class="modal fade">
     <div class="modal-dialog modal-lg">
