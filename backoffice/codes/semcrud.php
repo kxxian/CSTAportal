@@ -5,8 +5,8 @@ require_once 'functions.php';
 if (isset($_POST['operation_sem'])) {
 
     if ($_POST["operation_sem"] == "Add") {
-        $sem =ucwords(htmlspecialchars(trim($_POST['sem'])));
-       
+        $sem = ucwords(htmlspecialchars(trim($_POST['sem'])));
+
 
         $statement = $con->prepare("INSERT INTO semester(semester) VALUES(?)");
         $data = array($sem);
@@ -16,7 +16,7 @@ if (isset($_POST['operation_sem'])) {
     if ($_POST["operation_sem"] == "Edit") {
         $id = $_POST['sem_id'];
         $sem = ucwords(htmlspecialchars(trim($_POST['sem'])));
-       
+
         $statement = $con->prepare("UPDATE semester set semester=?  
          WHERE semester_ID=?");
 
@@ -25,7 +25,7 @@ if (isset($_POST['operation_sem'])) {
     }
 }
 
-//fetch 
+//fetch semester
 if (isset($_POST['sem_id'])) {
     $id = $_POST['sem_id'];
     $output = array();
@@ -39,26 +39,25 @@ if (isset($_POST['sem_id'])) {
     echo json_encode($output);
 }
 
-
+//enable a semester
 if (isset($_POST['enable_sem_id'])) {
 
-    $sql="SELECT * FROM semester where status=?";
-    $data=array(1);
-    $stmt=$con->prepare($sql);
+    $sql = "SELECT * FROM semester where status=?";
+    $data = array(1);
+    $stmt = $con->prepare($sql);
     $stmt->execute($data);
-    $active=$stmt->rowCount();
+    $active = $stmt->rowCount();
 
-    if ($active==0){
+    if ($active == 0) {
         $id = $_POST['enable_sem_id'];
         $statement = $con->prepare('UPDATE semester set status=? where semester_ID=?');
         $data = array('1', $id);
         $result = $statement->execute($data);
-    }else{
+    } else {
         echo $active;
     }
-    
 }
-
+//Disable current sem
 if (isset($_POST['disable_sem_id'])) {
     $id = $_POST['disable_sem_id'];
 
@@ -66,3 +65,4 @@ if (isset($_POST['disable_sem_id'])) {
     $data = array('0', $id);
     $result = $statement->execute($data);
 }
+

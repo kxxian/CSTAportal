@@ -105,6 +105,17 @@ function get_sem(){
     return $statement->rowCount();
 }
 
+function get_courses(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from courses WHERE Visible=?");
+    $data=array('Visible');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

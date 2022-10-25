@@ -4,6 +4,23 @@ $(document).ready(function() {
         on: 'Enabled',
         off: 'Disabled'    });
 
+        $(".dt").toggle(
+            function(){$("#e").css({"color": "red"});},
+            function(){$("#e").css({"color": "blue"});},
+            function(){$("#e").css({"color": "green"});
+          });
+
+      //fetch notifications 
+      $.ajax({
+        type: "POST",
+        url: "codes/semcrud.php",
+        data: {
+        param: 1
+        }
+    }).done(function (rec) {
+        $('#enroll_toggle').html(rec)
+    });
+
 
     $('#addSy').click(function() {
         $('#syForm')[0].reset();
@@ -262,7 +279,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.enable_sem', function() {
         var sem_id = $(this).attr('id');
-        alert (sem_id);
+        //alert (sem_id);
         Swal.fire({
             title: 'Confirm',
             text: "Are you sure you want to set this semester as current?",

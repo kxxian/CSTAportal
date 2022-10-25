@@ -801,7 +801,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '     </li>';
 
               // <!-- Nav Item - Grades -->
-              $strSidebar .= '               <li class="nav-item active">';
+              $strSidebar .= '               <li class="nav-item">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';

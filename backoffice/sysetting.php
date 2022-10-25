@@ -71,7 +71,7 @@ require_once('includes/connect.php');
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-         
+
                     <!-- End of Breadcrumb -->
                     <div class="row" hidden>
                         <div class="col-lg-12">
@@ -131,7 +131,7 @@ require_once('includes/connect.php');
                             <!-- DataTales Example -->
                             <div class="card shadow mb-4 " style="width: 100%;">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-university"></i> School Year   <a href="#addSYModal" class="btn btn-primary float-right" style="height:35px;" title="Add School Year" data-toggle="modal"><i class="fas fa-plus"></i> </a>
+                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-university"></i> School Year <a href="#addSYModal" class="btn btn-primary float-right" style="height:35px;" title="Add School Year" data-toggle="modal"><i class="fas fa-plus"></i> </a>
                                     </h6>
                                 </div>
                                 <div class="row">
@@ -154,7 +154,7 @@ require_once('includes/connect.php');
                                             <tbody>
                                                 <?php
                                                 $sql = "SELECT * FROM schoolyr where isVisible=?";
-                                                $data=array('1');
+                                                $data = array('1');
                                                 $stmt = $con->prepare($sql);
                                                 $stmt->execute($data);
 
@@ -229,12 +229,12 @@ require_once('includes/connect.php');
                                             <tbody>
                                                 <?php
                                                 $sql = "SELECT * FROM semester where isVisible=?";
-                                                $data=array('1');
+                                                $data = array('1');
                                                 $stmt = $con->prepare($sql);
                                                 $stmt->execute($data);
 
                                                 $sql3 = "SELECT * FROM semester where status= ?";
-                                                $data3=array('ACTIVE');
+                                                $data3 = array('ACTIVE');
                                                 $stmt3 = $con->prepare($sql3);
                                                 $stmt3->execute($data3);
                                                 $countActivesem = $stmt3->rowCount(); // count 'ACTIVE' in status column

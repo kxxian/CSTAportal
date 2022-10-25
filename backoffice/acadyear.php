@@ -89,7 +89,28 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             <div id="content">
 
                 <!-- Header -->
-                <?php require_once('includes/header.php'); ?>
+                <?php require_once('includes/header.php');
+
+                $sql = "SELECT * FROM enrollment_switch where switch_ID=?";
+                $data = array(1);
+                $stmt = $con->prepare($sql);
+                $stmt->execute($data);
+                $row = $stmt->fetch();
+
+
+                $status = $row['enrollment_status'];
+
+                if ($status == "CLOSED") {
+                    $toggle = '  <span class="float-right"> <label for="" class="h3 text-dark mr-2" >Enrollment: </label><input type="checkbox" unchecked data-toggle="toggle" data-on="Open" data-off="Closed" data-onstyle="success" data-offstyle="danger" name="sytoggle" onchange="this.form.submit()"></span>';
+                                
+                } else {
+                    $toggle = ' <span class="float-right"> <label for="" class="h3 text-dark mr-2" >Enrollment: </label> <input type="checkbox" checked data-toggle="toggle"  data-on="Open" data-off="Closed"  data-onstyle="success" data-offstyle="danger" name="sytoggle" onchange="this.form.submit()"></span>';
+           
+                }
+              
+
+
+                ?>
                 <!-- End of Header -->
 
                 <!-- Begin Page Content -->
@@ -98,10 +119,23 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="row">
                             <div class="col-sm-6">
                                 <span>
-                                    <h1 class="h3 mb-0 text-gray-900 ">School Year and Semester </h1>
+                                <h1 class="h2 mb-0 text-gray-900 "><strong>School Year</strong></h1>
                             </div>
                             <div class="col-sm-6">
-                               <span class="float-right"> <label for="" class="h3 text-dark mr-2">Enrollment: </label><input type="checkbox" data-toggle="toggle" data-on="Open" data-off="Closed" data-onstyle="success" data-offstyle="danger"></span>
+                           
+                                <?php echo 
+                                
+                                    '
+                                  
+                                    <form action="codes/enrollmentonoff.php?id=' . $row['switch_ID'] . '" method="POST"> 
+                                    ' . $toggle . '
+                                    </form>';
+                                
+                                
+                                
+                                
+                                
+                                ?> </span>
                             </div>
                         </div>
 
