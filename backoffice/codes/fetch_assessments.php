@@ -3,6 +3,7 @@
 require_once '../includes/connect.php';
 require_once 'fetchuserdetails.php';
 require_once 'functions.php';
+require_once 'fetchcurrentsyandsem.php';
 
 
 
@@ -10,11 +11,12 @@ require_once 'functions.php';
 $query = '';
 $output = array();
 $query .= "SELECT * from vwforenrollment_students ";
+$query .= 'WHERE dept= "'.$dept.'" ';
 
 if (isset($_POST["search"]["value"])) {
-    $query .= 'WHERE enrollment_status="Assessment" ';
+    //$query .= 'WHERE enrollment_status="Assessment" ';
 
-    $query .= 'AND dept= "'.$dept.'" ';
+
 
     $query .= 'AND (snum LIKE "%' . $_POST["search"]["value"] . '%"';
   
@@ -31,7 +33,7 @@ if (isset($_POST["search"]["value"])) {
    
 }
 
-$query .= 'AND enrollment_status="Assessment" ';
+$query .= "AND enrollment_status='Assessment' AND schoolyr='$currentsyval' AND semester='$currentsemval' ";
 
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].'

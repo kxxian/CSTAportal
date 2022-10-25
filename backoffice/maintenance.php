@@ -122,7 +122,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <a class="text-success" href="acadyear.php"><img src="img/calendar (1).png" width="100" alt="">
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-center text-gray-900">
-                                            School Year</a>
+                                            S.Y & Sem</a>
 
                                         </div>
                                     </div>

@@ -1,12 +1,22 @@
 $(document).ready(function() {
     
+    $('#toggle-two').bootstrapToggle({
+        on: 'Enabled',
+        off: 'Disabled'    });
 
 
     $('#addSy').click(function() {
         $('#syForm')[0].reset();
         $('.title').text(' Add School Year');
-        $('#action').val("Register");
+        $('#action').val("Save");
         $('#operation').val("Add");
+    })
+
+    $('#addSem').click(function() {
+        $('#semForm')[0].reset();
+        $('.title').text(' Add Semester');
+        $('#action_sem').val("Save");
+        $('#operation_sem').val("Add");
     })
 
     var syTable = $('#syTable').dataTable({
@@ -15,13 +25,19 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "info": true,
+        "pageLength": 3,
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false,
         "ajax": {
             url: "codes/fetch_sy.php",
             type: "POST"
 
         },
         "columnDefs": [{
-            "target": [0, 1, ],
+            "target": [0, 1, 2],
             "orderable": false,
         }, ],
     });
@@ -32,6 +48,12 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "info": true,
+        "pageLength": 3,
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false,
         "ajax": {
             url: "codes/fetch_sem.php",
             type: "POST"
@@ -43,89 +65,90 @@ $(document).ready(function() {
         }, ],
     });
 
+   
+        //
     $(document).on('submit', '#syForm', function(event) {
         event.preventDefault();
-        var lname = $("#lname").val();
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var gender = $("#gender").val();
-        var email = $("#email").val();
-        var gender = $("#gender").val();
-        var mobile = $("#mobile").val();
-        var office = $("#office").val();
-        var dept = $("#dept").val();
-        var role = $("#role").val();
-        var position = $("#position").val();
-
-
-        if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role
-            || position=="") {
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Insufficient Data!'
-            })
-        } else {
+        //var lname = $("#lname").val();
+    
             $.ajax({
-                url: "codes/userscrud.php",
+                url: "codes/sycrud.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
                 processData: false,
                 cache: false,
                 success: function(data) {
-
+                  
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Record Updated!',
+                        title: 'Success',
+                        text:'School Year table updated.',
                         showConfirmButton: false,
                         timer: 1500
                     })
-
-                    $('#syModal').modal('hide');
-
                     // $('#usersForm')[0].reset();
-
                     syTable.api().ajax.reload();
+                    $('#syModal').modal('hide');
+               
                 }
 
             })
-        }
     })
+
+         //
+         $(document).on('submit', '#semForm', function(event) {
+            event.preventDefault();
+            //var lname = $("#lname").val();
+        
+                $.ajax({
+                    url: "codes/semcrud.php",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                      
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Success!',
+                            text:'Semester Table Updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        // $('#usersForm')[0].reset();
+                        semTable.api().ajax.reload();
+                        $('#semModal').modal('hide');
+                   
+                    }
+    
+                })
+        })
 
 
     $(document).on('click', '.update', function() {
-        var user_id = $(this).attr('id');
+        var sy_id = $(this).attr('id');
 
+        //alert(sy_id);
 
         $.ajax({
-            url: "codes/userscrud.php",
+            url: "codes/sycrud.php",
             method: "POST",
             data: {
-                user_id: user_id
+                sy_id: sy_id
             },
             dataType: "json",
             success: function(data) {
                 $('#syModal').modal('show');
-                $('#user_id').val(data.id);
-                $('#lname').val(data.lname);
-                $('#fname').val(data.fname);
-                $('#mname').val(data.mname);
-                $('#gender').val(data.Gender);
-                $('#email').val(data.email);
-                $('#mobile').val(data.mobile);
-                $("#office").val(data.office);
-                $("#dept").val(data.dept);
-                $("#position").val(data.position);
-                $("#role").val(data.role);
-                
-
-
-                $('.title').text(' Edit User');
-                $('#user_id').val(user_id);
+                $('#sy_id').val(data.id);
+                $('#sy').val(data.schoolyr);
+            
+            
+                $('.title').text(' Edit School Year');
+                $('#sy_id').val(sy_id);
 
                 $('#operation').val("Edit");
                 $('#action').val("Save");
@@ -134,11 +157,40 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', '.restrict', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.update_sem', function() {
+        var sem_id = $(this).attr('id');
+
+        //alert(sem_id);
+
+        $.ajax({
+            url: "codes/semcrud.php",
+            method: "POST",
+            data: {
+                sem_id: sem_id
+            },
+            dataType: "json",
+            success: function(data) {
+                $('#semModal').modal('show');
+                $('#sem_id').val(data.id);
+                $('#sem').val(data.sem);
+            
+            
+                $('.title').text(' Edit Semester');
+                $('#sem_id').val(sem_id);
+
+                $('#operation_sem').val("Edit");
+                $('#action_sem').val("Save");
+
+            }
+        })
+    })
+
+    $(document).on('click', '.enable', function() {
+        var sy_id = $(this).attr('id');
+        ///alert (sy_id);
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to restrict this user?",
+            text: "Are you sure you want to set this school year as current?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -147,30 +199,40 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/userscrud.php",
+                    url: "codes/sycrud.php",
                     method: "POST",
                     data: {
-                        restrict_id: user_id
+                        enable_id: sy_id
                     },
                     success: function(data) {
-                        syTable.api().ajax.reload();
+                        if (data>0){
+                            Swal.fire(
+                                'Oops!',
+                                'A school year is already active.',
+                                'warning'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Success!',
+                                'School year set as current.',
+                                'success')
+                        }
+                         syTable.api().ajax.reload();
+                        // alert(data);
                     }
                 })
-                Swal.fire(
-                    'Success!',
-                    'User has been restricted.',
-                    'success'
-                )
+                
             }
         })
 
     })
 
-    $(document).on('click', '.activate', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.disable', function() {
+        var sy_id = $(this).attr('id');
+        //alert(sy_id);
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to activate this user?",
+            text: "Are you sure you want to remove this school year as current?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -179,10 +241,10 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/userscrud.php",
+                    url: "codes/sycrud.php",
                     method: "POST",
                     data: {
-                        activate_id: user_id
+                        disable_id: sy_id
                     },
                     success: function(data) {
                         syTable.api().ajax.reload();
@@ -190,13 +252,89 @@ $(document).ready(function() {
                 })
                 Swal.fire(
                     'Success!',
-                    'User has been activated.',
+                    'School year removed as current.',
                     'success'
                 )
             }
         })
 
     })
+
+    $(document).on('click', '.enable_sem', function() {
+        var sem_id = $(this).attr('id');
+        alert (sem_id);
+        Swal.fire({
+            title: 'Confirm',
+            text: "Are you sure you want to set this semester as current?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "codes/semcrud.php",
+                    method: "POST",
+                    data: {
+                        enable_sem_id: sem_id
+                    },
+                    success: function(data) {
+                        if (data>0){
+                            Swal.fire(
+                                'Oops!',
+                                'A semester is already active.',
+                                'warning'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Success!',
+                                'Semester set as current.',
+                                'success')
+                        }
+                         semTable.api().ajax.reload();
+                        // alert(data);
+                    }
+                })
+                
+            }
+        })
+
+    })
+
+    $(document).on('click', '.disable_sem', function() {
+        var sem_id = $(this).attr('id');
+        //alert(sy_id);
+        Swal.fire({
+            title: 'Confirm',
+            text: "Are you sure you want to remove this semester as current?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "codes/semcrud.php",
+                    method: "POST",
+                    data: {
+                        disable_sem_id: sem_id
+                    },
+                    success: function(data) {
+                        semTable.api().ajax.reload();
+                    }
+                })
+                Swal.fire(
+                    'Success!',
+                    'Semester removed as current.',
+                    'success'
+                )
+            }
+        })
+
+    })
+
 
     $(document).on('click', '.close', function() {
         $('#syModal').modal('hide');
@@ -204,6 +342,15 @@ $(document).ready(function() {
 
     $(document).on('click', '#close', function() {
         $('#syModal').modal('hide');
+    })
+
+    
+    $(document).on('click', '.close', function() {
+        $('#semModal').modal('hide');
+    })
+
+    $(document).on('click', '#close', function() {
+        $('#semModal').modal('hide');
     })
 
 
