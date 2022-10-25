@@ -244,7 +244,7 @@ CREATE TABLE `employees` (
 insert  into `employees`(`id`,`empnum`,`lname`,`fname`,`mname`,`email`,`Gender`,`mobile`,`office`,`dept_ID`,`position`,`permission_ID`,`username`,`pass`,`isActive`) values 
 (89,'','Bonifacio','Andres','S','harold@gmail.com','Female','09155494035','Dean',1,'Clerk',1,'ailataruc','6cfa702d39a278358b3e4e515365a93a4196c287','Yes'),
 (827,'','Munoz','Jason','Beltran','jasonwafuu@gmail.com','Female','09613397412','Registrar',2,'Vice President',1,'jmunoz','6cfa702d39a278358b3e4e515365a93a4196c287','Yes'),
-(831,'','Jackson','Michael','Napoles','dsdasd@email.com','Male','09872323231','Registrar',1,'Assistant Dean',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','Yes');
+(831,'','Jackson','Michael','Napoles','dsdasd@email.com','Male','09872323231','Dean',1,'President',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','Yes');
 
 /*Table structure for table `enrollment` */
 
@@ -264,12 +264,12 @@ CREATE TABLE `enrollment` (
   `date_assessed` datetime DEFAULT NULL,
   `enrollment_status` varchar(20) NOT NULL DEFAULT 'Assessment',
   PRIMARY KEY (`enrollment_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=225 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment` */
 
 insert  into `enrollment`(`enrollment_ID`,`sid`,`snum`,`mobile`,`yrlevel_ID`,`dept_ID`,`course_ID`,`schoolyr_ID`,`semester_ID`,`date_enrolled`,`date_assessed`,`enrollment_status`) values 
-(215,39,'20-14789','09613397412',1,1,6,2,3,'2022-10-13 08:51:35',NULL,'Validating');
+(224,39,'20-14789','09613397412',1,1,6,2,3,'2022-10-24 06:25:56',NULL,'Assessment');
 
 /*Table structure for table `enrollment_switch` */
 
@@ -298,12 +298,12 @@ CREATE TABLE `enrollment_validation` (
   `date_sent` datetime DEFAULT NULL,
   `status` varchar(100) NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`ev_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment_validation` */
 
 insert  into `enrollment_validation`(`ev_ID`,`sid`,`schoolyr_ID`,`semester_ID`,`date_sent`,`status`) values 
-(17,39,2,3,'2022-10-13 09:09:35','Pending');
+(18,39,2,3,'2022-10-23 10:50:23','Pending');
 
 /*Table structure for table `gradereq` */
 
@@ -472,6 +472,26 @@ CREATE TABLE `notes` (
 insert  into `notes`(`note_Id`,`note_snum`,`note_text`) values 
 (1,'19-14677','Do python later 13:00'),
 (2,'19-14677','Learn JavaScript');
+
+/*Table structure for table `notif` */
+
+DROP TABLE IF EXISTS `notif`;
+
+CREATE TABLE `notif` (
+  `notif_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sid` int(10) NOT NULL,
+  `notification` varchar(255) NOT NULL,
+  `icon` varchar(100) NOT NULL,
+  `link` varchar(100) NOT NULL,
+  `date` datetime NOT NULL,
+  `isSeen` tinyint(2) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`notif_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `notif` */
+
+insert  into `notif`(`notif_ID`,`sid`,`notification`,`icon`,`link`,`date`,`isSeen`) values 
+(21,39,'You are now in queue for assessment.','fas fa-check text-white','enrollment.php','2022-10-24 06:25:56',1);
 
 /*Table structure for table `particulars` */
 
@@ -44505,18 +44525,18 @@ DROP TABLE IF EXISTS `schoolyr`;
 CREATE TABLE `schoolyr` (
   `schoolyr_ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `schoolyr` varchar(9) NOT NULL,
-  `status` varchar(8) NOT NULL DEFAULT 'INACTIVE',
+  `status` tinyint(2) NOT NULL DEFAULT 0,
   `isVisible` int(1) DEFAULT 1,
   PRIMARY KEY (`schoolyr_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `schoolyr` */
 
 insert  into `schoolyr`(`schoolyr_ID`,`schoolyr`,`status`,`isVisible`) values 
-(1,' ','INACTIVE',0),
-(2,'2022-2023','ACTIVE',1),
-(3,'2024-2025','INACTIVE',1),
-(4,'2021-2022','INACTIVE',1);
+(1,' ',0,0),
+(2,'2021-2022',1,1),
+(3,'2022-2023',0,1),
+(4,'2023-2024',0,1);
 
 /*Table structure for table `semester` */
 
@@ -44525,18 +44545,18 @@ DROP TABLE IF EXISTS `semester`;
 CREATE TABLE `semester` (
   `semester_ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `semester` varchar(68) NOT NULL,
-  `status` varchar(8) NOT NULL DEFAULT 'INACTIVE',
+  `status` tinyint(2) NOT NULL DEFAULT 0,
   `isVisible` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`semester_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `semester` */
 
 insert  into `semester`(`semester_ID`,`semester`,`status`,`isVisible`) values 
-(1,' ','INACTIVE',0),
-(2,'First Semester','INACTIVE',1),
-(3,'Second Semester','ACTIVE',1),
-(4,'Summer','INACTIVE',1);
+(1,' ',0,0),
+(2,'First Semester',1,1),
+(3,'Second Semester',0,1),
+(4,'Summer',0,1);
 
 /*Table structure for table `sentvia` */
 
@@ -44595,7 +44615,7 @@ CREATE TABLE `students` (
 /*Data for the table `students` */
 
 insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`guardiancontact`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
-(39,'Muñoz','Jason','Beltran','20-14789',1,3,6,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia B. Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-16 23:30:54',1),
+(39,'Muñoz','Jason','Beltran','20-14789',2,3,6,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia B. Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-24 18:25:56',1),
 (44,'Taruc','Aila Marie','Boncacas','19-13781',4,1,6,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Taruc','09888232838','ailataruc22','21c63abd2f76cb416c334efe11915a05d6167c15','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-10-20 23:52:38',0);
 
 /*Table structure for table `studreq` */
@@ -44882,6 +44902,23 @@ DROP TABLE IF EXISTS `vwgradereq`;
  `status` varchar(100) 
 )*/;
 
+/*Table structure for table `vwnotif` */
+
+DROP TABLE IF EXISTS `vwnotif`;
+
+/*!50001 DROP VIEW IF EXISTS `vwnotif` */;
+/*!50001 DROP TABLE IF EXISTS `vwnotif` */;
+
+/*!50001 CREATE TABLE  `vwnotif`(
+ `notif_ID` int(10) unsigned ,
+ `sid` int(10) ,
+ `notification` varchar(255) ,
+ `icon` varchar(100) ,
+ `link` varchar(100) ,
+ `date` varchar(53) ,
+ `isSeen` tinyint(2) 
+)*/;
+
 /*Table structure for table `vwpayverif` */
 
 DROP TABLE IF EXISTS `vwpayverif`;
@@ -45026,6 +45063,13 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP VIEW IF EXISTS `vwgradereq` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwgradereq` AS select `gradereq`.`gradereq_ID` AS `gradereq_ID`,`gradereq`.`sid` AS `sid`,`students`.`snum` AS `snum`,concat(`students`.`lname`,', ',`students`.`fname`,' ',`students`.`mname`) AS `fullname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,`gradereq`.`schoolyr` AS `schoolyr`,`gradereq`.`semester` AS `semester`,`students`.`email` AS `email`,date_format(`gradereq`.`date_req`,'%m/%d/%Y') AS `date_req`,`gradereq`.`status` AS `status` from (((`gradereq` join `students` on(`gradereq`.`sid` = `students`.`id`)) join `yrlevel` on(`students`.`yrlevel` = `yrlevel`.`yrlevel_ID`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) */;
+
+/*View structure for view vwnotif */
+
+/*!50001 DROP TABLE IF EXISTS `vwnotif` */;
+/*!50001 DROP VIEW IF EXISTS `vwnotif` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwnotif` AS select `notif`.`notif_ID` AS `notif_ID`,`notif`.`sid` AS `sid`,`notif`.`notification` AS `notification`,`notif`.`icon` AS `icon`,`notif`.`link` AS `link`,date_format(`notif`.`date`,'%b %e, %Y %r') AS `date`,`notif`.`isSeen` AS `isSeen` from `notif` */;
 
 /*View structure for view vwpayverif */
 
