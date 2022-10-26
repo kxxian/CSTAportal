@@ -98,24 +98,25 @@ DROP TABLE IF EXISTS `courses`;
 
 CREATE TABLE `courses` (
   `course_ID` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `deptid` int(10) NOT NULL,
+  `deptid` tinyint(10) NOT NULL,
+  `abbr` varchar(255) NOT NULL,
   `course` varchar(255) NOT NULL,
   `visible` varchar(20) NOT NULL DEFAULT 'VISIBLE',
   PRIMARY KEY (`course_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `courses` */
 
-insert  into `courses`(`course_ID`,`deptid`,`course`,`visible`) values 
-(1,3,'BSED Gen','VISIBLE'),
-(2,3,'BSED ENG','VISIBLE'),
-(3,3,'BSED Fil','VISIBLE'),
-(4,3,'BSED Math','VISIBLE'),
-(5,3,'BSED SocSci','VISIBLE'),
-(6,1,'BSIT','VISIBLE'),
-(7,2,'BSHM','VISIBLE'),
-(8,2,'BSTM','VISIBLE'),
-(9,2,'BSHRM','VISIBLE');
+insert  into `courses`(`course_ID`,`deptid`,`abbr`,`course`,`visible`) values 
+(1,3,'BSED GEN','Bachelor Of Science In Secondary Education Major In General','VISIBLE'),
+(2,3,'BSED ENG','Bachelor of Science in Secondary Education Major in English','VISIBLE'),
+(3,3,'BSED FIL','Bachelor Of Science In Secondary Education Major In Filipino','VISIBLE'),
+(4,3,'BSED MATH','Bachelor Of Science In Secondary Education Major In Math','VISIBLE'),
+(5,3,'BSED SOCSCI','Bachelor Of Science In Secondary Education Major In Social Sciences','VISIBLE'),
+(6,1,'BSIT','Bachelor of Science in Information Technology','VISIBLE'),
+(7,2,'BSHM','Bachelor of Science in Hospitality Management','VISIBLE'),
+(8,2,'BSTM','Bachelor of Science in Tourismm','VISIBLE'),
+(9,2,'BSHRM','Bachelor of Science in Hotel and Restaurant Management','VISIBLE');
 
 /*Table structure for table `ctc_authentication` */
 
@@ -144,14 +145,14 @@ CREATE TABLE `departments` (
   `dept` varchar(68) NOT NULL,
   `dept_email` varchar(100) NOT NULL,
   PRIMARY KEY (`deptid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `departments` */
 
 insert  into `departments`(`deptid`,`dept`,`dept_email`) values 
-(1,'School of Information Technology','SIT@email.com'),
-(2,'School of Hospitality and Tourism Management','HM@email.com'),
-(3,'School of Education','EDUC@email.com');
+(1,'School Of Information Technology','SIT@email.com'),
+(2,'School Of Hospitality And Tourism Management','HM@email.com'),
+(3,'School Of Education','EDUC@email.com');
 
 /*Table structure for table `docreq` */
 
@@ -244,7 +245,7 @@ CREATE TABLE `employees` (
 insert  into `employees`(`id`,`empnum`,`lname`,`fname`,`mname`,`email`,`Gender`,`mobile`,`office`,`dept_ID`,`position`,`permission_ID`,`username`,`pass`,`isActive`) values 
 (89,'','Bonifacio','Andres','S','harold@gmail.com','Female','09155494035','Dean',1,'Clerk',1,'ailataruc','6cfa702d39a278358b3e4e515365a93a4196c287','Yes'),
 (827,'','Munoz','Jason','Beltran','jasonwafuu@gmail.com','Female','09613397412','Registrar',2,'Vice President',1,'jmunoz','6cfa702d39a278358b3e4e515365a93a4196c287','Yes'),
-(831,'','Jackson','Michael','Napoles','dsdasd@email.com','Male','09872323231','Dean',1,'President',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','Yes');
+(831,'','Jackson','Michael','Napoles','dsdasd@email.com','Male','09872323231','Registrar',1,'President',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','Yes');
 
 /*Table structure for table `enrollment` */
 
@@ -284,7 +285,7 @@ CREATE TABLE `enrollment_switch` (
 /*Data for the table `enrollment_switch` */
 
 insert  into `enrollment_switch`(`switch_ID`,`enrollment_status`) values 
-(1,'OPEN');
+(1,'CLOSED');
 
 /*Table structure for table `enrollment_validation` */
 
@@ -317,12 +318,13 @@ CREATE TABLE `gradereq` (
   `date_req` datetime NOT NULL,
   `status` varchar(100) NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`gradereq_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `gradereq` */
 
 insert  into `gradereq`(`gradereq_ID`,`sid`,`schoolyr`,`semester`,`date_req`,`status`) values 
-(63,39,'2022-2023','First Semester','2022-10-20 10:23:58','Pending');
+(63,39,'2022-2023','First Semester','2022-10-20 10:23:58','Pending'),
+(65,39,' 2022-202','Second Semester','2022-10-26 01:59:24','Pending');
 
 /*Table structure for table `guest_payments` */
 
@@ -44554,8 +44556,8 @@ CREATE TABLE `semester` (
 
 insert  into `semester`(`semester_ID`,`semester`,`status`,`isVisible`) values 
 (1,' ',0,0),
-(2,'First Semester',1,1),
-(3,'Second Semester',0,1),
+(2,'First Semester',0,1),
+(3,'Second Semester',1,1),
 (4,'Summer',0,1);
 
 /*Table structure for table `sentvia` */
@@ -44615,7 +44617,7 @@ CREATE TABLE `students` (
 /*Data for the table `students` */
 
 insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`guardiancontact`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
-(39,'Muñoz','Jason','Beltran','20-14789',2,3,6,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia B. Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-24 18:25:56',1),
+(39,'Muñoz','Jason','Beltran','20-14789',2,3,6,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia C. Bacay-Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-26 15:00:27',1),
 (44,'Taruc','Aila Marie','Boncacas','19-13781',4,1,6,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Taruc','09888232838','ailataruc22','21c63abd2f76cb416c334efe11915a05d6167c15','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-10-20 23:52:38',0);
 
 /*Table structure for table `studreq` */
@@ -44742,6 +44744,21 @@ DROP TABLE IF EXISTS `vwclearance`;
  `email` varchar(128) ,
  `course` varchar(255) ,
  `status` varchar(50) 
+)*/;
+
+/*Table structure for table `vwcourses` */
+
+DROP TABLE IF EXISTS `vwcourses`;
+
+/*!50001 DROP VIEW IF EXISTS `vwcourses` */;
+/*!50001 DROP TABLE IF EXISTS `vwcourses` */;
+
+/*!50001 CREATE TABLE  `vwcourses`(
+ `course_ID` tinyint(3) unsigned ,
+ `dept` varchar(68) ,
+ `abbr` varchar(255) ,
+ `course` varchar(255) ,
+ `isVisible` varchar(20) 
 )*/;
 
 /*Table structure for table `vwdocreq` */
@@ -45021,6 +45038,13 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP VIEW IF EXISTS `vwclearance` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwclearance` AS select `clearance`.`clr_ID` AS `clr_ID`,`clearance`.`sid` AS `sid`,`clearance`.`reqdoc_ID` AS `reqdoc_ID`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`students`.`email` AS `email`,`courses`.`course` AS `course`,`clearance`.`status` AS `status` from ((`clearance` join `students` on(`clearance`.`sid` = `students`.`id`)) join `courses` on(`students`.`course` = `courses`.`course_ID`)) */;
+
+/*View structure for view vwcourses */
+
+/*!50001 DROP TABLE IF EXISTS `vwcourses` */;
+/*!50001 DROP VIEW IF EXISTS `vwcourses` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwcourses` AS select `courses`.`course_ID` AS `course_ID`,`departments`.`dept` AS `dept`,`courses`.`abbr` AS `abbr`,`courses`.`course` AS `course`,`courses`.`visible` AS `isVisible` from (`courses` join `departments` on(`courses`.`deptid` = `departments`.`deptid`)) */;
 
 /*View structure for view vwdocreq */
 
