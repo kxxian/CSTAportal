@@ -24,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Courses</title>
+    <title>Departments</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -93,25 +93,24 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
 
                     <div class=" mb-4">
-                        <h1 class="h2 mb-0 text-gray-900 "><strong>Courses</strong></h1>
+                        <h1 class="h2 mb-0 text-gray-900 "><strong>Departments</strong></h1>
                     </div>
 
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-graduate fa-fw"></i> Courses
-                                <button type="button" id="addCourse" data-toggle="modal" data-target="#coursesModal" class="btn btn-success  float-right">Add Course</button>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-graduate fa-fw"></i> Departments
+                                <button type="button" id="addDept" data-toggle="modal" data-target="#deptModal" class="btn btn-success  float-right">Add Department</button>
                             </h6>
 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="coursesTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="deptTable" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Course</th>
-                                            <th>Abbreviation</th>
                                             <th>Department</th>
+                                            <th>Email</th>
                                             <th width="85">Actions</th>
                                         </tr>
 
@@ -176,53 +175,34 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </html>
 
-<div id="coursesModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <form method="POST" id="coursesForm" enctype="multipart/form-data">
+<div id="deptModal" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <form method="POST" id="deptForm" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user-graduate"></i> <span class="title">Add Course</span></h4>
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-building"></i> <span class="title">Add Department</span></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
 
                         <div class="col-sm-12">
-                            <label for="course" class="text-gray-900 font-weight-bold">Course</label>
+                            <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="course" id="course" class="form-control" placeholder="Bachelor of Science in Information Technology" required>
+            event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="dept" id="dept" class="form-control" placeholder="Enter Department.." required>
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-6">
-                            <label for="abbr" class="text-gray-900 font-weight-bold">Abbreviation</label>
-                            <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="abbr" id="abbr" class="form-control" placeholder="BSIT" required>
+                        <div class="col-sm-12">
+                            <label for="dept_email" class="text-gray-900 font-weight-bold">Department Email</label>
+                            <input type="email"  name="dept_email" id="dept_email" class="form-control" placeholder="Enter Email.." required>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
-                            <select id="dept" name="dept" class="form-control" required>
-                                <option selected disabled>Select Department</option>
-                                <?php
-                                require_once("includes/connect.php");
-
-                                $sql = "select * from departments";
-                                $stmt = $con->prepare($sql);
-                                $stmt->execute();
-
-                                while ($row = $stmt->fetch()) {
-                                    echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
-                                }
-                                $stmt = null;
-
-                                ?>
-                            </select>
-                        </div>
+              
 
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="course_id" id="course_id">
+                        <input type="hidden" name="dept_id" id="dept_id">
                         <input type="hidden" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
@@ -233,5 +213,5 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </div>
     </form>
 </div>
-<script src="js/courses.js"></script>
+<script src="js/departments.js"></script>
 </div>

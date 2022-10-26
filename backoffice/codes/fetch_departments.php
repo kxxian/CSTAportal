@@ -4,18 +4,16 @@ include '../includes/connect.php';
 include 'functions.php';
 $query = '';
 $output = array();
-$query .= "SELECT * from vwcourses ";
+$query .= "SELECT * from departments ";
 
 if (isset($_POST["search"]["value"])) {
     $query .= 'WHERE (dept LIKE "%' . $_POST["search"]["value"] . '%"
   
-    OR abbr LIKE "%' . $_POST["search"]["value"] . '%"
-
-    OR course LIKE "%' . $_POST["search"]["value"] . '%")';
+    OR dept_email  LIKE "%' . $_POST["search"]["value"] . '%")';
 
      
 }
-$query .= " AND isVisible = 'Visible' ";
+// $query .= " AND isVisible = 'Visible' ";
 
 
 if (isset($_POST["order"])) {
@@ -23,7 +21,7 @@ if (isset($_POST["order"])) {
     ';
 }
 else{
-    $query.=' ORDER BY course_ID ASC ';
+    $query.=' ORDER BY deptid ASC ';
 }
 if($_POST["length"] != -1){
     $query.='LIMIT '.$_POST['start'].', '.$_POST['length'];
@@ -37,15 +35,15 @@ $filtered_rows=$statement->rowCount();
 foreach($result as $row)
 {
     $sub_array=array();
-    $sub_array[]=$row["course"];
-    $sub_array[]=$row["abbr"];
     $sub_array[]=$row["dept"];
+    $sub_array[]=$row["dept_email"];
+ 
 
 
-    $sub_array[]='<button type="button" name="update" id="'.$row["course_ID"].'" 
-    class="btn btn-warning btn-sm edit_course" title="Edit"><i class="fa fa-fw fa-edit"></i></button>
+    $sub_array[]='<button type="button" name="update" id="'.$row["deptid"].'" 
+    class="btn btn-warning btn-sm edit_dept" title="Edit"><i class="fa fa-fw fa-edit"></i></button>
 
-    <button type="button" name="update" id="'.$row["course_ID"].'" 
+    <button type="button" name="update" id="'.$row["deptid"].'" 
     class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-fw fa-trash"></i></button>
 
    

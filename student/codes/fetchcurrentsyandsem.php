@@ -1,7 +1,7 @@
 <?php
 
       //fetch active school year
-       $sql="select * from schoolyr where status='ACTIVE'";
+       $sql="select * from schoolyr where status='1'";
        $stmt = $con->prepare($sql);
        $stmt->execute();
        $rw=$stmt->fetch();
@@ -16,7 +16,7 @@
        }
 
       //fetch active semester
-       $query="select * from semester where status='ACTIVE'";
+       $query="select * from semester where status='1'";
        $cmd = $con->prepare($query);
        $cmd->execute();
        $field=$cmd->fetch();

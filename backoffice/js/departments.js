@@ -8,14 +8,14 @@ $(document).ready(function() {
     });
 
 
-    $('#addCourse').click(function() {
-        $('#coursesForm')[0].reset();
-        $('.title').text(' Add Course');
+    $('#addDept').click(function() {
+        $('#deptForm')[0].reset();
+        $('.title').text(' Add Department');
         $('#action').val("Save");
         $('#operation').val("Add");
     })
 
-    var coursesTable = $('#coursesTable').dataTable({
+    var deptTable = $('#deptTable').dataTable({
         "paging": true,
         "processing": false,
         "serverSide": true,
@@ -23,21 +23,21 @@ $(document).ready(function() {
         "info": true,
         "pageLength": 5,
         "ajax": {
-            url: "codes/fetch_courses.php",
+            url: "codes/fetch_departments.php",
             type: "POST"
 
         },
         "columnDefs": [{
-            "target": [0, 1, 2, 3],
+            "target": [0, 1, 2],
             "orderable": false,
         }, ],
     });
 
-    $(document).on('submit', '#coursesForm', function(event) {
+    $(document).on('submit', '#deptForm', function(event) {
         event.preventDefault();
 
             $.ajax({
-                url: "codes/coursescrud.php",
+                url: "codes/deptcrud.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -48,16 +48,16 @@ $(document).ready(function() {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Courses Table Updated!',
+                        title: 'Departments Table Updated!',
                         showConfirmButton: false,
                         timer: 1500
                     })
 
-                    $('#coursesModal').modal('hide');
+                    $('#deptModal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
-                    coursesTable.api().ajax.reload();
+                    deptTable.api().ajax.reload();
                 }
 
             })
@@ -65,26 +65,25 @@ $(document).ready(function() {
     })
 
 
-    $(document).on('click', '.edit_course', function() {
-        var course_id = $(this).attr('id');
+    $(document).on('click', '.edit_dept', function() {
+        var dept_id = $(this).attr('id');
         //alert (course_id);
 
         $.ajax({
-            url: "codes/coursescrud.php",
+            url: "codes/deptcrud.php",
             method: "POST",
             data: {
-                course_id: course_id
+                dept_id: dept_id
             },
             dataType: "json",
             success: function(data) {
-                $('#coursesModal').modal('show');
-                $('#course_id').val(data.id);
-                $('#dept').val(data.deptid);
-                $('#abbr').val(data.abbr);
-                $('#course').val(data.course);
+                $('#deptModal').modal('show');
+                $('#dept_id').val(data.id);
+                $('#dept').val(data.dept);
+                $('#dept_email').val(data.dept_email);
                 
-                $('.title').text(' Edit Course');
-                $('#course_id').val(course_id);
+                $('.title').text(' Edit Department');
+                $('#dept_id').val(dept_id);
 
                 $('#operation').val("Edit");
                 $('#action').val("Save");
@@ -93,10 +92,10 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '.delete', function() {
-        var course_id = $(this).attr('id');
+        var dept_id = $(this).attr('id');
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to delete this course?",
+            text: "Are you sure you want to delete this department?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -105,18 +104,18 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/coursescrud.php",
+                    url: "codes/deptcrud.php",
                     method: "POST",
                     data: {
-                        delete_course_id: course_id
+                        delete_dept_id: dept_id
                     },
                     success: function(data) {
-                        coursesTable.api().ajax.reload();
+                        deptTable.api().ajax.reload();
                     }
                 })
                 Swal.fire(
                     'Success!',
-                    'Course has been deleted!.',
+                    'Department has been deleted!.',
                     'success'
                 )
             }
@@ -127,11 +126,11 @@ $(document).ready(function() {
 
 
     $(document).on('click', '.close', function() {
-        $('#coursesModal').modal('hide');
+        $('#deptModal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#coursesModal').modal('hide');
+        $('#deptModal').modal('hide');
     })
 
 

@@ -69,7 +69,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         } elseif ($office == "Dean") {
             $pageValue = 3;
         } elseif ($office == "Registrar") {
-            $pageValue = 6;
+            $pageValue = 7;
         }
 
 
