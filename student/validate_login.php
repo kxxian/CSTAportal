@@ -3,7 +3,7 @@
     require_once("includes/connect.php");
 
     $username=htmlspecialchars(trim($_POST['username']));
-    $pass=sha1(trim($_POST['password']));
+    $pass=sha1(htmlspecialchars(trim($_POST['password'])));
     $verified="Verified";
 
     //validation

@@ -45,7 +45,7 @@ $strheader.='alt="..." hidden>';
 $strheader.='<div class="status-indicator bg-success" hidden></div>';
 $strheader.='        </div>';
 $strheader.='        <div class="">';
-$strheader.='            <div class="text-truncate"><i>No Messages Yet</i></div>';
+$strheader.='            <div class="text-truncate">No Messages Yet</div>';
 $strheader.='            <div class="small text-gray-500" hidden>Emily Fowler · 58m</div>';
 $strheader.='        </div>';
 $strheader.='    </a>';

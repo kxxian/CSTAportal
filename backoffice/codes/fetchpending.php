@@ -60,7 +60,7 @@ foreach ($result as $row) {
     $sub_array[] = $row["yrlevel"];
 
 
-    $sub_array[] = $row["course"];
+    $sub_array[] = $row["abbr"];
     $sub_array[] = $row["amtpaid"];
 
 

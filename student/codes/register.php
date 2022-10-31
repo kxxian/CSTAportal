@@ -42,7 +42,7 @@ $stmt=null;
 
 if(!empty($_POST['dept_ID'])){
 
-    $sql="select * from courses where deptid=".$_POST['dept_ID']." order by course asc";
+    $sql="select * from courses where deptid=".$_POST['dept_ID']." and visible='VISIBLE' order by course asc";
     $stmt = $con->prepare($sql);
     $stmt->execute();
     

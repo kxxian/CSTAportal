@@ -296,7 +296,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <label for="lname" class="text-gray-900 font-weight-bold">Semester</label>
-                            <input type="text" maxlength="20" name="sem" id="sem" class="form-control" placeholder="School Year">
+                            <input type="text" maxlength="20" name="sem" id="sem" class="form-control" placeholder="Semester">
                         </div>
                     </div>
                     <div class="modal-footer">

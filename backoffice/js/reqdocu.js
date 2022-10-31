@@ -96,6 +96,40 @@ $(document).ready(function() {
         }
     })
 
+    $(document).on('click', '.view', function() {
+        var id = $(this).attr('id');
+        $('#reason').val("");
+        alert(id)
+        
+        $.ajax({
+            url: "codes/decline.php",
+            method: "POST",
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(data) {
+                $('#declineModal').modal('show');
+                $('#id').val(data.id);
+                $('#fullname').val(data.fullname);
+                $('#email').val(data.email);
+                $('#mobile').val(data.mobile);
+               
+                $('.title').text(' Decline Request');
+                $('#id').val(id);
+
+                $('#operation').val("Send");
+                $('#action').val("Send");
+
+            }
+        })
+    })
+
+
+
+
+
+
     $(document).on('click', '.decline', function() {
         var decline_id = $(this).attr('id');
         var email = $(this).attr('email');

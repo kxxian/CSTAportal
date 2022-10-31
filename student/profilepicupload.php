@@ -16,7 +16,7 @@
                 $_SESSION['status'] = "Success!";
                 $_SESSION['msg'] = "Profile Picture Updated!";
                 $_SESSION['status_code'] = "success";
-                header('location:settings.php');
+                header('location:profile.php');
                 
             }else{
                 
@@ -24,7 +24,7 @@
                 $_SESSION['status'] = "Profile Picture Not Updated!";
                 $_SESSION['msg'] = "Profile Picture Not Updated!";
                 $_SESSION['status_code'] = "error";
-                header('location:settings.php');
+                header('location:profile.php');
                  
             }
             

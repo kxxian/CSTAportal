@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Register</title>
-    <link rel="icon" type="image/x-icon" href="img/logo1.png">
+    <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
 
 
     <!-- Custom fonts for this template-->
@@ -132,11 +132,10 @@
                             <h1 class="h4 text-black-900 mb-4"><strong>CSTA Student Portal Registration</strong></h1><br><br>
                         </div>
                         <form action="./codes/addstudent.php" id="regForm" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="txtStudID" id="txtStudID" value="<?= $id ?>">
-                            <h6>STUDENT INFORMATION</h6>
+                            <h6 class="font-weight-bold">STUDENT INFORMATION</h6>
 
                             <div class="form-group row">
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="txtSnum" class="form-label">Student Number</label>
                                     <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" onkeypress="return (event.charCode > 47 && 
 	                                event.charCode < 58 || event.charCode==45) " placeholder="xx-xxxxx" maxlength="8" required autofocus>
@@ -145,7 +144,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-lg-12">
+                                <div class="col-sm-12">
                                     <div id="regAlert">
                                     </div>
                                 </div>
@@ -158,13 +157,13 @@
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46 || (event.charCode)==165|| (event.charCode)==164" maxlength="20" placeholder="Dela Cruz Jr." required>
                                 </div>
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="txtFname" class="form-label"><b>First Name</b></label>
                                     <input type="text" class="form-control" name="txtFname" id="txtFname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Juan" required>
                                 </div>
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="txtMname" class="form-label"><b>Middle Name</b></label>
                                     <input type="text" class="form-control" name="txtMname" id="txtMname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave blank if none ">
@@ -174,36 +173,41 @@
 
                             <div class="form-group row">
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="txtCitizenship" class="form-label"><b>Citizenship</b></label>
                                     <input type="text" class="form-control" id="txtCitizenship" name="txtCitizenship" placeholder="Citizenship" onkeypress="return (event.charCode > 64 && 
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" required>
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="col-sm-4">
                                     <label for="selGender" class="form-label"><b>Gender</b></label>
                                     <select id="selGender" name="selGender" class="form-control" required>
-                                        <option selected="" disabled>Select Gender</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                        <option selected value="" disabled>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="cstatus" class="form-label"><b>Civil Status</b></label>
+                                    <select id="cstatus" name="cstatus" class="form-control" required>
+                                        <option selected value="" disabled>Select Civil Status</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Married">Married</option>
+                                        <option value="Widowed">Widowed</option>
+                                        <option value="Separated">Separated</option>
                                     </select>
                                 </div>
 
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
-                                    <label for="dtBday" class="form-label"><b>Birthday</b></label>
-                                    <input type="date" class="form-control" name="dtBday" id="dtBday" placeholder="Birthday" onchange="validateReg()" required>
-                                </div>
+
 
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <div id="identityAlert">
-                                    </div>
+                                <div class="col-sm-5">
+                                    <label for="dtBday" class="form-label"><b>Birthday</b></label>
+                                    <input type="date" class="form-control" name="dtBday" id="dtBday" placeholder="Birthday" onchange="validateReg()" required>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="form-group col-md-3">
+                                <div class="col-sm-7">
                                     <label for="yrlevel" class="form-label"><b>Year Level</b></label>
                                     <select id="yrlevel" name="yrlevel" class="form-control" required>
                                         <option selected="" disabled>Select Year Level</option>
@@ -225,8 +229,17 @@
                                     </select>
                                 </div>
 
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div id="identityAlert">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                
 
-                                <div class="form-group col-md-5">
+                                <div class="col-sm-6">
                                     <label for="dept" class="form-label"><b>Department</b></label>
                                     <select id="dept" name="dept" class="form-control" required>
                                         <option selected="" disabled>Select Department</option>
@@ -245,7 +258,7 @@
                                         ?>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="col-sm-6">
                                     <label for="courses" class="form-label"><b>Course</b></label>
                                     <select id="courses" name="courses" class="form-control" required>
                                     </select>
@@ -257,21 +270,21 @@
 
                             <div class="form-group row">
 
-                                <div class="col-md-4">
+                                <div class="col-sm-4">
                                     <label for="txtContactno" class="form-label"><b>Mobile</b></label>
                                     <input type="number" class="form-control" onKeyPress="if(this.value.length==11) return false;" id="txtContactno" name="txtContactno" placeholder="Mobile" oninput="validateReg()" required>
 
                                 </div>
 
 
-                                <div class="col-md-8">
+                                <div class="col-sm-8">
                                     <label for="txtEmail" class="form-label"><b>Email</b></label>
                                     <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Juandelacruz@sample.com" oninput="validateReg()" required>
                                 </div>
 
                             </div>
                             <div class="form-group row">
-                                <div class="col-lg-12">
+                                <div class="col-sm-12">
                                     <div id="mobileAlert">
                                     </div>
                                 </div>
@@ -282,7 +295,7 @@
 
 
                             <div class="form-group row">
-                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                <div class="col-sm-12">
                                     <label for="txtCityadd" class="form-label"><b>City Address</b></label>
                                     <input type="text" class="form-control" id="txtCityadd" name="txtCityadd" placeholder="Unit/House Number, Street Name, Subdivision/Village" required>
                                 </div>
@@ -290,7 +303,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="form-group col-md-2">
+                                <div class="col-sm-2">
                                     <label for="region" class="form-label"><b>Region</b></label>
                                     <select id="region" name="region" class="form-control" required>
                                         <option selected="" disabled>Select Region</option>
@@ -298,7 +311,7 @@
                                         require_once("includes/connect.php");
 
                                         $sql = "select * from refregion where regCode=?";
-                                        $data=array('13');
+                                        $data = array('13');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
 
@@ -314,20 +327,20 @@
                                 </div>
 
 
-                                <div class="form-group col-md-3">
+                                <div class="col-sm-3">
                                     <label for="provinces" class="form-label"><b>Province</b></label>
                                     <select id="provinces" name="provinces" class="form-control" required>
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="col-sm-3">
                                     <label for="city" class="form-label"><b>City</b></label>
                                     <select id="city" name="city" class="form-control" required>
                                     </select>
                                 </div>
 
 
-                                <div class="form-group col-md-4">
+                                <div class="col-sm-4">
                                     <label for="barangay" class="form-label"><b>Barangay</b></label>
                                     <select id="barangay" name="barangay" class="form-control" required>
                                     </select>
@@ -350,20 +363,20 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label class="form-label"><b>Username</b></label>
                                     <input type="text" class="form-control" id="txtUsername" name="txtUsername" onInput="checkUserName()" placeholder="Username" required>
                                     <span id="check-username"></span>
                                 </div>
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="txtPassword" class="form-label"><b>Password</b></label>
                                     <input type="password" class="form-control password" id="txtPassword" name="txtPassword" placeholder="Password" required>
                                     <p id="length"></p>
 
                                 </div>
 
-                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-sm-4">
                                     <label for="confirmpassword" class="form-label"><b>Repeat Password</b></label>
                                     <input type="Password" class="form-control password" id="confirmpassword" name="confirmpassword" placeholder="Password" required>
                                     <p id="message"></p>
@@ -416,7 +429,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-   
+
 
 
     <!-- Scroll to Top Button-->

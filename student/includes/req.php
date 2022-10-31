@@ -7,7 +7,7 @@
             </div>
 
             <div class="card-body">
-                <div class="form-group row">
+                <div class="form-group row" hidden>
                     <div class="col-lg-12">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">

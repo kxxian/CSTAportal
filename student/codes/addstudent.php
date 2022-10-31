@@ -14,13 +14,13 @@ if (isset($_POST['submit'])) {
     // current date and time
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
-    echo ucwords($date);
-    $id = (int)$_POST['txtStudID'];
+    //echo ucwords($date);
     $lname = ucwords(htmlspecialchars(trim($_POST['txtLname'])));
     $fname = ucwords(htmlspecialchars(trim($_POST['txtFname'])));
     $mname = ucwords(htmlspecialchars(trim($_POST['txtMname'])));
     $snum = htmlspecialchars(trim($_POST['txtSnum']));
     $gender = $_POST['selGender'];
+    $cstatus = $_POST['cstatus'];
     $bday = $_POST['dtBday'];
     $yrlevel = $_POST['yrlevel'];
     $dept = $_POST['dept'];
@@ -62,8 +62,8 @@ if (isset($_POST['submit'])) {
             if ($responsekeys['success']) {
                 try {
 
-                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass,vkey,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass,$vkey,$date);
+                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,cstatus,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,guardian,guardiancontact,username,pass,vkey,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender,$cstatus, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $guardian, $guardiancontact, $uname, $pass,$vkey,$date);
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();
@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
                         'allow_self_signed' => false
                     ));
                     $mail->isHTML(true);
-                    $mail->Subject = "STUDENT PORTAL REGISTRATION"; // email subject
+                    $mail->Subject = "Email Verification"; // email subject
                     $mail->Body = $body;
 
                     // $mail->addAttachment(path: "$file", name: "Grades_{$lname}'.jpg'");

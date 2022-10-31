@@ -68,7 +68,7 @@ foreach ($result as $row) {
     $sub_array[] =
      '
      <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" 
-     class="btn btn-info btn-sm accept" title="View Request"><i class="fa fa-fw fa-eye"></i></button>
+     class="btn btn-info btn-sm view" title="View Request"><i class="fa fa-fw fa-eye"></i></button>
 
 
     <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 

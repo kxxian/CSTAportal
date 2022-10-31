@@ -16,7 +16,7 @@ if (isset($_POST['reset-request-submit'])) {
     $url = "http://localhost/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
     $expires = date("U") + 1800;
 
-    $userEmail = $_POST['email'];
+    $userEmail =  htmlspecialchars(trim($_POST['email']));
 
     //Check if user email is registered
     $sql = "SELECT email from vwstudents where email=?";
@@ -84,7 +84,7 @@ if (isset($_POST['reset-request-submit'])) {
     
             // $_SESSION['status'] = "Registration Success!";
             // $_SESSION['status_code'] = "success";
-             header('location:../forgot-password.php?reset=success');
+             header('location:../login.php?reset=success');
         }
     
         $mail->smtpClose();
@@ -92,7 +92,7 @@ if (isset($_POST['reset-request-submit'])) {
 
 
     }else{
-        header('location:../forgot-password.php?reset=notfound');
+        header('location:../login.php?reset=notfound');
     }
 
 

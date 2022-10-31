@@ -155,7 +155,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 </div><br>
 
                                             </div>
-                                            <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"><i class="fas fa-save"></i> Save Picture</button></center>
+                                            <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Save Picture</button></center>
                                         </form>
 
                                     </div>

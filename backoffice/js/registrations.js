@@ -56,9 +56,6 @@ $(document).ready(function() {
         var fullname = $("#fullname").val();
         var email = $("#email").val();
         
-
-           
-     
             $.ajax({
                 url: "codes/decline.php",
                 method: "POST",

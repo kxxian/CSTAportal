@@ -12,19 +12,7 @@
 	<title>CSTA Portal Guest | Home</title>
 
 	<!-- Site Icons -->
-	<link rel="shortcut icon" href="img/cstalogonew.png">
-
-	<!-- Site Icons -->
 	<link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
-	<link rel="apple-touch-icon" href="img/CSTA_SMALL.png">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="plugins/bootstrap.min.css">
-
-	<!-- Owl Carousel CSS -->
-	<link rel="stylesheet" href="plugins/owl_carousel/owl.carousel.min.css">
-	<!-- Owl Carousel Theme -->
-	<link rel="stylesheet" href="plugins/owl_carousel/owl.theme.default.min.css">
 
 	<!-- Custom fonts for this template-->
 	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,6 +20,34 @@
 
 	<!-- Custom styles for this template-->
 	<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+	<!-- ajax -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<!-- datatable css -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+	<!-- jquery validation -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+	<!-- datatables -->
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+	<!-- sweet alert 2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- popper js -->
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap JS bundle -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+	<!-- Google Recaptcha-->
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 	<style>
 		.item img {
@@ -69,69 +85,7 @@
 					<!-- Content Row With card -->
 					<!-- Page Heading -->
 					<section>
-						<div class="container-fluid my-5">
-							
-						<h4 class="h4 mb-0 text-gray-900" style="text-decoration: underline;text-decoration-color:  #ffbb33; text-decoration-thickness: 3px;"><strong>Main Menu</strong></h4>
-							<div class="row mt-3">
-								<div class="owl-carousel owl-theme">
-									<a href="guest_register.php">
-										<div class="item mb-4">
-											<div class="card border-0 shadow">
-												<img class="card-img-top" src="img/enrollment3.jpg" alt="Online Enrollment">
-												<div class="card-body" style="background-color: #11D6D7;">
-													<h4 style="color: #fff; font-weight: bold;">Online Enrollment</h4>
-												</div>
-											</div>
-										</div>
-									</a>
-									<!-- item ends -->
-									<a href="guest_requirements.php">
-										<div class="item mb-4">
-											<div class="card border-0 shadow">
-												<img class="card-img-top" src="img/requirements2.jpg" alt="Online Enrollment">
-												<div class="card-body" style="background-color: #08082C;">
-													<h4 style="color: #fff; font-weight: bold;">Requirements</h4>
-												</div>
-											</div>
-										</div>
-									</a>
-									<!-- item ends -->
-									<a href="guest_payments_insert.php">
-										<div class="item mb-4">
-											<div class="card border-0 shadow">
-												<img class="card-img-top" src="img/payverif.png" alt="Online Enrollment">
-												<div class="card-body" style="background-color: #FDDF5A;">
-													<h4 style="color: #FFFAFA; font-weight: bold;">Payment Verification</h4>
-												</div>
-											</div>
-										</div>
-									</a>
-									<a href="#">
-										<div class="item mb-4">
-											<div class="card border-0 shadow">
-												<img class="card-img-top" src="img/request_of_docu.jpg" alt="Online Enrollment">
-												<div class="card-body" style="background-color: #4FC2F8;">
-													<h4 style="color: #fff; font-weight: bold;">Request of Documents</h4>
-												</div>
-											</div>
-										</div>
-									</a>
-									<!-- item ends -->
-									<!-- item ends -->
-									<a href="guest_check_payment.php">
-										<div class="item mb-4">
-											<div class="card border-0 shadow">
-												<img class="card-img-top" src="img/check_payment.jpg" alt="Online Enrollment">
-												<div class="card-body" style="background-color: #84DD81;">
-													<h4 style="color: #fff; font-weight: bold;">Check Payment Status</h4>
-												</div>
-											</div>
-										</div>
-									</a>
-									<!-- item ends -->
-								</div>
-							</div>
-						</div>
+
 					</section>
 					<!-- Content Row -->
 				</div>
@@ -178,5 +132,13 @@
 		})
 	</script>
 </body>
+
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
 </html>

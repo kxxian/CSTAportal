@@ -21,7 +21,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item text-gray-100 medium">
-                Welcome, Guest!
+                Good Day Teresian!
             </li>
         </ul>
     </nav>    

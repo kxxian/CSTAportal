@@ -1,23 +1,26 @@
 <?php
 session_start();
 
-if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-	header('location:index.php');
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    header('location:index.php');
 }
-	$msg="";
-	$msg2="";
-	if(isset($_GET['login'])){
-		$msg="Invalid Username or Password!";
+$msg = "";
 
-	}
+if (isset($_GET['login'])) {
+    $_SESSION['status'] = "Oops!";
+    $_SESSION['msg'] = "Invalid username or password!";
+    $_SESSION['status_code'] = "warning";
+}
 
-	if(isset($_GET['newpwd'])){
-		if($_GET['newpwd']=="passwordupdated"){
-			$msg2="Password Reset Successful!";
-		}
-		
+if (isset($_GET['newpwd'])) {
+    if ($_GET['newpwd'] == "passwordupdated") {
 
-	}
+
+        $_SESSION['status'] = "Success!";
+        $_SESSION['msg'] = "Password reset successful!";
+        $_SESSION['status_code'] = "success";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -91,20 +94,19 @@ if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 												
 											<div class="col-sm-6 offset-sm-3">
 												
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" style="background-color: #65350f;">
-												<p style="color:red; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg?></p>
-												<p style="color:green; font-weight:bold; text-align:center;padding-top:10px;"><?=$msg2?></p>
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login mb-4" value="Log In" style="background-color: #65350f;">
+												
 											</div>
 											</div>
 										</div>
 										<div class="form-group">
-										<div class="col-lg-12">
+										<div class="col-sm-12">
 													<div class="text-center">
-														<a href="guest_index.php" class="text-primary">Continue as Guest</a>
+														<a href="guest_index.php" class="text-dark">Continue as Guest</a>
 													</div>
 												</div>
 
-										<div class="col-lg-12">
+										<div class="col-sm-12">
 													<div class="text-center">
 														<span style="color:black"> Not a Member?</span> <a href="register.php" tabindex="5" class="forgot-password text-primary">Sign Up</a>
 													</div>

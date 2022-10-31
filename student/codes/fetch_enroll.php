@@ -36,7 +36,7 @@ foreach ($result as $row) {
    ;
     $sub_array = array();
     $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
-    $sub_array[] = '<center>'.$row["course"].'</center>';
+    $sub_array[] = '<center>'.$row["abbr"].'</center>';
 
 
     $sub_array[] = '<center><a class="font-weight-bold text-center" href="../student/uploads/copygrades/'.$row['enrollment_ID'].'.jpg">Grades</a></center>';

@@ -59,8 +59,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         }
 
         .picture {
-            width: 106px;
-            height: 106px;
+            width: 140px;
+            height: 140px;
             background-color: #999999;
             border: 4px solid #CCCCCC;
             color: #FFFFFF;
@@ -147,18 +147,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
                                             <div class="card-body">
+
                                                 <div class="d-flex flex-column align-items-center text-center">
-                                                    <?php
-                                                    //check if picture is existing in uploads/users   
-                                                    $file = 'uploads/users/' . $sid . '.jpg';
-                                                    if (!file_exists($file)) {
-                                                        $dp = 'default.jpg';
-                                                    } else {
-                                                        $dp = $sid . '.jpg';
-                                                    }
-                                                    echo '<img  src="uploads/users/' . $dp . '" alt="Admin" class="rounded-circle" width="120">';
-                                                    ?>
-                                                    <div class="mt-3">
+                                                    <form action="profilepicupload.php" method="post" enctype="multipart/form-data">
+                                                        <div class="picture-container">
+                                                            <div class="picture">
+
+                                                                <?php
+                                                                $file = 'uploads/users/' . $sid . '.jpg';
+                                                                if (!file_exists($file)) {
+                                                                    $dp = 'default.jpg';
+                                                                } else {
+                                                                    $dp = $sid . '.jpg';
+                                                                }
+                                                                echo '<img  src="uploads/users/' . $dp . '" class="picture-src" id="wizardPicturePreview" width="150" title="Choose Picture">' ?>
+                                                                <input type="file" id="wizard-picture" name="picture" accept=".jpg" class="">
+                                                            </div><br>
+
+                                                        </div>
+                                                        <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"><i class="fas fa-save"></i> Change</button></center>
+                                                    </form>
+                                                    <div class="mt-2">
                                                         <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?></h4>
                                                         <p class="text-secondary mb-1 text-gray-900"><?= $snum ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $yrlevel ?></p>
@@ -355,7 +364,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-4">
                             <label for="district" class="text-gray-900 font-weight-bold">District</label>
                             <select id="district" name="district" class="form-control" required>
-                            <option selected="" disabled>Select District</option>
+                                <option selected="" disabled>Select District</option>
                                 <?php
                                 require_once("includes/connect.php");
 

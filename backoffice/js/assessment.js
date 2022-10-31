@@ -90,7 +90,7 @@ $(document).ready(function() {
     $(document).on('click', '.sendassessment', function() {
         var enroll_id = $(this).attr('id');
         var sid = $(this).attr('sid');
-        alert(sid);
+        //alert(sid);
 
 
         $.ajax({

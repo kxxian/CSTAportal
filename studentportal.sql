@@ -103,12 +103,12 @@ CREATE TABLE `courses` (
   `course` varchar(255) NOT NULL,
   `visible` varchar(20) NOT NULL DEFAULT 'VISIBLE',
   PRIMARY KEY (`course_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `courses` */
 
 insert  into `courses`(`course_ID`,`deptid`,`abbr`,`course`,`visible`) values 
-(1,3,'BSED GEN','Bachelor Of Science In Secondary Education Major In General','VISIBLE'),
+(1,1,'NA','Not Applicable','INVISIBLE'),
 (2,3,'BSED ENG','Bachelor of Science in Secondary Education Major in English','VISIBLE'),
 (3,3,'BSED FIL','Bachelor Of Science In Secondary Education Major In Filipino','VISIBLE'),
 (4,3,'BSED MATH','Bachelor Of Science In Secondary Education Major In Math','VISIBLE'),
@@ -116,7 +116,8 @@ insert  into `courses`(`course_ID`,`deptid`,`abbr`,`course`,`visible`) values
 (6,1,'BSIT','Bachelor of Science in Information Technology','VISIBLE'),
 (7,2,'BSHM','Bachelor of Science in Hospitality Management','VISIBLE'),
 (8,2,'BSTM','Bachelor of Science in Tourismm','VISIBLE'),
-(9,2,'BSHRM','Bachelor of Science in Hotel and Restaurant Management','VISIBLE');
+(9,2,'BSHRM','Bachelor of Science in Hotel and Restaurant Management','VISIBLE'),
+(10,3,'BSED GEN','Bachelor Of Science In Elementary Education Major In General','VISIBLE');
 
 /*Table structure for table `ctc_authentication` */
 
@@ -270,7 +271,7 @@ CREATE TABLE `enrollment` (
 /*Data for the table `enrollment` */
 
 insert  into `enrollment`(`enrollment_ID`,`sid`,`snum`,`mobile`,`yrlevel_ID`,`dept_ID`,`course_ID`,`schoolyr_ID`,`semester_ID`,`date_enrolled`,`date_assessed`,`enrollment_status`) values 
-(224,39,'20-14789','09613397412',1,1,6,2,3,'2022-10-24 06:25:56',NULL,'Assessment');
+(224,39,'20-14789','09613397412',1,1,6,2,3,'2022-10-24 06:25:56',NULL,'Validating');
 
 /*Table structure for table `enrollment_switch` */
 
@@ -285,7 +286,7 @@ CREATE TABLE `enrollment_switch` (
 /*Data for the table `enrollment_switch` */
 
 insert  into `enrollment_switch`(`switch_ID`,`enrollment_status`) values 
-(1,'CLOSED');
+(1,'OPEN');
 
 /*Table structure for table `enrollment_validation` */
 
@@ -326,6 +327,46 @@ insert  into `gradereq`(`gradereq_ID`,`sid`,`schoolyr`,`semester`,`date_req`,`st
 (63,39,'2022-2023','First Semester','2022-10-20 10:23:58','Pending'),
 (65,39,' 2022-202','Second Semester','2022-10-26 01:59:24','Pending');
 
+/*Table structure for table `guest_enrollment` */
+
+DROP TABLE IF EXISTS `guest_enrollment`;
+
+CREATE TABLE `guest_enrollment` (
+  `gid` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `enroll_no` varchar(10) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `mname` varchar(100) DEFAULT NULL,
+  `maiden_name` varchar(100) NOT NULL DEFAULT '-',
+  `citizenship` varchar(50) NOT NULL,
+  `gender` varchar(6) NOT NULL,
+  `civil_status` varchar(20) NOT NULL,
+  `dob` datetime DEFAULT NULL,
+  `birthplace` varchar(100) NOT NULL,
+  `mobile` varchar(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `cityadd` varchar(255) NOT NULL,
+  `region` varchar(10) NOT NULL,
+  `province` varchar(10) NOT NULL,
+  `city` varchar(10) NOT NULL,
+  `brgy` varchar(10) NOT NULL,
+  `guardian` varchar(255) NOT NULL,
+  `g_contact` varchar(11) NOT NULL,
+  `app_status` varchar(255) NOT NULL,
+  `course_ID` tinyint(10) DEFAULT NULL,
+  `previous_deg` varchar(255) DEFAULT NULL,
+  `sub_to_enroll` varchar(255) DEFAULT NULL,
+  `non_degree` varchar(255) DEFAULT NULL,
+  `enrollment_status` varchar(50) DEFAULT 'Pending',
+  `date_submitted` datetime DEFAULT NULL,
+  PRIMARY KEY (`gid`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `guest_enrollment` */
+
+insert  into `guest_enrollment`(`gid`,`enroll_no`,`lname`,`fname`,`mname`,`maiden_name`,`citizenship`,`gender`,`civil_status`,`dob`,`birthplace`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`g_contact`,`app_status`,`course_ID`,`previous_deg`,`sub_to_enroll`,`non_degree`,`enrollment_status`,`date_submitted`) values 
+(16,'1713586092','Taruc','Aila Marie','Boncacas','','Filipino','Male','Single','2001-03-22 00:00:00','Caloocan City','09155494035','tarucailamarie22@gmail.com','Blk 2 Lot 16 Narra St. Llano Rd.','13','1375','137501','137501001','Marites Taruc','09323232323','Cross-Enrollee',1,'','Hekasi','-','Pending','2022-10-31 08:08:14');
+
 /*Table structure for table `guest_payments` */
 
 DROP TABLE IF EXISTS `guest_payments`;
@@ -343,32 +384,6 @@ CREATE TABLE `guest_payments` (
 
 insert  into `guest_payments`(`gpid`,`guest_fileName`,`guest_fileImage`,`guest_email`,`guest_fullName`) values 
 (6,'1million_dollars','1million_dollars.jpg','ericnewman@gmail.com','Eric A. Newman');
-
-/*Table structure for table `guest_register` */
-
-DROP TABLE IF EXISTS `guest_register`;
-
-CREATE TABLE `guest_register` (
-  `gid` int(11) NOT NULL AUTO_INCREMENT,
-  `guest_first_name` varchar(100) NOT NULL,
-  `guest_last_name` varchar(100) NOT NULL,
-  `guest_middle_name` varchar(100) NOT NULL,
-  `guest_suffix` varchar(10) NOT NULL,
-  `guest_address` varchar(255) NOT NULL,
-  `guest_email` varchar(255) NOT NULL,
-  `guest_mobile` varchar(11) NOT NULL,
-  `guest_telephone` varchar(11) NOT NULL,
-  `guest_course` varchar(100) NOT NULL,
-  `guest_guardian` varchar(255) NOT NULL,
-  `guest_guardian_no` varchar(11) NOT NULL,
-  `guest_guardian_email` varchar(255) NOT NULL,
-  PRIMARY KEY (`gid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `guest_register` */
-
-insert  into `guest_register`(`gid`,`guest_first_name`,`guest_last_name`,`guest_middle_name`,`guest_suffix`,`guest_address`,`guest_email`,`guest_mobile`,`guest_telephone`,`guest_course`,`guest_guardian`,`guest_guardian_no`,`guest_guardian_email`) values 
-(9,'Kristian Ryan','Bulos','Binondo','','Blk 10 Lot 14 B Kingstown 1 Bagumbong, Caloocan City','kristianryanbulos@gmail.com','09128698224','9905014','9','Rizzalinda B. Roxas','09123456789','sample@gmail.com');
 
 /*Table structure for table `guest_register_tesda` */
 
@@ -488,12 +503,13 @@ CREATE TABLE `notif` (
   `date` datetime NOT NULL,
   `isSeen` tinyint(2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`notif_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `notif` */
 
 insert  into `notif`(`notif_ID`,`sid`,`notification`,`icon`,`link`,`date`,`isSeen`) values 
-(21,39,'You are now in queue for assessment.','fas fa-check text-white','enrollment.php','2022-10-24 06:25:56',1);
+(21,39,'You are now in queue for assessment.','fas fa-check text-white','enrollment.php','2022-10-24 06:25:56',1),
+(23,39,'Please check your email for your assessment form.','fas fa-check text-white','#','2022-10-26 08:47:20',1);
 
 /*Table structure for table `particulars` */
 
@@ -555,7 +571,7 @@ CREATE TABLE `paymentverif` (
 /*Data for the table `paymentverif` */
 
 insert  into `paymentverif`(`pv_ID`,`sid`,`date_of_payment`,`time_of_payment`,`schoolyr`,`semester_ID`,`terms_ID`,`tfeeamount`,`particulars`,`particulars_total`,`sentvia_ID`,`paymethod_ID`,`note`,`gtotal`,`amtpaid`,`payment_status`,`date_sent`,`date_acknowledged`,`verif_code`,`date_verified`,`OR_num`,`AR_num`,`remarks`,`date_completed`) values 
-(48,39,'2022-09-30 00:00:00','15:15:54','2021-2022',2,2,15000.00,'Docs Stamp',200.00,2,2,'etlog duduy',15200.00,15200.00,'For Receipt','2022-09-30 03:11:03','2022-10-09 02:42:16','sdww2111','2022-10-11 09:20:02','44444','NA','Done','2022-10-11 09:34:07');
+(48,39,'2022-09-30 00:00:00','15:15:54','2021-2022',2,2,15000.00,'Docs Stamp',200.00,2,2,'etlog duduy',15200.00,15200.00,'Verified','2022-09-30 03:11:03','2022-10-09 02:42:16','sdww2111','2022-10-11 09:20:02','23232323','NA','Done','2022-10-26 08:35:36');
 
 /*Table structure for table `paymethod` */
 
@@ -585,12 +601,9 @@ CREATE TABLE `pwdreset` (
   `pwdresetToken` longtext NOT NULL,
   `pwdresetExpires` text NOT NULL,
   PRIMARY KEY (`pwdresetID`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pwdreset` */
-
-insert  into `pwdreset`(`pwdresetID`,`pwdresetEmail`,`pwdresetSelector`,`pwdresetToken`,`pwdresetExpires`) values 
-(35,'dsdasd@emailcom','916e08bc0a81358d','$2y$10$iigasYLJWr2zew05ZvPV1.aJMH3isjDGYjdMoBT8sGW2jCXFo4P62','1665383706');
 
 /*Table structure for table `refbrgy` */
 
@@ -44592,6 +44605,7 @@ CREATE TABLE `students` (
   `dept_ID` tinyint(10) unsigned NOT NULL,
   `course` tinyint(10) unsigned NOT NULL,
   `gender` varchar(6) NOT NULL,
+  `cstatus` varchar(20) NOT NULL,
   `bday` date NOT NULL,
   `citizenship` varchar(50) NOT NULL,
   `mobile` varchar(11) NOT NULL,
@@ -44612,13 +44626,14 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_username` (`username`),
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `students` */
 
-insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`guardiancontact`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
-(39,'Muñoz','Jason','Beltran','20-14789',2,3,6,'Male','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia C. Bacay-Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-26 15:00:27',1),
-(44,'Taruc','Aila Marie','Boncacas','19-13781',4,1,6,'Female','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Taruc','09888232838','ailataruc22','21c63abd2f76cb416c334efe11915a05d6167c15','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-10-20 23:52:38',0);
+insert  into `students`(`id`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`cstatus`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`guardian`,`guardiancontact`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
+(39,'Muñoz','Jason','Beltran','20-14789',2,3,6,'Male','','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','25 Milton St. Filinvest 2','13','1374','137404','137404010','Atty. Julia C. Bacay-Abad','09178297413','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-10-29 19:31:16',1),
+(44,'Taruc','Aila Marie','Boncacas','19-13781',4,1,6,'Female','','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Taruc','09888232838','ailataruc22','21c63abd2f76cb416c334efe11915a05d6167c15','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-10-20 23:52:38',0),
+(46,'Munoz','Allison','Taruc','20-11111',1,1,6,'Female','Single','2022-12-05','Filipino','09212121212','allison@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Jason B. Munoz','09613397412','allisonqtqt','9cb54a07e3e93becc14b4e06668d39360c5dd2c8','338adaa5816e30123c4b47fd77122787c6585a86','Verified','2022-10-31 23:20:03',1);
 
 /*Table structure for table `studreq` */
 
@@ -44889,6 +44904,7 @@ DROP TABLE IF EXISTS `vwforenrollment_students`;
  `yrlevel` varchar(32) ,
  `dept` varchar(68) ,
  `course` varchar(255) ,
+ `abbr` varchar(255) ,
  `schoolyr` varchar(9) ,
  `semester` varchar(68) ,
  `username` varchar(128) ,
@@ -44917,6 +44933,43 @@ DROP TABLE IF EXISTS `vwgradereq`;
  `email` varchar(128) ,
  `date_req` varchar(10) ,
  `status` varchar(100) 
+)*/;
+
+/*Table structure for table `vwguest_enrollment` */
+
+DROP TABLE IF EXISTS `vwguest_enrollment`;
+
+/*!50001 DROP VIEW IF EXISTS `vwguest_enrollment` */;
+/*!50001 DROP TABLE IF EXISTS `vwguest_enrollment` */;
+
+/*!50001 CREATE TABLE  `vwguest_enrollment`(
+ `gid` int(11) unsigned ,
+ `enroll_no` varchar(10) ,
+ `lname` varchar(100) ,
+ `fname` varchar(100) ,
+ `mname` varchar(100) ,
+ `maiden_name` varchar(100) ,
+ `citizenship` varchar(50) ,
+ `gender` varchar(6) ,
+ `civil_status` varchar(20) ,
+ `dob` datetime ,
+ `birthplace` varchar(100) ,
+ `mobile` varchar(11) ,
+ `email` varchar(100) ,
+ `cityadd` varchar(255) ,
+ `region` text ,
+ `province` text ,
+ `city` text ,
+ `brgy` text ,
+ `guardian` varchar(255) ,
+ `g_contact` varchar(11) ,
+ `app_status` varchar(255) ,
+ `course` varchar(255) ,
+ `previous_deg` varchar(255) ,
+ `sub_to_enroll` varchar(255) ,
+ `non_degree` varchar(255) ,
+ `enrollment_status` varchar(50) ,
+ `date_submitted` datetime 
 )*/;
 
 /*Table structure for table `vwnotif` */
@@ -44952,6 +45005,7 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `mname` varchar(128) ,
  `yrlevel` varchar(32) ,
  `course` varchar(255) ,
+ `abbr` varchar(255) ,
  `tfeepayment` varchar(10) ,
  `schoolyr` varchar(100) ,
  `semester` varchar(68) ,
@@ -44961,7 +45015,7 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `particulars` varchar(255) ,
  `particulars_total` varchar(10) ,
  `gtotal` varchar(10) ,
- `amtpaid` varchar(10) ,
+ `amtpaid` varchar(11) ,
  `amtchange` decimal(8,2) ,
  `sentvia` varchar(68) ,
  `paymethod` varchar(68) ,
@@ -44995,6 +45049,7 @@ DROP TABLE IF EXISTS `vwstudents`;
  `dept` varchar(68) ,
  `course` varchar(255) ,
  `gender` varchar(6) ,
+ `cstatus` varchar(20) ,
  `bday` date ,
  `mobile` varchar(11) ,
  `email` varchar(128) ,
@@ -45079,7 +45134,7 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP TABLE IF EXISTS `vwforenrollment_students` */;
 /*!50001 DROP VIEW IF EXISTS `vwforenrollment_students` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwforenrollment_students` AS select `enrollment`.`enrollment_ID` AS `enrollment_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`students`.`gender` AS `gender`,`students`.`bday` AS `bday`,`students`.`mobile` AS `mobile`,`students`.`email` AS `email`,concat(`students`.`cityadd`,', ',`refbrgy`.`brgyDesc`,', ',`refcitymun`.`citymunDesc`,', ',`refprovince`.`provDesc`,', ',`refregion`.`regDesc`) AS `completeaddress`,`students`.`guardian` AS `guardian`,`students`.`guardiancontact` AS `guardiancontact`,`yrlevel`.`yrlevel` AS `yrlevel`,`departments`.`dept` AS `dept`,`courses`.`course` AS `course`,`schoolyr`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`students`.`username` AS `username`,`students`.`pass` AS `password`,`enrollment`.`date_assessed` AS `date_assessed`,`enrollment`.`date_enrolled` AS `date_enrolled`,`enrollment`.`enrollment_status` AS `enrollment_status` from ((((((((((`enrollment` join `students` on(`enrollment`.`sid` = `students`.`id`)) join `refregion` on(`refregion`.`regCode` = `students`.`region`)) join `refprovince` on(`refprovince`.`provCode` = `students`.`province`)) join `refcitymun` on(`refcitymun`.`citymunCode` = `students`.`city`)) join `refbrgy` on(`refbrgy`.`brgyCode` = `students`.`brgy`)) join `courses` on(`courses`.`course_ID` = `enrollment`.`course_ID`)) join `schoolyr` on(`schoolyr`.`schoolyr_ID` = `enrollment`.`schoolyr_ID`)) join `semester` on(`semester`.`semester_ID` = `enrollment`.`semester_ID`)) join `departments` on(`departments`.`deptid` = `enrollment`.`dept_ID`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwforenrollment_students` AS select `enrollment`.`enrollment_ID` AS `enrollment_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`students`.`gender` AS `gender`,`students`.`bday` AS `bday`,`students`.`mobile` AS `mobile`,`students`.`email` AS `email`,concat(`students`.`cityadd`,', ',`refbrgy`.`brgyDesc`,', ',`refcitymun`.`citymunDesc`,', ',`refprovince`.`provDesc`,', ',`refregion`.`regDesc`) AS `completeaddress`,`students`.`guardian` AS `guardian`,`students`.`guardiancontact` AS `guardiancontact`,`yrlevel`.`yrlevel` AS `yrlevel`,`departments`.`dept` AS `dept`,`courses`.`course` AS `course`,`courses`.`abbr` AS `abbr`,`schoolyr`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`students`.`username` AS `username`,`students`.`pass` AS `password`,`enrollment`.`date_assessed` AS `date_assessed`,`enrollment`.`date_enrolled` AS `date_enrolled`,`enrollment`.`enrollment_status` AS `enrollment_status` from ((((((((((`enrollment` join `students` on(`enrollment`.`sid` = `students`.`id`)) join `refregion` on(`refregion`.`regCode` = `students`.`region`)) join `refprovince` on(`refprovince`.`provCode` = `students`.`province`)) join `refcitymun` on(`refcitymun`.`citymunCode` = `students`.`city`)) join `refbrgy` on(`refbrgy`.`brgyCode` = `students`.`brgy`)) join `courses` on(`courses`.`course_ID` = `enrollment`.`course_ID`)) join `schoolyr` on(`schoolyr`.`schoolyr_ID` = `enrollment`.`schoolyr_ID`)) join `semester` on(`semester`.`semester_ID` = `enrollment`.`semester_ID`)) join `departments` on(`departments`.`deptid` = `enrollment`.`dept_ID`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) */;
 
 /*View structure for view vwgradereq */
 
@@ -45087,6 +45142,13 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP VIEW IF EXISTS `vwgradereq` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwgradereq` AS select `gradereq`.`gradereq_ID` AS `gradereq_ID`,`gradereq`.`sid` AS `sid`,`students`.`snum` AS `snum`,concat(`students`.`lname`,', ',`students`.`fname`,' ',`students`.`mname`) AS `fullname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,`gradereq`.`schoolyr` AS `schoolyr`,`gradereq`.`semester` AS `semester`,`students`.`email` AS `email`,date_format(`gradereq`.`date_req`,'%m/%d/%Y') AS `date_req`,`gradereq`.`status` AS `status` from (((`gradereq` join `students` on(`gradereq`.`sid` = `students`.`id`)) join `yrlevel` on(`students`.`yrlevel` = `yrlevel`.`yrlevel_ID`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) */;
+
+/*View structure for view vwguest_enrollment */
+
+/*!50001 DROP TABLE IF EXISTS `vwguest_enrollment` */;
+/*!50001 DROP VIEW IF EXISTS `vwguest_enrollment` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwguest_enrollment` AS select `guest_enrollment`.`gid` AS `gid`,`guest_enrollment`.`enroll_no` AS `enroll_no`,`guest_enrollment`.`lname` AS `lname`,`guest_enrollment`.`fname` AS `fname`,`guest_enrollment`.`mname` AS `mname`,`guest_enrollment`.`maiden_name` AS `maiden_name`,`guest_enrollment`.`citizenship` AS `citizenship`,`guest_enrollment`.`gender` AS `gender`,`guest_enrollment`.`civil_status` AS `civil_status`,`guest_enrollment`.`dob` AS `dob`,`guest_enrollment`.`birthplace` AS `birthplace`,`guest_enrollment`.`mobile` AS `mobile`,`guest_enrollment`.`email` AS `email`,`guest_enrollment`.`cityadd` AS `cityadd`,`refregion`.`regDesc` AS `region`,`refprovince`.`provDesc` AS `province`,`refcitymun`.`citymunDesc` AS `city`,`refbrgy`.`brgyDesc` AS `brgy`,`guest_enrollment`.`guardian` AS `guardian`,`guest_enrollment`.`g_contact` AS `g_contact`,`guest_enrollment`.`app_status` AS `app_status`,`courses`.`course` AS `course`,`guest_enrollment`.`previous_deg` AS `previous_deg`,`guest_enrollment`.`sub_to_enroll` AS `sub_to_enroll`,`guest_enrollment`.`non_degree` AS `non_degree`,`guest_enrollment`.`enrollment_status` AS `enrollment_status`,`guest_enrollment`.`date_submitted` AS `date_submitted` from (((((`guest_enrollment` join `refregion` on(`guest_enrollment`.`region` = `refregion`.`regCode`)) join `refprovince` on(`guest_enrollment`.`province` = `refprovince`.`provCode`)) join `refcitymun` on(`guest_enrollment`.`city` = `refcitymun`.`citymunCode`)) join `refbrgy` on(`guest_enrollment`.`brgy` = `refbrgy`.`brgyCode`)) join `courses` on(`guest_enrollment`.`course_ID` = `courses`.`course_ID`)) */;
 
 /*View structure for view vwnotif */
 
@@ -45100,14 +45162,14 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP TABLE IF EXISTS `vwpayverif` */;
 /*!50001 DROP VIEW IF EXISTS `vwpayverif` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,format(`paymentverif`.`tfeeamount`,2) AS `tfeepayment`,`paymentverif`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,format(`paymentverif`.`particulars_total`,2) AS `particulars_total`,format(`paymentverif`.`gtotal`,2) AS `gtotal`,format(`paymentverif`.`amtpaid`,2) AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date_of_payment`,'%m/%d/%Y') AS `date_paid`,time_format(`paymentverif`.`time_of_payment`,'%h:%i:%s %p') AS `time_paid`,`paymentverif`.`date_sent` AS `date_sent`,`paymentverif`.`date_acknowledged` AS `date_acknowledged`,`paymentverif`.`verif_code` AS `verif_code`,`paymentverif`.`date_verified` AS `date_verified`,`paymentverif`.`OR_num` AS `OR`,`paymentverif`.`AR_num` AS `AR`,`paymentverif`.`remarks` AS `remarks`,`paymentverif`.`payment_status` AS `payment_status` from (((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,`courses`.`abbr` AS `abbr`,format(`paymentverif`.`tfeeamount`,2) AS `tfeepayment`,`paymentverif`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,format(`paymentverif`.`particulars_total`,2) AS `particulars_total`,format(`paymentverif`.`gtotal`,2) AS `gtotal`,concat('P',format(`paymentverif`.`amtpaid`,2)) AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date_of_payment`,'%m/%d/%Y') AS `date_paid`,time_format(`paymentverif`.`time_of_payment`,'%h:%i:%s %p') AS `time_paid`,`paymentverif`.`date_sent` AS `date_sent`,`paymentverif`.`date_acknowledged` AS `date_acknowledged`,`paymentverif`.`verif_code` AS `verif_code`,`paymentverif`.`date_verified` AS `date_verified`,`paymentverif`.`OR_num` AS `OR`,`paymentverif`.`AR_num` AS `AR`,`paymentverif`.`remarks` AS `remarks`,`paymentverif`.`payment_status` AS `payment_status` from (((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
 
 /*View structure for view vwstudents */
 
 /*!50001 DROP TABLE IF EXISTS `vwstudents` */;
 /*!50001 DROP VIEW IF EXISTS `vwstudents` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwstudents` AS select `students`.`id` AS `id`,`students`.`snum` AS `snum`,`students`.`fname` AS `fname`,`students`.`lname` AS `lname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`departments`.`dept` AS `dept`,`courses`.`course` AS `course`,`students`.`gender` AS `gender`,`students`.`bday` AS `bday`,`students`.`mobile` AS `mobile`,`students`.`email` AS `email`,concat(`students`.`cityadd`,', ',`refbrgy`.`brgyDesc`,', ',`refcitymun`.`citymunDesc`,', ',`refprovince`.`provDesc`) AS `completeaddress`,`refregion`.`regDesc` AS `region`,`students`.`guardian` AS `guardian`,`students`.`guardiancontact` AS `guardiancontact`,`students`.`username` AS `username`,`students`.`pass` AS `pass`,`students`.`status` AS `status`,`students`.`isAccepted` AS `isAccepted`,`students`.`dor` AS `date_registered` from (((((((`students` join `refregion` on(`refregion`.`regCode` = `students`.`region`)) join `refprovince` on(`refprovince`.`provCode` = `students`.`province`)) join `refcitymun` on(`refcitymun`.`citymunCode` = `students`.`city`)) join `refbrgy` on(`refbrgy`.`brgyCode` = `students`.`brgy`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `departments` on(`departments`.`deptid` = `students`.`dept_ID`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwstudents` AS select `students`.`id` AS `id`,`students`.`snum` AS `snum`,`students`.`fname` AS `fname`,`students`.`lname` AS `lname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`departments`.`dept` AS `dept`,`courses`.`course` AS `course`,`students`.`gender` AS `gender`,`students`.`cstatus` AS `cstatus`,`students`.`bday` AS `bday`,`students`.`mobile` AS `mobile`,`students`.`email` AS `email`,concat(`students`.`cityadd`,', ',`refbrgy`.`brgyDesc`,', ',`refcitymun`.`citymunDesc`,', ',`refprovince`.`provDesc`) AS `completeaddress`,`refregion`.`regDesc` AS `region`,`students`.`guardian` AS `guardian`,`students`.`guardiancontact` AS `guardiancontact`,`students`.`username` AS `username`,`students`.`pass` AS `pass`,`students`.`status` AS `status`,`students`.`isAccepted` AS `isAccepted`,`students`.`dor` AS `date_registered` from (((((((`students` join `refregion` on(`refregion`.`regCode` = `students`.`region`)) join `refprovince` on(`refprovince`.`provCode` = `students`.`province`)) join `refcitymun` on(`refcitymun`.`citymunCode` = `students`.`city`)) join `refbrgy` on(`refbrgy`.`brgyCode` = `students`.`brgy`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `departments` on(`departments`.`deptid` = `students`.`dept_ID`)) */;
 
 /*View structure for view vwsubmittedreq */
 

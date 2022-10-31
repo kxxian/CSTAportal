@@ -11,7 +11,7 @@ if (isset($_POST['reset-password-submit'])) {
         header("location: ../create-new-password.php?newpwd=empty");
         exit();
     } elseif ($password != $passwordRepeat) {
-        header("location: ../create-new-password.php?newpwd=pwdmismatched");
+        header("location: ../create-new-password.php?newpwd=mismatched");
         exit();
     }
 

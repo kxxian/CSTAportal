@@ -187,7 +187,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </td>
                                                        
                                                         <td hidden>' . $row['gtotal'] . '</td>
-                                                        <td class="currency" style="text-align:right;">' . $row['amtpaid'] . '</td>
+                                                        <td  style="text-align:right;">' . $row['amtpaid'] . '</td>
                                                         <td hidden>' . $row['amtchange'] . '</td>
                                                         <td>' . $row['sentvia'] . '</td>
                                                         <td hidden>' . $row['paymethod'] . '</td>
