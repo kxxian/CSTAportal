@@ -14,10 +14,8 @@ $(document).ready(function() {
                   $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 1
-                  $("#not_enrolled").removeClass("current-item");
-                  $("#not_enrolled_icon").removeClass("fa fa-fw fa-times");
-                  $("#first_step").addClass("current-item");
-                  $("#first_step_icon").addClass("fa fa-fw fa-sync")
+                  $("#application").addClass("completed")
+                  
 
                }else if($.trim(data1)=="Waiting Payment"){
                   $(".enroll_status").css({"color": "#ffc107"});
@@ -26,10 +24,8 @@ $(document).ready(function() {
                   
 
                   //STEP WIZARD 2
-                  $("#not_enrolled").removeClass("current-item");
-                  $("#first_step").removeClass("current-item");
-                  $("#second_step").addClass("current-item");
-                  $("#second_step_icon").addClass("fa fa-fw fa-sync")
+                  $("#application").addClass("completed")
+                  $("#assessment").addClass("completed")
 
                }else if($.trim(data1)=="Validating"){
                   $("#not_enrolled").removeClass("current-item");
@@ -39,12 +35,9 @@ $(document).ready(function() {
                   $("#enrolldetails").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 3
-                  $("#not_enrolled").removeClass("current-item");
-                  $("#first_step").removeClass("current-item");
-                  $("#second_step").removeClass("current-item");
-                  
-                  $("#third_step").addClass("current-item");
-                  $("#third_step_icon").addClass("fa fa-fw fa-sync")
+                  $("#application").addClass("completed")
+                  $("#assessment").addClass("completed")
+                  $("#payment").addClass("completed")
 
                }else if($.trim(data1)=="Enrolled"){
                   $(".enroll_status").css({"color": "lime"});
@@ -55,20 +48,23 @@ $(document).ready(function() {
                   $("#enrollvaldetails").css({"pointer-events": "none", "opacity": "0.6"});
 
                   //STEP WIZARD 4
-                  $("#not_enrolled").removeClass("current-item");
-                  $("#first_step").removeClass("current-item");
-                  $("#second_step").removeClass("current-item");
-                  $("#third_step").removeClass("current-item");
-                   $("#fourth_step").removeClass("current-item");
+                  $("#application").addClass("completed")
+                  $("#assessment").addClass("completed")
+                  $("#payment").addClass("completed")
+                  $("#validate").addClass("completed")
+                  $("#enrolled").addClass("completed")
                 
 
                }
                
                else if($.trim(data1)=="Not Enrolled"){
                   $(".enroll_status").css({"color": "red"});
-                  
-                  $("#not_enrolled").addClass("current-item");
-                  $("#not_enrolled_icon").addClass("fa fa-fw fa-times");
+                    //STEP WIZARD 4
+                    $("#application").removeClass("completed")
+                    $("#assessment").removeClass("completed")
+                    $("#payment").removeClass("completed")
+                    $("#validate").removeClass("completed")
+                    $("#enrolled").removeClass("completed")
                }
        });
 
