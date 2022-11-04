@@ -19,7 +19,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | Payment Verification</title>
+    <title>Payment Verification</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">

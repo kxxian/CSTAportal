@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("includes/connect.php");
 ?>
 <!DOCTYPE html>
@@ -108,31 +109,33 @@ require("includes/connect.php");
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card shadow mb-5">
-                                <div class="card-header text-gray-900"><h7 class="h7 font-weight-bold">
-                                    <i class="fas fa-edit"></i>
-                                    &nbsp;
-                                    Payment Verification Form</h7>
+                                <div class="card-header text-gray-900">
+                                    <h7 class="h7 font-weight-bold">
+                                        <i class="fas fa-credit-card"></i>
+                                        &nbsp;
+                                        Payment Verification Form
+                                    </h7>
                                 </div>
                                 <div class="card-body">
-                                    <form action="./codes/guest_enroll.php" id="regForm" method="POST" enctype="multipart/form-data">
+                                    <form action="./codes/guest_paymentverif.php" method="POST" enctype="multipart/form-data">
                                         <input type="hidden" name="txtStudID" id="txtStudID" value="<?= $id ?>">
                                         <fieldset class="scheduler-border">
-                                            <legend class="scheduler-border text-dark">Student Information</legend>
+                                            <legend class="scheduler-border text-gray-900">Student Information</legend>
                                             <div class="form-group row">
                                                 <div class="col-sm-4">
-                                                    <label for="txtLname" class="form-label text-dark"><b>Last Name</b> (indicate suffix if any..)</label>
+                                                    <label for="txtLname" class="form-label text-dark"><b>Last Name</b> (include name suffix if any.)</label>
                                                     <input type="text" class="form-control" name="lname" id="lname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
 	                                                     event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46 || (event.charCode)==165|| (event.charCode)==164" maxlength="20" placeholder="Dela Cruz Jr." required>
                                                 </div>
 
                                                 <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <label for="txtFname" class="form-label text-dark"><b>First Name</b></label>
+                                                    <label for="txtFname" class="form-label text-gray-900"><b>First Name</b></label>
                                                     <input type="text" class="form-control" name="fname" id="fname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
 	                                                      event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Juan" required>
                                                 </div>
 
                                                 <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <label for="txtMname" class="form-label text-dark"><b>Middle Name</b></label>
+                                                    <label for="txtMname" class="form-label text-gray-900"><b>Middle Name</b></label>
                                                     <input type="text" class="form-control" name="mname" id="mname" oninput="validateReg()" onkeypress="return (event.charCode > 64 && 
 	                                                     event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" placeholder="Leave blank if Not Applicable ">
                                                 </div>
@@ -140,7 +143,7 @@ require("includes/connect.php");
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-12">
-                                                    <label for="txtLname" class="form-label text-dark"><b>Maiden Name</b> (For Married Teresians Only)</label>
+                                                    <label for="txtLname" class="form-label text-gray-900"><b>Maiden Name</b> (For married teresians only.)</label>
                                                     <input type="text" class="form-control" name="maidname" id="maidname" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
 	                                                      event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46 || (event.charCode)==165|| (event.charCode)==164" maxlength="20" placeholder="Leave blank if Not Applicable">
                                                 </div>
@@ -149,13 +152,13 @@ require("includes/connect.php");
                                             <div class="form-group row">
 
                                                 <div class="col-sm-4 mb-3 mb-sm-0">
-                                                    <label for="txtCitizenship" class="form-label text-dark"><b>Citizenship</b></label>
+                                                    <label for="txtCitizenship" class="form-label text-gray-900"><b>Citizenship</b></label>
                                                     <input type="text" class="form-control" id="citizenship" name="citizenship" placeholder="Citizenship" onkeypress="return (event.charCode > 64 && 
 	                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="20" required>
                                                 </div>
 
                                                 <div class="form-group col-md-4">
-                                                    <label for="selGender" class="form-label text-dark"><b>Gender</b></label>
+                                                    <label for="selGender" class="form-label text-gray-900"><b>Gender</b></label>
                                                     <select id="selGender" name="selGender" class="form-control" required>
                                                         <option selected value="" disabled>Select Gender</option>
                                                         <option>Male</option>
@@ -163,7 +166,7 @@ require("includes/connect.php");
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="selCstatus" class="form-label text-dark"><b>Civil Status</b></label>
+                                                    <label for="selCstatus" class="form-label text-gray-900"><b>Civil Status</b></label>
                                                     <select id="selCstatus" name="selCstatus" class="form-control" required>
                                                         <option selected value="" disabled>Select Civil status</option>
                                                         <option>Single</option>
@@ -175,11 +178,11 @@ require("includes/connect.php");
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
-                                                    <label for="dtBday" class="form-label text-dark"><b>Date of Birth</b></label>
+                                                    <label for="dtBday" class="form-label text-gray-900"><b>Date of Birth</b></label>
                                                     <input type="date" class="form-control" name="dtBday" id="dtBday" placeholder="Birthday" onchange="validateReg()" required>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="birthplace" class="form-label text-dark"><b>Place of Birth</b> (Please use CITY or MUNICIPALITY only)</label>
+                                                    <label for="birthplace" class="form-label text-gray-900"><b>Place of Birth</b> (Please use CITY or MUNICIPALITY only)</label>
                                                     <input type="text" class="form-control" name="birthplace" id="birthplace" oninput="validateReg();  " onkeypress="return (event.charCode > 64 && 
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode)==46 || (event.charCode)==165|| (event.charCode)==164" maxlength="20" placeholder="e.g. Quezon City" required>
                                                 </div>
@@ -193,14 +196,14 @@ require("includes/connect.php");
                                             <div class="form-group row">
 
                                                 <div class="col-sm-4">
-                                                    <label for="txtContactno" class="form-label text-dark"><b>Mobile</b></label>
+                                                    <label for="txtContactno" class="form-label text-gray-900"><b>Mobile</b></label>
                                                     <input type="number" class="form-control" onKeyPress="if(this.value.length==11) return false;" id="mobile" name="mobile" placeholder="Mobile" oninput="validateReg()" required>
 
                                                 </div>
 
 
                                                 <div class="col-sm-8">
-                                                    <label for="txtEmail" class="form-label text-dark"><b>Email</b></label>
+                                                    <label for="txtEmail" class="form-label text-gray-900"><b>Email</b></label>
                                                     <input type="email" class="form-control" id="email" name="email" placeholder="Juandelacruz@sample.com" oninput="validateReg()" required>
                                                 </div>
 
@@ -208,7 +211,7 @@ require("includes/connect.php");
 
                                             <div class="form-group row">
                                                 <div class="col-sm-12">
-                                                    <label for="txtCityadd" class="form-label text-dark"><b>City Address</b></label>
+                                                    <label for="txtCityadd" class="form-label text-gray-900"><b>City Address</b></label>
                                                     <input type="text" class="form-control" id="cityadd" name="cityadd" placeholder="Unit/House Number, Street Name, Subdivision/Village" required>
                                                 </div>
 
@@ -216,7 +219,7 @@ require("includes/connect.php");
 
                                             <div class="form-group row">
                                                 <div class="col-sm-2">
-                                                    <label for="region" class="form-label text-dark"><b>Region</b></label>
+                                                    <label for="region" class="form-label text-gray-900"><b>Region</b></label>
                                                     <select id="region" name="region" class="form-control" required>
                                                         <option selected value="" disabled>Select Region</option>
                                                         <?php
@@ -240,201 +243,240 @@ require("includes/connect.php");
 
 
                                                 <div class="col-sm-3">
-                                                    <label for="provinces" class="form-label text-dark"><b>Province</b></label>
+                                                    <label for="provinces" class="form-label text-gray-900"><b>Province</b></label>
                                                     <select id="provinces" name="provinces" class="form-control" required>
                                                     </select>
                                                 </div>
 
                                                 <div class="col-sm-3">
-                                                    <label for="city" class="form-label text-dark"><b>City</b></label>
+                                                    <label for="city" class="form-label text-gray-900"><b>City</b></label>
                                                     <select id="city" name="city" class="form-control" required>
                                                     </select>
                                                 </div>
 
 
                                                 <div class="col-sm-4">
-                                                    <label for="barangay" class="form-label text-dark"><b>Barangay</b></label>
+                                                    <label for="barangay" class="form-label text-gray-900"><b>Barangay</b></label>
                                                     <select id="barangay" name="barangay" class="form-control" required>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
-                                                    <label for="txtguardian" class="form-label text-dark"><b>Guardian</b></label>
+                                                    <label for="txtguardian" class="form-label text-gray-900"><b>Guardian</b></label>
                                                     <input type="text" class="form-control" id="txtguardian" name="txtguardian" onkeypress="return (event.charCode > 64 && 
 	                                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46" placeholder="Guardian's Name" maxlength="50" required>
                                                 </div>
 
                                                 <div class="col-sm-6">
-                                                    <label for="txtguradiancontact" class="form-label text-dark"><b>Contact Number</b></label>
+                                                    <label for="txtguradiancontact" class="form-label text-gray-900"><b>Contact Number</b></label>
                                                     <input type="number" class="form-control" id="txtguardiancontact" name="txtguardiancontact" onKeyPress="if(this.value.length==11) return false;" placeholder="Contact Number" required>
                                                 </div>
                                             </div>
                                         </fieldset>
+
                                         <fieldset class="scheduler-border">
-                                            <legend class="scheduler-border text-dark">Enrollment Application</legend>
-                                            <div class="form-group row">
-                                                <div class="col-sm-12">
-                                                    <label for="region" class="form-label text-dark"><b>Application Status</b></label>
-                                                    <select id="appstat" name="appstat" class="form-control" onchange="showDiv(this)" required>
-                                                        <option selected value="" disabled>Select Application Status</option>
-                                                        <option value="Freshman">Freshman (SHS Graduate, HS Graduate, ALS Completer)</option>
-                                                        <option value="Transferee">Transferee (From Another College or University)</option>
-                                                        <option value="Second Course Taker / Unit Earner">Second Course Taker / Unit Earner (Bachelor's Degree Holder)</option>
-                                                        <option value="Cross-Enrollee">Cross-Enrollee</option>
+                                            <legend class="scheduler-border text-gray-900">Payment For</legend>
+                                            <br><label>
+                                                <h5 class="font-weight-bold text-gray-900">Tuition Fee</h5>
+                                            </label>
+                                            <div class="form-group row" id="inputtfee">
+                                                <div class="col-sm-6">
+                                                    <label class="form-check-label font-weight-bold text-gray-900" for="chktfee">
+                                                        School Year
+                                                    </label>
 
 
-                                                    </select>
+                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023">
                                                 </div>
-
-                                            </div>
-                                            <div class="form-group row" id="bp" style="display:none;">
-                                                <div class="col-sm-12">
-                                                    <label for="bp_input" class="form-label text-dark"><b>Baccalaureate Programs</b></label>
-                                                    <select id="bp_input" name="bp_input" class="form-control">
-                                                        <option selected value="" disabled>Select Program</option>
+                                                <div class="col-sm-6">
+                                                    <label class="form-check-label font-weight-bold text-gray-900" for="chktfee">
+                                                        Semester
+                                                    </label>
+                                                    <select name="selsem" id="selsem" class="form-control">
+                                                        <option selected="" disabled>..</option>
                                                         <?php
                                                         require_once("includes/connect.php");
 
-                                                        $sql = "select * from courses where visible=?";
-                                                        $data = array('VISIBLE');
+                                                        $sql = "select * from semester where isVisible=? ";
+                                                        $data = array('1');
                                                         $stmt = $con->prepare($sql);
                                                         $stmt->execute($data);
 
                                                         while ($row = $stmt->fetch()) {
-                                                            echo '<option value=' . $row['course_ID'] . '>' . $row['course'] . '</option>';
+                                                            echo '<option value=' . $row['semester_ID'] . '>' . $row['semester'] . '</option>';
                                                         }
                                                         $stmt = null;
 
                                                         ?>
-
-
                                                     </select>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row" id="pdsc" style="display:none;">
-                                                <div class="col-sm-12">
-                                                    <label for="pdsc_input" class="form-label text-dark"><b>Previous Degree / Course / Strand
-                                                        </b> </label>
-                                                    <input type="text" class="form-control" id="pdsc_input" name="pdsc_input" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46" placeholder="Degree / Course / Strand" maxlength="50">
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group row" id="ce" style="display:none;">
-                                                <div class="col-sm-12">
-                                                    <label for="ce_input" class="form-label text-dark"><b>Course / Subject to be Enrolled</b> (For Cross-Enrollees)</label>
-                                                    <input type="text" class="form-control" id="ce_input" name="ce_input" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46" placeholder="Enter subject/ course to be cross-enrolled or NA if not Applicable" maxlength="50">
-                                                </div>
-
-                                            </div>
-                                            <div class="form-group row" id="ndp" style="display:none;">
-                                                <div class="col-sm-12">
-                                                    <label for="ndp_input" class="form-label text-dark"><b>Non Degree Programs</b> (For unit earners)</label>
-                                                    <select id="ndp_input" name="ndp_input" class="form-control">
-                                                        <option selected value="" disabled>Select Program</option>
+                                            <div class="form-group row" id="inputtfee2">
+                                                <div class="col-sm-6">
+                                                    <label class="form-check-label font-weight-bold text-gray-900" for="chktfee">
+                                                        Term
+                                                    </label>
+                                                    <select name="selterm" id="selterm  " class="form-control">
+                                                        <option selected="" disabled>..</option>
                                                         <?php
                                                         require_once("includes/connect.php");
 
-                                                        $sql = "select * from courses where visible=?";
-                                                        $data = array('VISIBLE');
+                                                        $sql = "select * from terms where isVisible=?";
+                                                        $data = array(1);
                                                         $stmt = $con->prepare($sql);
                                                         $stmt->execute($data);
 
                                                         while ($row = $stmt->fetch()) {
-                                                            echo '<option value=' . $row['course_ID'] . '>' . $row['course'] . '</option>';
+                                                            echo '<option value=' . $row['terms_ID'] . '>' . $row['term'] . '</option>';
                                                         }
                                                         $stmt = null;
 
                                                         ?>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <label class="form-check-label font-weight-bold text-gray-900" for="chktfee">
+                                                        Amount
+                                                    </label>
+                                                    <i style="font-size: 0.9rem;color:#808080">*Enter tuition fee amount paid</i>
+                                                    <input type="number" placeholder="0.00" class="form-control" id="tfeeamount" name="tfeeamount" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
+                                                </div>
+                                            </div><br>
+                                            <label>
+                                                <h5 class="font-weight-bold text-gray-900">Additional (Others Fees)</h5>
+                                                <i style="font-size: 0.9rem;color:#808080">*Select other fees indicated on your assessment / disbursement form </i>
+                                            </label>
+
+                                            <br><br>
+                                            <div class="form-group" id="othersopt">
+                                                <div class="col-sm-12">
+
+                                                    <?php
+                                                    $sql = "select * from particulars where isActive='Active'";
+                                                    $stmt = $con->prepare($sql);
+                                                    $stmt->execute();
+
+                                                    while ($row = $stmt->fetch()) {
+                                                        echo '
+                                                                <div class="form-check form-check-inline mb-2">
+                                                                <input class="form-check-input" type="checkbox" value="' . $row['particular'] . '" id="particulars" name="particulars[]">
+                                                                <label class="form-check-label font-weight-bold text-gray-900" for="particulars">
+                                                                    ' . $row['particular'] . '
+                                                                </label>
+                                                                </div>';
+                                                    }
+                                                    $stmt = null;
+                                                    ?>
+                                                </div><br>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="font-weight-bold text-gray-900">
+                                                            Total (Other Fees)
+                                                        </label>
+                                                        <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
+                                                        <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
+                                                    </div>
 
 
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset class="scheduler-border">
+                                            <legend class="scheduler-border text-gray-900">Total</legend>
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+
+                                                    <?php
+                                                    ?>
+
+                                                    <input type="hidden" class="form-control" id="totaldue" name="totaldue" style="pointer-events: none; height:55px; 
+                                                                    font-size:20pt; font-weight:bold; color:red; text-align:right">
+
+                                                    <input type="text" class="form-control" id="totaldue1" name="totaldue1" style="pointer-events: none; height:55px; 
+                                                                    font-size:20pt; font-weight:bold; color:red; text-align:right">
+                                                </div>
+                                                <i style="font-size: 1rem;color:#808080">*Total amount should be similar on what is on your proof of payment</i>
+
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset class="scheduler-border">
+                                            <legend class="scheduler-border text-gray-900">Payment Details</legend>
+                                            <i style="font-size: 1rem;color:red">*Fill all the details as indicated on your proof of payment</i>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label for="paymentamount" class="text-gray-900"><strong>Amount Paid</strong></label>
+                                                    <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" class="form-control" name="amtpaid" id="amtpaid" placeholder="0.00" style="text-align:right;" required>
+                                                    <p class="font-weight-bold" id="errmsg" style="display:none; color:red">Please Enter a Valid Amount !</p>
+                                                </div>
+                                                <div class="col-sm-6">
+
+                                                    <label for="sentthru" class="text-gray-900"><strong>Sent Thru</strong></label>
+                                                    <select class="form-control" id="sentthru" name="sentthru" required>
+                                                        <option selected="" disabled>..</option>
+                                                        <?php
+                                                        $sql = "select * from sentvia where isActive='ACTIVE'";
+                                                        $stmt = $con->prepare($sql);
+                                                        $stmt->execute();
+
+                                                        while ($row = $stmt->fetch()) {
+                                                            echo '<option  value=' . $row['sentvia_ID'] . '>' . $row['sentvia'] . '</option>';
+                                                        }
+                                                        $stmt = null;
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
-
-
-                                        </fieldset>
-                                        <fieldset class="scheduler-border" id="FREQ" style="display:none;">
-                                            <legend class="scheduler-border text-dark">Requirements (Freshman)</legend>
-                                            <label class="form-label text-dark">Attach the <b>SCANNED COPY OF THE ORIGINAL DOCUMENT IN PDF FORMAT</b> / The original document must be submitted to CSTA.</label>
                                             <div class="form-group row">
                                                 <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Birth / Marriage Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="freshbc" id="freshbc" class="form-control">
+                                                    <label for="paymethod" class="text-gray-900"><strong>Payment Method</strong></label>
+                                                    <select class="form-control" id="paymethod" name="paymethod" required>
+                                                        <option selected="" disabled>..</option>
+                                                        <?php
+                                                        $sql = "select * from paymethod where isActive='ACTIVE'";
+                                                        $stmt = $con->prepare($sql);
+                                                        $stmt->execute();
+
+                                                        while ($row = $stmt->fetch()) {
+                                                            echo '<option  value=' . $row['paymethod_ID'] . '>' . $row['paymethod'] . '</option>';
+                                                        }
+                                                        $stmt = null;
+                                                        ?>
+                                                    </select>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Good Moral Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="freshgmc" id="freshgmc" class="form-control">
+                                                <div class="col-sm-3">
+                                                    <label for="dop" class="text-gray-900"><strong>Payment Date</strong></label>
+                                                    <input type="date" class="form-control" id="DoP" name="DoP" required>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="dop" class="text-gray-900"><strong>Time</strong></label>
+                                                    <input type="time" step="1" class="form-control" id="ToP" name="ToP" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Form 138 / SCHOOL FORM 9 / REPORT CARD / CERTIFICATE OF RATING
-                                                        </b></label>
-                                                    <input type="file" accept="application/pdf" name="freshf138" id="freshf138" class="form-control">
-                                                </div>
-
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="scheduler-border" id="TRANSREQ" style="display:none;">
-                                            <legend class="scheduler-border text-dark">Requirements (Transferee)</legend>
-                                            <label class="form-label text-dark">Attach the <b>SCANNED COPY OF THE ORIGINAL DOCUMENT IN PDF FORMAT</b> / The original document must be submitted to CSTA.</label>
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Birth / Marriage Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="transbc" id="transbc" class="form-control">
+                                                <div class="col-sm-6" id="reqform">
+                                                    <label for="" class="text-gray-900"><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
+                                                    <input type="file" accept=".jpg" class="form-control-file" name="reqform">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Good Moral Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="transgmc" id="transgmc" class="form-control">
+                                                    <label for="paymentproof" class="text-gray-900"><strong>Proof of Payment</strong></label>
+                                                    <input type="file" accept=".jpg" class="form-control-file" name="paymentproof" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Honorable Dismissal</b></label>
-                                                    <input type="file" accept="application/pdf" name="transhd" id="" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>TOR / Copy of Grades</b></label>
-                                                    <input type="file" accept="application/pdf" name="transtor" id="transtor" class="form-control">
+                                                <div class="col-sm-12">
+                                                    <label for="tuitionpaynote" class="text-gray-900"><strong>Notes (Optional)</strong></label>
+                                                    <textarea class="form-control" id="note" name="note" rows="4" maxlength="200" placeholder="Maximum of 200 characters.."></textarea>
                                                 </div>
                                             </div>
-                                        </fieldset>
-
-
-                                        <fieldset class="scheduler-border" id="SCTREQ" style="display:none;">
-                                            <legend class="scheduler-border text-dark">Requirements(Second Course Taker)</legend>
-                                            <label class="form-label text-dark">Attach the <b>SCANNED COPY OF THE ORIGINAL DOCUMENT IN PDF FORMAT</b> / The original document must be submitted to CSTA.</label>
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Birth / Marriage Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="sctbc" id="sctbc" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Transcript of Records</b></label>
-                                                    <input type="file" accept="application/pdf" name="scttor" id="scttor" class="form-control">
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-                                        <fieldset class="scheduler-border" id="CEREQ" style="display:none;">
-                                            <legend class="scheduler-border text-dark">Requirements(Cross-Enrollee)</legend>
-                                            <label class="form-label text-dark">Attach the <b>SCANNED COPY OF THE ORIGINAL DOCUMENT IN PDF FORMAT</b> / The original document must be submitted to CSTA.</label>
-                                            <div class="form-group row">
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Birth / Marriage Certificate</b></label>
-                                                    <input type="file" accept="application/pdf" name="cereqbc" id="cereqbc" class="form-control">
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label for="region" class="form-label text-dark"><b>Permit to Cross Enroll</b></label>
-                                                    <input type="file" accept="application/pdf" name="cereqpermit" id="cereqpermit" class="form-control">
-                                                </div>
-                                            </div>
-
                                         </fieldset>
                                         <br>
                                         <center>
@@ -443,13 +485,13 @@ require("includes/connect.php");
 
                                         <div class="che-box text-center">
                                             <label class="checkbox-in">
-                                                <input name="checkbox" type="checkbox" tabindex="" id="chkagree" name="chkagree" required> <span class="text-dark"> I hereby certify that all of the information and documents given are true <br> and correct as to the best of my knowledge</span>
+                                                <input name="checkbox" type="checkbox" tabindex="" id="chkagree" name="chkagree" required> <span class="text-dark"> I hereby certify that all of the information and documents given are true <br> and correct as to the best of my knowledge.</span>
 
                                             </label>
                                         </div><br>
                                         <div class="text-center">
 
-                                            <button type="submit" name="submit" id="submit" class="btn btn-rounded btn-success" style="width:200px;">Enroll</button>
+                                            <button type="submit" name="submit" id="submit" class="btn btn-rounded btn-success" style="width:200px;">Submit</button>
 
                                         </div>
 
@@ -491,206 +533,9 @@ require("includes/connect.php");
 
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-    <script src="js/guest_enrollment.js"></script>
-
-    <script type="text/javascript">
-        function showDiv(select) {
+    <script src="js/guest_payverif.js"></script>
 
 
-            if (select.value == "Freshman") {
-
-                //clear selections
-                $('#bp_input').prop('selectedIndex', 0);
-                $('#pdsc_input').val('');
-                $('#ndp_input').prop('selectedIndex', 0);
-                $('#ce_input').val('');
-
-
-
-                document.getElementById('bp').style.display = "block";
-                document.getElementById('pdsc').style.display = "block";
-
-                //require inputs
-                document.getElementById('bp_input').required = true;
-                document.getElementById('pdsc_input').required = true;
-                document.getElementById('ndp_input').required = false;
-                document.getElementById('ce_input').required = false;
-
-                //hide 
-                document.getElementById('ce').style.display = "none";
-                document.getElementById('ndp').style.display = "none";
-
-                //show requirements
-                document.getElementById('FREQ').style.display = "block";
-
-                //hide requirements
-                document.getElementById('TRANSREQ').style.display = "none";
-                document.getElementById('SCTREQ').style.display = "none";
-                document.getElementById('CEREQ').style.display = "none";
-
-
-                //require freshman requirements
-
-
-                document.getElementById('transbc').required = false;
-                document.getElementById('transgmc').required = false;
-                document.getElementById('transhd').required = false;
-                document.getElementById('transtor').required = false;
-
-                document.getElementById('sctbc').required = false;
-                document.getElementById('scttor').required = false;
-
-                document.getElementById('cereqbc').required = false;
-                document.getElementById('cereqpermit').required = false;
-
-                document.getElementById('freshbc').required = true;
-                document.getElementById('freshgmc').required = true;
-                document.getElementById('freshf138').required = true;
-
-
-
-
-            } else if (select.value == "Transferee") {
-                //clear selections
-                $('#bp_input').prop('selectedIndex', 0);
-                $('#pdsc_input').val('');
-                $('#ndp_input').prop('selectedIndex', 0);
-                $('#ce_input').val('');
-
-                document.getElementById('bp').style.display = "block";
-                document.getElementById('pdsc').style.display = "block";
-
-                //require inputs
-                document.getElementById('bp_input').required = true;
-                document.getElementById('pdsc_input').required = true;
-                document.getElementById('ndp_input').required = false;
-                document.getElementById('ce_input').required = false;
-
-                //hide 
-                document.getElementById('ce').style.display = "none";
-                document.getElementById('ndp').style.display = "none";
-
-                //show requirements
-                document.getElementById('TRANSREQ').style.display = "block";
-
-                //hide requirements
-                document.getElementById('FREQ').style.display = "none";
-                document.getElementById('SCTREQ').style.display = "none";
-                document.getElementById('CEREQ').style.display = "none";
-
-
-                //require transferee requirements
-
-
-                document.getElementById('freshbc').required = false;
-                document.getElementById('freshgmc').required = false;
-                document.getElementById('freshf138').required = false;
-
-                document.getElementById('sctbc').required = false;
-                document.getElementById('scttor').required = false;
-
-                document.getElementById('cereqbc').required = false;
-                document.getElementById('cereqpermit').required = false;
-
-                document.getElementById('transbc').required = true;
-                document.getElementById('transgmc').required = true;
-                document.getElementById('transhd').required = true;
-                document.getElementById('transtor').required = true;
-
-            } else if (select.value == "Second Course Taker / Unit Earner") {
-                //clear selections
-                $('#bp_input').prop('selectedIndex', 0);
-                $('#pdsc_input').val('');
-                $('#ndp_input').prop('selectedIndex', 0);
-                $('#ce_input').val('');
-
-                document.getElementById('pdsc').style.display = "block";
-                document.getElementById('ndp').style.display = "block";
-
-                //hide requirements
-                document.getElementById('FREQ').style.display = "none";
-                document.getElementById('TRANSREQ').style.display = "none";
-                document.getElementById('CEREQ').style.display = "none";
-
-                //show requirements
-                document.getElementById('SCTREQ').style.display = "block";
-
-                //require second course taker requirements
-
-                document.getElementById('transbc').required = false;
-                document.getElementById('transgmc').required = false;
-                document.getElementById('transhd').required = false;
-                document.getElementById('transtor').required = false;
-
-                document.getElementById('freshbc').required = false;
-                document.getElementById('freshgmc').required = false;
-                document.getElementById('freshf138').required = false;
-
-                document.getElementById('cereqbc').required = false;
-                document.getElementById('cereqpermit').required = false;
-                document.getElementById('sctbc').required = true;
-                document.getElementById('scttor').required = true;
-
-                //require inputs
-                document.getElementById('pdsc_input').required = true;
-                document.getElementById('ndp_input').required = true;
-                document.getElementById('bp_input').required = false;
-                document.getElementById('ce_input').required = false;
-
-                //hide
-                document.getElementById('bp').style.display = "none";
-                document.getElementById('ce').style.display = "none";
-
-
-
-            } else if (select.value == "Cross-Enrollee") {
-
-                //clear selections
-                $('#bp_input').prop('selectedIndex', 0);
-                $('#pdsc_input').val('');
-                $('#ndp_input').prop('selectedIndex', 0);
-                $('#ce_input').val('');
-                //hide
-                document.getElementById('bp').style.display = "none";
-                document.getElementById('pdsc').style.display = "none";
-                document.getElementById('ndp').style.display = "none";
-
-                //hide requirements
-                document.getElementById('TRANSREQ').style.display = "none";
-                document.getElementById('FREQ').style.display = "none";
-                document.getElementById('SCTREQ').style.display = "none";
-
-                //show requirements
-                document.getElementById('CEREQ').style.display = "block";
-
-                //require inputs
-                document.getElementById('ce').style.display = "block";
-
-                document.getElementById('ce_input').required = true;
-                document.getElementById('ndp_input').required = false;
-                document.getElementById('bp_input').required = false;
-                document.getElementById('pdsc_input').required = false;
-
-                // require cross-enrollee requirements
-
-                document.getElementById('sctbc').required = false;
-                document.getElementById('scttor').required = false;
-
-                document.getElementById('transbc').required = false;
-                document.getElementById('transgmc').required = false;
-                document.getElementById('transhd').required = false;
-                document.getElementById('transtor').required = false;
-
-                document.getElementById('freshbc').required = false;
-                document.getElementById('freshgmc').required = false;
-                document.getElementById('freshf138').required = false;
-
-                document.getElementById('cereqbc').required = true;
-                document.getElementById('cereqpermit').required = true;
-
-            }
-        }
-    </script>
 </body>
 
 <!-- Core plugin JavaScript-->
@@ -699,5 +544,53 @@ require("includes/connect.php");
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+
+
+        // Get value on keyup function
+        $("#tfeeamount, #totalothers, #amtpaid").keyup(function() {
+
+
+            var x = Number($("#tfeeamount").val());
+            var y = Number($("#totalothers").val());
+            var amtpaid = Number($("#amtpaid").val());
+            var total = x + y;
+
+            // hidden input
+            $('#totaldue').val(total);
+
+            //input displayed
+            $('#totaldue1').val(total);
+
+
+            //Philippine Currency
+            let amtdue = total.toLocaleString("fil-PH", {
+                style: "currency",
+                currency: "PHP"
+            })
+            var total_amt = document.getElementById("totaldue1");
+
+            total_amt.value = amtdue;
+
+
+            //Amounts Validation
+            if (amtpaid >= 1 && amtpaid < total) {
+                $(':input[type="submit"]').prop('disabled', true);
+                $("#errmsg").show();
+            } else {
+                $(':input[type="submit"]').prop('disabled', false);
+                $("#totaldue").prop('value', total);
+                $("#errmsg").hide();
+            }
+
+
+
+
+        });
+    });
+</script>
 
 </html>

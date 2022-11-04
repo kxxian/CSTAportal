@@ -18,7 +18,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | Home</title>
+    <title>Home</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">

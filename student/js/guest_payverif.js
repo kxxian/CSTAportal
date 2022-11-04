@@ -22,25 +22,10 @@ $(document).ready(function () {
     $('#cityadd').keyup(function(){
         $(this).css("text-transform", "capitalize");
     });
+
     $('#birthplace').keyup(function(){
         $(this).css("text-transform", "capitalize");
     });
-
-
-    $('#pdsc_input').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#ce_input').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-
-
-
-
-
-
     
     
   //populate region, province, city, brgy

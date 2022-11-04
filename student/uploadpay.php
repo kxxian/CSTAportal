@@ -11,7 +11,7 @@ if (isset($_POST['uploadpayments'])) {
     if (isset($_POST['selsy'])) {
         $pay_sy = $_POST['selsy'];
     } else {
-        $pay_sy = 1;
+        $pay_sy = '-';
     }
 
     if (isset($_POST['selsem'])) {
@@ -49,7 +49,7 @@ if (isset($_POST['uploadpayments'])) {
 
     try {
 
-        $sql = "INSERT INTO paymentverif (sid,date_of_payment,time_of_payment,schoolyr_ID,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid,date_sent)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO paymentverif (sid,date_of_payment,time_of_payment,schoolyr,semester_ID,terms_ID,tfeeamount,particulars,particulars_total,sentvia_ID,paymethod_ID,note,gtotal,amtpaid,date_sent)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $data = array($sid, $dop, $top, $pay_sy, $pay_sem, $payterm, $tfeeamount, $particulars, $total_others, $sentthru, $paymethod, $notes, $amountdue, $amtpaid,$date);
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
