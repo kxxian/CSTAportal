@@ -1,10 +1,10 @@
 <?php 
-require_once('config.php');
+/* require_once('config.php'); */
 
- $host="localhost:3307"; 
+ $host="localhost:3306"; 
  $dbase="studentportal"; 
  $user="root"; 
- $pwd = ""; 
+ $pwd = "KR@0726$"; 
 
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{
