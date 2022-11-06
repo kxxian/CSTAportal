@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
 
     <style>
-        
-
         .steps .step {
             display: block;
             width: 100%;
@@ -80,7 +78,7 @@
 
         .steps .step.completed .step-icon-wrap::before,
         .steps .step.completed .step-icon-wrap::after {
-            background-color:#28a745;
+            background-color: #28a745;
         }
 
         .steps .step.completed .step-icon {
@@ -125,8 +123,6 @@
         .bg-secondary {
             background-color: #f5f5f5 !important;
         }
-
-      
     </style>
 
 
@@ -136,7 +132,7 @@
     <div class="row">
         <div class="col-sm-12 float-right mb-2">
             <span class="float-right">
-                <button class="btn btn-info btn-sm" title="What's This?" data-toggle="modal" data-target="#instruct">
+                <button class="btn btn-info btn-sm" title="Help" data-toggle="modal" data-target="#instruct">
                     <i class="fa fa-question fa-fw"></i>
                 </button>
             </span>
@@ -144,52 +140,52 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-        <div class="container padding-bottom-3x mb-1">
-        <div class="card mb-3">
-            <div class="p-4 text-center text-white text-lg  rounded-top" style="background-color:#2E1503"><span class="text-uppercase"> Enrollment Progress </span></div>
-          
-            <div class="card-body">
-                <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
-                    <div class="step" id="application">
-                        <div class="step-icon-wrap">
-                            <div class="step-icon"><i class="pe-7s-note"></i></div>
+            <div class="container ">
+                <div class="card mb-3">
+                    <div class="p-2 text-center text-white text-lg  rounded-top" style="background-color:#2E1503"><span class="text-uppercase"> Enrollment Progress </span></div>
+
+                    <div class="card-body">
+                        <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                            <div class="step" id="application">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-note"></i></div>
+                                </div>
+                                <h4 class="step-title">Application</h4>
+                            </div>
+                            <div class="step" id="assessment">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-note2"></i></div>
+                                </div>
+                                <h4 class="step-title">Assessment</h4>
+                            </div>
+                            <div class="step" id="payment">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-wallet"></i></div>
+                                </div>
+                                <h4 class="step-title">Payment</h4>
+                            </div>
+                            <div class="step" id="validate">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-id"></i></div>
+                                </div>
+                                <h4 class="step-title">Validation</h4>
+                            </div>
+                            <div class="step" id="enrolled">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-culture"></i></div>
+                                </div>
+                                <h4 class="step-title">Enrolled</h4>
+                            </div>
                         </div>
-                        <h4 class="step-title">Application</h4>
                     </div>
-                    <div class="step" id="assessment">
-                        <div class="step-icon-wrap">
-                            <div class="step-icon"><i class="pe-7s-note2"></i></div>
-                        </div>
-                        <h4 class="step-title">Assessment</h4>
-                    </div>
-                    <div class="step" id="payment">
-                        <div class="step-icon-wrap">
-                            <div class="step-icon"><i class="pe-7s-wallet"></i></div>
-                        </div>
-                        <h4 class="step-title">Payment</h4>
-                    </div>
-                    <div class="step" id="validate">
-                        <div class="step-icon-wrap">
-                            <div class="step-icon"><i class="pe-7s-id"></i></div>
-                        </div>
-                        <h4 class="step-title">Validation</h4>
-                    </div>
-                    <div class="step" id="enrolled">
-                        <div class="step-icon-wrap">
-                            <div class="step-icon"><i class="pe-7s-culture"></i></div>
-                        </div>
-                        <h4 class="step-title">Enrolled</h4>
-                    </div>
+                </div>
+                <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
+
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-wrap flex-md-nowrap justify-content-center justify-content-sm-between align-items-center">
-           
-        </div>
     </div>
-        </div>
-    </div>
-    
+
 </body>
 
 </html>

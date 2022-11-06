@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     setInterval(function() {
-                //sidebar counter for request of grades
+                //sidebar counter for notifications
                 $.post("codes/counter.php",
                 {data1:'get'},function(data1){
                 

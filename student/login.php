@@ -121,12 +121,10 @@ if (isset($_GET['reset'])) {
 <body>
 	<div class="main-bg">
 		<!-- title -->
-		<h1>CSTA Student Portal</h1>
+		<center><img src="img/big.png" alt=""  width="190"></center>
+		
 		<!-- //title -->
-		<div class="sub-main-w3">
-			<div class="image-style" hidden>
-
-			</div>
+		<div class="sub-main-w3" style="margin-top:0;" >	
 			<!-- vertical tabs -->
 			<div class="vertical-tab">
 				<div id="section1" class="section-w3ls">

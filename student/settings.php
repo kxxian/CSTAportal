@@ -94,7 +94,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
         <!-- Sidebar -->
         <?php
-        $pageValue = 4;
+        $pageValue = 5;
         require_once("includes/sidebar.php");
 
         ?>

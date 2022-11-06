@@ -11,6 +11,17 @@ function get_grade_request(){
     return $statement->rowCount();
 }
 
+function get_users(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from guest_enrollment");
+    $data=array();
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

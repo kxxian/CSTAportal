@@ -30,7 +30,7 @@ $strSidebar .= '    </a>';
 $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
 $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
 //$strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
-$strSidebar .= '                    <a class="collapse-item" href="#">Enrollment <span class="badge badge-danger badge-counter"></span></a>';
+$strSidebar .= '                    <a class="collapse-item" href="trackenrollment.php">Enrollment <span class="badge badge-danger badge-counter"></span></a>';
 $strSidebar .= '                    <a class="collapse-item" href="#">Request of Documents <span class="badge badge-danger badge-counter"></span></a>';
 $strSidebar .= '                    <a class="collapse-item" href="#">Payment <span class="badge badge-danger badge-counter"></span></a>';
 

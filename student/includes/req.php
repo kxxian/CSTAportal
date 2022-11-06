@@ -21,7 +21,7 @@
                         <div class="col-lg-12">
                             <label for="selDocument" style="font-weight:bold;" class="text-gray-900">Requirement Name</label>
                             <select class="form-control text-gray-800" id="selDocument" name="selDocument" required>
-                                <option selected="" disabled>Select Document..</option>
+                                <option selected value="" disabled>Select Document..</option>
 
                                 <?php
                                 $sql1 = 'SELECT * FROM requirements WHERE req_ID NOT IN(SELECT req_ID 
@@ -61,7 +61,7 @@
             </div>
 
             <div class="card-body">
-                <button type="button" id="addUser" data-toggle="modal" data-target="#usersModal" class="btn btn-warning mb-3 float-right" title="Request for Validation"> <i class="fas fa-user-check fa-fw"></i></button>
+                <!-- <button type="button" id="addUser" data-toggle="modal" data-target="#usersModal" class="btn btn-warning mb-3 float-right" title="Request for Validation"> <i class="fas fa-user-check fa-fw"></i></button> -->
                 <div class="table-responsive">
                     <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">

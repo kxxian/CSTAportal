@@ -108,7 +108,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <!-- Basic Card Example -->
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-upload"></i> Upload Payment</h6>
+                                                <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-fw fa-credit-card"></i> Payment Verification</h6>
                                             </div>
                                             <div class="card-body text-gray-900">
                                                 <form action="uploadpay.php" method="POST" enctype="multipart/form-data">
@@ -218,10 +218,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
                                                                     </div>
 
-                                                                    <div class="col-s-6" id="reqform">
-                                                                        <label for=""><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
-                                                                        <input type="file" accept=".jpg" class="form-control-file" name="reqform">
-                                                                    </div>
+
                                                                 </div>
 
 
@@ -303,10 +300,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
+                                                                <div class="col-sm-6" id="reqform">
+                                                                    <label for=""><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
+                                                                    <input type="file" accept=".jpg" class="form-control" name="reqform">
+                                                                </div>
                                                                 <div class="col-sm-6">
                                                                     <label for="paymentproof"><strong>Proof of Payment</strong></label>
-                                                                    <input type="file" accept=".jpg" class="form-control-file" name="paymentproof" required>
+                                                                    <input type="file" accept=".jpg" class="form-control" name="paymentproof" required>
                                                                 </div>
+
                                                             </div>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-12">

@@ -63,17 +63,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Announcement card -->
-                    <div class="card shadow h-100 py-0" hidden>
-                        <h4 class="card-header text-center text-gray-100" style="background-color:#4f4539 ;">
-                            Announcement
-                            <i class="fas fa-bell  text-gray-100"></i>
-                        </h4>
-                        <div class="card-body" style="background-color:#3a3122;">
-                            <h4 class="card-title text-gray-100">Title</h4>
-                            <p class="card-text text-gray-100">Sample Content</p>
-                        </div>
-                    </div>
+                 
                     <br>
                     <!-- Content Row With card -->
                     <!-- Page Heading -->

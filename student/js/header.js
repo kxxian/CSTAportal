@@ -59,6 +59,12 @@ $(document).ready(function() {
                
                else if($.trim(data1)=="Not Enrolled"){
                   $(".enroll_status").css({"color": "red"});
+                  $("#enroll_div").css({"pointer-events": "auto", "opacity": "1"});
+                  $("#enrolldetails").css({"pointer-events": "auto", "opacity": "1"});
+                  $("#validation").css({"pointer-events": "auto", "opacity": "1"});
+                  $("#enrollvaldetails").css({"pointer-events": "auto", "opacity": "1"});
+
+
                     //STEP WIZARD 4
                     $("#application").removeClass("completed")
                     $("#assessment").removeClass("completed")

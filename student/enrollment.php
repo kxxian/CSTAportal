@@ -156,7 +156,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                                 <div class="col-sm-12">
                                                                     <label for="seldept" class="text-gray-900"><b>Department</b></label>
                                                                     <select class="form-control" id="seldept" name="seldept" required>
-                                                                        <option selected="" disabled>Select Department..</option>
+                                                                        <option selected value="" disabled>Select Department..</option>
                                                                         <?php
                                                                         $sql = "select * from departments";
                                                                         $stmt = $con->prepare($sql);
@@ -355,21 +355,33 @@ include("includes/scripts.php");
 
 <!-- Modal -->
 <div class="modal fade" id="instruct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg    modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title font-weight-bold text-gray-900" id="exampleModalLabel">Enrollment Guide</h5>
-                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-                <!-- <span aria-hidden="true">&times;</span> -->
-                </button>
-            </div>
+
             <div class="modal-body">
-                <img src="img/BG1.jpg" alt="" width="100%" height="400px">
+                <!-- <img src="img/enroll_guide/g1.png" alt="" width="100%" height="400px"> -->
+
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100"src="img/enroll_guide/g1.png" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                        <img class="d-block w-100"src="img/enroll_guide/g2.png" alt="First slide">
+                        </div>
+                       
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Ok</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
+
         </div>
     </div>
 </div>

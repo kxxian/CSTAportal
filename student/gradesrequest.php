@@ -102,7 +102,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h3 class="h3 mb-4 text-gray-900">Request of Grades</h3>
+                    <!-- <h3 class="h3 mb-4 text-gray-900">Request of Grades</h3> -->
                     <div class="main-body">
                         <div class="row">
 
@@ -111,7 +111,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <!-- Basic Card Example -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-upload"></i> Request Grades</h6>
+                                        <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-fw fa-file-alt"></i> Request of Grades</h6>
                                     </div>
 
 
@@ -131,7 +131,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="col-sm-6">
                                                     <label for="sem1" class="text-gray-900"><b>Semester</b></label>
                                                     <select class="form-control" id="sem1" name="sem1" required>
-                                                        <option selected="" disabled>Select Semester..</option>
+                                                        <option selected value="" disabled>Select Semester..</option>
                                                         <?php
                                                         $sql = "select * from semester where isVisible=?";
                                                         $data = array(1);
