@@ -35,7 +35,6 @@ CREATE TABLE `announcements` (
   `a_eid` int NOT NULL,
   `a_day` int NOT NULL,
   `a_month` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `a_office` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `a_title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `a_desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`a_id`)
@@ -48,7 +47,7 @@ CREATE TABLE `announcements` (
 
 LOCK TABLES `announcements` WRITE;
 /*!40000 ALTER TABLE `announcements` DISABLE KEYS */;
-INSERT INTO `announcements` VALUES (1,827,5,'November','Admin','Welcome to CSTA!','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'),(2,831,4,'November','Admin','Midterm exam is this week please settle your accounts.','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'),(3,89,31,'October','Admin','Final defense is on nov 26!','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.');
+INSERT INTO `announcements` VALUES (1,827,5,'November','Welcome to CSTA!','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'),(2,831,4,'November','Midterm exam is this week please settle your accounts.','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'),(3,89,31,'October','Final defense is on nov 26!','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.');
 /*!40000 ALTER TABLE `announcements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1229,7 +1228,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `dept_ID`,
  1 AS `a_day`,
  1 AS `a_month`,
- 1 AS `a_office`,
  1 AS `a_title`,
  1 AS `a_desc`*/;
 SET character_set_client = @saved_cs_client;
@@ -1652,7 +1650,7 @@ USE `studentportal`;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vwannouncements` AS select `announcements`.`a_id` AS `a_id`,`announcements`.`a_eid` AS `a_eid`,`departments`.`dept` AS `dept`,`employees`.`lname` AS `lname`,`employees`.`fname` AS `fname`,`employees`.`mname` AS `mname`,`employees`.`dept_ID` AS `dept_ID`,`announcements`.`a_day` AS `a_day`,`announcements`.`a_month` AS `a_month`,`announcements`.`a_office` AS `a_office`,`announcements`.`a_title` AS `a_title`,`announcements`.`a_desc` AS `a_desc` from ((`announcements` join `employees` on((`employees`.`id` = `announcements`.`a_eid`))) join `departments` on((`employees`.`dept_ID` = `departments`.`deptid`))) */;
+/*!50001 VIEW `vwannouncements` AS select `announcements`.`a_id` AS `a_id`,`announcements`.`a_eid` AS `a_eid`,`departments`.`dept` AS `dept`,`employees`.`lname` AS `lname`,`employees`.`fname` AS `fname`,`employees`.`mname` AS `mname`,`employees`.`dept_ID` AS `dept_ID`,`announcements`.`a_day` AS `a_day`,`announcements`.`a_month` AS `a_month`,`announcements`.`a_title` AS `a_title`,`announcements`.`a_desc` AS `a_desc` from ((`announcements` join `employees` on((`employees`.`id` = `announcements`.`a_eid`))) join `departments` on((`employees`.`dept_ID` = `departments`.`deptid`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1918,4 +1916,4 @@ USE `studentportal`;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 12:44:52
+-- Dump completed on 2022-11-08 15:05:47
