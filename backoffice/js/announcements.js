@@ -1,21 +1,4 @@
 $(document).ready(function() {
-     //Capitalize input fields
-     $('#lname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-    $('#fname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#mname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#position').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-
     $('#addAnnouncement').click(function() {
         $('#myForm')[0].reset();
         $('.title').text(' Add Announcement');
@@ -35,29 +18,20 @@ $(document).ready(function() {
 
         },
         "columnDefs": [{
-            "target": [0, 1, 2, 3, 4, 5, 6],
+            "target": [0, 1, 2, 3, 4, 5],
             "orderable": false,
         }, ],
     });
 
-    $(document).on('submit', '#usersForm', function(event) {
+    $(document).on('submit', '#myForm', function(event) {
         event.preventDefault();
-        var lname = $("#lname").val();
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var gender = $("#gender").val();
-        var email = $("#email").val();
-        var gender = $("#gender").val();
-        var mobile = $("#mobile").val();
-        var office = $("#office").val();
-        var dept = $("#dept").val();
-        var role = $("#role").val();
-        var position = $("#position").val();
+        var day = $("#selday").val();
+        var month = $("#selmonth").val();
+        var title = $("#txttitle").val();
+        var desc = $("#txtdesc").val();
 
 
-        if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role
-            || position=="") {
+        if (!day || !month || title === ''|| desc === '') {
 
             Swal.fire({
                 icon: 'warning',
@@ -66,7 +40,7 @@ $(document).ready(function() {
             })
         } else {
             $.ajax({
-                url: "codes/userscrud.php",
+                url: "codes/announcementscrud.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -82,11 +56,11 @@ $(document).ready(function() {
                         timer: 1500
                     })
 
-                    $('#usersModal').modal('hide');
+                    $('#a_modal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
-                    usersTable.api().ajax.reload();
+                    a_table.api().ajax.reload();
                 }
 
             })

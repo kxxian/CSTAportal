@@ -102,7 +102,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-tie fa-fw"></i> Users
-                                <button type="button" id="addAnnouncement" data-toggle="modal" data-target="#usersModal" class="btn btn-success  float-right">Add User</button>
+                                <button type="button" id="addAnnouncement" data-toggle="modal" data-target="#a_modal" class="btn btn-success  float-right">Add User</button>
                             </h6>
 
                         </div>
@@ -114,7 +114,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Day</th>
                                             <th>Month</th>
                                             <th>Department</th>
-                                            <th>Office</th>
                                             <th>Title</th>
                                             <th>Description</th>
                                             <th width="85">Actions</th>
@@ -181,8 +180,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </html>
 
-<div id="usersModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
+<div id="a_modal" class="modal fade">
+    <div class="modal-dialog modal-md">
         <form method="POST" id="myForm" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
@@ -191,100 +190,49 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <div class="col-md-4">
-                            <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
-                            <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name..">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
-                            <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name..">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
-                            <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-4">
-                            <label for="gender" class="text-gray-900 font-weight-bold">Gender</label>
-                            <select id="gender" name="gender" class="form-control" required>
-                                <option selected="" disabled>Select Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
-                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-
-                        <div class="col-md-4">
-                            <label for="office" class="text-gray-900 font-weight-bold">Office</label>
-                            <select id="office" name="office" class="form-control" required>
-                                <option selected="" disabled>Select Office</option>
-                                <option value="Accounting">Accounting</option>
-                                <option value="Dean">Dean</option>
-                                <option value="Registrar">Registrar</option>
-
-                            </select>
-                        </div>
-                        <div class="col-md-8">
-                            <label for="dept" class="text-gray-900 font-weight-bold">Department</label>
-                            <select id="dept" name="dept" class="form-control" required>
-                                <option selected disabled>Select Department</option>
-                                <?php
-                                require_once("includes/connect.php");
-
-                                $sql = "select * from departments";
-                                $stmt = $con->prepare($sql);
-                                $stmt->execute();
-
-                                while ($row = $stmt->fetch()) {
-                                    echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
-                                }
-                                $stmt = null;
-
-                                ?>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="form-group row">
-                    <div class="col-md-6">
-                            <label for="position" class="text-gray-900 font-weight-bold">Designation</label>
-                          <input type="text" name="position" id="position" class="form-control" placeholder="Designation.." 
-                          onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46">
+                        <div class="col-md-6">
+                            <label for="selday" class="text-gray-900 font-weight-bold">Day:</label>
+							<select id="selday" name="selday" class="form-control">
+								<?php $day = date('j');?>
+								<option value="" disabled>----------------------Current day--------------------</option>
+								<option value="<?php echo $day;?>"><?php echo $day;?></option>
+								<option value="">---------------------------------------------------------</option>
+								<?php
+										for ($i=1; $i<=31; $i++) {
+											echo '
+												<option value="'.$i.'">'.$i.'</option>
+											';
+										}
+								?>
+							</select>
                         </div>
                         <div class="col-md-6">
-                            <label for="role" class="text-gray-900 font-weight-bold">User</label>
-                            <select id="role" name="role" class="form-control" required>
-                                <option selected="" disabled>Select Role</option>
-                                <?php
-                                require_once("includes/connect.php");
-
-                                $sql = "select * from role";
-                                $stmt = $con->prepare($sql);
-                                $stmt->execute();
-
-                                while ($row = $stmt->fetch()) {
-                                    echo '<option value=' . $row['role_ID'] . '>' . $row['role'] . '</option>';
-                                }
-                                $stmt = null;
-
-                                ?>
-                            </select>
+                            <label for="selmonth" class="text-gray-900 font-weight-bold">Month:</label>
+							<select id="selmonth" name="selmonth" class="form-control">
+								 <?php
+									for ($i = 0; $i < 12; $i++) {
+										$time = strtotime(sprintf('%d months', $i));   
+										$label = date('F', $time);   
+										$value = date('F', $time);
+										echo "<option value='$value'>$label</option>";
+									}
+									?>
+								<option value=""></option>
+							</select>
                         </div>
-                    </div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="txttitle" class="text-gray-900 font-weight-bold">Title:</label>
+							<input type="text" id="txttitle" name="txttitle" class="form-control">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<label for="txtdesc" class="text-gray-900 font-weight-bold">Description:</label>
+							<textarea id="txtdesc" name="txtdesc" rows="3" class="form-control"></textarea>
+						</div>
+					</div>
                     <div class="modal-footer">
                         <input type="text" name="user_id" id="user_id">
                         <input type="text" name="operation" id="operation">
