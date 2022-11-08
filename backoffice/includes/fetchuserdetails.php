@@ -1,6 +1,6 @@
 <?php
-       //session_start();
-       require_once("includes/connect.php");
+       /* //session_start(); */
+       /* require_once("../includes/connect.php"); */
        try{
         $sql="select * from vwemployees where username=? and pass=? ";
         $data=array($_SESSION['username'],$_SESSION['password']);
@@ -8,7 +8,7 @@
         $stmt->execute($data);
         $row=$stmt->fetch();
         
-        //$sid=$row['id'];
+        $eid=$row['id'];
         $empname=$row['empname'];
         $dept=$row['dept'];
         $usertype=$row['role'];

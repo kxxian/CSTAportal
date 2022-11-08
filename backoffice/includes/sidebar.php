@@ -57,6 +57,13 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_acctg.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
@@ -110,6 +117,13 @@ if ($office == "Accounting") {
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
+
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_acctg.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
@@ -165,6 +179,13 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_acctg.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
@@ -173,7 +194,7 @@ if ($office == "Accounting") {
               $strSidebar .= '                </li>';
 
               $strSidebar .= '       </ul>';
-       } elseif ($pageValue == 4) {
+	   } elseif ($pageValue == 4) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -219,6 +240,74 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item active">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_acctg.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
+              //        //<!-- Nav Item - Maintenance Collapse Menu -->
+              $strSidebar .= '                <li class="nav-item" ' . $visibility . '>';
+              $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+              $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+              $strSidebar .= '                        <span>Maintenance</span></a>';
+              $strSidebar .= '                </li>';
+
+              $strSidebar .= '       </ul>';
+       } elseif ($pageValue == 5) {
+              $strSidebar = '';
+              // <!-- Sidebar -->
+              $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
+
+              // <!-- Sidebar - Brand -->
+              $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
+              $strSidebar .= '            <div class="sidebar-brand-icon rotate-n-10">';
+              $strSidebar .= '               <img src="img/CSTA_SMALL.png" width="100" style="margin-top:100px; margin-bottom:50px;" alt="">';
+              $strSidebar .= '            </div>';
+              $strSidebar .= '        </a>';
+              $strSidebar .= '        <br><br>';
+              $strSidebar .= '        <div class="sidebar-brand-text text-center text-gray-100"><strong>CSTA Admin</strong></div>';
+              $strSidebar .= '        <br>';
+              // <!-- Nav Item - Dashboard -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="index.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
+              $strSidebar .= '                <span>Dashboard</span></a>';
+              $strSidebar .= '        </li>';
+
+              // <!-- Nav Item - Clearance -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="clearance.php">';
+              $strSidebar .= '                <i class="fa fa-fw fa-clipboard-list"></i>';
+              $strSidebar .= '                <span>Clearance <div class="badge badge-danger ctr_clearance"></div></span> </a>';
+              $strSidebar .= '        </li>';
+
+
+              //<!-- Nav Item - Payverif -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePayment"';
+              $strSidebar .= '                aria-expanded="true" aria-controls="collapsePages">';
+              $strSidebar .= '           <i class="fas fa-fw fa-coins"></i>';
+              $strSidebar .= '           <span class="">Payments <div class="badge badge-danger ctr_total_reqpay"></div> </span>';
+              $strSidebar .= '    </a>';
+              $strSidebar .= '            <div id="collapsePayment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">';
+              $strSidebar .= '                <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '                    <h6 class="collapse-header">Settings:</h6>';
+              $strSidebar .= '                    <a class="collapse-item" href="pending-payments.php">Pending <span class="badge badge-danger badge-counter ctr_pendingpayment"></span></a>';
+              $strSidebar .= '                    <a class="collapse-item" href="received-payments.php">For Verification <span class="badge badge-danger badge-counter ctr_rcvdpayment"></span></a>';
+              $strSidebar .= '                    <a class="collapse-item" href="for-receipt-issuance.php">For Receipt <span class="badge badge-danger badge-counter ctr_for_receipt"> </span></a>';
+              $strSidebar .= '                </div>';
+              $strSidebar .= '            </div>';
+              $strSidebar .= '       </li>';
+
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_acctg.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item active" ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
@@ -263,6 +352,13 @@ elseif ($office == "Dean") {
               $strSidebar .= '                <span>Assessment <div class="badge badge-danger for_assessment"></div></span></a>';
               $strSidebar .= '        </li>';
 
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_dean.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
@@ -302,6 +398,13 @@ elseif ($office == "Dean") {
               $strSidebar .= '                <span>Assessment <div class="badge badge-danger for_assessment"></div></span></a>';
               $strSidebar .= '        </li>';
 
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_dean.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item " ' . $visibility . '>';
               $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
@@ -312,7 +415,8 @@ elseif ($office == "Dean") {
 
               $strSidebar .= '   </ul>';
               //        //<!-- End of Sidebar -->
-       } else if ($pageValue == 3) {
+	   } 
+	   else if ($pageValue == 3) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -339,6 +443,59 @@ elseif ($office == "Dean") {
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
               $strSidebar .= '                <span>Assessment <div class="badge badge-danger for_assessment"></div></span></a>';
+              $strSidebar .= '        </li>';
+
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item active">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_dean.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
+              $strSidebar .= '        </li>';
+
+              //        //<!-- Nav Item - Maintenance Collapse Menu -->
+              $strSidebar .= '                <li class="nav-item" ' . $visibility . '>';
+              $strSidebar .= '                    <a class="nav-link" href="maintenance.php">';
+              $strSidebar .= '                        <i class="fas fa-fw fa-wrench"></i>';
+              $strSidebar .= '                        <span>Maintenance</span></a>';
+              $strSidebar .= '                </li>';
+
+
+              $strSidebar .= '   </ul>';
+              //        //<!-- End of Sidebar -->
+       } else if ($pageValue == 4) {
+              $strSidebar = '';
+              // <!-- Sidebar -->
+              $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
+
+              // <!-- Sidebar - Brand -->
+              $strSidebar .= '        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">';
+              $strSidebar .= '            <div class="sidebar-brand-icon rotate-n-10">';
+              $strSidebar .= '               <img src="img/CSTA_SMALL.png" width="100" style="margin-top:100px; margin-bottom:50px;" alt="">';
+              $strSidebar .= '            </div>';
+              $strSidebar .= '        </a>';
+              $strSidebar .= '        <br><br>';
+              $strSidebar .= '        <div class="sidebar-brand-text text-center text-gray-100"><strong>CSTA Admin</strong></div>';
+              $strSidebar .= '        <br>';
+              // <!-- Nav Item - Dashboard -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="index.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-bars"></i>';
+              $strSidebar .= '                <span>Dashboard</span></a>';
+              $strSidebar .= '        </li>';
+
+
+              //<!-- Nav Item - Assessment -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="assessments.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-book"></i>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger for_assessment"></div></span></a>';
+              $strSidebar .= '        </li>';
+
+              // <!-- Nav Item - Announcements -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="announcement_dean.php">';
+              $strSidebar .= '                <i class="fas fa-bullhorn"></i>';
+              $strSidebar .= '                <span>Announcements</span></a>';
               $strSidebar .= '        </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->

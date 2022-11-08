@@ -21,6 +21,7 @@
 
             $_SESSION['username']=$row['username'];
             $_SESSION['password']=$row['pass'];
+			/* $_SESSION['dept'] = $row['dept_ID']; */
             
 
             header('location:index.php');

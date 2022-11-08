@@ -102,21 +102,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-tie fa-fw"></i> Users
-                                <button type="button" id="addUser" data-toggle="modal" data-target="#usersModal" class="btn btn-success  float-right">Add User</button>
+                                <button type="button" id="addAnnouncement" data-toggle="modal" data-target="#usersModal" class="btn btn-success  float-right">Add User</button>
                             </h6>
 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="usersTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="a_table" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Office</th>
+                                            <th>Day</th>
+                                            <th>Month</th>
                                             <th>Department</th>
-                                            <th>Designation</th>
-                                            <th>User Type</th>
-                                            <th>isActive</th>
+                                            <th>Office</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
                                             <th width="85">Actions</th>
                                         </tr>
 
@@ -183,10 +183,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 <div id="usersModal" class="modal fade">
     <div class="modal-dialog modal-lg">
-        <form method="POST" id="usersForm" enctype="multipart/form-data">
+        <form method="POST" id="myForm" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user-tie"></i> <span class="title">Add User</span></h4>
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-bullhorn"></i> <span class="title">Add Announcement</span></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -286,8 +286,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="user_id" id="user_id">
-                        <input type="hidden" name="operation" id="operation">
+                        <input type="text" name="user_id" id="user_id">
+                        <input type="text" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
 
@@ -297,5 +297,5 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </div>
     </form>
 </div>
-<script src="js/users.js"></script>
+<script src="js/announcements.js"></script>
 </div>
