@@ -1,5 +1,10 @@
 <?php 
-include("config.php");
+//include("config.php");
+$host="localhost:3307"; 
+$dbase="studentportal"; 
+$user="root"; 
+$pwd = ""; 
+
 
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{

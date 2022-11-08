@@ -12,12 +12,15 @@ if($count>0)
 	$data_arr[$i]['event_id'] = $data_row['event_id'];
 	$data_arr[$i]['title'] = $data_row['event_name'];
 	$data_arr[$i]['start'] = date("Y-m-d", strtotime($data_row['event_start_date']));
+	$data_arr[$i]['try_start'] = $data_row['event_start_date'];
+	$data_arr[$i]['try_end'] = $data_row['event_end_date'];
 
 	//modified due to bug
 	$enddate = new DateTime($data_row['event_end_date']);
 	$enddate->modify('+1 day');
 	$data_arr[$i]['end'] = $enddate->format('Y-m-d');
 	$data_arr[$i]['color'] = '#'.substr(uniqid(),-6); // 'green'; pass colour name
+	
 	//$data_arr[$i]['url'] = 'https://www.shinerweb.com';
 	$i++;
 	}

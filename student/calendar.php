@@ -83,6 +83,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12">
+
                             <div id="calendar" class="text-gray-900 mb-5"></div>
                         </div>
 
@@ -99,7 +100,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="modal-dialog modal-md" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-gray-900 font-weight-bold" id="modalLabel"><i class="fas fa-fw fa-calendar"></i> Add New Event</h5>
+                                <h5 class="modal-title text-gray-900 font-weight-bold" id="modalLabel"><i class="fas fa-fw fa-calendar"></i> <span class="title">Add New Event</span></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -110,7 +111,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="event_name" class="font-weight-bold text-gray-900">Event name</label>
-                                                <input type="text" name="event_name" id="event_name" class="form-control" placeholder="Enter your event name">
+                                                <input type="text" maxlength="30" name="event_name" id="event_name" class="form-control" placeholder="Enter your event name">
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +132,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onclick="save_event()">Save Event</button>
+                                <input type="hidden" name="event_id" id="event_id">
+                                <input type="hidden" name="operation" id="operation">
+                                <button type="button" name="action" id="action" class="btn btn-success" onclick="save_event()">Save </button>
                             </div>
                         </div>
                     </div>
@@ -180,13 +183,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 <script>
     $(document).ready(function() {
+
         display_events();
+
+        //Capitalize input fields
+        $('#event_name').keyup(function() {
+            $(this).css("text-transform", "capitalize");
+        });
+
+
     }); //end document.ready block
 
     function display_events() {
         var events = new Array();
         $.ajax({
-            url: 'display_event.php',
+            url: 'codes/display_event.php',
             dataType: 'json',
             success: function(response) {
 
@@ -198,7 +209,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         start: result[i].start,
                         end: result[i].end,
                         color: result[i].color,
-                        url: result[i].url
+                        //url: result[i].url,
+                        try_start: result[i].try_start,
+                        try_end: result[i].try_end
                     });
                 })
                 var calendar = $('#calendar').fullCalendar({
@@ -211,14 +224,87 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     select: function(start, end) {
                         //alert(start);
                         //alert(end);
+                        $('.title').text("Add New Event");
+                        $('#event_id').val("");
+                        $("#event_name").val("");
+                        $("#operation").val("add");
                         $('#event_start_date').val(moment(start).format('YYYY-MM-DD'));
                         $('#event_end_date').val(moment(end).format('YYYY-MM-DD'));
-                        // $('#event_entry_modal').modal('show');
+                        $('#event_entry_modal').modal('show');
                     },
                     events: events,
                     eventRender: function(event, element, view) {
                         element.bind('click', function() {
-                            // alert(event.event_id);
+                            const swalWithBootstrapButtons = Swal.mixin({
+                                customClass: {
+                                    confirmButton: 'btn btn-warning ml-2',
+                                    cancelButton: 'btn btn-danger'
+                                },
+                                buttonsStyling: false
+                            })
+
+                            swalWithBootstrapButtons.fire({
+                                title: '',
+                                text: "What do you want to do?",
+                                icon: 'question',
+                                showCancelButton: true,
+                                confirmButtonText: 'Edit Event',
+                                cancelButtonText: 'Remove ',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    //alert(event.try_end);
+                                    var event_id = event.event_id;
+                                    var event_title = event.title;
+                                    var event_start = event.try_start;
+                                    var event_end = event.try_end;
+                                    $('#event_entry_modal').modal('show');
+                                    $('#event_id').val(event_id);
+                                    $("#operation").val("update");
+                                    $('.title').text("Edit Event");
+                                    $("#event_name").val(event_title);
+                                    $("#event_start_date").val(event_start);
+                                    $("#event_end_date").val(event_end);
+                                } else if (
+                                    /* Read more about handling dismissals below */
+                                    result.dismiss === Swal.DismissReason.cancel
+                                ) {
+                                    var event_id = event.event_id;
+
+                                    $.ajax({
+                                        url: "codes/delete_event.php",
+                                        type: "POST",
+                                        dataType: 'json',
+                                        data: {
+                                            event_id: event_id
+                                        },
+                                        success: function(response) {
+                                            $('#event_entry_modal').modal('hide');
+                                            if (response.status == true) {
+                                                location.reload();
+
+                                            } else {
+                                                Swal.fire({
+                                                    position: 'center',
+                                                    icon: 'warning',
+                                                    title: 'Oops',
+                                                    text: 'Something went wrong.',
+                                                    showConfirmButton: false,
+                                                    timer: 1500
+                                                })
+                                            }
+                                        },
+                                        error: function(xhr, status) {
+                                            console.log('ajax error = ' + xhr.statusText);
+                                            //alert(response.msg);
+                                        }
+                                    });
+                                    return false;
+
+
+                                }
+                            })
+
                         });
                     }
                 }); //end fullCalendar block	
@@ -230,18 +316,29 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     }
 
     function save_event() {
+        var event_operation = $('#operation').val();
+        var event_id = $('#event_id').val();
         var event_name = $("#event_name").val();
         var event_start_date = $("#event_start_date").val();
         var event_end_date = $("#event_end_date").val();
+
         if (event_name == "" || event_start_date == "" || event_end_date == "") {
-            alert("Please enter all required details.");
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Insufficient Data.',
+                icon:'warning',
+                timer: 1500,
+                showConfirmButton: false,
+            })
             return false;
         }
         $.ajax({
-            url: "save_event.php",
+            url: "codes/save_event.php",
             type: "POST",
             dataType: 'json',
             data: {
+                operation: event_operation,
+                event_id: event_id,
                 event_name: event_name,
                 event_start_date: event_start_date,
                 event_end_date: event_end_date
@@ -249,10 +346,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             success: function(response) {
                 $('#event_entry_modal').modal('hide');
                 if (response.status == true) {
-                    alert(response.msg);
+
                     location.reload();
+
                 } else {
-                    alert(response.msg);
+                    location.reload();
+
                 }
             },
             error: function(xhr, status) {
@@ -266,7 +365,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 
-
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="js/header.js"></script>
 <script src="js/counter.js"></script>
 <script src="js/notifications.js"></script>

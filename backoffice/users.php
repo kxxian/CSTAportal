@@ -65,7 +65,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         if ($office == "Accounting") {
-            $pageValue = 3;
+            $pageValue = 3; 
         } elseif ($office == "Dean") {
             $pageValue = 3;
         } elseif ($office == "Registrar") {

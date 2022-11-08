@@ -16,8 +16,6 @@ $query .= 'WHERE dept= "'.$dept.'" ';
 if (isset($_POST["search"]["value"])) {
     //$query .= 'WHERE enrollment_status="Assessment" ';
 
-
-
     $query .= 'AND (snum LIKE "%' . $_POST["search"]["value"] . '%"';
   
     $query .= 'OR lname LIKE "%' . $_POST["search"]["value"] . '%"';
