@@ -6,9 +6,6 @@ $user="root";
 $pwd = ""; 
 
 
-require("config.php");
-
-
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{
     $con=new PDO($dsn,$user,$pwd);

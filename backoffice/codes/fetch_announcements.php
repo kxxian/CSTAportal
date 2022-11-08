@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'fetchuserdetails';
+include 'fetchuserdetails.php';
 include '../includes/connect.php';
 include 'functions.php';
 $query = '';
@@ -14,8 +14,6 @@ if (isset($_POST["search"]["value"])) {
      OR a_month LIKE "%' . $_POST["search"]["value"] . '%"
  
 	 OR dept LIKE "%' . $_POST["search"]["value"] . '%"
-
-	 OR a_office LIKE "%' . $_POST["search"]["value"] . '%"
 
 	 OR a_title LIKE "%' . $_POST["search"]["value"] . '%"
 
@@ -48,7 +46,6 @@ foreach($result as $row)
     $sub_array[]=$row["a_day"];
 	$sub_array[]=$row["a_month"];
     $sub_array[]=$row["dept"];
-    $sub_array[]=$row["a_office"];
     $sub_array[]=$row["a_title"];
     $sub_array[]=$row["a_desc"];
 
