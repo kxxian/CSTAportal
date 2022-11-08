@@ -1,11 +1,10 @@
 <?php 
 //include("config.php");
-$host="localhost:3306"; 
+$host="localhost:3307"; 
 $dbase="studentportal"; 
 $user="root"; 
-$pwd = "KR@0726$"; 
+$pwd = ""; 
 
-/* require("config.php"); */
 
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{
