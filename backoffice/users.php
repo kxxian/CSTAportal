@@ -67,7 +67,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         if ($office == "Accounting") {
-            $pageValue = 3; 
+            $pageValue = 3;
         } elseif ($office == "Dean") {
             $pageValue = 3;
         } elseif ($office == "Registrar") {
@@ -259,10 +259,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                     </div>
                     <div class="form-group row">
-                    <div class="col-md-6">
+                        <div class="col-md-6">
                             <label for="position" class="text-gray-900 font-weight-bold">Designation</label>
-                          <input type="text" name="position" id="position" class="form-control" placeholder="Designation.." 
-                          onkeypress="return (event.charCode > 64 && 
+                            <input type="text" name="position" id="position" class="form-control" placeholder="Designation.." onkeypress="return (event.charCode > 64 && 
 	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)  || (event.charCode)==32 || (event.charCode)==45|| (event.charCode)==46">
                         </div>
                         <div class="col-md-6">

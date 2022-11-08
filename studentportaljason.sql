@@ -16,6 +16,25 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`studentportal` /*!40100 DEFAULT CHARACT
 
 USE `studentportal`;
 
+/*Table structure for table `announcements` */
+
+DROP TABLE IF EXISTS `announcements`;
+
+CREATE TABLE `announcements` (
+  `a_id` int(11) NOT NULL AUTO_INCREMENT,
+  `a_eid` int(11) NOT NULL,
+  `a_day` int(11) NOT NULL,
+  `a_month` varchar(100) NOT NULL,
+  `a_title` varchar(100) NOT NULL,
+  `a_desc` varchar(100) NOT NULL,
+  PRIMARY KEY (`a_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `announcements` */
+
+insert  into `announcements`(`a_id`,`a_eid`,`a_day`,`a_month`,`a_title`,`a_desc`) values 
+(22,831,8,'November','Eh Paano Kung','hindi hindi ka nakilala');
+
 /*Table structure for table `assessment` */
 
 DROP TABLE IF EXISTS `assessment`;
@@ -47,13 +66,14 @@ CREATE TABLE `calendar_event_master` (
   `event_start_date` date DEFAULT NULL,
   `event_end_date` date DEFAULT NULL,
   PRIMARY KEY (`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `calendar_event_master` */
 
 insert  into `calendar_event_master`(`event_id`,`event_name`,`event_start_date`,`event_end_date`) values 
 (1,'New Year\'s Day','2022-01-01','2022-01-01'),
-(48,'Defense','2022-11-26','2022-11-26');
+(54,'Exam Week Midterm','2022-11-01','2022-11-06'),
+(55,'Defense','2022-11-26','2022-11-26');
 
 /*Table structure for table `chat_message` */
 
@@ -257,7 +277,7 @@ CREATE TABLE `employees` (
   `pass` varchar(128) DEFAULT NULL,
   `isActive` varchar(3) NOT NULL DEFAULT 'Yes',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=832 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=835 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `employees` */
 
@@ -619,9 +639,6 @@ CREATE TABLE `paymentverif` (
 
 /*Data for the table `paymentverif` */
 
-insert  into `paymentverif`(`pv_ID`,`sid`,`date_of_payment`,`time_of_payment`,`schoolyr`,`semester_ID`,`terms_ID`,`tfeeamount`,`particulars`,`particulars_total`,`sentvia_ID`,`paymethod_ID`,`note`,`gtotal`,`amtpaid`,`payment_status`,`date_sent`,`date_acknowledged`,`verif_code`,`date_verified`,`OR_num`,`AR_num`,`remarks`,`date_completed`) values 
-(48,39,'2022-09-30 00:00:00','15:15:54','2021-2022',2,2,15000.00,'Docs Stamp',200.00,2,2,'etlog duduy',15200.00,15200.00,'Verified','2022-09-30 03:11:03','2022-10-09 02:42:16','sdww2111','2022-10-11 09:20:02','23232323','NA','Done','2022-10-26 08:35:36');
-
 /*Table structure for table `paymethod` */
 
 DROP TABLE IF EXISTS `paymethod`;
@@ -650,9 +667,13 @@ CREATE TABLE `pwdreset` (
   `pwdresetToken` longtext NOT NULL,
   `pwdresetExpires` text NOT NULL,
   PRIMARY KEY (`pwdresetID`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pwdreset` */
+
+insert  into `pwdreset`(`pwdresetID`,`pwdresetEmail`,`pwdresetSelector`,`pwdresetToken`,`pwdresetExpires`) values 
+(40,'sdad@dad.com','209ba5d55933809f','$2y$10$1zFj1nPNXv0/6.hYx8XgLu/68AcqTMNcp2Cgmf6f7y3BypiFMclWi','1667979537'),
+(42,'sda@ss.com','45c541952d9215fb','$2y$10$l/pcHh3ClUw7EbBpaLxKuujMyx8ZFUQn0LUdfImQdr6R8Rgkom7IC','1667994414');
 
 /*Table structure for table `refbrgy` */
 
@@ -44769,6 +44790,28 @@ insert  into `yrlevel`(`yrlevel_ID`,`yrlevel`,`status`) values
 (3,'3rd Year','VISIBLE'),
 (4,'4th Year','VISIBLE');
 
+/*Table structure for table `vwannouncements` */
+
+DROP TABLE IF EXISTS `vwannouncements`;
+
+/*!50001 DROP VIEW IF EXISTS `vwannouncements` */;
+/*!50001 DROP TABLE IF EXISTS `vwannouncements` */;
+
+/*!50001 CREATE TABLE  `vwannouncements`(
+ `a_id` int(11) ,
+ `a_eid` int(11) ,
+ `dept` varchar(68) ,
+ `lname` varchar(128) ,
+ `fname` varchar(128) ,
+ `mname` varchar(128) ,
+ `dept_ID` tinyint(10) ,
+ `a_office` varchar(100) ,
+ `a_day` int(11) ,
+ `a_month` varchar(100) ,
+ `a_title` varchar(100) ,
+ `a_desc` varchar(100) 
+)*/;
+
 /*Table structure for table `vwassessment` */
 
 DROP TABLE IF EXISTS `vwassessment`;
@@ -45063,7 +45106,7 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `mobile` varchar(11) ,
  `particulars` varchar(255) ,
  `particulars_total` varchar(10) ,
- `gtotal` varchar(10) ,
+ `gtotal` varchar(11) ,
  `amtpaid` varchar(11) ,
  `amtchange` decimal(8,2) ,
  `sentvia` varchar(68) ,
@@ -45071,7 +45114,7 @@ DROP TABLE IF EXISTS `vwpayverif`;
  `note` blob ,
  `date_paid` varchar(10) ,
  `time_paid` varchar(11) ,
- `date_sent` datetime ,
+ `date_sent` varchar(10) ,
  `date_acknowledged` datetime ,
  `verif_code` varchar(100) ,
  `date_verified` datetime ,
@@ -45128,6 +45171,13 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
  `reqname` varchar(68) ,
  `date_submitted` varchar(20) 
 )*/;
+
+/*View structure for view vwannouncements */
+
+/*!50001 DROP TABLE IF EXISTS `vwannouncements` */;
+/*!50001 DROP VIEW IF EXISTS `vwannouncements` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwannouncements` AS select `announcements`.`a_id` AS `a_id`,`announcements`.`a_eid` AS `a_eid`,`departments`.`dept` AS `dept`,`employees`.`lname` AS `lname`,`employees`.`fname` AS `fname`,`employees`.`mname` AS `mname`,`employees`.`dept_ID` AS `dept_ID`,`employees`.`office` AS `a_office`,`announcements`.`a_day` AS `a_day`,`announcements`.`a_month` AS `a_month`,`announcements`.`a_title` AS `a_title`,`announcements`.`a_desc` AS `a_desc` from ((`announcements` join `employees` on(`employees`.`id` = `announcements`.`a_eid`)) join `departments` on(`employees`.`dept_ID` = `departments`.`deptid`)) */;
 
 /*View structure for view vwassessment */
 
@@ -45211,7 +45261,7 @@ DROP TABLE IF EXISTS `vwsubmittedreq`;
 /*!50001 DROP TABLE IF EXISTS `vwpayverif` */;
 /*!50001 DROP VIEW IF EXISTS `vwpayverif` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,`courses`.`abbr` AS `abbr`,format(`paymentverif`.`tfeeamount`,2) AS `tfeepayment`,`paymentverif`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,format(`paymentverif`.`particulars_total`,2) AS `particulars_total`,format(`paymentverif`.`gtotal`,2) AS `gtotal`,concat('P',format(`paymentverif`.`amtpaid`,2)) AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date_of_payment`,'%m/%d/%Y') AS `date_paid`,time_format(`paymentverif`.`time_of_payment`,'%h:%i:%s %p') AS `time_paid`,`paymentverif`.`date_sent` AS `date_sent`,`paymentverif`.`date_acknowledged` AS `date_acknowledged`,`paymentverif`.`verif_code` AS `verif_code`,`paymentverif`.`date_verified` AS `date_verified`,`paymentverif`.`OR_num` AS `OR`,`paymentverif`.`AR_num` AS `AR`,`paymentverif`.`remarks` AS `remarks`,`paymentverif`.`payment_status` AS `payment_status` from (((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwpayverif` AS select `paymentverif`.`pv_ID` AS `pv_ID`,`students`.`id` AS `sid`,`students`.`snum` AS `snum`,`students`.`lname` AS `lname`,`students`.`fname` AS `fname`,`students`.`mname` AS `mname`,`yrlevel`.`yrlevel` AS `yrlevel`,`courses`.`course` AS `course`,`courses`.`abbr` AS `abbr`,format(`paymentverif`.`tfeeamount`,2) AS `tfeepayment`,`paymentverif`.`schoolyr` AS `schoolyr`,`semester`.`semester` AS `semester`,`terms`.`term` AS `term`,`students`.`email` AS `email`,`students`.`mobile` AS `mobile`,`paymentverif`.`particulars` AS `particulars`,format(`paymentverif`.`particulars_total`,2) AS `particulars_total`,concat('P',format(`paymentverif`.`gtotal`,2)) AS `gtotal`,concat('P',format(`paymentverif`.`amtpaid`,2)) AS `amtpaid`,`paymentverif`.`amtpaid` - `paymentverif`.`gtotal` AS `amtchange`,`sentvia`.`sentvia` AS `sentvia`,`paymethod`.`paymethod` AS `paymethod`,`paymentverif`.`note` AS `note`,date_format(`paymentverif`.`date_of_payment`,'%m/%d/%Y') AS `date_paid`,time_format(`paymentverif`.`time_of_payment`,'%h:%i:%s %p') AS `time_paid`,date_format(`paymentverif`.`date_sent`,'%m/%d/%Y') AS `date_sent`,`paymentverif`.`date_acknowledged` AS `date_acknowledged`,`paymentverif`.`verif_code` AS `verif_code`,`paymentverif`.`date_verified` AS `date_verified`,`paymentverif`.`OR_num` AS `OR`,`paymentverif`.`AR_num` AS `AR`,`paymentverif`.`remarks` AS `remarks`,`paymentverif`.`payment_status` AS `payment_status` from (((((((`paymentverif` join `students` on(`paymentverif`.`sid` = `students`.`id`)) join `yrlevel` on(`yrlevel`.`yrlevel_ID` = `students`.`yrlevel`)) join `courses` on(`courses`.`course_ID` = `students`.`course`)) join `semester` on(`semester`.`semester_ID` = `paymentverif`.`semester_ID`)) join `terms` on(`terms`.`terms_ID` = `paymentverif`.`terms_ID`)) join `sentvia` on(`sentvia`.`sentvia_ID` = `paymentverif`.`sentvia_ID`)) join `paymethod` on(`paymethod`.`paymethod_ID` = `paymentverif`.`paymethod_ID`)) */;
 
 /*View structure for view vwstudents */
 

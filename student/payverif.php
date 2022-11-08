@@ -34,7 +34,26 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- datatable css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- sweet alert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
 
@@ -58,6 +77,52 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
             padding: 0 10px;
             /* To give a bit of padding on the left and right */
             border-bottom: none;
+        }
+
+        .card {
+            border: none;
+            -webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+            box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+            margin-bottom: 30px;
+        }
+
+        .table th {
+            font-weight: 500;
+            color: #827fc0;
+        }
+
+        .table thead {
+            background-color: #f3f2f7;
+        }
+
+        .table>tbody>tr>td,
+        .table>tfoot>tr>td,
+        .table>thead>tr>td {
+            padding: 14px 12px;
+            vertical-align: middle;
+        }
+
+        .table tr td {
+            color: #8887a9;
+        }
+
+        .thumb-sm {
+            height: 32px;
+            width: 32px;
+        }
+
+        .badge-soft-warning {
+            background-color: rgba(248, 201, 85, .2);
+            color: #f8c955;
+        }
+
+        .badge {
+            font-weight: 500;
+        }
+
+        .badge-soft-primary {
+            background-color: rgba(96, 93, 175, .2);
+            color: #605daf;
         }
     </style>
 
@@ -99,9 +164,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                     <div class="main-body">
 
+                        <div class="row gutters-sm">
+                            <div class="col-md-7 mb-3">
+                                <ul class="nav nav-pills" id="myTab">
+                                    <li class="nav-item">
+                                        <a href="#payverif" id="pv_tab" class="nav-link active"><i class="fas fa-credit-card"></i> Payment Verification</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#payhistory" id="ph_tab" class="nav-link"><i class="fas fa-file"></i> Payment History</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tuition">
+                            <div class="tab-pane fade show active" id="payverif">
                                 <div class="row gutters-sm">
                                     <div class="col-sm-12">
 
@@ -327,7 +404,83 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="tab-pane fade" id="payhistory">
+                                <div class="row gutters-sm">
+                                    <div class="col-sm-12">
+                                        <div class="col-xl-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Payment History</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover mb-0">
+                                                            <thead>
+                                                                <tr class="align-self-center">
+
+                                                                    <th class="text-gray-900 font-weight-bold text-center">Sent Thru</th>
+                                                                    <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
+                                                                    <th class="text-gray-900 font-weight-bold text-center">Amount</th>
+                                                                    <th class="text-gray-900 font-weight-bold text-center">Status</th>
+                                                                    <th class="text-gray-900 font-weight-bold text-center">Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                $sql = "SELECT * FROM vwpayverif where sid=$sid order by pv_ID asc";
+                                                                $stmt = $con->query($sql);
+                                                                $count = $stmt->rowCount();
+                                                                $strpayhistory = '';
+
+
+                                                                foreach ($stmt as $rows) {
+                                                                    if ($rows['payment_status'] == 'Verified') {
+                                                                        $class = "success";
+                                                                    } elseif ($rows['payment_status'] == 'Received') {
+                                                                        $class = "info";
+                                                                    } elseif ($rows['payment_status'] == 'For Receipt') {
+                                                                        $class = "primary";
+                                                                    } elseif ($rows['payment_status'] == 'Pending') {
+                                                                        $class = "warning";
+                                                                    }
+
+                                                                    $strpayhistory .= '<tr>';
+                                                                    $strpayhistory .= ' <td class="text-center text-gray-900">' . $rows['sentvia'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['date_sent'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['gtotal'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center"><span class="badge badge-boxed badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
+                                                                    $strpayhistory .= '<td class="text-center">';
+                                                                    $strpayhistory .= '    <button class="btn btn-info btn-sm" title="View Payment Details" id="'.$rows['pv_ID'].'"><i class="fa fa-fw fa-eye"></i></button>';
+                                                                    $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" title="Delete" id="'.$rows['pv_ID'].'"><i class="fa fa-fw fa-times"></i></button>';
+                                                                    $strpayhistory .= '</td>';
+                                                                    $strpayhistory .= '</tr>';
+                                                                }
+
+                                                                echo $strpayhistory;
+
+
+                                                                ?>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!--end table-responsive-->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
+
+
+
+
+
+
+
+
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -438,11 +591,28 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     ?>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- DataTable CDN JS -->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
 </body>
 <script src="js/header.js"></script>
 <script src="js/counter.js"></script>
 <script src="js/notifications.js"></script>
+
+
+<script src="js/payhistory.js"></script>
 
 </html>

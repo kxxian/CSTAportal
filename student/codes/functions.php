@@ -22,6 +22,17 @@ function get_users(){
     return $statement->rowCount();
 }
 
+function get_payhistory(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwpayverif where sid=?");
+    $data=array($sid);
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

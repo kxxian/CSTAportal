@@ -54,10 +54,8 @@ foreach($result as $row)
 
     
     <button type="button" name="delete" id="'.$row["a_id"].'" 
-    class="btn btn-success btn-sm title="Delete"><i class="fa fa-fw fa-trash"></i></button>
+    class="btn btn-danger btn-sm delete title="Delete"><i class="fa fa-fw fa-trash"></i></button>
     ';
-
- 
 
     $data[]=$sub_array;
 }

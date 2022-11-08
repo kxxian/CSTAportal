@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#addAnnouncement').click(function() {
         $('#myForm')[0].reset();
         $('.title').text(' Add Announcement');
-        $('#action').val("Register");
+        $('#action').val("Add");
         $('#operation').val("Add");
     })
 
@@ -12,6 +12,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "info": true,
+        "pageLength": 5,
         "ajax": {
             url: "codes/fetch_announcements.php",
             type: "POST"
@@ -25,11 +26,15 @@ $(document).ready(function() {
 
     $(document).on('submit', '#myForm', function(event) {
         event.preventDefault();
+      
         var day = $("#selday").val();
         var month = $("#selmonth").val();
         var title = $("#txttitle").val();
         var desc = $("#txtdesc").val();
+        // var op = $("#operation").val();
 
+        // alert(op);
+       
 
         if (!day || !month || title === ''|| desc === '') {
 
@@ -47,7 +52,8 @@ $(document).ready(function() {
                 processData: false,
                 cache: false,
                 success: function(data) {
-
+                   
+                    
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -55,12 +61,13 @@ $(document).ready(function() {
                         showConfirmButton: false,
                         timer: 1500
                     })
-
-                    $('#a_modal').modal('hide');
-
-                    // $('#usersForm')[0].reset();
-
+                    $('#a_modal').modal('hide'); 
                     a_table.api().ajax.reload();
+                    
+                   
+                     $('#myForm')[0].reset();
+
+                 
                 }
 
             })
@@ -69,34 +76,28 @@ $(document).ready(function() {
 
 
     $(document).on('click', '.update', function() {
-        var user_id = $(this).attr('id');
+        var a_id = $(this).attr('id');
 
+       // alert(a_id)
 
         $.ajax({
-            url: "codes/userscrud.php",
+            url: "codes/announcementscrud.php",
             method: "POST",
             data: {
-                user_id: user_id
+                announce_id: a_id
             },
             dataType: "json",
             success: function(data) {
-                $('#usersModal').modal('show');
-                $('#user_id').val(data.id);
-                $('#lname').val(data.lname);
-                $('#fname').val(data.fname);
-                $('#mname').val(data.mname);
-                $('#gender').val(data.Gender);
-                $('#email').val(data.email);
-                $('#mobile').val(data.mobile);
-                $("#office").val(data.office);
-                $("#dept").val(data.dept);
-                $("#position").val(data.position);
-                $("#role").val(data.role);
-                
+                $('#a_modal').modal('show');
+                $('#a_id').val(data.id);
+                $('#selday').val(data.day);
+                $('#selmonth').val(data.month);
+                $('#txttitle').val(data.title);
+                $('#txtdesc').val(data.desc);
 
 
-                $('.title').text(' Edit User');
-                $('#user_id').val(user_id);
+                $('.title').text(' Edit Announcement');
+                $('#a_id').val(a_id);
 
                 $('#operation').val("Edit");
                 $('#action').val("Save");
@@ -105,11 +106,11 @@ $(document).ready(function() {
         })
     })
 
-    $(document).on('click', '.restrict', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.delete', function() {
+        var a_id = $(this).attr('id');
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to restrict this user?",
+            text: "Are you sure you want to delete this announcement?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -118,18 +119,18 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/userscrud.php",
+                    url: "codes/announcementscrud.php",
                     method: "POST",
                     data: {
-                        restrict_id: user_id
+                        delete_id: a_id
                     },
                     success: function(data) {
-                        usersTable.api().ajax.reload();
+                        a_table .api().ajax.reload();
                     }
                 })
                 Swal.fire(
                     'Success!',
-                    'User has been restricted.',
+                    'Announcement has been deleted.',
                     'success'
                 )
             }
@@ -137,44 +138,13 @@ $(document).ready(function() {
 
     })
 
-    $(document).on('click', '.activate', function() {
-        var user_id = $(this).attr('id');
-        Swal.fire({
-            title: 'Confirm',
-            text: "Are you sure you want to activate this user?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "codes/userscrud.php",
-                    method: "POST",
-                    data: {
-                        activate_id: user_id
-                    },
-                    success: function(data) {
-                        usersTable.api().ajax.reload();
-                    }
-                })
-                Swal.fire(
-                    'Success!',
-                    'User has been activated.',
-                    'success'
-                )
-            }
-        })
-
-    })
 
     $(document).on('click', '.close', function() {
-        $('#usersModal').modal('hide');
+        $('#a_modal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#usersModal').modal('hide');
+        $('#a_modal').modal('hide');
     })
 
 

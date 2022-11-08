@@ -26,7 +26,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Users</title>
+    <title>Announcements</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -94,15 +94,15 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div class=" mb-4">
-                        <h1 class="h2 mb-0 text-gray-900 "><strong>Users</strong></h1>
-                    </div>
+                    <!-- <div class=" mb-4">
+                        <h1 class="h2 mb-0 text-gray-900 "><strong>Announcements</strong></h1>
+                    </div> -->
 
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-tie fa-fw"></i> Users
-                                <button type="button" id="addAnnouncement" data-toggle="modal" data-target="#a_modal" class="btn btn-success  float-right">Add User</button>
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-bullhorn fa-fw"></i> Announcements
+                                <button type="button" id="addAnnouncement" data-toggle="modal" data-target="#a_modal" class="btn btn-success  float-right">Add</button>
                             </h6>
 
                         </div>
@@ -192,54 +192,56 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="selday" class="text-gray-900 font-weight-bold">Day:</label>
-							<select id="selday" name="selday" class="form-control">
-								<?php $day = date('j');?>
-								<option value="" disabled>----------------------Current day--------------------</option>
-								<option value="<?php echo $day;?>"><?php echo $day;?></option>
-								<option value="">---------------------------------------------------------</option>
-								<?php
-										for ($i=1; $i<=31; $i++) {
-											echo '
-												<option value="'.$i.'">'.$i.'</option>
+                            <select id="selday" name="selday" class="form-control">
+                                <?php $day = date('j'); ?>
+                                <option value="" disabled>----------------------Current day--------------------</option>
+                                <option value="<?php echo $day; ?>"><?php echo $day; ?></option>
+                                <option value="">---------------------------------------------------------</option>
+                                <?php
+                                for ($i = 1; $i <= 31; $i++) {
+                                    echo '
+												<option value="' . $i . '">' . $i . '</option>
 											';
-										}
-								?>
-							</select>
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label for="selmonth" class="text-gray-900 font-weight-bold">Month:</label>
-							<select id="selmonth" name="selmonth" class="form-control">
-								 <?php
-									for ($i = 0; $i < 12; $i++) {
-										$time = strtotime(sprintf('%d months', $i));   
-										$label = date('F', $time);   
-										$value = date('F', $time);
-										echo "<option value='$value'>$label</option>";
-									}
-									?>
-								<option value=""></option>
-							</select>
+                            <select id="selmonth" name="selmonth" class="form-control">
+                                <?php
+                                for ($i = 0; $i < 12; $i++) {
+                                    $time = strtotime(sprintf('%d months', $i));
+                                    $label = date('F', $time);
+                                    $value = date('F', $time);
+                                    echo "<option value='$value'>$label</option>";
+                                }
+                                ?>
+
+                            </select>
                         </div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-12">
-							<label for="txttitle" class="text-gray-900 font-weight-bold">Title:</label>
-							<input type="text" id="txttitle" name="txttitle" class="form-control">
-						</div>
-					</div>
-					<div class="form-group row">
-						<div class="col-sm-12">
-							<label for="txtdesc" class="text-gray-900 font-weight-bold">Description:</label>
-							<textarea id="txtdesc" name="txtdesc" rows="3" class="form-control"></textarea>
-						</div>
-					</div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="txttitle" class="text-gray-900 font-weight-bold">Title:</label>
+                            <input type="text" id="txttitle" name="txttitle" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="txtdesc" class="text-gray-900 font-weight-bold">Description:</label>
+                            <textarea id="txtdesc" name="txtdesc" rows="3" class="form-control"></textarea>
+                        </div>
+                    </div>
                     <div class="modal-footer">
-                        <input type="text" name="user_id" id="user_id">
-                        <input type="text" name="operation" id="operation">
+                        <input type="hidden" name="empid" id="empid" value="<?=$eid?>">
+                        <input type="hidden" name="a_id" id="a_id">
+                        <input type="hidden" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
+                        <input type="submit"  name="action" id="action" class="btn btn-success" >
 
                     </div>
+
                 </div>
             </div>
     </div>
