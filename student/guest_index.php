@@ -1,3 +1,6 @@
+<?php 
+	require('includes/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,81 +93,7 @@
 				?>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
-					<!-- Announcement card -->
-					<!-- Content Row With card -->
-					<!-- Page Heading -->
-					<section>
-						<div class="content">
-							<h1>Announcements</h1>
-							<div class="row">
-								<div class="owl-carousel owl-theme">
-									<div class="item">
-										<div class="time">
-											<h2>5 <span>November</span></h2>
-											<h5>Admin</h5>
-										</div>
-										<div class="details">
-											<h3>Put Title Here</h3>
-											<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-											</p>
-										</div>
-									</div>
-									<div class="item">
-										<div class="time">
-											<h2>4 <span>November</span></h2>
-											<h5>Registrar</h5>
-										</div>
-										<div class="details">
-											<h3>Put Title Here</h3>
-											<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-											</p>
-										</div>
-									</div>
-									<div class="item">
-										<div class="time">
-											<h2>2 <span>November</span></h2>
-											<h5>IT Dept</h5>
-										</div>
-										<div class="details">
-											<h3>Put Title Here</h3>
-											<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-											</p>
-										</div>
-									</div>
-									<div class="item">
-										<div class="time">
-											<h2>1 <span>November</span></h2>
-											<h5>Tourism Dept</h5>
-										</div>
-										<div class="details">
-											<h3>Put Title Here</h3>
-											<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-											</p>
-										</div>
-									</div>
-									<div class="item">
-										<div class="time">
-											<h2>29 <span>October</span></h2>
-											<h5>Accounting</h5>
-										</div>
-										<div class="details">
-											<h3>Put Title Here</h3>
-											<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<!-- Content Row -->
-				</div>
+					<?php require('partials/guest/announcement.php'); ?>	
 				<!-- /.container-fluid -->
 			</div>
 			<!-- End of Main Content -->

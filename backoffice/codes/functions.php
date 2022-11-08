@@ -116,6 +116,17 @@ function get_courses(){
     return $statement->rowCount();
 }
 
+function get_announcement(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwannouncements WHERE dept=?");
+    $data=array($dept);
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 

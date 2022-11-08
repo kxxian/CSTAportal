@@ -1,5 +1,5 @@
 <?php
-       //session_start();
+       session_start();
        require_once("../includes/connect.php");
        try{
         $sql="select * from vwemployees where username=? and pass=? ";
