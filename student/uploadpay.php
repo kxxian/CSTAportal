@@ -43,7 +43,7 @@ if (isset($_POST['uploadpayments'])) {
     if (isset($_POST['particulars'])) {
         $particulars = implode(", ", $_POST['particulars']);
     } else {
-        $particulars = "NA";
+        $particulars = "-";
     }
 
 

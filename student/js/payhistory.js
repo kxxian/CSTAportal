@@ -72,34 +72,44 @@ $(document).ready(function() {
     })
 
 
-    $(document).on('click', '.update', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.viewpaydetails', function() {
+        var payment_id = $(this).attr('id');
 
         $.ajax({
-            url: "codes/userscrud.php",
+            url: "codes/pvcrud.php",
             method: "POST",
             data: {
-                user_id: user_id
+                payment_id: payment_id
             },
             dataType: "json",
             success: function(data) {
-                $('#usersModal').modal('show');
-                $('#user_id').val(data.id);
-                $('#lname').val(data.lname);
-                $('#fname').val(data.fname);
-                $('#mname').val(data.mname);
-                $('#gender').val(data.Gender);
-                $('#email').val(data.email);
-                $('#mobile').val(data.mobile);
-                $("#office").val(data.office);
-                $("#dept").val(data.dept);
-                $("#position").val(data.position);
-                $("#role").val(data.role);
+                $('#payverifModal').modal('show');
+                $('#payment_id').val(data.id);
+                $('#date_sent').html(data.date_sent);
+                $('#sent_via').html(data.sent_via);
+                $('#pay').html(data.paymethod);
+                $('#dop').html(data.dop);
+                $('#top').html(data.top);
+                $('#term').html(data.term);
+                $('#tfee').html(data.tfee);
+                $('#gtotal').html(data.gtotal);
+                $('#sysem').html(data.sysem);
+                $('#part').html(data.part);
+                $('#ptotal').html(data.ptotal);
+                // $('#fname').val(data.fname);
+                // $('#mname').val(data.mname);
+                // $('#gender').val(data.Gender);
+                // $('#email').val(data.email);
+                // $('#mobile').val(data.mobile);
+                // $("#office").val(data.office);
+                // $("#dept").val(data.dept);
+                // $("#position").val(data.position);
+                // $("#role").val(data.role);
                 
+      
 
-
-                $('.title').text(' Edit User');
-                $('#user_id').val(user_id);
+                $('.title').text(' Payment Details');
+                $('#payment_id').val(payment_id);
 
                 $('#operation').val("Edit");
                 $('#action').val("Save");
@@ -174,11 +184,11 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '.close', function() {
-        $('#usersModal').modal('hide');
+        $('#payverifModal').modal('hide');
     })
 
     $(document).on('click', '#close', function() {
-        $('#usersModal').modal('hide');
+        $('#payverifModal').modal('hide');
     })
 
 

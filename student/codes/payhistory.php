@@ -19,7 +19,7 @@ if (isset($_POST['param'])) {
 
         $strheader .=' <td class="text-center text-gray-900">' . $rows['sentvia'] . '</td>';
         $strheader .='<td class="text-center text-gray-900">' . $rows['date_sent'] . '</td>';
-        $strheader .='<td class="text-center text-gray-900">' . $rows['gtotal'] . '</td>';
+        $strheader .='<td class="text-center text-gray-900">' . $rows['amtpaid'] . '</td>';
         $strheader .='<td class="text-center"><button class="btn btn-info btn-sm"><i class="fa fa-fw fa-eye"></i></button></td>';
         $strheader .='<td class="text-center"><span class="badge badge-boxed badge-warning">' . $rows['payment_status'] . '</span></td>';
         $strheader .='<td class="text-center">';
