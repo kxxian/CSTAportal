@@ -40,7 +40,7 @@ $strheader.='        Messages';
 $strheader.='</h6>';
 $strheader.='<a class="dropdown-item d-flex align-items-center" href="#">';
 $strheader.='<div class="dropdown-list-image mr-3">';
-$strheader.='<img class="rounded-circle" src="img/undraw_profile_1.svg"';
+$strheader.='<img class="rounded-circle" ';
 $strheader.='alt="..." hidden>';
 $strheader.='<div class="status-indicator bg-success" hidden></div>';
 $strheader.='        </div>';

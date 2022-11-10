@@ -436,7 +436,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                             Total (Other Fees)
                                                                         </label>
                                                                         <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
-                                                                        <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
+                                                                        <input type="number" class="form-control" placeholder="0.00" value="0" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
                                                                     </div>
 
 
@@ -593,11 +593,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         $disabled = "";
                                                                     }
                                                                     //check attachments in directory
-                                                                    $payment = "../uploads/payverif/payments/{$rows['pv_ID']}.jpg";
-                                                                    $reqform = "../uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
+                                                                    $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
+                                                                    $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
                                                                 
                                                                     if (file_exists($payment)){
-                                                                        $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="../student/uploads/payverif/payments/'.$rows['pv_ID'].'.jpg">
+                                                                        $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/'.$rows['pv_ID'].'.jpg">
                                                                         <i class="fa fa-receipt fa-fw"></i></a>';
 
                                                                         
@@ -607,7 +607,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                      
                                                                      if (file_exists($reqform)){
                                                                          $img2='
-                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="../student/uploads/payverif/docrequestform/'.$rows['pv_ID'].'.jpg">
+                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/'.$rows['pv_ID'].'.jpg">
                                                                          <i class="fa fa-receipt fa-fw"></i></a>
                                                                          ';
                                                                       }else{
@@ -620,7 +620,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['date_sent'] . '</td>';
                                                                     $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['amtpaid'] . '</td>';
                                                                     $strpayhistory .= '<td class="text-center text-gray-900">' . $img.' '.$img2. '</td>';
-                                                                    $strpayhistory .= '<td class="text-center"><span class="badge badge-boxed badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
+                                                                    $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
                                                                     $strpayhistory .= '<td class="text-center">';
                                                                     $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
                                                                     $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-times"></i></button>';
@@ -836,7 +836,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="invoice-details">
                                                             <address class="text-gray-900  font-weight-bold">
                                                                Sent Thru: <span id="sent_via"></span><br>
-                                                               Payment Method: <span id="pay"></span>
+                                                               Payment Method: <span id="pay"></span><br>
+                                                               Payment Number: <span id="pay"></span>
                                                             </address>
                                                         </div>
                                                     </div>
@@ -889,7 +890,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                                             </p>
                                                                         </td>
-                                                                        <td class="text-gray-900 font-weight-bold text-center"><span id="part"></span></td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center"><p id="part"></p></td>
                                                                         <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="ptotal"></span></td>
 
                                                                     </tr>
@@ -918,7 +919,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             </div>
 
                                             <div class="invoice-footer">
-                                                Thank you for your Business.
+                                              
                                             </div>
 
                                         </div>

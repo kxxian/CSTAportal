@@ -35,8 +35,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    
-
     <style>
         :root {
             --bs-success-rgb: 71, 222, 152 !important;
@@ -93,10 +91,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
                     
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-9">
                                 <div id="calendar"></div>
                             </div>
-                            <div class="col-sm-3" hidden>
+                            <div class="col-md-3">
                                 <div class="cardt rounded-0 shadow">
                                     <div class="card-header bg-gradient bg-primary text-light">
                                         <h5 class="card-title">Schedule Form</h5>
@@ -226,8 +224,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 </div>
                 <div class="modal-footer rounded-0">
                     <div class="text-end">
-                        <!-- <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Delete</button> -->
+                        <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Delete</button>
                         <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
