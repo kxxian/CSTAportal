@@ -13,19 +13,35 @@ $(document).ready(function() {
                   $("#enrolldetails").css({"display":"block"});
                   $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
 
+                  //disable enrollment tab
+                  $("#enroll_tab").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#enroll_content").css({"pointer-events": "none", "opacity": "0.6"});
+                  $("#enrollvaldetails").css({"pointer-events": "none", "opacity": "0.6"});
+                 
                   //STEP WIZARD 1
                   $("#application").addClass("completed")
-                  
+                  $("#assessment").removeClass("completed")
+                  $("#payment").removeClass("completed")
+                  $("#validate").removeClass("completed")
+                  $("#enrolled").removeClass("completed")
 
                }else if($.trim(data1)=="Waiting Payment"){
                   $(".enroll_status").css({"color": "#ffc107"});
                   $("#enrolldetails").css({"display":"block"});
                   $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
+
+                   //enable enrollment tab
+                   $("#enroll_tab").css({"pointer-events": "auto", "opacity": "1"});
+                   $("#enroll_content").css({"pointer-events": "auto", "opacity": "1"});
+                   $("#enrollvaldetails").css({"pointer-events": "auto", "opacity": "1"});
                   
 
                   //STEP WIZARD 2
                   $("#application").addClass("completed")
                   $("#assessment").addClass("completed")
+                  $("#payment").removeClass("completed")
+                  $("#validate").removeClass("completed")
+                  $("#enrolled").removeClass("completed")
 
                }else if($.trim(data1)=="Validating"){
                   $("#not_enrolled").removeClass("current-item");
@@ -38,6 +54,14 @@ $(document).ready(function() {
                   $("#application").addClass("completed")
                   $("#assessment").addClass("completed")
                   $("#payment").addClass("completed")
+                  $("#validate").removeClass("completed")
+                  $("#enrolled").removeClass("completed")
+
+
+                   //enable enrollment tab
+                   $("#enroll_tab").css({"pointer-events": "auto", "opacity": "1"});
+                   $("#enroll_content").css({"pointer-events": "auto", "opacity": "1"});
+                   $("#enrollvaldetails").css({"pointer-events": "auto", "opacity": "1"});
 
                }else if($.trim(data1)=="Enrolled"){
                   $(".enroll_status").css({"color": "lime"});
@@ -63,6 +87,12 @@ $(document).ready(function() {
                   $("#enrolldetails").css({"pointer-events": "auto", "opacity": "1"});
                   $("#validation").css({"pointer-events": "auto", "opacity": "1"});
                   $("#enrollvaldetails").css({"pointer-events": "auto", "opacity": "1"});
+
+                   //disable enrollment tab
+                   $("#enroll_tab").css({"pointer-events": "none", "opacity": "0.6"});
+                   $("#enroll_content").css({"pointer-events": "none", "opacity": "0.6"});
+                   $("#enrollvaldetails").css({"pointer-events": "none", "opacity": "0.6"});
+                  
 
 
                     //STEP WIZARD 4

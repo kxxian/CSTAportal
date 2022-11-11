@@ -92,7 +92,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="row">
                         <div class="col-sm-3 mb-4">
                             <div class="row no-gutters align-items-center">
-                                <div type="button" onclick="location.href=' . $link . ';" class="card" style="width: 18rem;">
+                                <div type="button" onclick="location.href=' . $link . ';" class="card" >
                                     <img class="card-img-top" src="img/menu/enroll.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="h5 card-text text-center text-gray-900 text-center"><strong>Online Enrollment</strong></h5>
@@ -107,7 +107,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="row">
                         <div class="col-sm-3 mb-4" style="opacity:0.8">
                             <div class="row no-gutters align-items-center">
-                                <div type="button" onclick="location.href=' . $link . ';" class="card" style="width: 18rem;">
+                                <div type="button" onclick="location.href=' . $link . ';" class="card" >
                                     <img class="card-img-top" src="img/menu/enroll.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="h5 card-text text-center"><strong>Online Enrollment</strong></h5>
@@ -136,7 +136,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="col-sm-3 mb-4">
 
                         <div class="row no-gutters align-items-center">
-                            <div type="button" onclick="location.href='payverif.php';" class="card" style="width: 18rem;">
+                            <div type="button" onclick="location.href='payverif.php';" class="card">
                                 <img class="card-img-top" src="img/menu/payment.jpg" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="h5 card-text text-center text-gray-900"><strong>Payment Verification</strong></h5>
@@ -165,7 +165,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         
                         <div class="col-sm-3 mb-4">
                             <div class="row no-gutters align-items-center">
-                                <div type="button" onclick="location.href=' . $link1 . ';" class="card" style="width: 18rem;">
+                                <div type="button" onclick="location.href=' . $link1 . ';" class="card">
                                     <img class="card-img-top" src="img/menu/grades.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="h5 card-text text-center text-gray-900"><strong>Request of Grades</strong></h5>
@@ -180,7 +180,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                       
                         <div class="col-sm-3 mb-4" style="opacity:0.8">
                             <div class="row no-gutters align-items-center">
-                                <div type="button" onclick="location.href=' . $link1 . ';" class="card" style="width: 18rem;">
+                                <div type="button" onclick="location.href=' . $link1 . ';" class="card">
                                     <img class="card-img-top" src="img/menu/grades.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="h5 card-text"><strong>Request of Grades</strong></h5>

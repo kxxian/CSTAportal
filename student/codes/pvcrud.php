@@ -22,7 +22,7 @@ if (isset($_POST['payment_id'])) {
         $output['sysem'] =  '('.$row['semester'].' of '.$row['schoolyr'].')';
         $output['part'] = $row['particulars'];
         $output['ptotal'] = $row['particulars_total'];
-        // $output['mobile'] = $row['mobile'];
+        $output['paynum'] = $row['paynum'];
         // $output['office'] = $row['office'];
         // $output['dept'] = $row['dept_ID'];
         // $output['position'] = $row['position'];
@@ -38,4 +38,7 @@ if (isset($_POST['cancel_id'])) {
     $statement = $con->prepare('DELETE FROM paymentverif where pv_ID=?');
     $data = array($id);
     $result = $statement->execute($data);
+
+    unlink("../uploads/payverif/docrequestform/".$id.".jpg");    
+    unlink("../uploads/payverif/payments/".$id.".jpg"); 
 }

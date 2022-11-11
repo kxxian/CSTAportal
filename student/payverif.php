@@ -315,7 +315,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <a href="#payverif" id="pv_tab" class="nav-link active"><i class="fas fa-credit-card"></i> Payment Verification</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#payhistory" id="ph_tab" class="nav-link"><i class="fas fa-file"></i> Payment History</a>
+                                        <a href="#payhistory" id="ph_tab" class="nav-link"><i class="fas fa-file"></i> Payment Logs</a>
                                     </li>
                                 </ul>
                             </div>
@@ -336,9 +336,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     <div class="form-group">
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment For</legend>
+
                                                             <br><label>
                                                                 <h5 class="font-weight-bold">Tuition Fee</h5>
+
                                                             </label>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label class="form-check-label font-weight-bold" for="paynumsearch">
+                                                                        Payment No. (For updating existing payments only)
+                                                                    </label>
+                                                                    <input type="text" name="paynumsearch" id="paynumsearch" oninput="paynum()" class="form-control"  maxlength="10">
+                                                                </div>
+                                                            </div>
                                                             <div class="form-group row" id="inputtfee">
                                                                 <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
@@ -346,7 +356,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     </label>
 
 
-                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023">
+                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023"
+                                                                    onkeypress="return (event.charCode > 47 && event.charCode < 58) || (event.keyCode==45)" maxlength="9">
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
@@ -377,7 +388,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         Term
                                                                     </label>
-                                                                    <select name="selterm" id="selterm  " class="form-control">
+                                                                    <select name="selterm" id="selterm" class="form-control">
                                                                         <option selected="" disabled>..</option>
                                                                         <?php
                                                                         require_once("includes/connect.php");
@@ -400,63 +411,51 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
                                                                         Amount
                                                                     </label>
-                                                                    <i style="font-size: 0.9rem;color:#808080">*Enter tuition fee amount paid</i>
                                                                     <input type="number" placeholder="0.00" class="form-control" id="tfeeamount" name="tfeeamount" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
                                                                 </div>
                                                             </div><br>
                                                             <label>
                                                                 <h5 class="font-weight-bold">Additional (Others Fees)</h5>
-                                                                <i style="font-size: 0.9rem;color:#808080">*Select other fees indicated on your assessment / disbursement form </i>
+                                                                <i style="font-size: 0.9rem;color:#808080">*Enter other fees indicated in your disbursement form separated by comma(,) </i>
                                                             </label>
 
-                                                            <br><br>
-                                                            <div class="form-group" id="othersopt">
+
+                                                            <div class="form-group row">
                                                                 <div class="col-sm-12">
-
-                                                                    <?php
-                                                                    $sql = "select * from particulars where isActive='Active'";
-                                                                    $stmt = $con->prepare($sql);
-                                                                    $stmt->execute();
-
-                                                                    while ($row = $stmt->fetch()) {
-                                                                        echo '
-                                                                <div class="form-check form-check-inline mb-2">
-                                                                <input class="form-check-input" type="checkbox" value="' . $row['particular'] . '" id="particulars" name="particulars[]">
-                                                                <label class="form-check-label font-weight-bold" for="particulars">
-                                                                    ' . $row['particular'] . '
-                                                                </label>
-                                                                </div>';
-                                                                    }
-                                                                    $stmt = null;
-                                                                    ?>
-                                                                </div><br>
-                                                                <div class="form-group row">
-                                                                    <div class="col-sm-6">
-                                                                        <label class="font-weight-bold">
-                                                                            Total (Other Fees)
-                                                                        </label>
-                                                                        <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
-                                                                        <input type="number" class="form-control" placeholder="0.00" value="0" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
-                                                                    </div>
-
-
+                                                                    <textarea type="text" rows="3" class="form-control" name="otherpart" id="otherpart"></textarea>
                                                                 </div>
+                                                            </div>
 
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    &nbsp;
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label class="font-weight-bold">
+                                                                        Total for Other Fees
+                                                                    </label>
+                                                                    <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
+                                                                    <input type="number" class="form-control" placeholder="0.00" value="0" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
+                                                                </div>
 
 
                                                             </div>
 
+
+
+
+
                                                         </fieldset>
 
                                                         <fieldset class="scheduler-border">
-                                                            <legend class="scheduler-border">Total</legend>
+                                                            <legend class="scheduler-border">Total Amount</legend>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-3">
 
                                                                     <?php
                                                                     ?>
 
-                                                                    <input type="hidden" class="form-control" id="totaldue" name="totaldue" style="pointer-events: none; height:55px; 
+                                                                    <input type="text" hidden class="form-control" id="totaldue" name="totaldue" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
 
                                                                     <input type="text" class="form-control" id="totaldue1" name="totaldue1" style="pointer-events: none; height:55px; 
@@ -522,7 +521,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6" id="reqform">
-                                                                    <label for=""><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
+                                                                    <label for=""><strong>Assessment/Disbursement Form</strong></label>
                                                                     <input type="file" accept=".jpg" class="form-control" name="reqform">
                                                                 </div>
                                                                 <div class="col-sm-6">
@@ -540,7 +539,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </fieldset>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                        <div class="text-right"><button type="submit" class="btn btn-success" name="uploadpayments"><i class="fas fa-check"></i> Submit</button></div>
+                                                        <div class="text-right"><button type="submit" class="btn btn-success" name="sendpay"><i class="fas fa-check"></i> Submit</button></div>
                                                     </div>
                                                 </form>
                                             </div>
@@ -554,7 +553,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <div class="col-xl-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Payment History</h5>
+                                                    <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Payment Logs</h5>
                                                     <div class="table-responsive">
                                                         <table class="table table-hover mb-0">
                                                             <thead>
@@ -595,31 +594,29 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     //check attachments in directory
                                                                     $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
                                                                     $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
-                                                                
-                                                                    if (file_exists($payment)){
-                                                                        $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/'.$rows['pv_ID'].'.jpg">
-                                                                        <i class="fa fa-receipt fa-fw"></i></a>';
 
-                                                                        
-                                                                     }else{
-                                                                        $img="";
-                                                                     }
-                                                                     
-                                                                     if (file_exists($reqform)){
-                                                                         $img2='
-                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/'.$rows['pv_ID'].'.jpg">
+                                                                    if (file_exists($payment)) {
+                                                                        $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['pv_ID'] . '.jpg">
+                                                                        <i class="fa fa-receipt fa-fw"></i></a>';
+                                                                    } else {
+                                                                        $img = "";
+                                                                    }
+
+                                                                    if (file_exists($reqform)) {
+                                                                        $img2 = '
+                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['pv_ID'] . '.jpg">
                                                                          <i class="fa fa-receipt fa-fw"></i></a>
                                                                          ';
-                                                                      }else{
-                                                                         $img2="";
-                                                                      }
-                                                                     
-                                                                   
+                                                                    } else {
+                                                                        $img2 = "";
+                                                                    }
+
+
                                                                     $strpayhistory .= '<tr>';
-                                                                    $strpayhistory .= ' <td class="text-center text-gray-900">' . $rows['sentvia'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['date_sent'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $rows['amtpaid'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $img.' '.$img2. '</td>';
+                                                                    $strpayhistory .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['sentvia'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['date_sent'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['amtpaid'] . '</td>';
+                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $img . ' ' . $img2 . '</td>';
                                                                     $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
                                                                     $strpayhistory .= '<td class="text-center">';
                                                                     $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
@@ -822,9 +819,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <address class="text-right text-gray-900 font-weight-bold">
-                                                           Date Sent:  <span id="date_sent"></span>
-                                                       
-                                                            
+                                                            Date Sent: <span id="date_sent"></span>
+
+
                                                         </address>
                                                     </div>
                                                 </div>
@@ -835,9 +832,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-sm-12">
                                                         <div class="invoice-details">
                                                             <address class="text-gray-900  font-weight-bold">
-                                                               Sent Thru: <span id="sent_via"></span><br>
-                                                               Payment Method: <span id="pay"></span><br>
-                                                               Payment Number: <span id="pay"></span>
+                                                                Sent Thru: <span id="sent_via"></span><br>
+                                                                Payment Method: <span id="pay"></span><br>
+                                                                Payment Number: <span id="paynum"></span>
                                                             </address>
                                                         </div>
                                                     </div>
@@ -890,22 +887,24 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                                             </p>
                                                                         </td>
-                                                                        <td class="text-gray-900 font-weight-bold text-center"><p id="part"></p></td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="part"></p>
+                                                                        </td>
                                                                         <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="ptotal"></span></td>
 
                                                                     </tr>
                                                                     <tr>
                                                                         <td>&nbsp;</td>
-                                                                        <td >
+                                                                        <td>
 
-                                                                      
+
                                                                         </td>
-                                                                        
+
                                                                         <td colspan="3" class="text-right text-gray-900 font-weight-bold">
-                                                                        <h5 class="text-success float-left"><strong>Total</strong> </h5>
-                                                                               
-                                                                          <span id="gtotal"></span>
-                                                                           
+                                                                            <h5 class="text-success float-left"><strong>Total</strong> </h5>
+
+                                                                            <span id="gtotal"></span>
+
                                                                         </td>
 
                                                                     </tr>
@@ -919,7 +918,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             </div>
 
                                             <div class="invoice-footer">
-                                              
+                                            
                                             </div>
 
                                         </div>

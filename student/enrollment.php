@@ -121,7 +121,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                         <a href="#enrollment" class="nav-link active"><i class="fas fa-fw fa-edit"></i> 1. Assessment</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#validation" class="nav-link"><i class="fas fa-fw fa-user-check"></i> 2. Enrollment</a>
+                                        <a href="#validation" class="nav-link" id="enroll_tab"><i class="fas fa-fw fa-user-check"></i> 2. Enrollment</a>
                                     </li>
                                 </ul>
                             </div>
@@ -244,9 +244,9 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="validation">
+                            <div class="tab-pane fade" id="validation" >
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6" id="enroll_content">
                                         <!-- Basic Card Example -->
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">

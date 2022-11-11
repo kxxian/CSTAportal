@@ -96,6 +96,7 @@ $(document).ready(function() {
                 $('#sysem').html(data.sysem);
                 $('#part').html(data.part);
                 $('#ptotal').html(data.ptotal);
+                $('#paynum').html(data.paynum);
                 // $('#fname').val(data.fname);
                 // $('#mname').val(data.mname);
                 // $('#gender').val(data.Gender);
@@ -193,3 +194,45 @@ $(document).ready(function() {
 
 
 });
+
+
+function paynum() {
+    //var snum = $('#txtSnum').val();
+    var paynum = $('#paynumsearch').val();
+
+    
+    
+    if (paynum.length > 0 ) {
+
+        $.ajax({
+            type: "POST",
+            url: "codes/editpayment.php",
+            data: {
+                paynum: paynum,
+                searchpay: 1
+            },
+            dataType: "json",
+
+            success: function(data) {
+                $('#selsy').val(data.sy);
+                $('#selsem').val(data.sem);
+                $('#selterm').val(data.term);
+                $('#tfeeamount').val(data.tfeeamount);
+                $('#otherpart').val(data.particulars);
+                $('#totalothers').val(data.totalothers);
+                $('#totaldue').val(data.totaldue);
+                $('#totaldue1').val(data.totaldue1);
+                $('#amtpaid').val(data.amtpaid);
+                $('#sentthru').val(data.sentvia);
+                $('#paymethod').val(data.paymethod);
+                $('#DoP').val(data.datepaid);
+                $('#ToP').val(data.timepaid);
+                $('#note').val(data.note);
+            },
+            error: function() {
+            }
+        });
+    }
+    
+    
+}
