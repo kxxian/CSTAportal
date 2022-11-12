@@ -346,7 +346,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label class="form-check-label font-weight-bold" for="paynumsearch">
                                                                         Payment No. (For updating existing payments only)
                                                                     </label>
-                                                                    <input type="text" name="paynumsearch" id="paynumsearch" oninput="paynum()" class="form-control"  maxlength="10">
+                                                                    <input type="text" name="paynumsearch" id="paynumsearch" oninput="paynum()" class="form-control" maxlength="10" onkeypress="return (event.charCode > 47 && event.charCode <58 )" maxlength="10">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row" id="inputtfee">
@@ -356,8 +356,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     </label>
 
 
-                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023"
-                                                                    onkeypress="return (event.charCode > 47 && event.charCode < 58) || (event.keyCode==45)" maxlength="9">
+                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023" onkeypress="return (event.charCode > 47 && event.charCode < 58) || (event.keyCode==45)" maxlength="9">
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
@@ -550,95 +549,96 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <div class="tab-pane fade" id="payhistory">
                                 <div class="row gutters-sm">
                                     <div class="col-sm-12">
-                                        <div class="col-xl-12">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Payment Logs</h5>
-                                                    <div class="table-responsive">
-                                                        <table class="table table-hover mb-0">
-                                                            <thead>
-                                                                <tr class="align-self-center">
 
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Sent Thru</th>
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Amount Paid</th>
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Attachment/s</th>
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Status</th>
-                                                                    <th class="text-gray-900 font-weight-bold text-center">Actions</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <?php
-                                                                $sql = "SELECT * FROM vwpayverif where sid=$sid order by pv_ID asc";
-                                                                $stmt = $con->query($sql);
-                                                                $count = $stmt->rowCount();
-                                                                $strpayhistory = '';
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Payment Logs</h5>
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover mb-0">
+                                                        <thead>
+                                                            <tr class="align-self-center">
+                                                                <th class="text-gray-900 font-weight-bold text-center">Payment No.</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Sent Thru</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Amount Paid</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Attachment/s</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Status</th>
+                                                                <th class="text-gray-900 font-weight-bold text-center">Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $sql = "SELECT * FROM vwpayverif where sid=$sid order by pv_ID asc";
+                                                            $stmt = $con->query($sql);
+                                                            $count = $stmt->rowCount();
+                                                            $strpayhistory = '';
 
 
-                                                                foreach ($stmt as $rows) {
+                                                            foreach ($stmt as $rows) {
 
-                                                                    //change badge based on payment status
-                                                                    if ($rows['payment_status'] == 'Verified') {
-                                                                        $class = "success";
-                                                                        $disabled = "disabled";
-                                                                    } elseif ($rows['payment_status'] == 'Received') {
-                                                                        $class = "info";
-                                                                        $disabled = "disabled";
-                                                                    } elseif ($rows['payment_status'] == 'For Receipt') {
-                                                                        $class = "primary";
-                                                                        $disabled = "disabled";
-                                                                    } elseif ($rows['payment_status'] == 'Pending') {
-                                                                        $class = "warning";
-                                                                        $disabled = "";
-                                                                    }
-                                                                    //check attachments in directory
-                                                                    $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
-                                                                    $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
+                                                                //change badge based on payment status
+                                                                if ($rows['payment_status'] == 'Verified') {
+                                                                    $class = "success";
+                                                                    $disabled = "disabled";
+                                                                } elseif ($rows['payment_status'] == 'Received') {
+                                                                    $class = "info";
+                                                                    $disabled = "disabled";
+                                                                } elseif ($rows['payment_status'] == 'For Receipt') {
+                                                                    $class = "primary";
+                                                                    $disabled = "disabled";
+                                                                } elseif ($rows['payment_status'] == 'Pending') {
+                                                                    $class = "warning";
+                                                                    $disabled = "";
+                                                                }
+                                                                //check attachments in directory
+                                                                $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
+                                                                $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
 
-                                                                    if (file_exists($payment)) {
-                                                                        $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['pv_ID'] . '.jpg">
+                                                                if (file_exists($payment)) {
+                                                                    $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['pv_ID'] . '.jpg">
                                                                         <i class="fa fa-receipt fa-fw"></i></a>';
-                                                                    } else {
-                                                                        $img = "";
-                                                                    }
+                                                                } else {
+                                                                    $img = "";
+                                                                }
 
-                                                                    if (file_exists($reqform)) {
-                                                                        $img2 = '
+                                                                if (file_exists($reqform)) {
+                                                                    $img2 = '
                                                                          <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['pv_ID'] . '.jpg">
                                                                          <i class="fa fa-receipt fa-fw"></i></a>
                                                                          ';
-                                                                    } else {
-                                                                        $img2 = "";
-                                                                    }
-
-
-                                                                    $strpayhistory .= '<tr>';
-                                                                    $strpayhistory .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['sentvia'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['date_sent'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['amtpaid'] . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center text-gray-900">' . $img . ' ' . $img2 . '</td>';
-                                                                    $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
-                                                                    $strpayhistory .= '<td class="text-center">';
-                                                                    $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
-                                                                    $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-times"></i></button>';
-                                                                    $strpayhistory .= '</td>';
-                                                                    $strpayhistory .= '</tr>';
+                                                                } else {
+                                                                    $img2 = "";
                                                                 }
 
-                                                                echo $strpayhistory;
+
+                                                                $strpayhistory .= '<tr>';
+                                                                $strpayhistory .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['paynum'] . '</td>';
+                                                                $strpayhistory .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['sentvia'] . '</td>';
+                                                                $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['date_sent'] . '</td>';
+                                                                $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['amtpaid'] . '</td>';
+                                                                $strpayhistory .= '<td class="text-center text-gray-900">' . $img . ' ' . $img2 . '</td>';
+                                                                $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
+                                                                $strpayhistory .= '<td class="text-center">';
+                                                                $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
+                                                                $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-times"></i></button>';
+                                                                $strpayhistory .= '</td>';
+                                                                $strpayhistory .= '</tr>';
+                                                            }
+
+                                                            echo $strpayhistory;
 
 
-                                                                ?>
+                                                            ?>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <!--end table-responsive-->
-
+                                                        </tbody>
+                                                    </table>
                                                 </div>
+                                                <!--end table-responsive-->
+
                                             </div>
                                         </div>
+
                                     </div>
 
                                 </div>
@@ -918,7 +918,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             </div>
 
                                             <div class="invoice-footer">
-                                            
+
                                             </div>
 
                                         </div>

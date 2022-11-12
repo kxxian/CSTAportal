@@ -23,10 +23,7 @@ if (isset($_POST['payment_id'])) {
         $output['part'] = $row['particulars'];
         $output['ptotal'] = $row['particulars_total'];
         $output['paynum'] = $row['paynum'];
-        // $output['office'] = $row['office'];
-        // $output['dept'] = $row['dept_ID'];
-        // $output['position'] = $row['position'];
-        // $output['role'] = $row['permission_ID'];
+        
     }
     echo json_encode($output);
 }

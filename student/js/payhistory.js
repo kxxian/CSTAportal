@@ -1,19 +1,9 @@
 $(document).ready(function() {
      //Capitalize input fields
-     $('#lname').keyup(function(){
+     $('#otherpart').keyup(function(){
         $(this).css("text-transform", "capitalize");
     });
-    $('#fname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#mname').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
-
-    $('#position').keyup(function(){
-        $(this).css("text-transform", "capitalize");
-    });
+ 
 
 
     

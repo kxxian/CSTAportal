@@ -32,6 +32,7 @@ if (isset($_POST['sendpay'])) {
     // current date and time
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
+    
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
     $total_others = htmlspecialchars(trim($_POST['totalothers']));
     $amountdue = $_POST['totaldue'];
@@ -43,7 +44,7 @@ if (isset($_POST['sendpay'])) {
     $notes = $_POST['note'];
 
     if (isset($_POST['otherpart'])) {
-        $particulars = $_POST['otherpart'];
+        $particulars = ucwords($_POST['otherpart']);
     } else {
         $particulars = "-";
     }
