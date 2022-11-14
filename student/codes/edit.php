@@ -29,3 +29,24 @@ if (isset($_POST['searchpay'])) {
     }
     echo json_encode($output);
 }
+
+if (isset($_POST['searchreq'])) {
+    $paynum = $_POST['reqnum'];
+    $output = array();
+    $statement = $con->prepare("SELECT * FROM tbldocureq where requestno='" . $paynum . "' LIMIT 1");
+    $statement->execute();
+    $result = $statement->fetchAll();
+    foreach ($result as $row) {
+        $output['bplace'] = $row['placeofbirth'];
+        $output['studstat'] = $row['studstat_ID'];
+        $output['yearGrad'] = $row['yearGrad'];
+        $output['lastSchool'] = $row['lastSchool'];
+        $output['trans'] = $row['trans_ID'];
+        $output['diploma'] = $row['diploma_ID'];
+        $output['authdocs'] = $row['auth'];
+        $output['rep'] = $row['receiver_name'];
+        $output['repmob'] = $row['contactnum'];
+        $output['deladd'] = $row['deliver_add'];
+    }
+    echo json_encode($output);
+}

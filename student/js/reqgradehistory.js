@@ -62,55 +62,10 @@ $(document).ready(function() {
     })
 
 
-    $(document).on('click', '.viewpaydetails', function() {
-        var payment_id = $(this).attr('id');
-
-        $.ajax({
-            url: "codes/pvcrud.php",
-            method: "POST",
-            data: {
-                payment_id: payment_id
-            },
-            dataType: "json",
-            success: function(data) {
-                $('#payverifModal').modal('show');
-                $('#payment_id').val(data.id);
-                $('#date_sent').html(data.date_sent);
-                $('#sent_via').html(data.sent_via);
-                $('#pay').html(data.paymethod);
-                $('#dop').html(data.dop);
-                $('#top').html(data.top);
-                $('#term').html(data.term);
-                $('#tfee').html(data.tfee);
-                $('#gtotal').html(data.gtotal);
-                $('#sysem').html(data.sysem);
-                $('#part').html(data.part);
-                $('#ptotal').html(data.ptotal);
-                $('#paynum').html(data.paynum);
-                // $('#fname').val(data.fname);
-                // $('#mname').val(data.mname);
-                // $('#gender').val(data.Gender);
-                // $('#email').val(data.email);
-                // $('#mobile').val(data.mobile);
-                // $("#office").val(data.office);
-                // $("#dept").val(data.dept);
-                // $("#position").val(data.position);
-                // $("#role").val(data.role);
-                
-      
-
-                $('.title').text(' Payment Details');
-                $('#payment_id').val(payment_id);
-
-                $('#operation').val("Edit");
-                $('#action').val("Save");
-
-            }
-        })
-    })
+    
 
     $(document).on('click', '.cancel', function() {
-        var pv_id = $(this).attr('id');
+        var gradereq_id = $(this).attr('id');
         //location.reload();
         Swal.fire({
             title: 'Confirm',
@@ -123,10 +78,10 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/pvcrud.php",
+                    url: "codes/gradecrud.php",
                     method: "POST",
                     data: {
-                        cancel_id: pv_id
+                        gradereq_id: gradereq_id
                     },
                     success: function(data) {
                        location.reload();
@@ -134,7 +89,7 @@ $(document).ready(function() {
                 })
                 Swal.fire(
                     'Success!',
-                    'Payment Deleted.',
+                    'Request Deleted.',
                     'success'
                 )
             }

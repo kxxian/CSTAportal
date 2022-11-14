@@ -7,6 +7,7 @@ require_once('../includes/functions.php');
 
 
 if (isset($_POST['submit'])) {
+    $reqnumsearch = $_POST['reqno'];
 
     if (isset($_POST['doc'])) {
         $documents = implode(", ", $_POST['doc']);
@@ -14,16 +15,12 @@ if (isset($_POST['submit'])) {
         $documents = "-";
     }
 
-    if (isset($_POST['ctc'])) {
-        $ctc = implode(", ", $_POST['ctc']);
-    } else {
-        $ctc = "-";
-    }
+
 
     if (isset($_POST['diploma'])) {
         $diploma = $_POST['diploma'];
     } else {
-        $diploma = "-";
+        $diploma = 3;
     }
 
 
@@ -54,24 +51,70 @@ if (isset($_POST['submit'])) {
     //Generate Tracking number key
     $random = (time() + rand(1, 4294967295));
 
-    try {
-
-        $sql = "INSERT INTO tbldocureq (sid,requestno,placeofbirth,stud_status,yearGrad,lastSchool,cert,tor_purpose,diploma,auth,deliver_add,receiver_name,contactnum,date_sent) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $data = array($sid, $random, $pob, $stat, $yearGrad, $lastSchool, $documents, $tor, $diploma, $ctc, $deladd, $rep, $repmob, $date);
-        $stmt = $con->prepare($sql);
-        $stmt->execute($data);
-        $newname = $con->lastInsertId();
 
 
-        if ($_FILES['tor2']['tmp_name'] != "") {
-            $msg = uploadtor($_FILES['tor2'], $newname);
-        }
-    } catch (PDOException $e) {
-        echo $e->getMessage();
+    if (!isset($_POST['trans'])) {
+        $trans = "-";
+    } else {
+        $trans = $_POST['trans'];
     }
 
-    $_SESSION['status'] = "Success!";
-    $_SESSION['msg'] = "Request Sent!";
-    $_SESSION['status_code'] = "success";
-    header('location:../requestdocument.php');
+    if (!isset($_POST['authdocs'])) {
+        $auth = "-";
+    } else {
+        $auth = $_POST['authdocs'];
+    }
+
+    if ($reqnumsearch == "") {
+        try {
+
+            $sql = "INSERT INTO tbldocureq (sid,requestno,placeofbirth,studstat_ID,yearGrad,lastSchool,cert,trans_ID,tor_purpose,diploma_ID ,auth,deliver_add,receiver_name,contactnum,date_sent) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $data = array($sid, $random, $pob, $stat, $yearGrad, $lastSchool, $documents, $trans, $tor, $diploma, $auth,  $deladd, $rep, $repmob, $date);
+            $stmt = $con->prepare($sql);
+            $stmt->execute($data);
+            $newname = $con->lastInsertId();
+
+
+            if ($_FILES['tor2']['tmp_name'] != "") {
+                $msg = uploadtor($_FILES['tor2'], $newname);
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        $_SESSION['status'] = "Success!";
+        $_SESSION['msg'] = "Request Sent!";
+        $_SESSION['status_code'] = "success";
+        header('location:../requestdocument.php');
+    } else {
+
+
+        $sql1 = "SELECT reqdoc_ID from tbldocureq where requestno=?";
+        $data1 = array($reqnumsearch);
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->execute($data1);
+        $row1 = $stmt1->fetch();
+        $id = $row1['reqdoc_ID'];
+
+        try {
+
+            $sql = "UPDATE tbldocureq set sid=?,requestno=?,placeofbirth=?,studstat_ID=?,yearGrad=?,lastSchool=?,cert=?,trans_ID=?,tor_purpose=?,diploma_ID=? ,auth=?,deliver_add=?,receiver_name=?,contactnum=?,date_sent=? WHERE requestno=?";
+            $data = array($sid, $random, $pob, $stat, $yearGrad, $lastSchool, $documents, $trans, $tor, $diploma, $auth,  $deladd, $rep, $repmob, $date, $reqnumsearch);
+            $stmt = $con->prepare($sql);
+            $stmt->execute($data);
+            // $newname = $con->lastInsertId();
+
+
+            if ($_FILES['tor2']['tmp_name'] != "") {
+                $msg = uploadtor($_FILES['tor2'], $id);
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+
+        $_SESSION['status'] = "Success!";
+        $_SESSION['msg'] = "Request Updated!";
+        $_SESSION['status_code'] = "success";
+        header('location:../requestdocument.php');
+    }
 }

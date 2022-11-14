@@ -335,6 +335,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group">
                                                     <form method="POST" action="codes/reqdoc.php" enctype="multipart/form-data">
                                                         <div class="form-group row">
+                                                            <div class="col-sm-12">
+                                                                <label><strong>Request Number </strong>(For Updating Requests Only)</label>
+                                                                <input type="text" name="reqno" id="reqno" class="form-control" placeholder="Leave Blank if this is a new request" oninput="reqnum()" onkeypress="return (event.charCode > 47 && 
+	                                                         event.charCode < 58) ">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label><strong>Place of Birth </strong>(City or Municipality Only)</label>
                                                                 <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="eg. Quezon City" onkeypress="return (event.charCode > 64 && 
@@ -345,8 +352,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 <label><strong>Student Status</strong></label>
                                                                 <select name="studstat" id="studstat" class="form-control" required>
                                                                     <option disabled selected value="">..</option>
-                                                                    <option value="Graduate">Graduate</option>
-                                                                    <option value="Undergraduate">Undergraduate</option>
+                                                                    <option value="1">Graduate</option>
+                                                                    <option value="2">Undergraduate</option>
                                                                 </select>
 
                                                             </div>
@@ -393,31 +400,42 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div>
 
                                                         </div>
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <label><strong>Transcript of Records - First Copy</strong> (Enter Purpose of Request)</label>
-                                                                    <input type="text" name="tor" id="tor" class="form-control" placeholder="eg. Visa Application / Employment / Copy for <Name of School>" onkeypress="return (event.charCode > 64 && 
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-6">
+                                                                <label><strong>Transcript of Records</strong> </label>
+                                                                <select name="trans" id="trans" class="form-control">
+                                                                    <option selected value="" disabled>..</option>
+                                                                    <option value="1">First Copy</option>
+                                                                    <option value="2">Duplicate</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-6" id="tor2div" style="display:none">
+                                                                <label><strong>Transcript of Records - Duplicate Copy</strong> (Scanned Copy of Original)</label>
+                                                                <input type="file" accept=".pdf" name="tor2" id="tor2" class="form-control">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+
+                                                            <div class="col-sm-12" id="transpurp" style="display:none">
+                                                                <label><strong>Transcript of Records - Purpose of Request</strong> </label>
+                                                                <input type="text" name="tor" id="tor" class="form-control" placeholder="eg. Visa Application / Employment / Copy for <Name of School>" onkeypress="return (event.charCode > 64 && 
 	                                                          event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32">
 
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <label><strong>Transcript of Records - Duplicate Copy</strong> (Attach Copy of Original TOR)</label>
-                                                                    <input type="file" name="tor2" id="tor2" class="form-control">
-
-                                                                </div>
                                                             </div>
+
+
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-12">
                                                                 <label><strong>Diploma</strong></label><br>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="diploma" id="diploma" value="1st Copy">
-                                                                    <label class="form-check-label" for="inlineRadio1">1st Copy</label>
+                                                                <div class="form-check form-check-inline dips">
+                                                                    <input class="form-check-input" type="radio" name="diploma" id="diploma" value="1">
+                                                                    <label class="form-check-label" for="inlineRadio1">First Copy</label>
                                                                 </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="radio" name="diploma" id="diploma" value="2nd Copy">
-                                                                    <label class="form-check-label" for="inlineRadio2">2nd Copy (Affidavit of Loss is required.)</label>
+                                                                <div class="form-check form-check-inline dips">
+                                                                    <input class="form-check-input" type="radio" name="diploma" id="diploma" value="2">
+                                                                    <label class="form-check-label" for="inlineRadio2">Second Copy (Affidavit of Loss is required.)</label>
                                                                 </div>
 
                                                             </div>
@@ -425,25 +443,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="form-group row">
                                                             <div class="col-sm-12">
 
-                                                                <label><strong>Authentication/Certified True Copy</strong> </label>
+                                                                <label><strong>Documents for Authentication/Certified True Copy</strong> </label>
 
-                                                                <?php
-                                                                $sql = "select * from ctc_authentication where isActive=?";
-                                                                $data = array('1');
-                                                                $stmt = $con->prepare($sql);
-                                                                $stmt->execute($data);
-
-                                                                while ($row = $stmt->fetch()) {
-                                                                    echo '
-                                                            <div class="form-check documents" id="chkdoc">
-                                                            <input class="form-check-input" type="checkbox" value="' . $row['document'] . '" id="doc" name="ctc[]">
-                                                            <label class="form-check-label" for="">
-                                                                ' . $row['document'] . '
-                                                            </label>
-                                                            </div>';
-                                                                }
-                                                                $stmt = null;
-                                                                ?>
+                                                                <input type="text" name="authdocs" id="authdocs" class="form-control" placeholder="Enter documents">
 
                                                             </div>
                                                         </div>
@@ -502,9 +504,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <tr class="align-self-center">
                                                                 <th class="text-gray-900 font-weight-bold text-center">Request No.</th>
                                                                 <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
-                                                                <th class="text-gray-900 font-weight-bold text-center">Certifications</th>
-                     
-                                                                <th class="text-gray-900 font-weight-bold text-center" width="200">TOR Purpose</th>
+
+
+
 
                                                                 <th class="text-gray-900 font-weight-bold text-center">Status</th>
                                                                 <th class="text-gray-900 font-weight-bold text-center" width="99">Actions</th>
@@ -558,12 +560,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 $strreq .= '<tr>';
                                                                 $strreq .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['requestno'] . '</td>';
                                                                 $strreq .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['date_sent'] . '</td>';
-                                                                $strreq .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['cert'] . '</td>';
- 
-                                                                $strreq .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['tor_purpose'] . '</td>';
+
+
+
                                                                 $strreq .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['status'] . '</span></td>';
                                                                 $strreq .= '<td class="text-center">';
-                                                                $strreq .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['reqdoc_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
+                                                                $strreq .= '    <button class="btn btn-info btn-sm viewreqdetails"  title="View Payment Details" id="' . $rows['reqdoc_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
                                                                 $strreq .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['reqdoc_ID'] . '"><i class="fa fa-fw fa-times"></i></button>';
                                                                 $strreq .= '</td>';
                                                                 $strreq .= '</tr>';
@@ -725,7 +727,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 </body>
 
 
-<div id="payverifModal" class="modal fade">
+<div id="reqdocModal" class="modal fade">
     <div class="modal-dialog modal-xl">
         <form method="POST" id="usersForm" enctype="multipart/form-data">
             <div class="modal-content">
@@ -758,12 +760,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="row gutters">
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                                         <a href="#" class="invoice-logo text-primary">
-                                                            Payment Details
+                                                            Request Details
                                                         </a>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <address class="text-right text-gray-900 font-weight-bold">
-                                                            Date Sent: <span id="date_sent"></span>
+                                                            Date Sent: <span id="date_sent"></span><br>
+                                                           
 
 
                                                         </address>
@@ -776,17 +779,20 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-sm-12">
                                                         <div class="invoice-details">
                                                             <address class="text-gray-900  font-weight-bold">
-                                                                Sent Thru: <span id="sent_via"></span><br>
-                                                                Payment Method: <span id="pay"></span><br>
-                                                                Payment Number: <span id="paynum"></span>
+                                                                Place of Birth: <span id="bplace"></span><br>
+                                                                Student Status: <span id="stat"></span><br>
+                                                                Year Graduated: <span id="yeargrad"></span>
+                                                                <div>Last School Before CSTA: <span id="sch"></span></div>
+                                                                
                                                             </address>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-sm-12">
                                                         <div class="invoice-details">
                                                             <div class="invoice-num text-gray-900 font-weight-bold">
-                                                                <div>Date of Payment: <span id="dop"></span></div>
-                                                                <div>Time of Payment: <span id="top"></span></div>
+                                                                <div>Recipient Name: <span id="repr"></span></div>
+                                                            <div>Delivery Address: <span id="del"></span></div>
+                                                                <div>Contact Number: <span id="cnum"></span></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -804,10 +810,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <table class="table custom-table m-0">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="text-gray-900 font-weight-bold text-center">Items</th>
+                                                                        <th class="text-gray-900 font-weight-bold text-center">Documents</th>
                                                                         <th class="text-gray-900 font-weight-bold text-center">Description</th>
-                                                                        <th class="text-gray-900 font-weight-bold text-center">Amount
-                                                                        <th>
 
                                                                     </tr>
                                                                 </thead>
@@ -815,43 +819,55 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
-                                                                            Tuition Fee
+                                                                            Certifications
                                                                             <p class="m-0 text-muted">
 
                                                                             </p>
                                                                         </td>
-                                                                        <td class="text-gray-900 font-weight-bold text-center"><span id="term"></span> <span id="sysem"></span></td>
-                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="tfee"></span></td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center"><span id="certi"></span> <span id="cert"></span></td>
+
 
                                                                     </tr>
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
-                                                                            Other Fees
+                                                                            Transcript of Records
                                                                             <p class="m-0 text-muted">
 
                                                                             </p>
                                                                         </td>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
-                                                                            <p id="part"></p>
+                                                                            <p id="transs"></p>
                                                                         </td>
-                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="ptotal"></span></td>
+
 
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>&nbsp;</td>
-                                                                        <td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Diploma
+                                                                            <p class="m-0 text-muted">
 
-
+                                                                            </p>
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="dip"></p>
                                                                         </td>
 
-                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold">
-                                                                            <h5 class="text-success float-left"><strong>Total</strong> </h5>
-
-                                                                            <span id="gtotal"></span>
-
-                                                                        </td>
 
                                                                     </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Documents for Authentication
+                                                                            <p class="m-0 text-muted">
+
+                                                                            </p>
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="ctc"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -883,6 +899,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/notifications.js"></script>
     <script src="js/reqdoc.js"></script>
 
-    <!-- <script src="js/payhistory.js"></script> -->
+   
 
 </html>

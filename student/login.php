@@ -10,37 +10,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 session_start();
 
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
-    header('location:index.php');
+	header('location:index.php');
 }
 $msg = "";
 
 if (isset($_GET['login'])) {
-    $_SESSION['status'] = "Oops!";
-    $_SESSION['msg'] = "Invalid username or password!";
-    $_SESSION['status_code'] = "warning";
+	$_SESSION['status'] = "Oops!";
+	$_SESSION['msg'] = "Invalid username or password!";
+	$_SESSION['status_code'] = "warning";
 }
 
 if (isset($_GET['newpwd'])) {
-    if ($_GET['newpwd'] == "passwordupdated") {
+	if ($_GET['newpwd'] == "passwordupdated") {
 
 
-        $_SESSION['status'] = "Success!";
-        $_SESSION['msg'] = "Password reset successful!";
-        $_SESSION['status_code'] = "success";
-    }
+		$_SESSION['status'] = "Success!";
+		$_SESSION['msg'] = "Password reset successful!";
+		$_SESSION['status_code'] = "success";
+	}
 }
 
 if (isset($_GET['reset'])) {
-    if ($_GET['reset'] == "success") {
-        $_SESSION['status'] = "Success!";
-        $_SESSION['msg'] = "Password reset link sent to your email.";
-        $_SESSION['status_code'] = "success";
-
-    } elseif ($_GET['reset'] == "notfound") {
-        $_SESSION['status'] = "Oops!";
-        $_SESSION['msg'] = "Email address not found.";
-        $_SESSION['status_code'] = "warning";
-    }
+	if ($_GET['reset'] == "success") {
+		$_SESSION['status'] = "Success!";
+		$_SESSION['msg'] = "Password reset link sent to your email.";
+		$_SESSION['status_code'] = "success";
+	} elseif ($_GET['reset'] == "notfound") {
+		$_SESSION['status'] = "Oops!";
+		$_SESSION['msg'] = "Email address not found.";
+		$_SESSION['status_code'] = "warning";
+	}
 }
 ?>
 <!DOCTYPE HTML>
@@ -61,8 +60,6 @@ if (isset($_GET['reset'])) {
 		// function hideURLbar() {
 		// 	window.scrollTo(0, 1);
 		// }
-
-		
 	</script>
 	<!-- Meta tag Keywords -->
 
@@ -73,57 +70,59 @@ if (isset($_GET['reset'])) {
 	<!-- Font-Awesome-Icons-CSS -->
 	<!-- //css files -->
 
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
 	<!-- web-fonts -->
-	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext"
-	 rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext" rel="stylesheet">
 	<!-- //web-fonts -->
 </head>
 <style>
 	.vertical-tab input[name="sections"]:checked+label {
-    background: #824d1b;
-    border-right: 1px solid #000;
-    color: #fff;
-}
-.sub-main-w3 {
-        max-width: 800px;
-    }
+		background: #824d1b;
+		border-right: 1px solid #000;
+		color: #fff;
+	}
+
+	.sub-main-w3 {
+		max-width: 800px;
+	}
 
 	a.bottom-text-w3ls {
-    color: #757474;
-    font-size: 14px;
-    display: inherit;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-top: 1em;
-}
+		color: #757474;
+		font-size: 14px;
+		display: inherit;
+		letter-spacing: 1px;
+		text-align: center;
+		margin-top: 1em;
+	}
 
-.legend1 {
-    color: #000;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: .8em;
-    font-weight: 400;
-	font-weight: bold;
-}
-.legend {
-    color: #000;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 2em;
-    font-weight: 400;
-	font-weight: bold;
-}
+	.legend1 {
+		color: #000;
+		font-size: 18px;
+		text-align: center;
+		margin-bottom: .8em;
+		font-weight: 400;
+		font-weight: bold;
+	}
 
-
+	.legend {
+		color: #000;
+		font-size: 18px;
+		text-align: center;
+		margin-bottom: 2em;
+		font-weight: 400;
+		font-weight: bold;
+	}
 </style>
 
 <body>
 	<div class="main-bg">
 		<!-- title -->
-		<center><img src="img/big.png" alt=""  width="190"></center>
-		
+		<center><img src="img/big.png" alt="" width="190"></center>
+
 		<!-- //title -->
-		<div class="sub-main-w3" style="margin-top:0;" >	
+		<div class="sub-main-w3" style="margin-top:0;">
 			<!-- vertical tabs -->
 			<div class="vertical-tab">
 				<div id="section1" class="section-w3ls">
@@ -132,23 +131,29 @@ if (isset($_GET['reset'])) {
 					<article>
 						<form action="validate_login.php" method="post">
 							<h5 class="legend1">Login</h5>
+
 							<div class="input">
-								<span class="fa fa-envelope-o" aria-hidden="true"></span>
+								<span class="fa fa-user" aria-hidden="true"></span>
 								<input type="text" placeholder="Username" name="username" id="username" required />
 							</div>
 							<div class="input">
 								<span class="fa fa-key" aria-hidden="true"></span>
 								<input type="password" placeholder="Password" name="password" id="password" required />
+
+
 							</div>
+
+							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px;"><input type="checkbox" name="isAdmin" id="isAdmin" value="admin" /> <small>Admin</small></span>
+
 							<button type="submit" class="btn submit" style="background-color:#824d1b">Login</button>
-							
+
 							<input type="button" onclick="location.href='register.php'" class="btn submit" style="background-color:gray; margin-top: 0.5em;" value="Register">
-							
-						<a href="guest_index.php" class="bottom-text-w3ls">Continue as Guest</a>  
+
+							<a href="guest_index.php" class="bottom-text-w3ls">Continue as Guest</a>
 						</form>
 					</article>
 				</div>
-				
+
 				<div id="section2" class="section-w3ls">
 					<input type="radio" name="sections" id="option3">
 					<label for="option3" class="icon-left-w3pvt"><span class="fa fa-lock" aria-hidden="true"></span>Forgot Password?</label>
@@ -157,16 +162,18 @@ if (isset($_GET['reset'])) {
 							<h3 class="legend last">Reset Password</h3>
 							<p class="para-style">Enter your email address below and we'll send you an email with instructions.</p>
 							<p class="para-style-2"><strong>Note:</strong> Use the email address you used to register your account.</p>
+
 							<div class="input">
 								<span class="fa fa-envelope-o" aria-hidden="true"></span>
 								<input type="email" placeholder="Email" name="email" id="email" required />
 							</div>
-							<input type="submit" name="reset-request-submit" class="btn submit last-btn" style="background-color: #824d1b;" value="Reset" required>
+							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px;"><input type="checkbox" name="isAdminpw" id="isAdminpw" value="admin" /> <small>Admin</small></span>
+							<input type="submit"  class="btn submit last-btn" style="background-color: #824d1b;" value="Reset" required>
 						</form>
 					</article>
 				</div>
-				
-				
+
+
 			</div>
 			<!-- //vertical tabs -->
 			<!-- <div class="clear"></div> -->
@@ -178,14 +185,23 @@ if (isset($_GET['reset'])) {
 			</h2>
 		</div>
 
-		
+
 		<!-- //copyright -->
 	</div>
 
-	
+<!-- 
+	<script type="text/javascript">
+		var val=$("#isAdmin").val();
+		$("#isAdmin").click(function() {
+			alert(val);
+		});
+	</script> -->
+
+
+
 	<?php
 	require_once('includes/scripts.php');
-	
+
 	?>
 </body>
 

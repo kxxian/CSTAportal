@@ -20,6 +20,35 @@ $(document).ready(function() {
         $(this).css("text-transform", "capitalize");
     });
 
+
+    //show/hide transcript dependent fields
+    $('#trans').on('change', function() {
+        var seltrans=this.value;
+        $('#tor2').val();
+         //alert( seltrans );
+        if (seltrans==2){
+            $('#tor2div').css('display','block');
+            $('#transpurp').css('display','block');
+
+            $("#tor2").prop('required',true);
+            $("#tor").prop('required',true);
+        }else{
+            $('#tor2div').hide();
+            $('#transpurp').hide();
+            
+            $("#tor2").prop('required',false);
+            $("#tor").prop('required',false);
+
+            $("#tor2").val("");
+            $("#tor").val("");
+
+            
+        }
+
+
+      });
+
+
    
 
 
@@ -79,31 +108,32 @@ $(document).ready(function() {
     // })
 
 
-    $(document).on('click', '.viewpaydetails', function() {
-        var payment_id = $(this).attr('id');
-
+    $(document).on('click', '.viewreqdetails', function() {
+        var req_id = $(this).attr('id');
+// alert(req_id)
         $.ajax({
-            url: "codes/pvcrud.php",
+            url: "codes/drcrud.php",
             method: "POST",
             data: {
-                payment_id: payment_id
+                req_id: req_id
             },
             dataType: "json",
             success: function(data) {
-                $('#payverifModal').modal('show');
-                $('#payment_id').val(data.id);
+                $('#reqdocModal').modal('show');
+                // $('#payment_id').val(data.id);
                 $('#date_sent').html(data.date_sent);
-                $('#sent_via').html(data.sent_via);
-                $('#pay').html(data.paymethod);
-                $('#dop').html(data.dop);
-                $('#top').html(data.top);
-                $('#term').html(data.term);
-                $('#tfee').html(data.tfee);
-                $('#gtotal').html(data.gtotal);
-                $('#sysem').html(data.sysem);
-                $('#part').html(data.part);
-                $('#ptotal').html(data.ptotal);
-                $('#paynum').html(data.paynum);
+                $('#stat').html(data.studstat);
+                $('#bplace').html(data.birthplace);
+                $('#yeargrad').html(data.yeargrad);
+                $('#sch').html(data.sch);
+                 $('#repr').html(data.repr);
+                $('#del').html(data.del);
+                $('#cnum').html(data.cnum);
+                $('#certi').html(data.certi);
+                $('#transs').html(data.transs);
+                $('#dip').html(data.dip);
+                $('#ctc').html(data.ctc);
+                // $('#paynum').html(data.paynum);
                 // $('#fname').val(data.fname);
                 // $('#mname').val(data.mname);
                 // $('#gender').val(data.Gender);
@@ -116,12 +146,9 @@ $(document).ready(function() {
                 
       
 
-                $('.title').text(' Payment Details');
-                $('#payment_id').val(payment_id);
+                $('#payment_id').val(req_id);
 
-                $('#operation').val("Edit");
-                $('#action').val("Save");
-
+              
             }
         })
     })
@@ -203,38 +230,35 @@ $(document).ready(function() {
 });
 
 
-function paynum() {
+function reqnum() {
     //var snum = $('#txtSnum').val();
-    var paynum = $('#paynumsearch').val();
-
+    var reqnum = $('#reqno').val();
+    //alert(reqnum)
     
     
-    if (paynum.length > 0 ) {
+    if (reqnum.length > 0 ) {
 
         $.ajax({
             type: "POST",
-            url: "codes/editpayment.php",
+            url: "codes/edit.php",
             data: {
-                paynum: paynum,
-                searchpay: 1
+                reqnum: reqnum,
+                searchreq: 1
             },
             dataType: "json",
 
             success: function(data) {
-                $('#selsy').val(data.sy);
-                $('#selsem').val(data.sem);
-                $('#selterm').val(data.term);
-                $('#tfeeamount').val(data.tfeeamount);
-                $('#otherpart').val(data.particulars);
-                $('#totalothers').val(data.totalothers);
-                $('#totaldue').val(data.totaldue);
-                $('#totaldue1').val(data.totaldue1);
-                $('#amtpaid').val(data.amtpaid);
-                $('#sentthru').val(data.sentvia);
-                $('#paymethod').val(data.paymethod);
-                $('#DoP').val(data.datepaid);
-                $('#ToP').val(data.timepaid);
-                $('#note').val(data.note);
+                $('#birthplace').val(data.bplace);
+                $('#studstat').val(data.studstat);
+                $('#yearGrad').val(data.yearGrad);
+                $('#lastSchool').val(data.lastSchool);
+                $('#trans').val(data.trans);
+                $('#authdocs').val(data.authdocs);
+                $('#rep').val(data.rep);
+                $('#repmob').val(data.repmob);
+                $('#deladd').val(data.deladd);
+            
+               
             },
             error: function() {
             }
