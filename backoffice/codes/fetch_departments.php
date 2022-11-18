@@ -40,11 +40,11 @@ foreach($result as $row)
  
 
 
-    $sub_array[]='<button type="button" name="update" id="'.$row["deptid"].'" 
+    $sub_array[]='<center><button type="button" name="update" id="'.$row["deptid"].'" 
     class="btn btn-warning btn-sm edit_dept" title="Edit"><i class="fa fa-fw fa-edit"></i></button>
 
     <button type="button" name="update" id="'.$row["deptid"].'" 
-    class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-fw fa-trash"></i></button>
+    class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-fw fa-trash"></i></button></center>
 
    
     ';

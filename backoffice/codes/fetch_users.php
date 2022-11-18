@@ -46,10 +46,12 @@ foreach($result as $row)
         $color="success";
         $title="Activate";
         $button="activate";
+        $icon="toggle-on";
     }else{
         $color="danger";
-        $title="Deactivate";
+        $title="Restrict";
         $button="restrict";
+        $icon="ban";
     }
 
 
@@ -57,8 +59,14 @@ foreach($result as $row)
     class="btn btn-warning btn-sm update" title="Edit"><i class="fa fa-fw fa-edit"></i></button>
 
     
+    <button type="button" id="'.$row["id"].'" 
+    class="btn btn-'.$color.' btn-sm '.$button.'" title="'.$title.'"><i class="fa fa-fw fa-'.$icon.'"></i></button>
+
     <button type="button" name="delete" id="'.$row["id"].'" 
-    class="btn btn-'.$color.' btn-sm '.$button.'" title="'.$title.'"><i class="fa fa-fw fa-power-off"></i></button>
+    class="btn btn-danger btn-sm delete" title="Delete User"><i class="fa fa-fw fa-trash"></i></button>
+
+
+
     ';
 
  

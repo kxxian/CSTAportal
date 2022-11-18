@@ -4,6 +4,8 @@ $userType = $usertype;
 
 if ($userType == 'Admin') {
        $visibility = "";
+} elseif ($userType == 'Superadmin') {
+       $visibility = "";
 } elseif ($userType == 'User') {
        $visibility = "hidden";
 }
@@ -194,7 +196,7 @@ if ($office == "Accounting") {
               $strSidebar .= '                </li>';
 
               $strSidebar .= '       </ul>';
-	   } elseif ($pageValue == 4) {
+       } elseif ($pageValue == 4) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -415,8 +417,7 @@ elseif ($office == "Dean") {
 
               $strSidebar .= '   </ul>';
               //        //<!-- End of Sidebar -->
-	   } 
-	   else if ($pageValue == 3) {
+       } else if ($pageValue == 3) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -560,11 +561,20 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
@@ -581,7 +591,6 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-
        } else if ($pageValue == 2) {
               $strSidebar = '';
               // <!-- Sidebar -->
@@ -626,11 +635,20 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
@@ -676,7 +694,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
-              $strSidebar .= '          <li class="nav-item active">';
+              $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="students.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
               $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
@@ -684,18 +702,27 @@ elseif ($office == "Registrar") {
 
 
               //<!-- Nav Item - Enrollment -->
-              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '        <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
               $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
@@ -749,19 +776,27 @@ elseif ($office == "Registrar") {
 
 
               //<!-- Nav Item - Enrollment -->
-              $strSidebar .= '        <li class="nav-item active">';
+              $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
               $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
-
+              $strSidebar .= '  <li class="nav-item active">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
@@ -821,11 +856,20 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item active">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
@@ -886,11 +930,20 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item active">';
@@ -951,18 +1004,26 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
-              $strSidebar .= '        <li class="nav-item">';
-              $strSidebar .= '         <a class="nav-link" href="reqdocu.php">';
-              $strSidebar .= '             <i class="fas fa-fw fa-folder"></i>';
-              $strSidebar .= '            <span>Documents Request <div class="badge badge-danger ctr_reqdocu"></div></span></a>';
-              $strSidebar .= '     </li>';
-
+              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
+              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
+              $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
+              $strSidebar .= '       <span>Request of Documents</span>';
+              $strSidebar .= '   </a>';
+              $strSidebar .= '   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
+              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
+              $strSidebar .= '           <a class="collapse-item" href="new-reqdocu.php">New Requests <div class="badge badge-danger ctr_reqdocu"></div></a>';
+              $strSidebar .= '            <a class="collapse-item" href="pending-reqdocu.php">Pending</a>';
+              $strSidebar .= '            <a class="collapse-item" href="cleared-reqdocu.php">Cleared</a>';
+              $strSidebar .= '        </div>';
+              $strSidebar .= '    </div>';
+              $strSidebar .= '  </li>';
               // <!-- Nav Item - Grades -->
               $strSidebar .= '               <li class="nav-item">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';
-                     $strSidebar .= '            </li>';
+              $strSidebar .= '            </li>';
 
               //        //<!-- Nav Item - Maintenance Collapse Menu -->
               $strSidebar .= '                <li class="nav-item active" ' . $visibility . '>';

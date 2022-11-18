@@ -65,10 +65,10 @@ foreach ($result as $row) {
     $sub_array[] =
      '
     <button type="button" id="' . $row["clr_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 
-    sid="'.$row['sid'].'"  class="btn btn-success btn-sm ack" title="Clear"><i class="fa fa-fw fa-check"></i></button>
+    sid="'.$row['sid'].'" reqdoc="'.$row['reqdoc_ID'].'"  class="btn btn-success btn-sm markcleared" title="Mark as Cleared"><i class="fa fa-fw fa-check"></i></button>
 
     <button type="button" id="' . $row["clr_ID"] . '"  email="'.$row['email'] .'" 
-    class="btn btn-warning btn-sm decline" title="Mark as Pending"><i class="fa fa-fw fa-hourglass"></i></button>
+    class="btn btn-warning btn-sm markpending" title="Mark as Pending"><i class="fa fa-fw fa-hourglass"></i></button>
     
     ';
 

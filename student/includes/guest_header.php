@@ -21,7 +21,13 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item text-gray-100 medium">
-                Good Day Teresian!
+            <span class="mr-2 d-none d-lg-inline text-gray-100 medium">You are currently interacting as <strong>Guest </strong> </span>
+            <img class="img rounded-circle" src="uploads/users/randompics/<?php 
+            $seed = floor(time()/(60*5));
+            srand($seed);
+            $item = rand(1,7);
+            echo $item;?>.png" width="40" height="40">
+                                       
             </li>
         </ul>
     </nav>    

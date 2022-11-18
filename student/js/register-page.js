@@ -119,13 +119,13 @@ $(document).ready(function() {
         if ($('#txtPassword').val() == "" && ($('#confirmpassword').val() == "")) {
             $('#length').html('');
         } else if ($('#confirmpassword').val() == "") {
-            $('#message').html('');
+            $('#message2').html('');
         } else if ($('#txtPassword').val() == $('#confirmpassword').val()) {
-            $('#message').html('Passwords Matched!').css('color', 'green');
-            $('#message').html('Passwords Matched!').css('font-weight', 'bold');
+            $('#message2').html('Passwords Matched!').css('color', 'green');
+            $('#message2').html('Passwords Matched!').css('font-weight', 'bold');
         } else {
-            $('#message').html("Passwords do not Match!").css('color', 'red');
-            $('#message').html("Passwords do not Match!").css('font-weight', 'bold');
+            $('#message2').html("Passwords do not Match!").css('color', 'red');
+            $('#message2').html("Passwords do not Match!").css('font-weight', 'bold');
         }
     });
 

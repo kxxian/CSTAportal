@@ -1,5 +1,7 @@
 <?php 
-/* require_once('config.php'); */
+
+//require_once("../includes/connect.php");
+//require_once("../codes/fetchuserdetails.php");
 
  $host="localhost:3307"; 
  $dbase="studentportal"; 
@@ -15,9 +17,8 @@ try{
 }
 
 
-
-
 $conn = new mysqli($host, $user, $pwd, $dbase);
 if(!$conn){
     die("Cannot connect to the database.". $conn->error);
 }
+

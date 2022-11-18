@@ -106,12 +106,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="deptTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="deptTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Department</th>
                                             <th>Email</th>
-                                            <th width="85">Actions</th>
+                                            <th width="85" class="text-center">Actions</th>
                                         </tr>
 
                                     </thead>

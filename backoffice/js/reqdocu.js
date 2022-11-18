@@ -97,30 +97,43 @@ $(document).ready(function() {
     })
 
     $(document).on('click', '.view', function() {
-        var id = $(this).attr('id');
-        $('#reason').val("");
-        alert(id)
+        var req_id = $(this).attr('id');
+        // alert(req_id)
+                $.ajax({
+                    url: "codes/drcrud.php",
+                    method: "POST",
+                    data: {
+                        req_id: req_id
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        $('#reqdocModal').modal('show');
+                        // $('#payment_id').val(data.id);
+                        $('#date_sent').html(data.date_sent);
+                        $('#stat').html(data.studstat);
+                        $('#bplace').html(data.birthplace);
+                        $('#yeargrad').html(data.yeargrad);
+                        $('#sch').html(data.sch);
+                         $('#repr').html(data.repr);
+                        $('#del').html(data.del);
+                        $('#cnum').html(data.cnum);
+                        $('#certi').html(data.certi);
+                        $('#transs').html(data.transs);
+                        $('#dip').html(data.dip);
+                        $('#ctc').html(data.ctc);
+                        $('#address').html(data.address);
+                        $('#mobile').html(data.mobile);
+                        $('#purpose').html(data.purpose);
+                        $('#bday').html(data.bday);
+                        $('#reqnum').html(data.reqnum);
+                        $('#sname').html(data.sname);
+                        $('#snum').html(data.snum);
+                        $('#scourse').html(data.scourse);
+                       
+                        
+              
         
-        $.ajax({
-            url: "codes/decline.php",
-            method: "POST",
-            data: {
-                id: id
-            },
-            dataType: "json",
-            success: function(data) {
-                $('#declineModal').modal('show');
-                $('#id').val(data.id);
-                $('#fullname').val(data.fullname);
-                $('#email').val(data.email);
-                $('#mobile').val(data.mobile);
-               
-                $('.title').text(' Decline Request');
-                $('#id').val(id);
-
-                $('#operation').val("Send");
-                $('#action').val("Send");
-
+                        $('#payment_id').val(req_id);
             }
         })
     })

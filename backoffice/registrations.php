@@ -111,7 +111,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="regTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="regTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Stud No.</th>

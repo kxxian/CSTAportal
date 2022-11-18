@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
 

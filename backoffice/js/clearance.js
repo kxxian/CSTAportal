@@ -134,18 +134,20 @@ $(document).ready(function() {
     })
 
 
-    $(document).on('click', '.ack', function() {
+    $(document).on('click', '.markcleared', function() {
         var id = $(this).attr('id');
         var email = $(this).attr('email');
         var fullname= $(this).attr('fullname');
         var sid= $(this).attr('sid');
+        var reqdoc_ID= $(this).attr('reqdoc');
+        //alert (reqdoc_ID);
 
         //alert(fullname);
 
 
         Swal.fire({
             title: 'Confirmation',
-            text: "Are you sure you want to acknowledge this request?",
+            text: "Are you sure?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -161,7 +163,9 @@ $(document).ready(function() {
                         id: id,
                         email:email,
                         fullname:fullname,
-                        sid:sid
+                        sid:sid,
+                        reqdoc_ID:reqdoc_ID
+
                     },
                 })
                 

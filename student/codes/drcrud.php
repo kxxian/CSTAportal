@@ -17,7 +17,11 @@ if (isset($_POST['req_id'])) {
         } else {
             $tor_purpose = ' (' . $row['tor_purpose'] . ')';
         }
-
+        if ($row['transcript'] == "Duplicate"){
+            $file="<a target='_blank' href='uploads/reqdoc/tor_copy/".$row['reqdoc_ID'].".pdf'>View Scanned Original</a>";
+        }else{
+            $file="";
+        }
 
 
         $output['id'] = $row['reqdoc_ID'];
@@ -32,9 +36,14 @@ if (isset($_POST['req_id'])) {
         $output['cert'] = $row['cert'];
         // $output['ptotal'] = $row['particulars_transcript'];
         $output['certi'] = $row['cert'];
-        $output['transs'] = $row['transcript'] . $tor_purpose;
+        $output['transs'] = $row['transcript'] . $tor_purpose.' '.$file;
         $output['dip'] = $row['diploma'];
         $output['ctc'] = $row['auth'];
+        $output['address'] = $row['presentaddress'];
+        $output['mobile'] = $row['mobile'];
+        $output['purpose'] = $row['tor_purpose'];
+        $output['bday'] = $row['bday'];
+        $output['reqnum'] = $row['requestno'];
     }
     echo json_encode($output);
 }

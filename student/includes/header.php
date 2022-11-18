@@ -24,33 +24,34 @@ $strheader.='</ul>';
 
 #for notif, messages, profile pic
 $strheader.='<ul class="navbar-nav ml-auto">';
-$strheader.='<li class="nav-item dropdown no-arrow mx-0" >';
-$strheader.='<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" title="Messages"';
-$strheader.='    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-$strheader.='    <i class="fas fa-envelope fa-fw"></i>';
-$strheader.='    <!-- Counter - Messages -->';
-$strheader.='    <span class="badge badge-danger badge-counter"></span>';##badge for messages counter
-$strheader.='</a>';
+// $strheader.='<li class="nav-item dropdown no-arrow mx-0" >';
+// $strheader.='<a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" title="Messages"';
+// $strheader.='    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+// $strheader.='    <i class="fas fa-envelope fa-fw"></i>';
+// $strheader.='    <!-- Counter - Messages -->';
+// $strheader.='    <span class="badge badge-danger badge-counter"></span>';##badge for messages counter
+// $strheader.='</a>';
+
 #messages
 $strheader.='<!-- Dropdown - Messages -->';
-$strheader.='<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"';
-$strheader.='aria-labelledby="messagesDropdown">';
-$strheader.='<h6 class="dropdown-header" style="background-color:#2E1503; border-color:#2E1503">';
-$strheader.='        Messages';
-$strheader.='</h6>';
-$strheader.='<a class="dropdown-item d-flex align-items-center" href="#">';
-$strheader.='<div class="dropdown-list-image mr-3">';
-$strheader.='<img class="rounded-circle" ';
-$strheader.='alt="..." hidden>';
-$strheader.='<div class="status-indicator bg-success" hidden></div>';
-$strheader.='        </div>';
-$strheader.='        <div class="">';
-$strheader.='            <div class="text-truncate">No Messages Yet</div>';
-$strheader.='            <div class="small text-gray-500" hidden>Emily Fowler · 58m</div>';
-$strheader.='        </div>';
-$strheader.='    </a>';
-$strheader.='    <a class="dropdown-item text-center small text-gray-500" href="#" hidden>Read More Messages</a>';
-$strheader.='</div>';
+// $strheader.='<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"';
+// $strheader.='aria-labelledby="messagesDropdown">';
+// $strheader.='<h6 class="dropdown-header" style="background-color:#2E1503; border-color:#2E1503">';
+// $strheader.='        Messages';
+// $strheader.='</h6>';
+// $strheader.='<a class="dropdown-item d-flex align-items-center" href="#" >';
+// $strheader.='<div class="dropdown-list-image mr-3">';
+// $strheader.='<img class="rounded-circle" src="uploads/users/41.jpg" ';
+// $strheader.='alt="..." >';
+// $strheader.='<div class="status-indicator bg-success"></div>';
+// $strheader.='        </div>';
+// $strheader.='        <div class="font-weight-bold">';
+// $strheader.='            <div class="text-truncate">I love you babyyy! ❤️❤️ </div>';
+// $strheader.='            <div class="small text-gray-500">Aila Marie Taruc · 58m</div>';
+// $strheader.='        </div>';
+// $strheader.='    </a>';
+// $strheader.='    <a class="dropdown-item text-center small text-gray-500" href="#" hidden>Read More Messages</a>';
+// $strheader.='</div>';
 
 #notifications
 $strheader.='<li class="nav-item dropdown no-arrow mx-1 " >';

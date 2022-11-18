@@ -115,7 +115,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="enrollTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="enrollTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Stud No.</th>
@@ -123,7 +123,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Year Level</th>
                                             <th>Department</th>
                                             <th>Course</th>
-                                           
                                             <th>Attachments</th>
                                             <th>Actions</th>
                                         </tr>

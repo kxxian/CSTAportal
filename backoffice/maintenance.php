@@ -64,7 +64,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         }
 
         
-        if ($usertype!="Admin"){
+        if ($usertype!="Admin" && $usertype!="Superadmin"){
             header("Location:index.php");
         }
 
@@ -152,7 +152,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <!-- </div> -->
                         </div>
 
-                        <!-- Courses -->
+                        <!-- Departments -->
                         <div class="col-xl-2 col-sm-6 mb-4" >
                             <!-- <div class="card border shadow h-100 py-2"> -->
                             <div class="card-body">
@@ -163,7 +163,24 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-center text-gray-900">
                                             Departments</a>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                         <!-- FAQs -->
+                         <div class="col-xl-2 col-sm-6 mb-4" >
+                            <!-- <div class="card border shadow h-100 py-2"> -->
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-center text-uppercase mb-1">
+                                            <a class="text-success" href="faqs.php"><img src="img/faq.png" width="100" alt="">
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-center text-gray-900">
+                                            FAQs</a>
                                         </div>
                                     </div>
 

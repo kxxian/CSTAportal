@@ -50,12 +50,6 @@ if (isset($_POST['submit'])) {
 
  } 
 
-//else {
-//     $_SESSION['status'] = "Oops!";
-//     $_SESSION['msg'] = "Request Not Sent!";
-//     $_SESSION['status_code'] = "warning";
-//     header('location:../gradesrequest.php');
-// }
 
 if (isset($_POST['gradereq_id'])) {
     $sql = "DELETE FROM gradereq where gradereq_ID=?";

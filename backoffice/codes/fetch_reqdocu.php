@@ -60,10 +60,6 @@ foreach ($result as $row) {
     $sub_array[] = $row["stud_status"];
     $sub_array[] = $row["course"];
    
-  
- 
-   
-    
     
     $sub_array[] =
      '
@@ -72,10 +68,9 @@ foreach ($result as $row) {
 
 
     <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 
-    sid="'.$row['sid'].'"  class="btn btn-success btn-sm ack" title="Acknowledge"><i class="fa fa-fw fa-thumbs-up"></i></button>
+    sid="'.$row['sid'].'"  class="btn btn-success btn-sm ack" title="Acknowledge"><i class="fa fa-fw fa-check"></i></button>
 
-    <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" 
-    class="btn btn-danger btn-sm decline" title="Decline"><i class="fa fa-fw fa-thumbs-down"></i></button>
+    
     
     ';
 

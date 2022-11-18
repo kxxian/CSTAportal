@@ -24,14 +24,17 @@ use PHPMailer\PHPMailer\PHPMailer;
         $statement2 = $con->prepare("INSERT into clearance (sid,reqdoc_ID) values(?,?)");
         $data2 = array($sid,$id);
         $result2 = $statement2->execute($data2);
+
         $body =
         "
-        Hi Ma'am / Sir, <br><br>
+        Good day Teresian! <br><br>
 
-        Your request is duly noted and will be subject for clearance.<br><br>
+        We received your request, post-clearance is now on Process. <br><br>
+        Kindly wait for the summary of payment. <br><br>
+        Thank you & Keep Safe <br><br>
 
-        Thank you & Keep Safe
-        
+        $empname<br>
+        $position        
         
         ";
 
@@ -44,7 +47,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         include "../includes/smtp_config.php";
 
         //$mail->setFrom($empname); // insert department email here
-        $mail->FromName = $empname; // employee name + Department 
+        $mail->FromName = "CSTA Student Portal"; // employee name + Department 
         $mail->addAddress($email, $fullname); // recipient
         $mail->SMTPOptions = array('ssl' => array(
             'verify_peer' => false,

@@ -11,22 +11,23 @@ if (isset($_POST['sendpay'])) {
     $paynum = $_POST['paynumsearch'];
 
 
-    if (isset($_POST['selsy'])) {
-        $pay_sy = $_POST['selsy'];
-    } else {
+    if ($_POST['selsy']=="") {
         $pay_sy = '-';
+    } else {
+        $pay_sy = $_POST['selsy'];
     }
 
-    if (isset($_POST['selsem'])) {
-        $pay_sem = $_POST['selsem'];
-    } else {
+    if ($_POST['selsem']=="") {
         $pay_sem = 1;
+    } else {
+        $pay_sem = $_POST['selsem'];
     }
 
-    if (isset($_POST['selterm'])) {
-        $payterm = $_POST['selterm'];
-    } else {
+    if ($_POST['selterm']=="") {
         $payterm = 1;
+    } else {
+        $payterm = $_POST['selterm'];
+        
     }
 
     // current date and time
@@ -34,7 +35,7 @@ if (isset($_POST['sendpay'])) {
     $date = date('y-m-d h:i:s');
     
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
-    $total_others = htmlspecialchars(trim($_POST['totalothers']));
+    $total_others = $_POST['totalothers'];
     $amountdue = $_POST['totaldue'];
     $amtpaid = htmlspecialchars(trim($_POST['amtpaid']));;
     $sentthru = $_POST['sentthru'];
@@ -43,10 +44,11 @@ if (isset($_POST['sendpay'])) {
     $top = $_POST['ToP'];
     $notes = $_POST['note'];
 
-    if (isset($_POST['otherpart'])) {
-        $particulars = ucwords($_POST['otherpart']);
-    } else {
+    if ($_POST['otherpart']=="") {
         $particulars = "-";
+    } else {
+     
+        $particulars = ucwords($_POST['otherpart']);
     }
 
 

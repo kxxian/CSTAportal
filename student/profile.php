@@ -327,17 +327,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-4">
                             <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name..">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name.." >
                         </div>
                         <div class="col-md-4">
                             <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name..">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name.." >
                         </div>
                         <div class="col-md-4">
                             <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name..">
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name.." >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -408,6 +408,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <div class="col-sm-6">
+
+                            <span></span><input type="password" placeholder="Password Required" class="form-control" name="password" id="password" required>
+                        </div>
                         <input type="hidden" name="user_id" id="user_id">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="save" id="action" class="btn btn-success" value="Save">

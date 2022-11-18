@@ -1,18 +1,5 @@
 $(document).ready(function() {
-    //datatable currency
-   // Get all the "currency" elements into an array
-   let cells = Array.prototype.slice.call(document.querySelectorAll(".currency"));
-
-   // Loop over the array
-   cells.forEach(function(cell){
-   // Convert cell data to a number, call .toLocaleString()
-   // on that number and put result back into the cell
-   cell.textContent = (+cell.textContent).toLocaleString("fil-PH", {
-               style: "currency",
-               currency: "PHP"
-           });
-   });
-
+  
     setInterval(function() {
         $.post("codes/counter.php",
         {data:'get'},function(data){
@@ -179,7 +166,8 @@ $(document).ready(function() {
                    $(".pendingusers").text(data12.toLocaleString());
                }else{
                   
-                    $(".pendingusers").text("0");
+                    $(".pendingusers").text("");
+                    $(".pendingusers").removeClass("badge badge-danger");
                }
            });
               //dashboard counter for total registered students
@@ -187,6 +175,7 @@ $(document).ready(function() {
               {data13:'get'},function(data13){
               
                   if(data13>0){
+                  
                        //    console.log(data7);
                       $(".accepted").text(data13.toLocaleString());
                   }else{
@@ -219,6 +208,7 @@ $(document).ready(function() {
                   }else{
                      
                        $(".ctr_enrollment").text("");
+                       $(".ctr_enrollment").removeClass("badge badge-danger");
                   }
               });
 
@@ -232,6 +222,7 @@ $(document).ready(function() {
                    }else{
                       
                         $(".ctr_reqdocu").text("");
+                        $(".ctr_reqdocu").removeClass("badge badge-danger");
                    }
                });
 
@@ -245,8 +236,53 @@ $(document).ready(function() {
                     }else{
                        
                          $(".ctr_gradereq").text("");
+                         $(".ctr_gradereq").removeClass("badge badge-danger");
                     }
                 });
+
+                      //dashboard counter for total registered students
+              $.post("codes/counter.php",
+              {data18:'get'},function(data18){
+              
+                  if(data18>0){
+                  
+                       //    console.log(data7);
+                      $(".staff_registrar").text(data18.toLocaleString());
+                  }else{
+                     
+                       $(".staff_registrar").text("0");
+                  }
+              });
+
+              
+                      //dashboard counter for total upcoming events
+                      $.post("codes/counter.php",
+                      {data19:'get'},function(data19){
+                      
+                          if(data19>0){
+                          
+                               //    console.log(data7);
+                              $(".up_events").text(data19.toLocaleString());
+                          }else{
+                             
+                               $(".up_events").text("0");
+                          }
+                      });
+
+
+                        //dashboard counter for total registrar office tasks
+                        $.post("codes/counter.php",
+                        {data20:'get'},function(data20){
+                           
+                            if(data20>0){
+                                
+                                 //    console.log(data7);
+                                $(".tasks").text(data20.toLocaleString());
+                            }else{
+                                alert (data20)
+                                 $(".tasks").text("0");
+                            }
+                        });
 
 
 

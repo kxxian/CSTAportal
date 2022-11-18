@@ -161,3 +161,12 @@ if (isset($_POST['activate_id'])) {
     $data = array('Yes', $id);
     $result = $statement->execute($data);
 }
+
+
+if (isset($_POST['delete_id'])) {
+    $id = $_POST['delete_id'];
+
+    $statement = $con->prepare('DELETE from employees where id=?');
+    $data = array($id);
+    $result = $statement->execute($data);
+}

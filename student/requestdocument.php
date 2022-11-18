@@ -337,14 +337,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="form-group row">
                                                             <div class="col-sm-12">
                                                                 <label><strong>Request Number </strong>(For Updating Requests Only)</label>
-                                                                <input type="text" name="reqno" id="reqno" class="form-control" placeholder="Leave Blank if this is a new request" oninput="reqnum()" onkeypress="return (event.charCode > 47 && 
+                                                                <input type="text" name="reqno" id="reqno" class="form-control" placeholder="Leave blank if this is a new request" oninput="reqnum()" onkeypress="return (event.charCode > 47 && 
 	                                                         event.charCode < 58) ">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label><strong>Place of Birth </strong>(City or Municipality Only)</label>
-                                                                <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="eg. Quezon City" onkeypress="return (event.charCode > 64 && 
+                                                                <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="Quezon City" onkeypress="return (event.charCode > 64 && 
 	                                                         event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" required>
 
                                                             </div>
@@ -361,7 +361,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label><strong>Year Graduated</strong> (If <strong>UNDERGRADUATE</strong>, Add Last Semester Attended) </label>
-                                                                <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="e.g 2021-2022 First Semester " onkeypress="return (event.charCode > 64 && 
+                                                                <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="2021-2022 First Semester " onkeypress="return (event.charCode > 64 && 
                                                             event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode>=48 && event.charCode<=57) 
                                                             || (event.charCode==45)" maxlength="30" required>
                                                             </div>
@@ -526,11 +526,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 if ($rows['status'] == 'Sent') {
                                                                     $class = "primary";
                                                                     $disabled = "";
-                                                                } elseif ($rows['status'] == 'Received') {
+                                                                } elseif ($rows['status'] == 'Acknowledged') {
                                                                     $class = "info";
                                                                     $disabled = "";
-                                                                } elseif ($rows['status'] == 'For Receipt') {
-                                                                    $class = "primary";
+                                                                } elseif ($rows['status'] == 'Completed') {
+                                                                    $class = "success";
                                                                     $disabled = "";
                                                                 } elseif ($rows['status'] == 'Pending') {
                                                                     $class = "warning";
@@ -618,89 +618,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </div>
 
 
-    <script type="text/javascript">
-        //showhide tuition payment controls
-        $(function() {
-            $("#chktfee").click(function() {
-                if ($(this).is(":checked")) {
-                    $("#inputtfee").removeAttr('hidden');
-                    $("#inputtfee2").removeAttr('hidden');
-
-                } else {
-                    $("#inputtfee").attr('hidden', 'hidden');
-                    $("#inputtfee2").attr('hidden', 'hidden');
 
 
-                }
-
-            });
-        });
-
-
-        //showhide other payments
-        $(function() {
-            $("#chkothers").click(function() {
-                if ($(this).is(":checked")) {
-                    $("#othersopt").removeAttr('hidden');
-                    $("#reqform").removeAttr('hidden');
-
-
-                } else {
-                    $("#othersopt").attr('hidden', 'hidden');
-                    $("#reqform").attr('hidden', 'hidden');
-                }
-
-            });
-        });
-    </script>
-
-    <script type="text/javascript"></script>
-    <script>
-        $(document).ready(function() {
-
-
-            // Get value on keyup function
-            $("#tfeeamount, #totalothers, #amtpaid").keyup(function() {
-
-
-                var x = Number($("#tfeeamount").val());
-                var y = Number($("#totalothers").val());
-                var amtpaid = Number($("#amtpaid").val());
-                var total = x + y;
-
-                // hidden input
-                $('#totaldue').val(total);
-
-                //input displayed
-                $('#totaldue1').val(total);
-
-
-                //Philippine Currency
-                let amtdue = total.toLocaleString("fil-PH", {
-                    style: "currency",
-                    currency: "PHP"
-                })
-                var total_amt = document.getElementById("totaldue1");
-
-                total_amt.value = amtdue;
-
-
-                //Amounts Validation
-                if (amtpaid >= 1 && amtpaid < total) {
-                    $(':input[type="submit"]').prop('disabled', true);
-                    $("#errmsg").show();
-                } else {
-                    $(':input[type="submit"]').prop('disabled', false);
-                    $("#totaldue").prop('value', total);
-                    $("#errmsg").hide();
-                }
-
-
-
-
-            });
-        });
-    </script>
 
 
     <?php
@@ -740,33 +659,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <div class="card-body p-0">
                                         <div class="invoice-container">
                                             <div class="invoice-header">
-
-                                                <!-- Row start -->
-                                                <div class="row gutters" hidden>
-                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                                        <div class="custom-actions-btns mb-5">
-                                                            <a href="#" class="btn btn-primary">
-                                                                <i class="icon-download"></i> Download
-                                                            </a>
-                                                            <a href="#" class="btn btn-secondary">
-                                                                <i class="icon-printer"></i> Print
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
-
                                                 <!-- Row start -->
                                                 <div class="row gutters">
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                                                        <a href="#" class="invoice-logo text-primary">
-                                                            Request Details
-                                                        </a>
+                                                        <h3 class="invoice-logo text-primary text-center">
+                                                            Request # <span id="reqnum"></span>
+                                                        </h3>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                                         <address class="text-right text-gray-900 font-weight-bold">
                                                             Date Sent: <span id="date_sent"></span><br>
-                                                           
+
 
 
                                                         </address>
@@ -774,30 +677,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 </div>
                                                 <!-- Row end -->
 
-                                                <!-- Row start -->
-                                                <div class="row gutters">
-                                                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-sm-12">
-                                                        <div class="invoice-details">
-                                                            <address class="text-gray-900  font-weight-bold">
-                                                                Place of Birth: <span id="bplace"></span><br>
-                                                                Student Status: <span id="stat"></span><br>
-                                                                Year Graduated: <span id="yeargrad"></span>
-                                                                <div>Last School Before CSTA: <span id="sch"></span></div>
-                                                                
-                                                            </address>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-sm-12">
-                                                        <div class="invoice-details">
-                                                            <div class="invoice-num text-gray-900 font-weight-bold">
-                                                                <div>Recipient Name: <span id="repr"></span></div>
-                                                            <div>Delivery Address: <span id="del"></span></div>
-                                                                <div>Contact Number: <span id="cnum"></span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Row end -->
+
 
                                             </div>
 
@@ -805,6 +685,110 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                 <!-- Row start -->
                                                 <div class="row gutters">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table custom-table m-0 mb-2">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-gray-900 font-weight-bold text-center" colspan="2">Information</th>
+
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Birthplace
+                                                                            <p class="m-0 text-muted">
+
+                                                                            </p>
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center"><span id="bplace"></span> <span id="cert"></span></td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Birthday
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="bday"></p>
+
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Last School Attended
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="sch"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Present Address
+
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="address"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Contact Number
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="mobile"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Purpose
+
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="purpose"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Student Status
+
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="stat"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Year Graduated
+
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="yeargrad"></p>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="table-responsive">
                                                             <table class="table custom-table m-0">
@@ -820,9 +804,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             Certifications
-                                                                            <p class="m-0 text-muted">
 
-                                                                            </p>
                                                                         </td>
                                                                         <td class="text-gray-900 font-weight-bold text-center"><span id="certi"></span> <span id="cert"></span></td>
 
@@ -831,9 +813,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             Transcript of Records
-                                                                            <p class="m-0 text-muted">
 
-                                                                            </p>
                                                                         </td>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             <p id="transs"></p>
@@ -844,9 +824,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             Diploma
-                                                                            <p class="m-0 text-muted">
 
-                                                                            </p>
                                                                         </td>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             <p id="dip"></p>
@@ -857,9 +835,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <tr>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             Documents for Authentication
-                                                                            <p class="m-0 text-muted">
 
-                                                                            </p>
                                                                         </td>
                                                                         <td class="text-gray-900 font-weight-bold text-center">
                                                                             <p id="ctc"></p>
@@ -879,9 +855,20 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                             <div class="invoice-footer">
 
-                                            </div>
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                                                    <div class="invoice-details">
+                                                        <div class="invoice-num text-gray-900 font-weight-bold">
 
+                                                            <div><span class="font-weight-bold">DELIVERY INFO</span></div>
+                                                            <div><span id="del"></span></div>
+                                                            <div><span class="h6 font-weight-bold" id="repr"></span></div>
+                                                            <div><span id="cnum"></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -889,16 +876,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+    </form>
+</div>
 
 
 
-    <script src="js/header.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/notifications.js"></script>
-    <script src="js/reqdoc.js"></script>
+<script src="js/header.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/reqdoc.js"></script>
 
-   
+
 
 </html>

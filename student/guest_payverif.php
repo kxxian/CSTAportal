@@ -351,41 +351,30 @@ require("includes/connect.php");
                                             </label>
 
                                             <br><br>
-                                            <div class="form-group" id="othersopt">
+                                            <div class="form-group row">
                                                 <div class="col-sm-12">
+                                                    <textarea type="text" rows="3" class="form-control" name="otherpart" id="otherpart"></textarea>
+                                                </div>
+                                            </div>
 
-                                                    <?php
-                                                    $sql = "select * from particulars where isActive='Active'";
-                                                    $stmt = $con->prepare($sql);
-                                                    $stmt->execute();
-
-                                                    while ($row = $stmt->fetch()) {
-                                                        echo '
-                                                                <div class="form-check form-check-inline mb-2">
-                                                                <input class="form-check-input" type="checkbox" value="' . $row['particular'] . '" id="particulars" name="particulars[]">
-                                                                <label class="form-check-label font-weight-bold text-gray-900" for="particulars">
-                                                                    ' . $row['particular'] . '
-                                                                </label>
-                                                                </div>';
-                                                    }
-                                                    $stmt = null;
-                                                    ?>
-                                                </div><br>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-6">
-                                                        <label class="font-weight-bold text-gray-900">
-                                                            Total (Other Fees)
-                                                        </label>
-                                                        <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
-                                                        <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="1" maxlength="7" style="text-align:right">
-                                                    </div>
-
-
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    &nbsp;
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="font-weight-bold text-gray-900">
+                                                        Total for Other Fees
+                                                    </label>
+                                                    <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
+                                                    <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
                                                 </div>
 
 
-
                                             </div>
+
+
+
+
 
                                         </fieldset>
 
@@ -464,11 +453,11 @@ require("includes/connect.php");
                                             <div class="form-group row">
                                                 <div class="col-sm-6" id="reqform">
                                                     <label for="" class="text-gray-900"><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
-                                                    <input type="file" accept=".jpg" class="form-control-file" name="reqform">
+                                                    <input type="file" accept=".jpg" class="form-control" name="reqform">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="paymentproof" class="text-gray-900"><strong>Proof of Payment</strong></label>
-                                                    <input type="file" accept=".jpg" class="form-control-file" name="paymentproof" required>
+                                                    <input type="file" accept=".jpg" class="form-control" name="paymentproof" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -548,6 +537,11 @@ require("includes/connect.php");
 
 <script>
     $(document).ready(function() {
+
+        $('#otherpart').keyup(function() {
+            $(this).css("text-transform", "capitalize");
+        });
+
 
 
         // Get value on keyup function

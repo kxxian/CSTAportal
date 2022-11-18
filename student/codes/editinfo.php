@@ -25,53 +25,67 @@ if (isset($_POST['sid'])) {
         $output['district'] = $row['region'];
         $output['guardian'] = $row['guardian'];
         $output['gcontact'] = $row['guardiancontact'];
-       
     }
     echo json_encode($output);
 }
-
 if (isset($_POST['save'])){
+    $id = $_POST['user_id'];
+    $pass = sha1(htmlspecialchars(trim($_POST['password'])));
 
-    try{
-$id=$_POST['user_id'];
-$lname=ucwords(htmlspecialchars(trim($_POST['lname'])));
-$fname=ucwords(htmlspecialchars(trim($_POST['fname'])));
-$mname=ucwords(htmlspecialchars(trim($_POST['mname'])));
-$bday=$_POST['bday'];
-$email=$_POST['email'];
-$cityadd=ucwords(htmlspecialchars(trim($_POST['cityadd'])));
-$district=$_POST['district'];
-$city=$_POST['city'];
-$barangay=$_POST['barangay'];
-$guardian=ucwords(htmlspecialchars(trim($_POST['guardian'])));
-$gcontact=ucwords(htmlspecialchars(trim($_POST['gcontact'])));
+    //get password of user
+    $statement1 = $con->prepare("SELECT pass from students where id=?");
+    $data1 = array($id);
+    $statement1->execute($data1);
+    $row1 = $statement1->fetch();
+    $checkpass = $row1['pass'];
 
-$statement = $con->prepare("UPDATE students set lname=?,fname=?,mname=?,bday=?,email=?,cityadd=?,province=?,city=?,brgy=?,guardian=?,guardiancontact=? where id=?");
-$data=array($lname,$fname,$mname,$bday,$email,$cityadd,$district,$city,$barangay,$guardian,$gcontact,$id);
-$statement->execute($data);
+    if ($pass == $checkpass) {
 
-$_SESSION['status'] = "Success!";
-$_SESSION['status_code'] = "success";
-$_SESSION['msg'] = "Information Updated!";
-header('location: ../profile.php');
+        try{
+            $id=$_POST['user_id'];
+            $lname=ucwords(htmlspecialchars(trim($_POST['lname'])));
+            $fname=ucwords(htmlspecialchars(trim($_POST['fname'])));
+            $mname=ucwords(htmlspecialchars(trim($_POST['mname'])));
+            $bday=$_POST['bday'];
+            $email=$_POST['email'];
+            $cityadd=ucwords(htmlspecialchars(trim($_POST['cityadd'])));
+            $district=$_POST['district'];
+            $city=$_POST['city'];
+            $barangay=$_POST['barangay'];
+            $guardian=ucwords(htmlspecialchars(trim($_POST['guardian'])));
+            $gcontact=ucwords(htmlspecialchars(trim($_POST['gcontact'])));
+            
+            $statement = $con->prepare("UPDATE students set lname=?,fname=?,mname=?,bday=?,email=?,cityadd=?,province=?,city=?,brgy=?,guardian=?,guardiancontact=? where id=?");
+            $data=array($lname,$fname,$mname,$bday,$email,$cityadd,$district,$city,$barangay,$guardian,$gcontact,$id);
+            $statement->execute($data);
+            
+            $_SESSION['status'] = "Success!";
+            $_SESSION['status_code'] = "success";
+            $_SESSION['msg'] = "Information Updated!";
+            header('location: ../profile.php');
+            }
+            catch (PDOException $e){
+                echo $e->getMessage();
+            }
+    }else{
+
+         
+        $_SESSION['status'] = "Oops!";
+        $_SESSION['status_code'] = "warning";
+        $_SESSION['msg'] = "Incorrect Password!";
+        header('location: ../profile.php');
+    }
+
+
+
+
+
+
+
+
+
 
 
 
 
 }
-catch (PDOException $e){
-    echo $e->getMessage();
-}
-
-
-
-
-
-
-
-
-
-}
-
-
-?>

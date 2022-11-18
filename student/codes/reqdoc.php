@@ -9,10 +9,10 @@ require_once('../includes/functions.php');
 if (isset($_POST['submit'])) {
     $reqnumsearch = $_POST['reqno'];
 
-    if (isset($_POST['doc'])) {
-        $documents = implode(", ", $_POST['doc']);
-    } else {
+    if ($_POST['doc']=="") {
         $documents = "-";
+    } else {
+        $documents = implode(", ", $_POST['doc']);
     }
 
 
@@ -24,10 +24,10 @@ if (isset($_POST['submit'])) {
     }
 
 
-    if (isset($_POST['tor'])) {
-        $tor = ucwords(htmlspecialchars(trim($_POST['tor'])));
-    } else {
+    if ($_POST['tor']=="") {
         $tor = "-";
+    } else {
+        $tor = ucwords(htmlspecialchars(trim($_POST['tor'])));
     }
 
 

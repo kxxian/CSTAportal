@@ -107,4 +107,215 @@ function uploadtor($fname, $newname)
     return $res;
 }
 
+function upload_guesttor($fname, $newname)
+{
+    $upload_directory = "../uploads/reqdoc/guest_tor_copy/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadbc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/freshman/bc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+function uploadgmc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/freshman/gmc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadf138($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/freshman/f138/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+
+function uploadtransbc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/transferee/bc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+
+function uploadtransgmc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/transferee/gmc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadtranshd($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/transferee/hd/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadtranstor($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/transferee/tor/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+
+function uploadsctbc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/sct/bc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadscttor($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/sct/tor/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploaduebc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/ue/bc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploaduetor($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/ue/tor/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadcebc($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/ce/bc/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadcepermit($fname, $newname)
+{
+    $upload_directory = "../uploads/requirements/ce/permit/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
 ?>

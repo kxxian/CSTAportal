@@ -434,7 +434,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                         Total for Other Fees
                                                                     </label>
                                                                     <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
-                                                                    <input type="number" class="form-control" placeholder="0.00" value="0" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
+                                                                    <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
                                                                 </div>
 
 
@@ -834,7 +834,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <address class="text-gray-900  font-weight-bold">
                                                                 Sent Thru: <span id="sent_via"></span><br>
                                                                 Payment Method: <span id="pay"></span><br>
-                                                                Payment Number: <span id="paynum"></span>
+                                                                
                                                             </address>
                                                         </div>
                                                     </div>
@@ -937,8 +937,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="js/header.js"></script>
     <script src="js/counter.js"></script>
     <script src="js/notifications.js"></script>
-
-
     <script src="js/payhistory.js"></script>
 
 </html>

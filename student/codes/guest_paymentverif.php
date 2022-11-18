@@ -15,12 +15,9 @@ if (isset($_POST['submit'])) {
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
     //echo ucwords($date);
-
-
-    $id = (int)$_POST['txtStudID'];
     $lname = ucwords(htmlspecialchars(trim($_POST['lname'])));
     $fname = ucwords(htmlspecialchars(trim($_POST['fname'])));
-    $mname = ucwords(htmlspecialchars(trim($_POST['mname'])));
+    //$mname = ucwords(htmlspecialchars(trim($_POST['mname'])));
     $gender = $_POST['selGender'];
     $cstatus = $_POST['selCstatus'];
     $bday = $_POST['dtBday'];
@@ -38,33 +35,42 @@ if (isset($_POST['submit'])) {
     $guardiancontact = htmlspecialchars(trim($_POST['txtguardiancontact']));
 
     //Maiden Name
-    if (!isset($_POST['ce_input'])) {
+    if ($_POST['maidname']=="") {
         $maidname = '-';
     }else{
         $maidname = ucwords(htmlspecialchars(trim($_POST['maidname'])));
     }
 
+    if ($_POST['mname']=="") {
+        $mname = '-';
+    }else{
+        $mname = ucwords(htmlspecialchars(trim($_POST['maidname'])));
+    }
 
-    if (isset($_POST['selsy'])) {
-        $pay_sy = $_POST['selsy'];
-    } else {
+
+    if ($_POST['selsy']=="") {
         $pay_sy = 1;
+    } else {
+       
+        $pay_sy = $_POST['selsy'];
     }
 
-    if (isset($_POST['selsem'])) {
-        $pay_sem = $_POST['selsem'];
-    } else {
+    if ($_POST['selsem']=="") {
         $pay_sem = 1;
+    } else {
+     
+        $pay_sem = $_POST['selsem'];
     }
 
-    if (isset($_POST['selterm'])) {
-        $payterm = $_POST['selterm'];
-    } else {
+    if ($_POST['selterm']=="") {
         $payterm = 1;
+    } else {
+       
+        $payterm = $_POST['selterm'];
     }
 
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
-    $total_others = htmlspecialchars(trim($_POST['totalothers']));
+    $total_others = $_POST['totalothers'];
     $amountdue = $_POST['totaldue'];
     $amtpaid = htmlspecialchars(trim($_POST['amtpaid']));;
     $sentthru = $_POST['sentthru'];
@@ -73,10 +79,12 @@ if (isset($_POST['submit'])) {
     $top = $_POST['ToP'];
     $notes = $_POST['note'];
 
-    if (isset($_POST['particulars'])) {
-        $particulars = implode(", ", $_POST['particulars']);
+
+    if ($_POST['otherpart']=="") {
+        $particulars = "-";
     } else {
-        $particulars = "NA";
+     
+        $particulars = ucwords($_POST['otherpart']);
     }
 
     //Generate Tracking number key

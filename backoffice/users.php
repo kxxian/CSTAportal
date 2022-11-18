@@ -75,9 +75,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         }
 
 
-        if ($usertype != "Admin") {
-            header("Location:index.php");
-        }
+        // if ($usertype != "Admin" && $usertype != "Superadmin") {
+        //     header("Location:index.php");
+        // }
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -117,7 +117,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Designation</th>
                                             <th>User Type</th>
                                             <th>isActive</th>
-                                            <th width="85">Actions</th>
+                                            <th width="100">Actions</th>
                                         </tr>
 
                                     </thead>

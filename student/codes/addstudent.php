@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     //Generate Verification key
     $vkey =sha1(time().$uname);
 
-    echo $vkey;
+    //echo $vkey;
 
     //google recaptcha
     if (isset($_POST['g-recaptcha-response'])) {
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
                     include "../includes/smtp_config.php";
 
                     $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
-                    $mail->FromName = "CSTA Registrar"; // employee name + Department 
+                    $mail->FromName = "CSTA Student Portal"; // employee name + Department 
                     $mail->addAddress($mailTo, $fname . ' ' . $lname); // recipient
                     $mail->SMTPOptions = array('ssl' => array(
                         'verify_peer' => false,

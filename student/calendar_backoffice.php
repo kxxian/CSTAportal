@@ -182,8 +182,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             </div>
                         </div>
                     </div>
-                </div> -->
-                <!-- End popup dialog box -->
+                </div>  -->
+                <!-- End popup dialog box
 
             </div>
             <!-- End of Main Content -->

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
 
 
     $('#addUser').click(function() {
@@ -151,11 +151,11 @@ $(document).ready(function() {
 
     })
 
-    $(document).on('click', '.activate', function() {
-        var user_id = $(this).attr('id');
+    $(document).on('click', '.delete', function() {
+        var delete_id = $(this).attr('id');
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to activate this user?",
+            text: "Are you sure you want to delete this record?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -164,18 +164,18 @@ $(document).ready(function() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "codes/userscrud.php",
+                    url: "codes/trackercrud.php",
                     method: "POST",
                     data: {
-                        activate_id: user_id
+                        delete_id: delete_id
                     },
                     success: function(data) {
-                        usersTable.api().ajax.reload();
+                       location.reload();
                     }
                 })
                 Swal.fire(
                     'Success!',
-                    'User has been activated.',
+                    'Data Deleted!.',
                     'success'
                 )
             }

@@ -59,6 +59,14 @@ $strSidebar .= '                <i class="fas fa-fw fa-credit-card"></i>';
 $strSidebar .= '                <span> Payment Verification</span></a>';
 $strSidebar .= '        </li>';
 
+// <!-- Nav Item - Payment Verification -->
+$strSidebar .= '        <li class="nav-item">';
+$strSidebar .= '            <a class="nav-link" href="frequently-asked-questions.php">';
+$strSidebar .= '                <i class="fas fa-fw fa-question"></i>';
+$strSidebar .= '                <span> FAQs</span></a>';
+$strSidebar .= '        </li>';
+
+
 
 $strSidebar .= '        <li class="nav-item">';
 $strSidebar .= '            <a class="nav-link" href="login.php">';

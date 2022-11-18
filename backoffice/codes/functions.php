@@ -127,6 +127,17 @@ function get_announcement(){
     return $statement->rowCount();
 }
 
+function get_faqs(){
+    // session_start();
+    include '../includes/connect.php';
+   // include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from faq");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
+
 
 
 
