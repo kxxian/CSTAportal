@@ -138,10 +138,60 @@ function get_faqs(){
     return $statement->rowCount();
 }
 
+function get_enrollments_guest(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwguest_enrollment_freshman WHERE enrollment_status='Pending' AND deptid='$deptid'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
 
+function get_enrollments_guest_transferee(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwguest_enrollment_transferee WHERE enrollment_status='Pending' AND deptid='$deptid'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
 
+function get_enrollments_ce(){
+    // session_start();
+    include '../includes/connect.php';
+    /* include 'fetchuserdetails.php'; */
+    $statement=$con->prepare("SELECT * from vwguest_enrollment_ce WHERE enrollment_status='Pending'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
 
+function get_enrollments_sct(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwguest_enrollment_sct WHERE enrollment_status='Pending' AND deptid='$deptid'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
 
+function get_enrollments_ue(){
+    // session_start();
+    include '../includes/connect.php';
+    /* include 'fetchuserdetails.php'; */
+    $statement=$con->prepare("SELECT * from vwguest_enrollment_unitearner WHERE enrollment_status='Pending'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
 
 
 

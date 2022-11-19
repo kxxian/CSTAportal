@@ -67,7 +67,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         if ($office == "Accounting") {
-            $pageValue = 3;
+            $pageValue = 4;
         } elseif ($office == "Dean") {
             $pageValue = 3;
         } elseif ($office == "Registrar") {
@@ -180,7 +180,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </html>
 
-<div id="a_modal" class="modal fade">
+<div id="a_modal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-md">
         <form method="POST" id="myForm" enctype="multipart/form-data">
             <div class="modal-content">

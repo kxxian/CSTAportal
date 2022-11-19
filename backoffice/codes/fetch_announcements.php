@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'fetchuserdetails.php';
-include '../includes/connect.php';
+include_once '../includes/connect.php';
 include 'functions.php';
 $query = '';
 $output = array();
