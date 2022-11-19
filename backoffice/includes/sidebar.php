@@ -59,6 +59,13 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Verified Payments -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="verified-payments.php">';
+              $strSidebar .= '                <i class="fas fa-check"></i>';
+              $strSidebar .= '                <span>Verified Payments</span></a>';
+              $strSidebar .= '        </li>';
+
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="announcements.php">';
@@ -119,6 +126,13 @@ if ($office == "Accounting") {
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
+
+              // <!-- Nav Item - Verified Payments -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="verified-payments.php">';
+              $strSidebar .= '                <i class="fas fa-check"></i>';
+              $strSidebar .= '                <span>Verified Payments</span></a>';
+              $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
@@ -181,6 +195,13 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Verified Payments -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="verified-payments.php">';
+              $strSidebar .= '                <i class="fas fa-check"></i>';
+              $strSidebar .= '                <span>Verified Payments</span></a>';
+              $strSidebar .= '        </li>';
+
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="announcements.php">';
@@ -242,6 +263,13 @@ if ($office == "Accounting") {
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
 
+              // <!-- Nav Item - Verified Payments -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="verified-payments.php">';
+              $strSidebar .= '                <i class="fas fa-check"></i>';
+              $strSidebar .= '                <span>Verified Payments</span></a>';
+              $strSidebar .= '        </li>';
+
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="announcements.php">';
@@ -302,6 +330,13 @@ if ($office == "Accounting") {
               $strSidebar .= '                </div>';
               $strSidebar .= '            </div>';
               $strSidebar .= '       </li>';
+
+              // <!-- Nav Item - Verified Payments -->
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="verified-payments.php">';
+              $strSidebar .= '                <i class="fas fa-check"></i>';
+              $strSidebar .= '                <span>Verified Payments</span></a>';
+              $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
@@ -689,7 +724,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';
               $strSidebar .= '            </li>';
-			  
+
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="announcements.php">';
@@ -784,7 +819,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';
               $strSidebar .= '            </li>';
-			  
+
               // <!-- Nav Item - Announcements -->
               $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="announcements.php">';
@@ -1082,8 +1117,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-	   } 
-	   else if ($pageValue == 7) {
+       } else if ($pageValue == 7) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125
@@ -1177,8 +1211,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                </li>';
 
               $strSidebar .= '            </ul>';
-       }
-	   else if ($pageValue == 8) {
+       } else if ($pageValue == 8) {
               $strSidebar = '';
               // <!-- Sidebar -->
               $strSidebar .= '<ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#432616;">'; #3d3125

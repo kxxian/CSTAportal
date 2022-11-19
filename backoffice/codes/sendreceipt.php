@@ -15,16 +15,19 @@ if (isset($_POST['sendreceipt'])) {
 
 
     try {
-        $OR = htmlspecialchars(trim($_POST['OrNum']));
-        $AR = htmlspecialchars(trim($_POST['ArNum']));
 
 
-        if (!isset($_POST['OrNum'])) {
+        if ($_POST['OrNum'] == "") {
             $OR = "NA";
-        } elseif (!isset($_POST['ArNum'])) {
-            $AR = "NA";
         } else {
             $OR = htmlspecialchars(trim($_POST['OrNum']));
+        }
+
+
+        if ($_POST['ArNum'] == "") {
+            $AR = "NA";
+        } else {
+
             $AR = htmlspecialchars(trim($_POST['ArNum']));
         }
 
@@ -49,10 +52,10 @@ if (isset($_POST['sendreceipt'])) {
         $link = "enrollment.php";
         $color = "bg-success";
 
-        $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
-        $data2 = array($sid, $notif, $icon, $color, $link, $date);
-        $stmt2 = $con->prepare($sql2);
-        $stmt2->execute($data2);
+        // $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
+        // $data2 = array($sid, $notif, $icon, $color, $link, $date);
+        // $stmt2 = $con->prepare($sql2);
+        // $stmt2->execute($data2);
 
 
         $mailTo = $email;

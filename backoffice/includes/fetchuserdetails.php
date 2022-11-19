@@ -3,7 +3,7 @@
        /* require_once("../includes/connect.php"); */
        try{
         $sql="select * from vwemployees where username=? and pass=? ";
-        $data=array($_SESSION['username'],$_SESSION['password']);
+        $data=array($_SESSION['username_admin'],$_SESSION['password_admin']);
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
         $row=$stmt->fetch();

@@ -71,7 +71,178 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
+    <style>
+        .card {
+            border: none;
+            -webkit-box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+            box-shadow: 1px 0 20px rgba(96, 93, 175, .05);
+            margin-bottom: 30px;
+        }
 
+
+        .thumb-sm {
+            height: 32px;
+            width: 32px;
+        }
+
+        .badge-soft-warning {
+            background-color: rgba(248, 201, 85, .2);
+            color: #f8c955;
+        }
+
+        .badge {
+            font-weight: 500;
+        }
+
+        .badge-soft-primary {
+            background-color: rgba(96, 93, 175, .2);
+            color: #605daf;
+        }
+
+
+
+        /* invoice */
+        .invoice-container {
+            padding: 1rem;
+        }
+
+        .invoice-container .invoice-header .invoice-logo {
+            margin: 0.8rem 0 0 0;
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #bcd0f7;
+        }
+
+        .invoice-container .invoice-header .invoice-logo img {
+            max-width: 130px;
+        }
+
+        .invoice-container .invoice-header address {
+            font-size: 0.8rem;
+            color: #8a99b5;
+            margin: 0;
+        }
+
+        .invoice-container .invoice-details {
+            margin: 1rem 0 0 0;
+            padding: 1rem;
+            line-height: 180%;
+            background: white;
+        }
+
+        .invoice-container .invoice-details .invoice-num {
+            text-align: right;
+            font-size: 0.8rem;
+        }
+
+        .invoice-container .invoice-body {
+            padding: 1rem 0 0 0;
+        }
+
+        .invoice-container .invoice-footer {
+            text-align: center;
+            font-size: 0.7rem;
+            margin: 5px 0 0 0;
+        }
+
+        .invoice-status {
+            text-align: center;
+            padding: 1rem;
+            background: #272e48;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .invoice-status h2.status {
+            margin: 0 0 0.8rem 0;
+        }
+
+        .invoice-status h5.status-title {
+            margin: 0 0 0.8rem 0;
+            color: #8a99b5;
+        }
+
+        .invoice-status p.status-type {
+            margin: 0.5rem 0 0 0;
+            padding: 0;
+            line-height: 150%;
+        }
+
+        .invoice-status i {
+            font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            display: inline-block;
+            padding: 1rem;
+            background: #1a233a;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+        }
+
+        .invoice-status .badge {
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 767px) {
+            .invoice-container {
+                padding: 1rem;
+            }
+        }
+
+        .card-invoice {
+            background: white;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            border: 0;
+            margin-bottom: 1rem;
+        }
+
+        .custom-table {
+            border: 1px solid #2b3958;
+        }
+
+        .custom-table thead {
+            background: #f3f2f7;
+        }
+
+        .custom-table thead th {
+            border: 0;
+            color: #ffffff;
+        }
+
+
+        .custom-table>tbody tr:nth-of-type(even) {
+            background-color: white;
+        }
+
+        .custom-table>tbody td {
+            border: 1px solid #2e3d5f;
+        }
+
+        .custom-table {
+            background: white;
+            color: #bcd0f7;
+            font-size: .75rem;
+        }
+
+        .text-success {
+            color: #c0d64a !important;
+        }
+
+        .custom-actions-btns {
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .custom-actions-btns .btn {
+            margin: .3rem 0 .3rem .3rem;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -118,7 +289,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="pendingpaymentsTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="pendingpaymentsTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Student No.</th>
@@ -126,6 +297,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             <th>Year Level</th>
                                             <th>Course</th>
                                             <th>Amount Paid</th>
+                                            <th>Sent Thru</th>
                                             <th width="70">Attachments</th>
 
 
@@ -194,102 +366,174 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 </html>
 
 <div id="paymentdetailsModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <form method="POST" id="ackForm" enctype="multipart/form-data">
+            <input type="hidden" name="pv_ID" id="pv_ID">
+            <input type="hidden" name="operation" id="operation">
+            <input type="hidden" name="email" id="email">
+            <input type="hidden" name="fullname" id="fullname">
+           
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-gray-900 font-weight-bold"> <i class="far fa-fw fa-credit-card"></i> <span class="title">Add User</span></h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+
                 <div class="modal-body">
-                <div class="form-group">
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <input type="hidden" name="email" id="email" class="form-control">
-                                    <input type="hidden" name="txtName" id="txtName" class="form-control" readonly>
-                                    <input type="hidden" name="fullname" id="fullname" class="form-control" readonly>
+                    <div class="container">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card-invoice">
+                                    <div class="card-body p-0">
+                                        <div class="invoice-container">
+                                            <div class="invoice-header">
+
+                                                <!-- Row start -->
+                                                <div class="row gutters">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="custom-actions-btns mb-3">
+                                                                <input type="submit" class="btn btn-success" id="action" name="action" value="Acknowledge">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Row end -->
+
+                                                <!-- Row start -->
+                                                <div class="row gutters">
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                                        <a href="#" class="invoice-logo text-primary">
+                                                            Payment Details
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <address class="text-right text-gray-900 font-weight-bold">
+                                                            Date Sent: <span id="date_sent"></span>
+
+
+                                                        </address>
+                                                    </div>
+                                                </div>
+                                                <!-- Row end -->
+
+                                                <!-- Row start -->
+                                                <div class="row gutters">
+                                                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-sm-12">
+                                                        <div class="invoice-details">
+                                                            <address class="text-gray-900  font-weight-bold">
+                                                                Sent Thru: <span id="sent_via"></span><br>
+                                                                Payment Method: <span id="pay"></span><br>
+
+                                                            </address>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-sm-12">
+                                                        <div class="invoice-details">
+                                                            <div class="invoice-num text-gray-900 font-weight-bold">
+                                                                <div>Date of Payment: <span id="dop"></span></div>
+                                                                <div>Time of Payment: <span id="top"></span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Row end -->
+
+                                            </div>
+
+                                            <div class="invoice-body">
+
+                                                <!-- Row start -->
+                                                <div class="row gutters">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table custom-table m-0">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="text-gray-900 font-weight-bold text-center">Items</th>
+                                                                        <th class="text-gray-900 font-weight-bold text-center">Description</th>
+                                                                        <th class="text-gray-900 font-weight-bold text-center">Amount
+                                                                        <th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Tuition Fee
+                                                                            <p class="m-0 text-muted">
+
+                                                                            </p>
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center"><span id="term"></span> <span id="sysem"></span></td>
+                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="tfee"></span></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Other Fees
+                                                                            <p class="m-0 text-muted">
+
+                                                                            </p>
+                                                                        </td>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            <p id="part"></p>
+                                                                        </td>
+                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold"><span id="ptotal"></span></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>&nbsp;</td>
+                                                                        <td>
+
+
+                                                                        </td>
+
+                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold">
+                                                                            <h5 class="text-success float-left"><strong>Total</strong> </h5>
+                                                                            <span id="gtotal"></span>
+
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-gray-900 font-weight-bold text-center">
+                                                                            Note
+
+                                                                        </td>
+                                                                        <td>
+
+
+                                                                        </td>
+
+                                                                        <td colspan="3" class="text-right text-gray-900 font-weight-bold">
+                                                                            <h5 class="text-success float-left"><strong>Amount Paid</strong> </h5>
+                                                                            <span id="amtpaid"></span>
+
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Row end -->
+
+                                            </div>
+
+                                            <div class="invoice-footer float-left">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- <div class="col-lg-4">
-                                    <label class="font-weight-bold text-gray-900">Student Number:</label>
-                                    <input type="text" name="txtsnum" id="txtsnum" class="form-control" readonly>
-                                </div> -->
-
-                                <div class="col-sm-4"><label class="font-weight-bold text-gray-900">Date of Payment:</label>
-                                    <input type="text" name="date" id="date" class="form-control" readonly>
-                                </div>
-                                <div class="col-sm-4"><label class="font-weight-bold text-gray-900">Time:</label>
-                                    <input type="text" name="timePaid" id="time" class="form-control" readonly>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="form-group row">
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Tuition Fee Term:</label>
-                                        <input type="text" name="term" id="term" class="form-control" readonly>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Applicable SY:</label>
-                                        <input type="text" name="appsy" id="appsy" class="form-control" readonly>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Amount:</label>
-                                        <input type="text" name="tfee" id="tfee" class="form-control modal-currency text-right" readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-8">
-                                        <label class="font-weight-bold text-gray-900">Others:</label>
-                                        <input type="text" name="others" id="others" class="form-control" readonly>
-                                        <!-- <textarea name="txtParticulars" id="txtParticulars" class="form-control" cols="30" rows="10"></textarea> -->
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Other Fees Total:</label>
-                                        <input type="text" name="others_total" id="others_total" class="form-control modal-currency text-right" readonly>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Payment Method:</label>
-                                        <input type="text" name="paymethod" id="paymethod" class="form-control" readonly>
-
-
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Sent Via:</label>
-                                        <input type="text" name="sentvia" id="sentvia" class="form-control" readonly>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label class="font-weight-bold text-gray-900">Total Amount Paid:</label>
-                                        <input type="text" name="gtotal" id="gtotal" class="form-control modal-currency text-right" readonly>
-
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <label class="font-weight-bold text-gray-900">Note:</label>
-                                        <textarea name="note" id="note" cols="30" rows="2" class="form-control" readonly></textarea>
-                                    </div>
-
-                                </div>
-
-                               
                             </div>
                         </div>
-
-                    <div class="modal-footer">
-                        <input type="hidden" name="payment_id" id="payment_id">
-                        <input type="hidden" name="operation" id="operation">
-                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" name="action" id="action" class="btn btn-success" value="Register">
-
                     </div>
                 </div>
             </div>
+        </form>
     </div>
-    </form>
+
 </div>
+
 <script src="js/pending-payments.js"></script>
-</div>

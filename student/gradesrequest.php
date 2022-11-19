@@ -391,20 +391,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     foreach ($stmt as $rows) {
 
                                                         //change badge based on payment status
-                                                        if ($rows['status'] == 'Verified') {
+                                                        if ($rows['status'] == 'Done') {
                                                             $class = "success";
-                                                            $disabled = "disabled";
-                                                        } elseif ($rows['status'] == 'Received') {
-                                                            $class = "info";
-                                                            $disabled = "disabled";
-                                                        } elseif ($rows['status'] == 'For Receipt') {
-                                                            $class = "primary";
                                                             $disabled = "disabled";
                                                         } elseif ($rows['status'] == 'Pending') {
                                                             $class = "warning";
-                                                            $disabled = "";
+                                                            $disabled = "disabled";
                                                         }
-
 
 
                                                         $strpayhistory .= '<tr>';

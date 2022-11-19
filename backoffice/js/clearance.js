@@ -18,13 +18,13 @@ $(document).ready(function() {
                     columns: [0,1,2]
                 }
             },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [0,1,2]
-                }
-            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2]
+            //     }
+            // },
             {
                 extend: 'print',
                 className:'btn btn-secondary',
