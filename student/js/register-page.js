@@ -101,7 +101,7 @@ $(document).ready(function() {
     //PASSWORD VALIDATION
     $('#txtPassword, #confirmpassword').on('keyup', function() {
 
-        if ($('#txtPassword').val() == "" && $('#confirmpassword').val() == "") {
+        if ($('#txtPassword').val() == "" || $('#confirmpassword').val() == "") {
             $('#message').html('');
         } else {
 
@@ -119,13 +119,13 @@ $(document).ready(function() {
         if ($('#txtPassword').val() == "" && ($('#confirmpassword').val() == "")) {
             $('#length').html('');
         } else if ($('#confirmpassword').val() == "") {
-            $('#message2').html('');
+            $('#message').html('');
         } else if ($('#txtPassword').val() == $('#confirmpassword').val()) {
-            $('#message2').html('Passwords Matched!').css('color', 'green');
-            $('#message2').html('Passwords Matched!').css('font-weight', 'bold');
+            $('#message').html('Passwords Matched!').css('color', 'green');
+            $('#message').html('Passwords Matched!').css('font-weight', 'bold');
         } else {
-            $('#message2').html("Passwords do not Match!").css('color', 'red');
-            $('#message2').html("Passwords do not Match!").css('font-weight', 'bold');
+            $('#message').html("Passwords do not Match!").css('color', 'red');
+            $('#message').html("Passwords do not Match!").css('font-weight', 'bold');
         }
     });
 

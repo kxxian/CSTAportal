@@ -43,6 +43,18 @@ if (isset($_POST['sendreceipt'])) {
         $stmt = $con->prepare($sql);
         $stmt->execute($data);
 
+        //insert notification
+        $notif = "Your official receipt is sent to your email.";
+        $icon = "fas fa-receipt text-white";
+        $link = "enrollment.php";
+        $color = "bg-success";
+
+        $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
+        $data2 = array($sid, $notif, $icon, $color, $link, $date);
+        $stmt2 = $con->prepare($sql2);
+        $stmt2->execute($data2);
+
+
         $mailTo = $email;
 
         $body = "Hi Ma'am/Sir,<br><br>

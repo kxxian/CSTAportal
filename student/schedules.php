@@ -34,6 +34,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
   <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <style>
+    ::-webkit-scrollbar {
+      width: .5em;
+    }
+  </style>
 </head>
 
 <body id="page-top">

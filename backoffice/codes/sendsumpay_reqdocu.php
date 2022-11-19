@@ -2,7 +2,6 @@
 session_start();
 require_once '../includes/connect.php';
 require_once 'fetchuserdetails.php';
-require_once 'fetchcurrentsyandsem.php';
 require_once 'functions.php';
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
@@ -11,30 +10,27 @@ require("../mailer/PHPMailer/src/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 
 
-// current date and time
-date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d H:i:s');
-
-
 if (isset($_POST['operation'])) {
 
     if ($_POST["operation"] == "Send") {
-        $sid = $_POST['sid'];
-        $id = $_POST['gradereq_ID'];
+        $id = $_POST['id'];
         $fullname = ucwords(htmlspecialchars(trim($_POST['fullname'])));
         $email = htmlspecialchars(trim($_POST['email']));
+        $reason = ucwords(htmlspecialchars(trim($_POST['reason'])));
+        $reqdoc_ID = $_POST['reqdoc_ID'];
 
-        $statement = $con->prepare("UPDATE gradereq set status=? WHERE gradereq_ID=?");
 
-        $data = array('Done', $id);
-        $result = $statement->execute($data);
+        //mark request document as pending
+        $statement1 = $con->prepare("UPDATE tbldocureq set status=? WHERE reqdoc_ID=?");
+        $data1 = array("Waiting Payment", $id);
+        $result1 = $statement1->execute($data1);
 
 
         //insert notification
-        $notif = "Your copy of grades is sent to your email.";
-        $icon = "fas fa-file-alt text-white";
+        $notif = "Summary of Payment for your documents is sent to your email.";
+        $icon = "fas fa-envelope text-white";
         $link = "#";
-        $color="bg-success";
+        $color = "bg-success";
 
         $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
         $data2 = array($sid, $notif, $icon, $color, $link, $date);
@@ -46,11 +42,13 @@ if (isset($_POST['operation'])) {
 
         $body = "Good Day Teresian!<br><br>
 
-        Here's a copy of your " . $currentsemval . " grade. Thank you,<br><br>
-
-
-       <strong>" . $empname . "</strong><br>
-                " . $position . "
+        Please see attached file of the summary of payment for your request. <br>
+        Payment can be sent thru Bank Deposit or Online Bank Transfer. Kindly send your proof<br>
+        of payment together with your summary of payment attached in this email to <br>
+        <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for verification and Official Receipt purposes.
+      
+       
+    
         ";
 
         $mail = new PHPMailer();
@@ -70,15 +68,14 @@ if (isset($_POST['operation'])) {
             'allow_self_signed' => false
         ));
         $mail->isHTML(true);
-        $mail->Subject = "GRADES REQUEST FOR " . $currentsemval . " A.Y. " . $currentsyval . "
-        "; // email subject
+        $mail->Subject = "summary of Payment"; // email subject
         $mail->Body = $body;
 
-
         //attachments
-        foreach ($_FILES["attachment"]["name"] as $k => $v) {
-            $mail->AddAttachment($_FILES["attachment"]["tmp_name"][$k], $_FILES["attachment"]["name"][$k]);
-        }
+
+        $mail->AddAttachment($_FILES["sumpay"]["tmp_name"], "summary of payment");
+
+
 
         $mail->send();
         $mail->smtpClose();
@@ -86,17 +83,17 @@ if (isset($_POST['operation'])) {
 }
 
 //fetch 
-if (isset($_POST['gradereq_ID'])) {
-    $id = $_POST['gradereq_ID'];
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
     $output = array();
-    $statement = $con->prepare("SELECT * FROM vwgradereq where gradereq_ID='" . $id . "' LIMIT 1");
-    $statement->execute();
+    $statement = $con->prepare("SELECT * FROM vwdocureq where reqdoc_ID=?  LIMIT 1");
+    $data = array($id);
+    $statement->execute($data);
     $result = $statement->fetchAll();
     foreach ($result as $row) {
-        $output['id'] = $row['gradereq_ID'];
-        $output['fullname'] = $row['fullname'];
+        $output['id'] = $row['reqdoc_ID'];
+        $output['fullname'] = $row['fname'] . ' ' . $row['lname'];
         $output['email'] = $row['email'];
-        $output['sid'] = $row['sid'];
     }
     echo json_encode($output);
 }

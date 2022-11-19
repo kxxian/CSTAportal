@@ -111,7 +111,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('#enrollModal').modal('show');
                 $('#ev_ID').val(data.id);
-                $('#sid').val(data.sid);
+                $('#sid').val(sid);
                 $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
                 $('#mobile').val(data.mobile);

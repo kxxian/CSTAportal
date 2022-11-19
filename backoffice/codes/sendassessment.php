@@ -12,102 +12,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 // current date and time
 date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d h:i:s');
+$date = date('y-m-d H:i:s');
 
 
 if (isset($_POST['operation'])) {
 
-    // if ($_POST["operation"] == "Add") {
-    //     $lname = ucwords(htmlspecialchars(trim($_POST['lname'])));
-    //     $fname = ucwords(htmlspecialchars(trim($_POST['fname'])));
-    //     $mname = ucwords(htmlspecialchars(trim($_POST['mname'])));
-    //     $email = htmlspecialchars(trim($_POST['email']));
-    //     $gender = $_POST['gender'];
-    //     $mobile = htmlspecialchars(trim($_POST['mobile']));
-    //     $office = $_POST['office'];
-    //     $dept = $_POST['dept'];
-    //     $position = ucwords(htmlspecialchars(trim($_POST['position'])));
-    //     $role = $_POST['role'];
-
-    //     $statement = $con->prepare("INSERT INTO employees (lname, fname, mname,email,Gender,mobile,office,dept_ID,position,permission_ID) VALUES(?,?,?,?,?,?,?,?,?,?)");
-
-    //     $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept,$position, $role);
-    //     $result = $statement->execute($data);
-
-
-    //     //Send Set Credentials to USER's email address
-    //     $selector = bin2hex(random_bytes(8));
-    //     $token = random_bytes(32);
-
-    //     $url = "http://localhost/CSTAportal/backoffice/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
-    //     $expires = date("U") + 86400; //1-Day Expiration
-
-    //     try {
-    //         $sql = "DELETE From pwdreset where pwdresetEmail = ?;";
-    //         $data = array($email);
-    //         $stmt = $con->prepare($sql);
-    //         $stmt->execute($data);
-    //     } catch (PDOException $e) {
-    //         echo $e->getMessage();
-    //     }
-
-    //     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
-
-    //     try {
-    //         $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,pwdresetExpires) VALUES(?,?,?,?);";
-    //         $data = array($email, $selector, $hashedToken, $expires);
-    //         $stmt = $con->prepare($sql);
-    //         $stmt->execute($data);
-    //     } catch (PDOException $e) {
-    //         echo $e->getMessage();
-    //     }
-
-    //     $mailTo = $email;
-    //     $subject = "Set Password";
-
-    //     $message  = '<p>You are one step away from completing your registration to CSTA Admin. Please set<br>
-    //         your user credentials to complete your registration </p>';
-    //     $message .= '<p>Here is the link: <br><a href="' . $url . '">' . $url . '</a>  </p>';
-
-    //     $headers = "From: Sender\r\n";
-    //     $headers .= "Reply-To: Sender\r\n";
-    //     $headers .= "Content-type: text/html\r\n";
-
-    //     $mail = new PHPMailer();
-
-    //     $mail->SMTPDebug = 3;
-    //     $mail->isSMTP();
-
-    //     //SMTP user credentials
-    //     include '../includes/smtp_config.php';
-
-    //     //$mail->setFrom("CSTA@sampleemail.com"); // insert department email here
-    //     $mail->FromName = "CSTA Admin Portal"; // employee name + Department 
-    //     $mail->addAddress($mailTo, $fname . ' ' . $lname); // recipient
-    //     $mail->SMTPOptions = array('ssl' => array(
-    //         'verify_peer' => false,
-    //         'verify_peer_name' => false,
-    //         'allow_self_signed' => false
-    //     ));
-    //     $mail->isHTML(true);
-    //     $mail->Subject = "Set your password"; // email subject
-    //     $mail->Body = $message;
-
-    //     if (!$mail->send()) {
-    //         echo "Email Not Sent: " . $mail->ErrorInfo;
-    //     } else {
-
-    //         // $_SESSION['status'] = "Registration Success!";
-    //         // $_SESSION['status_code'] = "success";
-    //         header('location:../forgot-password.php?reset=success');
-    //     }
-
-    //     $mail->smtpClose();
-    // } else {
-    //     header('location:../forgot-password.php?reset=notfound');
-    // }
-
-
+   
     if ($_POST["operation"] == "Send") {
         $id = $_POST['enroll_id'];
         $sid = $_POST['sid'];
@@ -121,14 +31,16 @@ if (isset($_POST['operation'])) {
 
 
         //insert notification
-        $notif = "Please check your email for your assessment form.";
+        $notif = "Your assessment form is sent to your email. You can send your proof of payment here.";
         $icon = "fas fa-check text-white";
-        $link = "#";
+        $link = "payverif.php";
+        $color="bg-success";
 
-        $sql2 = "INSERT INTO notif (sid,notification,icon,link,date)VALUES(?,?,?,?,?)";
-        $data2 = array($sid, $notif, $icon, $link, $date);
-        $stmt2 = $con->prepare($sql2);
-        $stmt2->execute($data2);
+       
+         $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
+         $data2 = array($sid, $notif, $icon, $color, $link, $date);
+         $stmt2 = $con->prepare($sql2);
+         $stmt2->execute($data2);
 
 
         $mailTo = $email;

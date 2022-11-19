@@ -42,6 +42,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         .address {
             text-transform: capitalize;
         }
@@ -165,7 +169,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div><br>
 
                                                         </div>
-                                                        <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"><i class="fas fa-save"></i> Change</button></center>
+                                                        <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"> Change</button></center>
                                                     </form>
                                                     <div class="mt-2">
                                                         <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?></h4>
@@ -317,33 +321,28 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <span class="   font-weight-bold" style="color:red;">*Reselect District, City and Barangay when editing your information</span>
-                        </div>
-
-                    </div>
+                  
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name.." >
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name.." readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name.." >
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name.." readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
                             <input type="text" onkeypress="return (event.charCode > 64 && 
-	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name.." >
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name.." readonly>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="bday" class="text-gray-900 font-weight-bold">Birthday</label>
-                            <input type="date" name="bday" id="bday" class="form-control">
+                            <input type="date" name="bday" id="bday" class="form-control" readonly>
 
                         </div>
                         <div class="col-md-4">
@@ -364,7 +363,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-4">
                             <label for="district" class="text-gray-900 font-weight-bold">District</label>
                             <select id="district" name="district" class="form-control" required>
-                                <option selected="" disabled>Select District</option>
+                                <option selected value="" disabled>Select District</option>
                                 <?php
                                 require_once("includes/connect.php");
 
@@ -387,13 +386,42 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-6">
                             <label for="city" class="text-gray-900 font-weight-bold">City</label>
                             <select id="city" name="city" class="form-control" required>
+                            <?php
+                                require_once("includes/connect.php");
 
+                                $sql = "select * from refcitymun where regDesc=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['citymunCode'] . '>' . $row['citymunDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
 
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="barangay" class="text-gray-900 font-weight-bold">Barangay</label>
                             <select id="barangay" name="barangay" class="form-control" required>
+
+                            <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refbrgy where regCode=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['brgyCode'] . '>' . $row['brgyDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+
                             </select>
                         </div>
                     </div>

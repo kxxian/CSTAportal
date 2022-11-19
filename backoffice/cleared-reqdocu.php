@@ -296,7 +296,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-folder fa-fw"></i>  Pending Requests
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-folder fa-fw"></i> Cleared Requests
 
                             </h6>
 
@@ -676,5 +676,5 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     </form>
 </div>
 
-<script src="js/p_reqdocu.js"></script>
+<script src="js/c_reqdocu.js"></script>
 </div>

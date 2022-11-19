@@ -8,7 +8,7 @@ require_once('../codes/fetchcurrentsyandsem.php');
 
 // current date and time
 date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d h:i:s');
+$date = date('y-m-d H:i:s');
 
 
 

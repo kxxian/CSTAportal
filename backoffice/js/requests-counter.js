@@ -167,7 +167,7 @@ $(document).ready(function() {
                }else{
                   
                     $(".pendingusers").text("");
-                    $(".pendingusers").removeClass("badge badge-danger");
+                   
                }
            });
               //dashboard counter for total registered students
@@ -193,7 +193,7 @@ $(document).ready(function() {
                       $(".ctr_clearance").text(data14.toLocaleString());
                   }else{
                      
-                       $(".ctr_clearance").text("0");
+                       $(".ctr_clearance").text("");
                   }
               });
 
@@ -208,7 +208,7 @@ $(document).ready(function() {
                   }else{
                      
                        $(".ctr_enrollment").text("");
-                       $(".ctr_enrollment").removeClass("badge badge-danger");
+                     
                   }
               });
 
@@ -222,7 +222,7 @@ $(document).ready(function() {
                    }else{
                       
                         $(".ctr_reqdocu").text("");
-                        $(".ctr_reqdocu").removeClass("badge badge-danger");
+                     
                    }
                });
 
@@ -236,7 +236,7 @@ $(document).ready(function() {
                     }else{
                        
                          $(".ctr_gradereq").text("");
-                         $(".ctr_gradereq").removeClass("badge badge-danger");
+                   
                     }
                 });
 
@@ -283,6 +283,49 @@ $(document).ready(function() {
                                  $(".tasks").text("0");
                             }
                         });
+
+
+                     //sidebar counter for pending request of documents
+                    $.post("codes/counter.php",
+                    {data21:'get'},function(data21){
+               
+                   if(data21>0){
+                            //console.log(data16);
+                       $(".ctr_p_reqdocu").text(data21.toLocaleString());
+                   }else{
+                      
+                        $(".ctr_p_reqdocu").text("");
+                       
+                   }
+               });
+
+               //sidebar counter for cleared request of documents
+               $.post("codes/counter.php",
+               {data22:'get'},function(data22){
+          
+              if(data22>0){
+                       //console.log(data16);
+                  $(".ctr_c_reqdocu").text(data22.toLocaleString());
+              }else{
+                 
+                   $(".ctr_c_reqdocu").text("");
+                  
+              }
+          });
+
+             //sidebar counter for total request of documents
+             $.post("codes/counter.php",
+             {data23:'get'},function(data23){
+        
+            if(data23>0){
+                     //console.log(data16);
+                $(".ctr_total_reqdocu").text(data23.toLocaleString());
+            }else{
+               
+                 $(".ctr_total_reqdocu").text("");
+           
+            }
+        });
 
 
 

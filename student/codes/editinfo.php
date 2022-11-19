@@ -22,7 +22,9 @@ if (isset($_POST['sid'])) {
         $output['mobile'] = $row['mobile'];
         $output['cityadd'] = $row['cityadd'];
         $output['region'] = $row['region'];
-        $output['district'] = $row['region'];
+        $output['district'] = $row['province'];
+        $output['city'] = $row['city'];
+        $output['brgy'] = $row['brgy'];
         $output['guardian'] = $row['guardian'];
         $output['gcontact'] = $row['guardiancontact'];
     }

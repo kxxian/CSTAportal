@@ -24,6 +24,8 @@ $(document).ready(function() {
                 $('#mobile').val(data.mobile);
                 $('#cityadd').val(data.cityadd);
                 $('#district').val(data.district);
+                $('#city').val(data.city);
+                $('#barangay').val(data.brgy);
                 $('#guardian').val(data.guardian);
                 $('#gcontact').val(data.gcontact);
                 
