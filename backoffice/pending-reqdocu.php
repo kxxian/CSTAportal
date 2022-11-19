@@ -274,7 +274,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <!-- Sidebar -->
         <?php
         if ($office == "Registrar") {
-            $pageValue = 4;
+            $pageValue = 5;
         } else {
             header("Location:index.php");
         }
@@ -678,3 +678,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 <script src="js/p_reqdocu.js"></script>
 </div>
+
+<script src="js/reqdocu.js"></script>
+</div>
+

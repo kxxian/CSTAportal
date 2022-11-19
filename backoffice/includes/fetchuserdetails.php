@@ -10,6 +10,7 @@
         
         $eid=$row['id'];
         $empname=$row['empname'];
+        $deptid=$row['deptid'];
         $dept=$row['dept'];
         $usertype=$row['role'];
         $Office=$row['office'];
