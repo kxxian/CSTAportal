@@ -10,7 +10,7 @@ $office = $Office;
 /* $_SESSION['dept'] = $_POST['dept']; */
 /* echo $_SESSION['dept']; */
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
 }
 ?>
