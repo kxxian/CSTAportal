@@ -1,9 +1,9 @@
 <?php
-       /* session_start(); */
-		include_once('../includes/connect.php');
+        // session_start(); 
+		include('../includes/connect.php');
        try{
         $sql="select * from vwemployees where username=? and pass=? ";
-        $data=array($_SESSION['username'],$_SESSION['password']);
+        $data=array($_SESSION['username_admin'],$_SESSION['password_admin']);
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
         $row=$stmt->fetch();
@@ -12,6 +12,7 @@
         $empname=$row['empname'];
 		$deptid=$row['deptid'];
         $dept=$row['dept'];
+        $deptemail=$row['dept_email'];
         $usertype=$row['role'];
         $Office=$row['office'];
         $useremail=$row['email'];

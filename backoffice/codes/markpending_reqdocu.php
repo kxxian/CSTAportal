@@ -17,23 +17,29 @@ if (isset($_POST['operation'])) {
         $fullname = ucwords(htmlspecialchars(trim($_POST['fullname'])));
         $email = htmlspecialchars(trim($_POST['email']));
         $reason= ucwords(htmlspecialchars(trim($_POST['reason'])));
-        //$reqdoc_ID=$_POST['reqdoc_id'];
+        $reqdoc_ID=$_POST['reqdoc_ID'];
 
-        $statement = $con->prepare("Delete from students WHERE id=?");
 
+        //mark request document as pending
+        $statement = $con->prepare("Delete from clearance WHERE clr_ID=?");
         $data = array($id);
         $result = $statement->execute($data);
+
+        //mark request document as pending
+        $statement1= $con->prepare("UPDATE tbldocureq set status=? WHERE reqdoc_ID=?");
+        $data1 = array("Pending",$reqdoc_ID);
+        $result1= $statement1->execute($data1);
 
 
         $mailTo = $email;
 
         $body = "Good Day Teresian!<br><br>
 
-        We are sorry to inform you that we declined your request to register for the following reasons: <br><br>
+        Your request of documents is marked pending due to the following reasons: <br><br>
         
         *".$reason." <br><br>
 
-        If you think this was a mistake, Please register again and make sure all information are correct.<br><br>
+        Please settle all your deficiencies to proceed with your request. <br><br>
 
         Thank You & Keep Safe.<br><br>
         
@@ -48,8 +54,8 @@ if (isset($_POST['operation'])) {
         //SMTP user credentials
         include "../includes/smtp_config.php";
 
-        $mail->setFrom($useremail); // insert department email here
-        $mail->FromName = $empname; // employee name + Department 
+        $mail->setFrom(""); // insert department email here
+        $mail->FromName = "CSTA Student Portal"; // employee name + Department 
         $mail->addAddress($mailTo, $fullname); // recipient
         $mail->SMTPOptions = array('ssl' => array(
             'verify_peer' => false,
@@ -57,7 +63,7 @@ if (isset($_POST['operation'])) {
             'allow_self_signed' => false
         ));
         $mail->isHTML(true);
-        $mail->Subject = "Registration Denied"; // email subject
+        $mail->Subject = "Request Marked as Pending"; // email subject
         $mail->Body = $body;
 
         $mail->send();
@@ -69,14 +75,13 @@ if (isset($_POST['operation'])) {
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
     $output = array();
-    $statement = $con->prepare("SELECT * FROM vwstudents where id=? and isAccepted=? LIMIT 1");
-    $data = array($id, 0);
+    $statement = $con->prepare("SELECT * FROM clearance where clr_ID=?  LIMIT 1");
+    $data = array($id);
     $statement->execute($data);
     $result = $statement->fetchAll();
     foreach ($result as $row) {
-        $output['id'] = $row['id'];
-        $output['fullname'] = $row['lname'] . ', ' . $row['fname'] . ' ' . $row['mname'];
-        $output['email'] = $row['email'];
+        $output['reqdoc_ID'] = $row['reqdoc_ID'];
+       
     }
     echo json_encode($output);
 }

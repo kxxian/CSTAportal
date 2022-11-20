@@ -59,6 +59,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         fieldset.scheduler-border {
             border: 1px groove gray !important;
             padding: 0 1.4em 1.4em 1.4em !important;
@@ -834,7 +838,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <address class="text-gray-900  font-weight-bold">
                                                                 Sent Thru: <span id="sent_via"></span><br>
                                                                 Payment Method: <span id="pay"></span><br>
-                                                                
+
                                                             </address>
                                                         </div>
                                                     </div>

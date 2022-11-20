@@ -8,7 +8,7 @@ require_once 'includes/fetchuserdetails.php';
 $office=$Office;
 
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
 }
 ?>
@@ -24,7 +24,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Admin | Assessment</title>
+    <title>Assessments</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
     <!-- Custom fonts for this template-->
@@ -118,7 +118,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="assessTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="assessTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Student No.</th>

@@ -222,17 +222,26 @@ if (isset($_POST['data19'])) {
 
   echo $count;
 }
+
+
+//total task for registrar
 if (isset($_POST['data20'])) {
 
   $sql = " 
   SELECT
            (SELECT COUNT(id) FROM students WHERE `status`='Pending' AND isAccepted=0)
             +
-            (SELECT COUNT(ev_ID) FROM enrollment_validation WHERE `status`='Pending' )
+            (SELECT COUNT(ev_ID) FROM enrollment_validation WHERE `status`='Pending')
             +
             (SELECT COUNT(reqdoc_ID) FROM tbldocureq WHERE `status`='Sent')
             +
-            (SELECT COUNT(gradereq_ID) FROM gradereq WHERE `status`='Pending') as total
+            (SELECT COUNT(gradereq_ID) FROM gradereq WHERE `status`='Pending') 
+            +
+            (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Pending') 
+            +
+            (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Cleared') 
+            
+            as total
          
           
   ";
@@ -248,6 +257,57 @@ if (isset($_POST['data20'])) {
   echo $count;
 }
 
+
+if (isset($_POST['data21'])) {
+
+  $sql = "SELECT reqdoc_ID from tbldocureq where status=?";
+  $data= array("Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
+
+if (isset($_POST['data22'])) {
+
+  $sql = "SELECT reqdoc_ID from tbldocureq where status=?";
+  $data= array("Cleared");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
+
+
+
+//total request of documents
+if (isset($_POST['data23'])) {
+
+  $sql = " 
+  SELECT
+         
+            
+            (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Pending') 
+            +
+            (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Cleared') 
+            
+            as total
+         
+          
+  ";
+
+
+
+  // $data = array("Pending", '0', "Pending", "Sent", "Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+  $row=$stmt->fetch();
+  $count=$row['total'];
+
+  echo $count;
+}
 
 
 

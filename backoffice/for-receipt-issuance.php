@@ -7,7 +7,7 @@ require_once('includes/fetchuserdetails.php');
 //get office from fetchuserdetails.php
 $office=$Office;
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
 }
 
@@ -116,7 +116,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="forreceiptTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered text-gray-900" id="forreceiptTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
 

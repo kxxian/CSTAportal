@@ -34,6 +34,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         .address {
             text-transform: capitalize;
         }

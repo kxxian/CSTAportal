@@ -13,18 +13,18 @@ use PHPMailer\PHPMailer\PHPMailer;
 if (isset($_POST['operation'])) {
 
     if ($_POST["operation"] == "ack") {
-        $id = $_POST['payment_id'];
+        $id = $_POST['pv_ID'];
         $fullname = ucwords(htmlspecialchars(trim($_POST['fullname'])));
         $email = htmlspecialchars(trim($_POST['email']));
-       
+
         $statement = $con->prepare("UPDATE paymentverif set payment_status=? WHERE pv_ID=?");
 
-        $data = array('Received',$id);
+        $data = array('Received', $id);
         $result = $statement->execute($data);
 
 
         $body =
-        "
+            "
         Hi Ma'am / Sir, <br><br>
 
         Your payment is duly noted, we shall update you once verified.<br><br>
@@ -42,8 +42,8 @@ if (isset($_POST['operation'])) {
         //SMTP user credentials
         include "../includes/smtp_config.php";
 
-        //$mail->setFrom($empname); // insert department email here
-        $mail->FromName = $empname; // employee name + Department 
+        $mail->setFrom($deptemail); // insert department email here
+        $mail->FromName = "CSTA Accounting"; // employee name + Department 
         $mail->addAddress($email, $fullname); // recipient
         $mail->SMTPOptions = array('ssl' => array(
             'verify_peer' => false,
@@ -55,25 +55,9 @@ if (isset($_POST['operation'])) {
         $mail->Body = $body;
 
 
-        //attachments
-        // foreach ($_FILES["attachment"]["name"] as $k => $v) {
-        //     $mail->AddAttachment($_FILES["attachment"]["tmp_name"][$k], $_FILES["attachment"]["name"][$k]);
-        // }
-
-        if (!$mail->send()) {
-            // echo "<Email Not Sent: " . $mail->ErrorInfo;
-            // $_SESSION['status'] = "Receipt Not Sent!";
-            // $_SESSION['status_code'] = "error";
-            // header('location:../for-receipt-issuance.php');
-        } else {
-
-            // $_SESSION['status'] = "Receipt Sent!";
-            // $_SESSION['status_code'] = "success";
-            // header('location:../for-receipt-issuance.php');
-        }
+       $mail->send();
+           
         $mail->smtpClose();
-
-
     }
 }
 
@@ -86,22 +70,22 @@ if (isset($_POST['payment_id'])) {
     $result = $statement->fetchAll();
     foreach ($result as $row) {
         $output['id'] = $row['pv_ID'];
-        $output['fullname'] = $row['lname'].', '.$row['fname'].' '.$row['mname'];
-        $output['email'] = $row['email'];
-        $output['date'] = $row['date_paid'];
-        $output['time'] = $row['time_paid'];
-        $output['appsy'] = $row['schoolyr'].' '.$row['semester'];
+        // $output['fullname'] = $row['lname'].', '.$row['fname'].' '.$row['mname'];
+        // $output['email'] = $row['email'];
+        $output['date_sent'] = $row['date_sent'];
+        $output['sent_via'] = $row['sentvia'];
+        $output['pay'] = $row['paymethod'];
+        $output['dop'] = $row['date_paid'];
+        $output['top'] = $row['time_paid'];
         $output['term'] = $row['term'];
-        $output['tfeeamount'] = $row['tfeepayment'];
-        $output['others'] = $row['particulars'];
-        $output['others_total'] = $row['particulars_total'];
-        $output['paymethod'] = $row['paymethod'];
-        $output['sentvia'] = $row['sentvia'];
-        $output['gtotal'] = $row['amtpaid'];
-        $output['note'] = $row['note'];
+        $output['sysem'] =  '(' . $row['semester'] . ' of ' . $row['schoolyr'] . ')';
+        $output['tfee'] = $row['tfeepayment'];
+        $output['part'] = $row['particulars'];
+        $output['ptotal'] = $row['particulars_total'];
+        $output['gtotal'] = $row['gtotal'];
+        $output['amtpaid'] = $row['amtpaid'];
+        $output['email'] = $row['email'];
+        $output['fullname'] = $row['lname'].', '.$row['fname'].' '.$row['mname'];
     }
     echo json_encode($output);
 }
-
-
-

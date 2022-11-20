@@ -59,11 +59,9 @@ foreach ($result as $row) {
     $sub_array[] = $lname.', '.$fname.' '.$mname;
     $sub_array[] = $row["yrlevel"];
 
-
     $sub_array[] = $row["abbr"];
     $sub_array[] = $row["amtpaid"];
-
-
+    $sub_array[] = $row["sentvia"];
 
     $payment = "../../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
     $reqform = "../../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";

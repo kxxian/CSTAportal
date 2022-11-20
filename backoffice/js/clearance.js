@@ -18,13 +18,13 @@ $(document).ready(function() {
                     columns: [0,1,2]
                 }
             },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [0,1,2]
-                }
-            },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2]
+            //     }
+            // },
             {
                 extend: 'print',
                 className:'btn btn-secondary',
@@ -51,24 +51,15 @@ $(document).ready(function() {
         }, ],
     });
 
-    $(document).on('submit', '#assessForm', function(event) {
+    $(document).on('submit', '#pendingForm', function(event) {
         event.preventDefault();
         var fullname = $("#fullname").val();
         var email = $("#email").val();
-        var attachment = $("#attachment").val();
+        // var attachment = $("#attachment").val();
         
 
-
-        if (fullname == "" || email == "" || attachment == "" ){
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Insufficient Data!'
-            })
-        } else {
             $.ajax({
-                url: "codes/sendassessment.php",
+                url: "codes/markpending_reqdocu.php",
                 method: "POST",
                 data: new FormData(this),
                 contentType: false,
@@ -80,12 +71,12 @@ $(document).ready(function() {
                         position: 'center',
                         icon: 'success',
                         title: 'Success!',
-                        text: 'Account Registration Accepted!',
+                        text: 'Request marked as pending!',
                         showConfirmButton: false,
                         timer: 3000
                     })
 
-                    $('#assessModal').modal('hide');
+                    $('#pendingModal').modal('hide');
 
                     // $('#usersForm')[0].reset();
 
@@ -93,45 +84,9 @@ $(document).ready(function() {
                 }
 
             })
-        }
+      
     })
 
-    $(document).on('click', '.decline', function() {
-        var decline_id = $(this).attr('id');
-        var email = $(this).attr('email');
-
-
-        Swal.fire({
-            title: 'Confirmation',
-            text: "Are you sure you want to decline this registration?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-          }).then((result) => {
-            if (result.isConfirmed) {
-
-                $.ajax({
-                    url: "codes/ack_reqdocu.php",
-                    method: "POST",
-                    data: {
-                        decline_id: decline_id,
-                        email:email
-                    },
-                  
-                })
-                
-              Swal.fire(
-                'Success!',
-                'Enrollment has been cancelled!',
-                'success'
-              )
-              clearanceTable.api().ajax.reload();
-            
-            }
-        })
-    })
 
 
     $(document).on('click', '.markcleared', function() {
@@ -142,11 +97,11 @@ $(document).ready(function() {
         var reqdoc_ID= $(this).attr('reqdoc');
         //alert (reqdoc_ID);
 
-        //alert(fullname);
-
+        //alert(id);
+        $('#pendingModal').modal('show');
 
         Swal.fire({
-            title: 'Confirmation',
+            title: 'Mark as Cleared',
             text: "Are you sure?",
             icon: 'warning',
             showCancelButton: true,
@@ -157,7 +112,7 @@ $(document).ready(function() {
             if (result.isConfirmed) {
 
                 $.ajax({
-                    url: "codes/ack_reqdocu.php",
+                    url: "codes/clear_reqdocu.php",
                     method: "POST",
                     data: {
                         id: id,
@@ -171,13 +126,108 @@ $(document).ready(function() {
                 
               Swal.fire(
                 'Success!',
-                'Request Acknowledged!',
+                'Request Marked as Cleared!',
                 'success'
               )
               clearanceTable.api().ajax.reload();
             
             }
         })
+    })
+
+
+    // $(document).on('click', '.markpending', function() {
+    //     var id = $(this).attr('id');
+    //     var email = $(this).attr('email');
+    //     var fullname= $(this).attr('fullname');
+    //     var sid= $(this).attr('sid');
+    //     var reqdoc_ID= $(this).attr('reqdoc');
+    //     alert (reqdoc_ID);
+
+    //     // alert(id);
+
+
+    //     Swal.fire({
+    //         title: 'Mark as Pending',
+    //         text: "Are you sure?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes'
+    //       }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             $.ajax({
+    //                 url: "codes/markpending.php",
+    //                 method: "POST",
+    //                 data: {
+    //                     id: id
+    //                 },
+    //                 dataType: "json",
+    //                 success: function(data) {
+    //                     $('#pendingModal').modal('show');
+    //                     // $('#id').val(data.id);
+    //                     // $('#fullname').val(data.fullname);
+    //                     // $('#email').val(data.email);
+    //                     // $('#mobile').val(data.mobile);
+                       
+    //                     $('.title').text(' Decline Request');
+    //                     // $('#id').val(id);
+        
+    //                     $('#operation').val("Send");
+    //                     $('#action').val("Send");
+        
+    //                 }
+    //             })
+            
+    //         }
+    //     })
+    // })
+
+
+    $(document).on('click', '.markpending', function() {
+        var id = $(this).attr('id');
+        var email = $(this).attr('email');
+        var fullname= $(this).attr('fullname');
+        var sid= $(this).attr('sid');
+        var reqdoc_ID= $(this).attr('reqdoc');
+        //alert (reqdoc_ID);
+        $('#reason').val("");
+
+        
+        $.ajax({
+            url: "codes/markpending_reqdocu.php",
+            method: "POST",
+            data: {
+                id: id,
+               
+            },
+            dataType: "json",
+            success: function(data) {
+                $('#pendingModal').modal('show');
+                $('#id').val(data.id);
+                $('#fullname').val(fullname);
+                $('#email').val(email);
+             
+               
+                $('.title').text(' Mark as Pending');
+                $('#id').val(id);
+                $('#reqdoc_ID').val(reqdoc_ID);
+                $('#operation').val("Send");
+                $('#action').val("Send");
+
+            }
+        })
+    })
+
+
+
+    $(document).on('click', '.close', function() {
+        $('#pendingModal').modal('hide');
+    })
+
+    $(document).on('click', '#close', function() {
+        $('#pendingModal').modal('hide');
     })
 
   

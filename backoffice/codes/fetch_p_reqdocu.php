@@ -9,14 +9,13 @@ require_once 'functions.php';
 
 $query = '';
 $output = array();
-$query .= "SELECT * from vwstudents ";
+$query .= "SELECT * from vwdocureq ";
 
 if (isset($_POST["search"]["value"])) {
-    //$query .= 'WHERE status="Pending" ';
+    //$query .= 'WHERE status="Sent" ';
 
-    $query .= 'WHERE (dept LIKE "%'.$_POST["search"]["value"].'%"';
-
-    $query .= 'OR snum LIKE "%' . $_POST["search"]["value"] . '%"';
+   
+    $query .= 'WHERE (snum LIKE "%' . $_POST["search"]["value"] . '%"';
   
     $query .= 'OR lname LIKE "%' . $_POST["search"]["value"] . '%"';
 
@@ -24,21 +23,21 @@ if (isset($_POST["search"]["value"])) {
 
     $query .= 'OR mname LIKE "%' . $_POST["search"]["value"] . '%"';
  
-    $query .= 'OR yrlevel LIKE "%' . $_POST["search"]["value"] . '%"';
+    $query .= 'OR status LIKE "%' . $_POST["search"]["value"] . '%"';
 
     $query .= 'OR course LIKE "%' . $_POST["search"]["value"] . '%")';
     
    
 }
 
-$query .= ' AND status="Verified" AND isAccepted="0" ';
+$query .= ' AND status="Pending" ';
 
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].'
     ';
 }
 else{
-    $query.='ORDER BY id ASC ';
+    $query.='ORDER BY reqdoc_ID ASC ';
 }
 if($_POST["length"] != -1){
     $query.='LIMIT '.$_POST['start'].', '.$_POST['length'];
@@ -58,25 +57,20 @@ foreach ($result as $row) {
     $sub_array = array();
     $sub_array[] = $row["snum"];
     $sub_array[] = $lname.', '.$fname.' '.$mname;
-    $sub_array[] = $row["yrlevel"];
-    $sub_array[] = $row["dept"];
-
-
+    $sub_array[] = $row["stud_status"];
     $sub_array[] = $row["course"];
    
-  
- 
-   
-    
     
     $sub_array[] =
      '
+     <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" 
+     class="btn btn-info btn-sm view" title="View Request"><i class="fa fa-fw fa-eye"></i></button>
 
-    <button type="button" id="' . $row["id"] . '"  email="'.$row['email'] .'" sname="'.$lname.', '.$fname.' '.$mname.'"
-    class="btn btn-success btn-sm accept" title="Accept"><i class="fa fa-fw fa-thumbs-up"></i></button>
 
-    <button type="button" id="' . $row["id"] . '"  email="'.$row['email'] .'" 
-    class="btn btn-danger btn-sm decline" title="Decline"><i class="fa fa-fw fa-thumbs-down"></i></button>
+    <button type="button" id="' . $row["reqdoc_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 
+    sid="'.$row['sid'].'"  class="btn btn-success btn-sm sendsumpay" title="Acknowledge"><i class="fa fa-fw fa-paper-plane"></i></button>
+
+  
     
     ';
 
@@ -87,7 +81,7 @@ foreach ($result as $row) {
 $output = array(
     "draw"              => intval($_POST["draw"]),
     "recordsTotal"      => $filtered_rows,
-    "recordsFiltered"   => get_registrations(),
+    "recordsFiltered"   => get_docureq(),
     "data"              => $data
 
 );

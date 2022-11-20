@@ -67,8 +67,8 @@ foreach ($result as $row) {
     <button type="button" id="' . $row["clr_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 
     sid="'.$row['sid'].'" reqdoc="'.$row['reqdoc_ID'].'"  class="btn btn-success btn-sm markcleared" title="Mark as Cleared"><i class="fa fa-fw fa-check"></i></button>
 
-    <button type="button" id="' . $row["clr_ID"] . '"  email="'.$row['email'] .'" 
-    class="btn btn-warning btn-sm markpending" title="Mark as Pending"><i class="fa fa-fw fa-hourglass"></i></button>
+    <button type="button" id="' . $row["clr_ID"] . '"  email="'.$row['email'] .'" fullname="'.$lname.', '.$fname.' '.$mname.'" 
+    sid="'.$row['sid'].'" reqdoc="'.$row['reqdoc_ID'].'"class="btn btn-warning btn-sm markpending" title="Mark as Pending"><i class="fa fa-fw fa-hourglass"></i></button>
     
     ';
 

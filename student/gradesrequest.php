@@ -59,6 +59,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         fieldset.scheduler-border {
             border: 1px groove gray !important;
             padding: 0 1.4em 1.4em 1.4em !important;
@@ -387,20 +391,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     foreach ($stmt as $rows) {
 
                                                         //change badge based on payment status
-                                                        if ($rows['status'] == 'Verified') {
+                                                        if ($rows['status'] == 'Done') {
                                                             $class = "success";
-                                                            $disabled = "disabled";
-                                                        } elseif ($rows['status'] == 'Received') {
-                                                            $class = "info";
-                                                            $disabled = "disabled";
-                                                        } elseif ($rows['status'] == 'For Receipt') {
-                                                            $class = "primary";
                                                             $disabled = "disabled";
                                                         } elseif ($rows['status'] == 'Pending') {
                                                             $class = "warning";
-                                                            $disabled = "";
+                                                            $disabled = "disabled";
                                                         }
-
 
 
                                                         $strpayhistory .= '<tr>';
@@ -569,9 +566,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 </body>
 
-    <script src="js/header.js"></script>
-    <script src="js/counter.js"></script>
-    <script src="js/notifications.js"></script>
-    <script src="js/reqgradehistory.js"></script>
+<script src="js/header.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/reqgradehistory.js"></script>
 
 </html>

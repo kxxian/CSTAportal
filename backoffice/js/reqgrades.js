@@ -112,6 +112,7 @@ $(document).ready(function() {
                 $('#gradereq_ID').val(data.id);
                 $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
+                $('#sid').val(data.sid);
                 //$('#mobile').val(data.mobile);
                
 

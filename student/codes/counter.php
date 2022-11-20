@@ -38,7 +38,7 @@ if (isset($_POST['param'])) {
 
     $strheader .= '<a class="dropdown-item d-flex align-items-center" href="' . $rows['link'] . '">';
     $strheader .= ' <div class="mr-3">';
-    $strheader .= ' <div class="icon-circle bg-success" >';
+    $strheader .= ' <div class="icon-circle '.$rows['color'].'" >';
     $strheader .= ' <i class="' . $rows['icon'] . '" ></i>';
     $strheader .= ' </div>';
     $strheader .= '</div>';

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("includes/connect.php");
+    require("includes/connect.php");
 
     $username=htmlspecialchars(trim($_POST['username']));
     $pass=sha1(trim($_POST['password']));
@@ -19,8 +19,8 @@
         }else{
             $row=$stmt->fetch();
 
-            $_SESSION['username']=$row['username'];
-            $_SESSION['password']=$row['pass'];
+            $_SESSION['username_admin']=$row['username'];
+            $_SESSION['password_admin']=$row['pass'];
 			/* $_SESSION['dept'] = $row['dept_ID']; */
             
 

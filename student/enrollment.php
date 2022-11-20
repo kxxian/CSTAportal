@@ -79,7 +79,9 @@ if ($status == 'CLOSED') { // display enrollment page if open
 </head>
 
 <style>
-
+ ::-webkit-scrollbar {
+            width: .5em;
+        }
 </style>
 
 <body id="page-top">

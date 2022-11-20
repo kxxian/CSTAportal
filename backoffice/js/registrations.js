@@ -123,8 +123,9 @@ $(document).ready(function() {
 
     $(document).on('click', '.accept', function() {
         var accept_id = $(this).attr('id');
-        //var accept_email = $(this).attr('email');
-
+        var accept_email = $(this).attr('email');
+        var sname=$(this).attr('sname');
+        // alert(sname); 
 
         Swal.fire({
             title: 'Confirmation',
@@ -141,7 +142,9 @@ $(document).ready(function() {
                     url: "codes/accounts.php",
                     method: "POST",
                     data: {
-                        accept_id: accept_id
+                        accept_id: accept_id,
+                        email:accept_email,
+                        sname:sname
                     },
                   
                 })

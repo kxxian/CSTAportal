@@ -7,7 +7,7 @@ require_once('includes/fetchuserdetails.php');
 //get office from fetchuserdetails.php
 $office = $Office;
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
 }
 
@@ -72,7 +72,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         <?php
         //office conditions for sidebar menu
         if ($office == "Accounting") {
-            $pageValue = 3;
+            $pageValue = 4;
         } else {
             header("Location:index.php");
         }
@@ -105,7 +105,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                         <tr>
 
                                             <th hidden>sid</th>
-                                            <th>Student No.</th>
+                                            <th hidden>Student No.</th>
                                             <th>Name</th>
                                             <th hidden>Tuition Fee</th>
                                             <th hidden>Email</th>
@@ -130,7 +130,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=? order by date_acknowledged";
+                                        $sql = "SELECT * FROM guest_payverif WHERE payment_status=? order by date_acknowledged";
                                         $data = array('Received');
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
@@ -138,21 +138,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                         foreach ($result as $row) {
 
-                                            $payment = "../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
-                                            $reqform = "../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
+                                            $payment = "../student/uploads/payverif/guest/assessment/{$row['gp_id']}.jpg";
+                                            $assessment = "../student/uploads/payverif/guest/pof/{$row['gp_id']}.jpg";
 
-                                            if (file_exists($payment)) {
+                                            if (file_exists($assessment)) {
 
                                                 $img = '
-                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-warning" >
+                                                    <a href="../student/uploads/payverif/guest/assessment/' . $row['gp_id'] . '.jpg"   title="Assessment" class="btn btn-warning" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
                                                 $img = "";
                                             }
 
-                                            if (file_exists($reqform)) {
-                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-info" >
+                                            if (file_exists($payment)) {
+                                                $img2 = '<a href="../student/uploads/payverif/guest/pof/' . $row['gp_id'] . '.jpg" title="Proof of Payment" class="btn btn-info" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -164,20 +164,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                              
 
 
-                                                        <td hidden>' . $row['sid'] . '</td>
-                                                        <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td hidden>' . $row['email'] . '</td>
-                                                        <td hidden>' . $row['mobile'] . '</td>
-                                                        <td hidden>' . $row['course'] . '</td>
-                                                        
-
-                                                        <td hidden>' . $row['tfeepayment'] . '</td>
-                                                        <td hidden>' . $row['schoolyr'] . '</td>
-                                                        <td hidden>' . $row['semester'] . '</td>
-                                                        <td hidden>' . $row['term'] . '</td>
-                                                        <td hidden>' . $row['particulars'] . '</td>
-                                                        <td hidden>₱ ' . $row['particulars_total'] . '</td>
                                                         
 
 
@@ -186,18 +173,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         ' . $img2 . '
                                                         </td>
                                                        
-                                                        <td hidden>' . $row['gtotal'] . '</td>
                                                         <td  style="text-align:right;">' . $row['amtpaid'] . '</td>
-                                                        <td hidden>' . $row['amtchange'] . '</td>
                                                         <td>' . $row['sentvia'] . '</td>
-                                                        <td hidden>' . $row['paymethod'] . '</td>
-                                                        <td hidden>' . $row['note'] . '</td>
                                                         <td>' . $row['date_paid'] . ' </td>
                                                         <td>' . $row['time_paid'] . ' </td>
                                                         
 
                                                         <td> 
-                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
+                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['gp_id'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
                                         }
@@ -264,7 +247,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
     <!-- scripts -->
-    <script src="js/verify-payments.js"></script>
+    <script src="js/verify-payments_guest.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
 

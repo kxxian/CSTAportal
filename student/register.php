@@ -378,7 +378,7 @@
 
                                 <div class="col-sm-4">
                                     <label for="confirmpassword" class="form-label"><b>Repeat Password</b></label>
-                                    <input type="Password" class="form-control password" id="confirmpassword" name="confirmpassword" placeholder="Password" required>
+                                    <input type="Password" class="form-control password confirmpassword" id="confirmpassword" name="confirmpassword" placeholder="Password" required>
                                     <p id="message"></p>
 
                                 </div>

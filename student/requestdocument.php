@@ -59,6 +59,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         fieldset.scheduler-border {
             border: 1px groove gray !important;
             padding: 0 1.4em 1.4em 1.4em !important;
@@ -528,33 +532,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     $disabled = "";
                                                                 } elseif ($rows['status'] == 'Acknowledged') {
                                                                     $class = "info";
-                                                                    $disabled = "";
-                                                                } elseif ($rows['status'] == 'Completed') {
+                                                                    $disabled = "disabled";
+                                                                } elseif ($rows['status'] == 'Cleared' || $rows['status'] == 'Completed') {
                                                                     $class = "success";
-                                                                    $disabled = "";
-                                                                } elseif ($rows['status'] == 'Pending') {
+                                                                    $disabled = "disabled";
+                                                                } elseif ($rows['status'] == 'Pending' || $rows['status'] == "Waiting Payment") {
                                                                     $class = "warning";
-                                                                    $disabled = "";
+                                                                    $disabled = "disabled";
                                                                 }
-                                                                // //check attachments in directory
-                                                                // $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
-                                                                // $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
-
-                                                                // if (file_exists($payment)) {
-                                                                //     $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['pv_ID'] . '.jpg">
-                                                                //         <i class="fa fa-receipt fa-fw"></i></a>';
-                                                                // } else {
-                                                                //     $img = "";
-                                                                // }
-
-                                                                // if (file_exists($reqform)) {
-                                                                //     $img2 = '
-                                                                //          <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['pv_ID'] . '.jpg">
-                                                                //          <i class="fa fa-receipt fa-fw"></i></a>
-                                                                //          ';
-                                                                // } else {
-                                                                //     $img2 = "";
-                                                                // }
 
 
                                                                 $strreq .= '<tr>';

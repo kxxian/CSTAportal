@@ -8,7 +8,7 @@ require_once('../codes/fetchcurrentsyandsem.php');
 
 // current date and time
 date_default_timezone_set('Asia/Manila');
-$date = date('y-m-d h:i:s');
+$date = date('y-m-d H:i:s');
 
 
 
@@ -41,6 +41,10 @@ if (isset($_POST['enroll']) && isset($_POST['selyrlevel'])) {
             $stmt->execute($data);
             $newname = $con->lastInsertId();
 
+            //upload copy of grade
+            if ($_FILES['grade']['tmp_name'] != "") {
+                $msg = uploadgrade($_FILES['grade'], $newname);
+            }
 
 
             //insert notification
@@ -54,11 +58,7 @@ if (isset($_POST['enroll']) && isset($_POST['selyrlevel'])) {
             $stmt2->execute($data2);
 
 
-            //upload copy of grade
-            if ($_FILES['grade']['tmp_name'] != "") {
-                $msg = uploadgrade($_FILES['grade'], $newname);
-            }
-
+            
             $_SESSION['status'] = "Success!";
             $_SESSION['msg'] = "Enrollment Application Sent!";
             $_SESSION['status_code'] = "success";

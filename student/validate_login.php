@@ -22,8 +22,8 @@
         }else{
             $row=$stmt->fetch();
 
-            $_SESSION['username']=$row['username'];
-            $_SESSION['password']=$row['pass'];
+            $_SESSION['username_admin']=$row['username'];
+            $_SESSION['password_admin']=$row['pass'];
 			/* $_SESSION['dept'] = $row['dept_ID']; */
             
 
