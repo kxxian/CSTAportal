@@ -42,7 +42,7 @@ $(document).ready(function() {
         "info": true,
         "bDestroy": true,
         "ajax": {
-            url: "codes/fetchpending.php",
+            url: "codes/fetchpending_guest.php",
             type: "POST"
 
         },

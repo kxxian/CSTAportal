@@ -318,4 +318,34 @@ function uploadcepermit($fname, $newname)
     }
     return $res;
 }
+
+function upload_assess_form($fname, $newname)
+{
+    $upload_directory = "../uploads/payverif/guest/assessment/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+function uploadpof($fname, $newname)
+{
+    $upload_directory = "../uploads/payverif/guest/pof/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
 ?>

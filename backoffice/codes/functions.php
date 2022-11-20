@@ -193,8 +193,13 @@ function get_enrollments_ue(){
     return $statement->rowCount();
 }
 
-
-
-
-
-
+function get_pendingpayments_guest(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from guest_payverif WHERE payment_status=?");
+    $data=array('Pending');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+}
