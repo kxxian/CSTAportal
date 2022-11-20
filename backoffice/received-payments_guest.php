@@ -104,25 +104,10 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th hidden>sid</th>
-                                            <th hidden>Student No.</th>
                                             <th>Name</th>
-                                            <th hidden>Tuition Fee</th>
-                                            <th hidden>Email</th>
-                                            <th hidden>Mobile</th>
-                                            <th hidden>Course</th>
-                                            <th hidden>S.Y</th>
-                                            <th hidden>Semester</th>
-                                            <th hidden>Term</th>
-                                            <th hidden>Others</th>
-                                            <th hidden>Others Total</th>
                                             <th>Attachment/s</th>
-                                            <th hidden>Total</th>
                                             <th>Amount</th>
-                                            <th hidden>Change</th>
                                             <th>Sent Via</th>
-                                            <th hidden>Payment Method</th>
-                                            <th hidden>Notes</th>
                                             <th>Date Paid</th>
                                             <th>Time Paid</th>
                                             <th class="text-center">Actions</th>
@@ -174,9 +159,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         </td>
                                                        
                                                         <td  style="text-align:right;">' . $row['amtpaid'] . '</td>
-                                                        <td>' . $row['sentvia'] . '</td>
-                                                        <td>' . $row['date_paid'] . ' </td>
-                                                        <td>' . $row['time_paid'] . ' </td>
+                                                        <td>' . $row['sentvia_ID'] . '</td>
+                                                        <td>' . $row['date_of_payment'] . ' </td>
+                                                        <td>' . $row['time_of_payment'] . ' </td>
                                                         
 
                                                         <td> 

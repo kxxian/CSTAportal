@@ -170,10 +170,10 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                        
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td>' . $row['date_of_payment'] . '</td>
-                                                        <td>' . $row['tfreeamount'] . '</td>
+                                                        <td>' . $row['amtpaid'] . '</td>
                                                         <td >' . $row['schoolyr'] .' '. $row['semester_ID'] .'  </td>
                                                       
-                                                        <td>' . $row['term_ID'] . '</td>
+                                                        <td>' . $row['terms_ID'] . '</td>
                                                         <td>' . $row['particulars'] . '</td>
                                                         <td> ' . $row['particulars_total'] . '</td>
                                                         
