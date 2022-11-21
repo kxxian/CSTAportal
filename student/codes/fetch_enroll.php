@@ -35,14 +35,24 @@ $filtered_rows=$statement->rowCount();
 foreach ($result as $row) {
    ;
     $sub_array = array();
+    $sub_array[] = '<center>'.$row["studtype"].'</center>';
     $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
-    $sub_array[] = '<center>'.$row["abbr"].'</center>';
+
+    $sub_array[] =  '<center>'.$row["abbr"].'</center>';
 
 
-    $sub_array[] = '<center><a class="font-weight-bold text-center" href="../student/uploads/copygrades/'.$row['enrollment_ID'].'.jpg">Grades</a></center>';
+    if (!file_exists('../student/uploads/copygrades/'.$row['grade_copy'])){
+        $copygrade= "NA";
+    }else{
+        $copygrade='<center><a class="font-weight-bold text-center" href="../student/uploads/copygrades/'.$row['grade_copy'].'">Grades</a></center>';
+
+    }
+
+
+    $sub_array[] = $copygrade;
    
   
-    $sub_array[] =  '<center>'.$row["enrollment_status"].'</center>';
+  
     
     $sub_array[] =
      '

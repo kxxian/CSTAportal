@@ -17,6 +17,7 @@ try{
 }
 
 
+
 $conn = new mysqli($host, $user, $pwd, $dbase);
 if(!$conn){
     die("Cannot connect to the database.". $conn->error);

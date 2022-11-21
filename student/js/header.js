@@ -7,8 +7,21 @@ $(document).ready(function() {
        {data1:'get'},function(data1){
            //console.log(data1);
             $(".enroll_status").text(data1);
+            if($.trim(data1)=="Validating Requirements"){
+               $(".enroll_status").css({"color": "#ffc107"});
+               $("#enrolldetails").css({"display":"block"});
+               $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
 
-               if($.trim(data1)=="Assessment"){
+               $("#application").addClass("completed")
+               $("#reqval").removeClass("completed")
+               $("#assessment").removeClass("completed")
+               $("#payment").removeClass("completed")
+               $("#validate").removeClass("completed")
+               $("#enrolled").removeClass("completed")
+              
+            }
+
+               else if($.trim(data1)=="Assessment"){
                   $(".enroll_status").css({"color": "#ffc107"});
                   $("#enrolldetails").css({"display":"block"});
                   $("#enroll_div").css({"pointer-events": "none", "opacity": "0.6"});
@@ -20,6 +33,7 @@ $(document).ready(function() {
                  
                   //STEP WIZARD 1
                   $("#application").addClass("completed")
+                  $("#reqval").addClass("completed")
                   $("#assessment").removeClass("completed")
                   $("#payment").removeClass("completed")
                   $("#validate").removeClass("completed")
@@ -38,6 +52,7 @@ $(document).ready(function() {
 
                   //STEP WIZARD 2
                   $("#application").addClass("completed")
+                  $("#reqval").addClass("completed")
                   $("#assessment").addClass("completed")
                   $("#payment").removeClass("completed")
                   $("#validate").removeClass("completed")
@@ -97,6 +112,7 @@ $(document).ready(function() {
 
                     //STEP WIZARD 4
                     $("#application").removeClass("completed")
+                    $("#reqval").removeClass("completed")
                     $("#assessment").removeClass("completed")
                     $("#payment").removeClass("completed")
                     $("#validate").removeClass("completed")
@@ -107,7 +123,7 @@ $(document).ready(function() {
 
    
 
-    },500);
+    },2000);
     
 
 });

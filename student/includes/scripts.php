@@ -132,24 +132,7 @@
       });
   </script>
 
-  <script>
-      $(document).ready(function() {
-          $('#selmop').on('change', function() {
-              if (this.value == 1)
-
-              {
-
-                  $('#showterm').attr('hidden', 'hidden');
-
-              } else {
-
-                  $('#showterm').removeAttr('hidden');
-
-              }
-          });
-          console.log('#payfor');
-      });
-  </script>
+ 
 
   <!-- show/hide tuitionfee amount -->
   <script type="text/javascript">

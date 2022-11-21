@@ -20,6 +20,10 @@ if (isset($_GET['login'])) {
 	$_SESSION['status'] = "Oops!";
 	$_SESSION['msg'] = "Invalid username or password!";
 	$_SESSION['status_code'] = "warning";
+}if (isset($_GET['new'])) {
+	$_SESSION['status'] = "Oops!";
+	$_SESSION['msg'] = "Account is not yet validated.";
+	$_SESSION['status_code'] = "info";
 }
 
 if (isset($_GET['newpwd'])) {
@@ -145,13 +149,13 @@ if (isset($_GET['reset'])) {
 
 							</div>
 
-							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px;"><input type="checkbox" name="isAdmin" id="isAdmin" value="admin" /> <small>Admin</small></span>
+							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px; margin-top:10px;"><input type="checkbox" name="isAdmin" id="isAdmin" value="admin" /> <small>isAdmin?</small></span>
 
-							<button type="submit" class="btn submit" style="background-color:#824d1b">Login</button>
+							<button type="submit" class="btn submit" style="background-color:#824d1b; margin-bottom:10px">Login</button>
 
 							<input type="button" onclick="location.href='register.php'" class="btn submit" style="background-color:gray; margin-top: 0.5em;" value="Register">
 
-							<a href="guest_index.php" class="bottom-text-w3ls">Continue as Guest</a>
+							
 						</form>
 					</article>
 				</div>

@@ -17,12 +17,7 @@ $(document).ready(function() {
                          $(".ctr_notif").text("");
                     }
                 });
-
-
-
-
-
-    },1000);
+    },2000);
     
 
 });

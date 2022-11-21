@@ -1,22 +1,6 @@
 $(document).ready(function() {
     
-    $("#regForm").validate({
-        rules: {
-            txtSnum: "required",
-            txtLname:{
-                required: true,
-                minlength:2,
-            },
-            chkagree:{required:true},
-        },
-   
-        messages: {
-            chkagree: {
-                required: "You must check at least 1 box",
-                // maxlength: "Check no more than {0} boxes"
-            }
-        }
-    });
+ 
 
 
 
@@ -101,7 +85,7 @@ $(document).ready(function() {
     //PASSWORD VALIDATION
     $('#txtPassword, #confirmpassword').on('keyup', function() {
 
-        if ($('#txtPassword').val() == "" || $('#confirmpassword').val() == "") {
+        if ($('#txtPassword').val() == "" && $('#confirmpassword').val() == "") {
             $('#message').html('');
         } else {
 

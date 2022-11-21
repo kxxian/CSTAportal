@@ -152,6 +152,12 @@
                                 </div>
                                 <h4 class="step-title">Application</h4>
                             </div>
+                            <div class="step" id="reqval">
+                                <div class="step-icon-wrap">
+                                    <div class="step-icon"><i class="pe-7s-folder"></i></div>
+                                </div>
+                                <h4 class="step-title">Requirements Checking</h4>
+                            </div>
                             <div class="step" id="assessment">
                                 <div class="step-icon-wrap">
                                     <div class="step-icon"><i class="pe-7s-note2"></i></div>

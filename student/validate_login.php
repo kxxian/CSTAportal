@@ -29,35 +29,44 @@
 
             header('location:../backoffice/index.php');
         }
+       
     }
     catch(PDOException $e){
         $e->getMessage();
     }
+    $con= null;
 
 
     }else{
          //validation
     try{
-        $sql="select * from students where username=? and pass=? and status=? and isAccepted=?";
-        $data=array($username,$pass,$verified,'1');
+        $sql="select * from students where username=? and pass=?";
+        $data=array($username,$pass);
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
+        $row=$stmt->fetch();
         $rc=$stmt->rowCount();
        
-        if($rc<=0){
-            header('location:login.php?login=1');
-        }else{
-            $row=$stmt->fetch();
+        $isAccepted = $row['isAccepted'];
+        $status = $row['status'];
 
-            $_SESSION['username']=$row['username'];
-            $_SESSION['password']=$row['pass'];
-            
+        
+        if ($rc <= 0) {
+            header('location:login.php?login=1');
+        } else if (($rc > 0) && ($status == 'Pending' || $isAccepted == 0)) {
+            header('location:login.php?new=1');
+        } else if ($rc >0 && $status == 'Verified' && $isAccepted == 1) {
+
+
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['password'] = $row['pass'];
+
 
             header('location:index.php');
         }
-    }
-    catch(PDOException $e){
+    } catch (PDOException $e) {
         $e->getMessage();
     }
+   
 
     }

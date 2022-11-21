@@ -142,6 +142,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <li class="nav-item">
                                         <a href="#subreq" class="nav-link"><i class="fas fa-file"></i> Requirements</a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -172,7 +173,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"> Change</button></center>
                                                     </form>
                                                     <div class="mt-2">
-                                                        <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?></h4>
+                                                        <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?> </h4>
                                                         <p class="text-secondary mb-1 text-gray-900"><?= $snum ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $yrlevel ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $course ?></p>
@@ -185,6 +186,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                     <div class="col-md-8">
                                         <div class="card mb-3">
+
+
+
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-sm-3">
@@ -321,7 +325,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                  
+
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
@@ -386,7 +390,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         <div class="col-md-6">
                             <label for="city" class="text-gray-900 font-weight-bold">City</label>
                             <select id="city" name="city" class="form-control" required>
-                            <?php
+                                <?php
                                 require_once("includes/connect.php");
 
                                 $sql = "select * from refcitymun where regDesc=?";
@@ -407,7 +411,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                             <label for="barangay" class="text-gray-900 font-weight-bold">Barangay</label>
                             <select id="barangay" name="barangay" class="form-control" required>
 
-                            <?php
+                                <?php
                                 require_once("includes/connect.php");
 
                                 $sql = "select * from refbrgy where regCode=?";

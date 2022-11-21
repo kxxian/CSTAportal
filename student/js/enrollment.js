@@ -53,14 +53,6 @@ setInterval (function() {
   enrollvalTable.api().ajax.reload();
 },10000)
 
-
-
-
-
-
-
-
-
     
     $(document).on('click', '.cancel_enroll', function() {
         var enroll_id = $(this).attr('id');

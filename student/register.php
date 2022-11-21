@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Register</title>
+    <title>Student Registration</title>
     <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
 
 
@@ -121,7 +121,7 @@
         <div class="card border-1 shadow-lg  ">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
-                <div class="col">
+              
                     <div class="p-5">
                         <div class="text-center">
                             <img src="img/CSTA_SMALL.png" class="rounded" width="130">
@@ -136,9 +136,9 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                    <label for="txtSnum" class="form-label">Student Number</label>
-                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" oninput="validateReg()" onkeypress="return (event.charCode > 47 && 
-	                                event.charCode < 58 || event.charCode==45) " placeholder="xx-xxxxx" maxlength="8" required autofocus>
+                                    <label for="txtSnum" class="form-label">Student Number (Leave Blank if None)</label>
+                                    <input type="text" class="form-control" name="txtSnum" id="txtSnum" onkeypress="return (event.charCode > 47 && 
+	                                event.charCode < 58 || event.charCode==45) " placeholder="xx-xxxxx" maxlength="8" >
                                 </div>
 
                             </div>
@@ -246,9 +246,10 @@
                                         <?php
                                         require_once("includes/connect.php");
 
-                                        $sql = "select * from departments";
+                                        $sql = "select * from departments where admin_only=?";
+                                        $data=array(0);
                                         $stmt = $con->prepare($sql);
-                                        $stmt->execute();
+                                        $stmt->execute($data);
 
                                         while ($row = $stmt->fetch()) {
                                             echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
@@ -371,14 +372,14 @@
 
                                 <div class="col-sm-4">
                                     <label for="txtPassword" class="form-label"><b>Password</b></label>
-                                    <input type="password" class="form-control password" id="txtPassword" name="txtPassword" placeholder="Password" required>
+                                    <input type="password" class="form-control" id="txtPassword" name="txtPassword" placeholder="Password" required>
                                     <p id="length"></p>
 
                                 </div>
 
                                 <div class="col-sm-4">
                                     <label for="confirmpassword" class="form-label"><b>Repeat Password</b></label>
-                                    <input type="Password" class="form-control password confirmpassword" id="confirmpassword" name="confirmpassword" placeholder="Password" required>
+                                    <input type="Password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Password" required>
                                     <p id="message"></p>
 
                                 </div>
@@ -410,7 +411,7 @@
                         </div>
 
                     </div>
-                </div>
+               
             </div>
         </div>
     </div>

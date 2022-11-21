@@ -1,6 +1,18 @@
 <?php
         // session_start(); 
-		include('../includes/connect.php');
+        $host="localhost:3307"; 
+        $dbase="studentportal"; 
+        $user="root"; 
+        $pwd = ""; 
+       
+       $dsn="mysql:host={$host};dbname={$dbase}";
+       try{
+           $con=new PDO($dsn,$user,$pwd);
+          
+       }catch(PDOException $e){
+           echo $e->getMessage();
+       }
+       
        try{
         $sql="select * from vwemployees where username=? and pass=? ";
         $data=array($_SESSION['username_admin'],$_SESSION['password_admin']);

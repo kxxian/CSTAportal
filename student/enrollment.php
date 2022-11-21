@@ -79,9 +79,9 @@ if ($status == 'CLOSED') { // display enrollment page if open
 </head>
 
 <style>
- ::-webkit-scrollbar {
-            width: .5em;
-        }
+    ::-webkit-scrollbar {
+        width: .5em;
+    }
 </style>
 
 <body id="page-top">
@@ -144,6 +144,19 @@ if ($status == 'CLOSED') { // display enrollment page if open
 
                                                         <div class="form-group">
                                                             <div class="form-group row">
+                                                                <div class="col-sm-12">
+                                                                    <label for="studtype" class="text-gray-900"><b>Student Type</b></label>
+                                                                    <select class="form-control" id="studtype" name="studtype" required>
+                                                                        <option selected value="" disabled>..</option>
+                                                                        <option value="Regular">Regular/Returnee</option>
+                                                                        <option value="Transferee">Transferee</option>
+                                                                        <option value="Freshman">Freshman</option>
+
+                                                                    </select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row">
                                                                 <div class="col-sm-6">
                                                                     <label for="sy" class="text-gray-900"><b>School Year</b></label>
                                                                     <input type="text" class="form-control" value="<?= $currentsyval ?>" disabled>
@@ -160,9 +173,10 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                                     <select class="form-control" id="seldept" name="seldept" required>
                                                                         <option selected value="" disabled>Select Department..</option>
                                                                         <?php
-                                                                        $sql = "select * from departments";
+                                                                        $sql = "select * from departments where admin_only=?";
+                                                                        $data = array(0);
                                                                         $stmt = $con->prepare($sql);
-                                                                        $stmt->execute();
+                                                                        $stmt->execute($data);
 
                                                                         while ($row = $stmt->fetch()) {
                                                                             echo '<option value=' . $row['deptid'] . '>' . $row['dept'] . '</option>';
@@ -175,6 +189,12 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                             </div>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6">
+                                                                    <label for="selCourse" class="text-gray-900"><b>Course</b></label>
+                                                                    <select class="form-control" id="selCourse" name="selCourse" required>
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-6">
                                                                     <label for="selyrlevel" class="text-gray-900"><b>Year Level</b></label>
                                                                     <select class="form-control" name="selyrlevel" required>
                                                                         <option selected value="">Select Year Level..</option>
@@ -184,23 +204,13 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                                         <option value="4">4th Year</option>
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-sm-6">
-                                                                    <label for="selCourse" class="text-gray-900"><b>Course</b></label>
-                                                                    <select class="form-control" id="selCourse" name="selCourse" required>
 
-                                                                    </select>
-                                                                </div>
 
                                                             </div>
-
-
-
-
-
-                                                            <div class="row">
+                                                            <div class="row" id="gradesdiv">
                                                                 <div class="col-sm-12">
-                                                                    <label for="fileupload" class="text-gray-900"><b>Copy of Grades</b><i> *previous semester</i></label>
-                                                                    <input type="file" id="grade" name="grade" accept=".jpg" class="form-control mb-4" required>
+                                                                    <label for="fileupload" class="text-gray-900"><b>Latest Copy of Grades</b> (For Regular/Returnees)</label>
+                                                                    <input type="file" id="grade" name="grade" accept=".jpg" class="form-control mb-4">
                                                                 </div>
                                                             </div>
 
@@ -221,15 +231,15 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                        <table class="table table-bordered " id="enrollTable" width="100%" cellspacing="0">
+                                                        <table class="table table-bordered text-gray-900" id="enrollTable" width="100%" cellspacing="0">
                                                             <thead class="thead-dark">
                                                                 <tr>
                                                                     <!-- <th>#</th> -->
                                                                     <!-- <th>Department</th> -->
+                                                                    <th class="text-center">Student Type</th>
                                                                     <th class="text-center">Year Level</th>
                                                                     <th class="text-center">Course</th>
-                                                                    <th class="text-center">Attachment</th>
-                                                                    <th class="text-center">Status</th>
+                                                                    <th class="text-center">Grades</th>
                                                                     <th class="text-center">Cancel</th>
                                                                 </tr>
                                                             </thead>
@@ -246,7 +256,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="validation" >
+                            <div class="tab-pane fade" id="validation">
                                 <div class="row">
                                     <div class="col-sm-6" id="enroll_content">
                                         <!-- Basic Card Example -->
@@ -288,7 +298,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                             </div>
                                             <div class="card-body">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered " id="enrollvalTable" width="100%" cellspacing="0">
+                                                    <table class="table table-bordered text-gray-900" id="enrollvalTable" width="100%" cellspacing="0">
                                                         <thead class="thead-dark">
                                                             <tr>
 
@@ -353,6 +363,25 @@ include("includes/scripts.php");
 <script src="js/counter.js"></script>
 <script src="js/notifications.js"></script>
 
+<!-- show hide copy of grades -->
+<script type="text/javascript">
+    $(function() {
+        $('#gradesdiv').hide();
+        $('#studtype').change(function() {
+            $('#grade').val("");
+            if ($('#studtype').val() == 'Regular') {
+                $('#grade').prop('required',true);
+                $('#gradesdiv').show();
+               
+            } else {
+                $('#grade').prop('required',false);
+                $('#gradesdiv').hide();
+             
+            }
+        });
+    });
+</script>
+
 </html>
 
 <!-- Modal -->
@@ -366,12 +395,12 @@ include("includes/scripts.php");
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100"src="img/enroll_guide/g1.png" alt="First slide">
+                            <img class="d-block w-100" src="img/enroll_guide/g1.png" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100"src="img/enroll_guide/g2.png" alt="First slide">
+                            <img class="d-block w-100" src="img/enroll_guide/g2.png" alt="First slide">
                         </div>
-                       
+
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

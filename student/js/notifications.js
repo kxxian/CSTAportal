@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 
     setInterval(function() {
-                //sidebar counter for request of grades
+                //notifications counter 
                 $.post("codes/counter.php",
                 {data1:'get'},function(data1){
                 
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 
 
-    },1000);
+    },3000);
     
 
 });

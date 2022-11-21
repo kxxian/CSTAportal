@@ -10,6 +10,14 @@ require("../mailer/PHPMailer/src/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 
 if (isset($_POST['submit'])) {
+    if ($_POST['txtSnum']=="")
+    {
+        $snum="NA";
+    }else{
+        $snum = htmlspecialchars(trim($_POST['txtSnum']));
+
+    }
+   
 
     // current date and time
     date_default_timezone_set('Asia/Manila');
@@ -18,7 +26,7 @@ if (isset($_POST['submit'])) {
     $lname = ucwords(htmlspecialchars(trim($_POST['txtLname'])));
     $fname = ucwords(htmlspecialchars(trim($_POST['txtFname'])));
     $mname = ucwords(htmlspecialchars(trim($_POST['txtMname'])));
-    $snum = htmlspecialchars(trim($_POST['txtSnum']));
+   
     $gender = $_POST['selGender'];
     $cstatus = $_POST['cstatus'];
     $bday = $_POST['dtBday'];
@@ -67,13 +75,6 @@ if (isset($_POST['submit'])) {
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();
-
-
-                    // $_SESSION['status'] = "Registration Success!";
-                    // $_SESSION['status_code'] = "success";
-                    // // $_SESSION['msg'] = "Check Your Email Regularly For Account Approval";
-                    // header('location:login.php');
-
 
                     ##email
 

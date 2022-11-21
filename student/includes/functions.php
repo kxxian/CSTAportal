@@ -52,8 +52,9 @@ function uploadgrade($fname, $newname)
     if (is_uploaded_file($fname['tmp_name'])) {
         $filename = basename($fname['name']);
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $gradeuploaded=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-            echo $res = "File Successfully Uploaded!";
+            echo $res = $gradeuploaded;
         } else {
             echo $res = "File Failed to Upload!";
         }
@@ -312,6 +313,23 @@ function uploadcepermit($fname, $newname)
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
             echo $res = "File Successfully Uploaded!";
+        } else {
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
+
+
+function uploadreq($fname, $newname)
+{
+    $upload_directory = "uploads/requirements/";
+    if (is_uploaded_file($fname['tmp_name'])) {
+        $filename = basename($fname['name']);
+        $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $requploaded=$newname . "." . end(explode('.', $fname['name']));
+        if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+            echo $res = $requploaded;
         } else {
             echo $res = "File Failed to Upload!";
         }

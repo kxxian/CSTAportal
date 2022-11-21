@@ -6,6 +6,8 @@ function get_users(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+
+    $con=null;
 }
 
 function get_assessments(){
@@ -17,6 +19,7 @@ function get_assessments(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments(){
@@ -28,6 +31,7 @@ function get_enrollments(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_registrations(){
@@ -39,6 +43,7 @@ function get_registrations(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_pendingpayments(){
@@ -50,6 +55,7 @@ function get_pendingpayments(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_gradereq(){
@@ -61,6 +67,7 @@ function get_gradereq(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_docureq(){
@@ -72,6 +79,7 @@ function get_docureq(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 function get_clearance(){
     // session_start();
@@ -82,6 +90,7 @@ function get_clearance(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 function get_sy(){
     // session_start();
@@ -92,6 +101,7 @@ function get_sy(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_sem(){
@@ -103,6 +113,7 @@ function get_sem(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_courses(){
@@ -114,6 +125,7 @@ function get_courses(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_announcement(){
@@ -125,6 +137,7 @@ function get_announcement(){
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_faqs(){
@@ -136,6 +149,7 @@ function get_faqs(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments_guest(){
@@ -147,6 +161,7 @@ function get_enrollments_guest(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments_guest_transferee(){
@@ -158,6 +173,7 @@ function get_enrollments_guest_transferee(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments_ce(){
@@ -169,6 +185,7 @@ function get_enrollments_ce(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments_sct(){
@@ -180,6 +197,7 @@ function get_enrollments_sct(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
 }
 
 function get_enrollments_ue(){
@@ -191,6 +209,20 @@ function get_enrollments_ue(){
     $statement->execute();
     $result=$statement->fetchAll();
     return $statement->rowCount();
+    $con=null;
+}
+
+function get_checkreq(){
+    // session_start();
+    include '../includes/connect.php';
+     include 'fetchuserdetails.php'; 
+    $statement=$con->prepare("SELECT * from vwforenrollment_students WHERE enrollment_status='Validating Requirements'");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+    $con=null;
+
 }
 
 

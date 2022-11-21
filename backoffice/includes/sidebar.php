@@ -581,31 +581,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
@@ -675,32 +661,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
-
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
@@ -769,33 +740,18 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Students -->
-              $strSidebar .= '          <li class="nav-item active">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '          <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
+              $strSidebar .= '        </li>';
+              /* //<!-- Nav Item - Enrollment --> */
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
-
-              /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item active">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
 
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
@@ -862,28 +818,19 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <i class="fas fa-fw fa-user-plus"></i>';
               $strSidebar .= '                <span>Registrations <div class="badge badge-danger pendingusers"></div></span></a>';
               $strSidebar .= '        </li>';
-
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item active">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
+              /* //<!-- Nav Item - Enrollment --> */
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
               /* $strSidebar .= '        <li class="nav-item">'; */
@@ -959,32 +906,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
-
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item active">';
               $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
@@ -1053,32 +985,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
-
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
               $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
@@ -1147,32 +1064,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
-
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
@@ -1241,33 +1143,17 @@ elseif ($office == "Registrar") {
 
               // <!-- Nav Item - Students -->
               $strSidebar .= '          <li class="nav-item">';
-              $strSidebar .= '            <a class="nav-link" href="enrollment_guest.php">';
+              $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
-              $strSidebar .= '                <span>Validation <div class="badge badge-danger ctr_total_reg"></div></span></a>';
+              $strSidebar .= '                <span>Requirements Checking <div class="badge badge-danger"></div></span></a>';
               $strSidebar .= '        </li>';
 
-              // <!-- Nav Item - Enrollment -->
-              $strSidebar .= '  <li class="nav-item">';
-              $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"';
-              $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
-              $strSidebar .= '       <i class="fas fa-fw fa-edit"></i>';
-              $strSidebar .= '       <span>Enrollment</span>';
-              $strSidebar .= '   </a>';
-              $strSidebar .= '   <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">';
-              $strSidebar .= '       <div class="bg-white py-2 collapse-inner rounded">';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment.php">Students <div class="badge badge-danger ctr_enrollment"></div></a>';
-              $strSidebar .= '            <a class="collapse-item" href="enrollment_guest.php">Guest</a>';
-              $strSidebar .= '        </div>';
-              $strSidebar .= '    </div>';
-              $strSidebar .= '  </li>';
-
               /* //<!-- Nav Item - Enrollment --> */
-              /* $strSidebar .= '        <li class="nav-item">'; */
-              /* $strSidebar .= '            <a class="nav-link" href="enrollment.php">'; */
-              /* $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>'; */
-              /* $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>'; */
-              /* $strSidebar .= '        </li>'; */
-
+              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
+              $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
+              $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
+              $strSidebar .= '        </li>';
               // <!-- Nav Item - Document -->
               $strSidebar .= '  <li class="nav-item">';
               $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';

@@ -3,6 +3,7 @@ session_start();
 require_once('includes/connect.php');
 require_once('codes/fetchuserdetails.php'); //get snum value from userdetails(students accounts)
 require_once('codes/fetchcurrentsyandsem.php');
+require_once('includes/functions.php');
 date_default_timezone_set("Etc/GMT-8");
 if (isset($_POST['uploadReq'])) {
 
@@ -34,32 +35,22 @@ if (isset($_POST['uploadReq'])) {
             $newname=$con->lastInsertId();
 
 
-            function upload($fname, $newname)
-            {
-                $upload_directory = 'uploads/requirements/';
-                if (is_uploaded_file($fname['tmp_name'])) {
-                    $filname = basename($fname['name']);
-                    $tmp = explode('.', $fname['name']);
-                    $uploadfile = $upload_directory . $newname . "." . end($tmp);
+               //upload copy of grade and insert filename
+               if ($_FILES['requirement']['tmp_name'] != "") {
+                $msg = uploadreq($_FILES['requirement'], $newname);
 
-                    if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
+                $sql = "UPDATE studreq set `filename`=? where sr_ID=?";
+                $data = array($msg, $con->lastInsertId());
+                $stmt = $con->prepare($sql);
+                $stmt->execute($data);
 
-                        $_SESSION['status'] = "Success!";
-                        $_SESSION['msg'] = "Document Uploaded!";
-                        $_SESSION['status_code'] = "success";
-                        header('location:requirements.php');
-                    } else {
-                        $_SESSION['status'] = "Error!";
-                        $_SESSION['msg'] = "Upload Failed!";
-                        $_SESSION['status_code'] = "error";
-                        header('location:requirements.php');
-                    }
-                }
+
+                $_SESSION['status'] = "Success!";
+                $_SESSION['msg'] = "File Uploaded!";
+                $_SESSION['status_code'] = "success";
+                header('location:requirements.php');
             }
-           
-            if ($_FILES['requirement']['name'] != "") {
-                $msg = upload($_FILES['requirement'], $newname);
-            }
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

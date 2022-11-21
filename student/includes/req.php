@@ -5,19 +5,15 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-upload"></i> Upload Requirements</h6>
             </div>
-
+            <div class="col-sm-12 mt-2">
+                <button type="button" class="btn btn-info btn-sm float-right"  data-toggle="modal" data-target="#exampleModal" title="Requirements List"><i class="fa fa-th-list"></i> List</button>
+            </div>
             <div class="card-body">
-                <div class="form-group row" hidden>
-                    <div class="col-lg-12">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                            <label class="form-check-label" for="flexSwitchCheckDefault">I already handed the hardcopies</label>
-                        </div>
-                    </div>
 
-                </div>
                 <form action="uploadrequirement.php" method="POST" enctype="multipart/form-data">
+
                     <div class="form-group">
+
                         <div class="col-lg-12">
                             <label for="selDocument" style="font-weight:bold;" class="text-gray-900">Requirement Name</label>
                             <select class="form-control text-gray-800" id="selDocument" name="selDocument" required>
@@ -52,6 +48,7 @@
     </div>
 
     <div class="col-md-7">
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-file-alt"></i> Requirements Uploaded
@@ -61,7 +58,7 @@
             </div>
 
             <div class="card-body">
-                <!-- <button type="button" id="addUser" data-toggle="modal" data-target="#usersModal" class="btn btn-warning mb-3 float-right" title="Request for Validation"> <i class="fas fa-user-check fa-fw"></i></button> -->
+
                 <div class="table-responsive">
                     <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">
@@ -115,4 +112,36 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="img/enroll_guide/g1.png" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="img/enroll_guide/g2.png" alt="First slide">
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+      </div>
+      
+    </div>
+  </div>
 </div>
