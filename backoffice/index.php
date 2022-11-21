@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('includes/connect.php');
+require('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
 

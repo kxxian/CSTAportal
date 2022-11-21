@@ -366,7 +366,7 @@ require("includes/connect.php");
                                                         Total for Other Fees
                                                     </label>
                                                     <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
-                                                    <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
+                                                    <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" value="0" min="0" maxlength="7" style="text-align:right">
                                                 </div>
 
 
@@ -381,10 +381,7 @@ require("includes/connect.php");
                                         <fieldset class="scheduler-border">
                                             <legend class="scheduler-border text-gray-900">Total</legend>
                                             <div class="form-group row">
-                                                <div class="col-sm-3">
-
-                                                    <?php
-                                                    ?>
+                                                <div class="col-sm-3"> <?php ?>
 
                                                     <input type="hidden" class="form-control" id="totaldue" name="totaldue" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
@@ -453,11 +450,11 @@ require("includes/connect.php");
                                             <div class="form-group row">
                                                 <div class="col-sm-6" id="reqform">
                                                     <label for="" class="text-gray-900"><strong>Assessment Form</strong> <i style="font-size: 0.9rem;color:#808080"> *Attach assessment/disbursement form here </i></label>
-                                                    <input type="file" accept=".jpg" class="form-control" name="reqform">
+                                                    <input type="file" accept=".jpg" class="form-control" name="assessform">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="paymentproof" class="text-gray-900"><strong>Proof of Payment</strong></label>
-                                                    <input type="file" accept=".jpg" class="form-control" name="paymentproof" required>
+                                                    <input type="file" accept=".jpg" class="form-control" name="pof" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

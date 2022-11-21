@@ -23,7 +23,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Verified Payments</title>
+    <title>For Receipt | Guest</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
        <!-- Custom fonts for this template-->
@@ -83,7 +83,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
         <?php
          //office conditions for sidebar menu
          if ($office=="Accounting"){
-            $pageValue = 5;
+            $pageValue = 4;
         }else{
             header("Location:index.php");
         }
@@ -109,57 +109,45 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-check fa-fw"></i> Verified Payments
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-money-bill fa-fw"></i> For Receipt Guest
 
                             </h6>
 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered text-gray-900" id="forreceiptTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="forreceiptTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th>Student #</th>
                                             <th>Name</th>
-                                            <th>Course</th>
-                                            <th hidden>Tuition Fee</th>
-                                            <th hidden>Applicable S.Y</th>
-                                            <th hidden>Term</th>
-                                            <th>Amount Paid</th>
-                                            <th hidden>Others</th>
-                                            <th hidden>Others Total</th>
-                                            <th hidden>SentVia</th>
-                                            <th hidden>Method</th>
-                                            <th hidden>Payment Date</th>
-                                            <th hidden>Time</th>
-                                            <th hidden>Verified</th>
-                                            <th hidden>Verification Code</th>
                                             <th>Date</th>
-                                            <th hidden>OR</th>
-                                            <th hidden>AR</th>
-                                            <th hidden>Remarks</th>
+                                            <th>Ammount Paid</th>
+                                            <th>Applicable S.Y</th>
+                                            <th>Term</th>
+                                            <th>Others</th>
+                                            <th>Others Total</th>
                               
-                                            <th class="text-center" hidden>Actions</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM vwpayverif WHERE payment_status=?";
-                                        $data = array("Verified");
+                                        $sql = "SELECT * FROM guest_payverif WHERE payment_status=?";
+                                        $data = array("For Receipt");
                                         $stmt = $con->prepare($sql);
                                         $stmt->execute($data);
                                         $result = $stmt->fetchAll();
 
                                         foreach ($result as $row) {
 
-                                            $payment = "../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
-                                            $reqform = "../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
+                                            $payment = "../student/uploads/payverif/guest/assessment/{$row['gp_id']}.jpg";
+                                            $assessment = "../student/uploads/payverif/guest/pof/{$row['gp_id']}.jpg";
 
                                             if (file_exists($payment)) {
 
                                                 $img = '
-                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-warning" >
+                                                    <a href="../student/uploads/payverif/guest/assessment/' . $row['gp_id'] . '.jpg"   title="Assessment" class="btn btn-warning" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -167,7 +155,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             }
 
                                             if (file_exists($reqform)) {
-                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-info" >
+                                                $img2 = '<a href="../student/uploads/payverif/guest/pof/' . $row['pv_ID'] . '.jpg" title="Proof of Payment" class="btn btn-info" >
                                                     <i class="fa fa-file-invoice fa-fw"></i>
                                                     </a>';
                                             } else {
@@ -180,26 +168,14 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                                                        
-                                                        <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td>' . $row['abbr'] . '</td>
-                                                        <td hidden>' . $row['tfeepayment'] . '</td>
-                                                        <td  hidden>' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
-                                                      
-                                                        <td hidden>' . $row['term'] . '</td>
+                                                        <td>' . $row['date_of_payment'] . '</td>
                                                         <td>' . $row['amtpaid'] . '</td>
-                                                        <td hidden>' . $row['particulars'] . '</td>
-                                                        <td hidden> ' . $row['particulars_total'] . '</td>
-                                                        <td hidden>' . $row['sentvia'] . '</td>
-                                                        <td hidden>' . $row['paymethod'] . '</td>
-                                                        <td hidden>' . $row['date_paid'] . '</td>
-                                                        <td hidden>' . $row['time_paid'] . '</td>
-                                                        <td hidden>' . $row['payment_status'] . '</td>
-                                                        <td hidden>' . $row['verif_code'] . '</td>
-                                                        <td>' . $row['date_verified'] . '</td>
-                                                        <td hidden>' . $row['OR'] . '</td>
-                                                        <td hidden>' . $row['AR'] . '</td>
-                                                        <td hidden>' . $row['remarks'] . '</td>
+                                                        <td >' . $row['schoolyr'] .' '. $row['semester_ID'] .'  </td>
+                                                      
+                                                        <td>' . $row['terms_ID'] . '</td>
+                                                        <td>' . $row['particulars'] . '</td>
+                                                        <td> ' . $row['particulars_total'] . '</td>
                                                         
 
 
@@ -212,9 +188,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         
                                                         
 
-                                                        <td hidden> 
-                                                        <button hidden class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
-                                                        <button hidden class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
+                                                        <td> 
+                                                        <button hidden class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['gp_id'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
+                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['gp_id'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
                                         }
@@ -319,7 +295,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
    
     <!-- scripts -->
-    <script src="js/verifiedpayments.js"></script>
+    <script src="js/send-receipt.js"></script>
     <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
 

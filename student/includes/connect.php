@@ -3,10 +3,10 @@
 //require_once("../includes/connect.php");
 //require_once("../codes/fetchuserdetails.php");
 
- $host="localhost:3307"; 
+ $host="localhost:3306"; 
  $dbase="studentportal"; 
  $user="root"; 
- $pwd = ""; 
+ $pwd = "KR@0726$"; 
 
 $dsn="mysql:host={$host};dbname={$dbase}";
 try{

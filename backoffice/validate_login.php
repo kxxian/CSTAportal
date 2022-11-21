@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once("includes/connect.php");
+    require("includes/connect.php");
 
     $username=htmlspecialchars(trim($_POST['username']));
     $pass=sha1(trim($_POST['password']));

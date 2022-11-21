@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../includes/connect.php');
+require('../includes/functions.php');
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
 require("../mailer/PHPMailer/src/Exception.php");
@@ -13,7 +14,7 @@ if (isset($_POST['submit'])) {
 
     // current date and time
     date_default_timezone_set('Asia/Manila');
-    $date = date('y-m-d h:i:s');
+    $date = date('y-m-d');
     //echo ucwords($date);
     $lname = ucwords(htmlspecialchars(trim($_POST['lname'])));
     $fname = ucwords(htmlspecialchars(trim($_POST['fname'])));
@@ -117,12 +118,20 @@ if (isset($_POST['submit'])) {
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();
 
+					// upload assessment form
+					if($_FILES['assessform']['tmp_name'] != "") {
+						$msg = upload_assess_form($_FILES['assessform'], $newname);
+					}
+
+					// upload proof of payment
+					if($_FILES['pof']['tmp_name'] != "") {
+						$msg = uploadpof($_FILES['pof'], $newname);
+					}
 
                     $_SESSION['status'] = "Success!";
                     $_SESSION['msg'] = "Your Payment is Sent!";
                     $_SESSION['status_code'] = "success";
                     header('location:../guest_payverif.php');
-
 
                     ##email
 

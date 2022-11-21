@@ -42,12 +42,12 @@ $(document).ready(function() {
         "info": true,
         "bDestroy": true,
         "ajax": {
-            url: "codes/fetchpending.php",
+            url: "codes/fetchpending_guest.php",
             type: "POST"
 
         },
         "columnDefs": [{
-            "target": [0,1,2,3,4,5,6],
+            "target": [0,1,2,3,4,5],
             "orderable": false,
         }, ],
     });
@@ -74,7 +74,7 @@ $(document).ready(function() {
                         timer: 3000
                     })
 
-              
+                    $('#assessModal').modal('hide');
                     pendingpaymentsTable.api().ajax.reload();
                     $('#paymentdetailsModal').modal('toggle');
                 }
@@ -84,7 +84,7 @@ $(document).ready(function() {
     })
     $(document).on('click', '.paymentdetails', function() {
         var payment_id = $(this).attr('id');
-        
+
 
         $.ajax({
             url: "codes/acknowledge.php",
@@ -95,24 +95,23 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 $('#paymentdetailsModal').modal('show');
-                 $('#pv_ID').val(data.id);
-                // $('#fullname').val(data.fullname);
-                // $('#email').val(data.email);
-                $('#date_sent').html(data.date_sent);
-                $('#sent_via').html(data.sent_via);
-                $('#date_sent').html(data.date_sent);
-                $('#pay').html(data.pay);
-                $('#dop').html(data.dop);
-                $('#top').html(data.top);
-                $('#term').html(data.term);
-                $('#sysem').html(data.sysem);
-                $('#tfee').html(data.tfee);
-                $('#part').html(data.part);
-                $('#ptotal').html(data.ptotal);
-                $('#gtotal').html(data.gtotal);
-                $('#amtpaid').html(data.amtpaid);
-                $('#email').val(data.email);
+                $('#payment_id').val(data.id);
                 $('#fullname').val(data.fullname);
+                $('#email').val(data.email);
+                $('#date').val(data.date);
+                $('#time').val(data.time);
+                $('#tfee').val(data.tfeeamount);
+                $('#appsy').val(data.appsy);
+                $('#term').val(data.term);
+                $('#others').val(data.others);
+                $("#others_total").val(data.others_total);
+                $("#paymethod").val(data.paymethod);
+                $("#sentvia").val(data.sentvia);
+                $("#gtotal").val(data.gtotal);
+                $("#note").val(data.note);
+                
+                $('.title').text('Payment Details');
+                $('#enroll_id').val(payment_id);
             
                 $('#operation').val("ack");
                 $('#action').val("Acknowledge");
