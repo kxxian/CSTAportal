@@ -320,7 +320,6 @@ function uploadcepermit($fname, $newname)
     return $res;
 }
 
-<<<<<<< HEAD
 
 function uploadreq($fname, $newname)
 {
@@ -331,7 +330,12 @@ function uploadreq($fname, $newname)
         $requploaded=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
             echo $res = $requploaded;
-=======
+        }else{
+            echo $res = "File Failed to Upload!";
+        }
+    }
+    return $res;
+}
 function upload_assess_form($fname, $newname)
 {
     $upload_directory = "../uploads/payverif/guest/assessment/";
@@ -340,16 +344,14 @@ function upload_assess_form($fname, $newname)
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
             echo $res = "File Successfully Uploaded!";
->>>>>>> 85e3325725ff5e758ae044eb980591c0ca4da041
+
         } else {
             echo $res = "File Failed to Upload!";
         }
     }
     return $res;
 }
-<<<<<<< HEAD
-?>
-=======
+
 
 function uploadpof($fname, $newname)
 {
@@ -366,4 +368,3 @@ function uploadpof($fname, $newname)
     return $res;
 }
 ?>
->>>>>>> 85e3325725ff5e758ae044eb980591c0ca4da041
