@@ -8,8 +8,8 @@ require_once 'includes/fetchuserdetails.php';
 $office = $Office;
 
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
-    header('location:login.php');
+if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
+    header('location:../students/login.php');
 }
 ?>
 

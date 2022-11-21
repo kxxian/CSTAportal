@@ -236,158 +236,166 @@ require_once("includes/connect.php");
 
 
 
-                    <div class="row">
-                        <div class="col-lg-12 card-margin">
-                            <div class="card search-form">
-                                <div class="card-body p-0">
-                                    <form id="search-form" action="" method="POST">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row no-gutters">
-                                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                                        <select class="form-control" id="exampleFormControlSelect1" required>
-                                                            <option selected value="" disabled>Student Type</option>
-                                                            <option>Freshman</option>
-                                                            <option>Transferee</option>
-                                                            <option>Second Course Taker</option>
-                                                            <option>Cross-Enrollee</option>
-                                                            <option>Unit Earner</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                                                        <input type="text" maxlength="10" placeholder="Enter enrollment number..." class="form-control" id="enrollnum" name="enrollnum">
-                                                    </div>
-                                                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                                                        <button type="submit" name="submit" class="btn btn-base">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                                                                <circle cx="11" cy="11" r="8"></circle>
-                                                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                                            </svg>
-                                                        </button>
+                    <div class="card shadow ">
+                        <div class="card-header">
+                            <div class="card-header text-gray-900">
+                                <h7 class="h7 font-weight-bold">
+                                    <i class="fas fa-search"></i>
+
+                                   Track Enrollment
+                                </h7>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 card-margin">
+                                    <div class="card search-form">
+
+                                        <div class="card-body p-0">
+                                            <form id="search-form" action="" method="POST">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="row no-gutters">
+                                                          
+                                                            <div class="col-lg-11 col-md-6 col-sm-12 p-0">
+                                                                <input type="text" maxlength="10" placeholder="Enter enrollment number..." class="form-control" id="enrollnum" name="enrollnum">
+                                                            </div>
+                                                            <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                                                <button type="submit" name="submit" class="btn btn-base">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                                                                        <circle cx="11" cy="11" r="8"></circle>
+                                                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
-                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <!-- Page Heading -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Enrollment Details</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover mb-0">
+                                            <thead>
+                                                <tr class="align-self-center">
+
+                                                    <th class="text-gray-900 font-weight-bold text-center">Student Name</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Course</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Email</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Attachments</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Status</th>
+                                                    <th class="text-gray-900 font-weight-bold text-center">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <?php
+                                                if (isset($_POST['submit'])) {
+                                                    $enrollno = $_POST['enrollnum'];
+                                                    //echo "<script>alert($enrollno)</script>";
+                                                    $sql = "SELECT * from `vwguest_enrollment_freshman` where enroll_no=?";
+                                                    $data = array($enrollno);
+                                                    $stmt = $con->prepare($sql);
+                                                    $stmt->execute($data);
+                                                    // $row = $stmt->fetch();
+
+                                                    while ($row = $stmt->fetch()) {
+
+
+
+                                                        //check attachments in directory
+                                                        $bc = "uploads/requirements/freshman/bc/{$row['ge_id']}.pdf";
+                                                        $form = "uploads/requirements/freshman/f138/{$row['ge_id']}.pdf";
+                                                        $gm = "uploads/requirements/freshman/gmc/{$row['ge_id']}.pdf";
+
+                                                        //birth certificate
+                                                        if (file_exists($bc)) {
+                                                            $birth = '
+                                                         <a title="Birth/Marriage Certificate" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $row['ge_id'] . '.jpg">
+                                                         <i class="fa fa-receipt fa-fw"></i></a>
+                                                         ';
+                                                        } else {
+                                                            $birth = "";
+                                                        }
+
+                                                        if (file_exists($form)) {
+                                                            $f138 = '<a title="Form 138" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $row['ge_id'] . '.jpg">
+                                                        <i class="fa fa-receipt fa-fw"></i></a>';
+                                                        } else {
+                                                            $f138 = "";
+                                                        }
+
+                                                        if (file_exists($gm)) {
+                                                            $gmc = '<a title="Form 138" class="btn btn-info btn-sm" target="_blank" href="uploads/payverif/payments/' . $row['ge_id'] . '.jpg">
+                                                        <i class="fa fa-receipt fa-fw"></i></a>';
+                                                        } else {
+                                                            $gmc = "";
+                                                        }
+
+                                                ?>
+                                                        <tr>
+
+                                                            <td class="text-center text-gray-900"><?php echo $row['lname'] . ", " . $row['fname'] . " " . $row['mname'] ?></td>
+                                                            <td class="text-center text-gray-900"><?php echo $row['course'] ?></td>
+                                                            <td class="text-center text-gray-900"><?php echo $row['email'] ?></td>
+                                                            <td class="text-center text-gray-900"><?php echo $birth . $f138 . ' ' . $gmc  ?></td>
+
+                                                            <td class="text-center text-gray-900"><?php echo $row['date_submitted'] ?></td>
+                                                            <td class="text-center text-gray-900"><span class="badge badge badge-warning"><?php echo $row['enrollment_status'] ?></span></td>
+                                                            <td class="text-center text-gray-900">
+                                                                <button type="button" name="delete" id="<?= $row["ge_id"] ?>" class="btn btn-danger btn-sm delete" title="Cancel"><i class="fa fa-fw fa-times"></i></button>
+                                                            </td>
+                                                        </tr>
+
+                                            </tbody>
+                                        <?php
+                                                    }
+                                                } else {
+                                        ?>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+
+                                    <?php }
+
+                                    ?>
+
+
+
+
+
+
+
+
+
+
+
+                                        </table>
+                                    </div>
+                                    <!--end table-responsive-->
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
 
 
-                    <!-- Page Heading -->
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="header-title pb-3 mt-0 text-gray-900 font-weight-bold">Enrollment Details</h5>
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead>
-                                        <tr class="align-self-center">
-
-                                            <th class="text-gray-900 font-weight-bold text-center">Student Name</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Course</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Email</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Attachments</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Date Sent</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Status</th>
-                                            <th class="text-gray-900 font-weight-bold text-center">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-                                        if (isset($_POST['submit'])) {
-                                            $enrollno = $_POST['enrollnum'];
-                                            //echo "<script>alert($enrollno)</script>";
-                                            $sql = "SELECT * from `vwguest_enrollment_freshman` where enroll_no=?";
-                                            $data = array($enrollno);
-                                            $stmt = $con->prepare($sql);
-                                            $stmt->execute($data);
-                                            // $row = $stmt->fetch();
-
-                                            while ($row = $stmt->fetch()) {
-
-                                            
-
-                                                //check attachments in directory
-                                                $bc = "uploads/requirements/freshman/bc/{$row['ge_id']}.pdf";
-                                                $form = "uploads/requirements/freshman/f138/{$row['ge_id']}.pdf";
-                                                $gm = "uploads/requirements/freshman/gmc/{$row['ge_id']}.pdf";
-
-                                                //birth certificate
-                                                if (file_exists($bc)) {
-                                                    $birth = '
-                                                         <a title="Birth/Marriage Certificate" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $row['ge_id'] . '.jpg">
-                                                         <i class="fa fa-receipt fa-fw"></i></a>
-                                                         ';
-                                                } else {
-                                                    $birth = "";
-                                                }
-
-                                                if (file_exists($form)) {
-                                                    $f138 = '<a title="Form 138" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $row['ge_id'] . '.jpg">
-                                                        <i class="fa fa-receipt fa-fw"></i></a>';
-                                                } else {
-                                                    $f138 = "";
-                                                }
-
-                                                if (file_exists($gm)) {
-                                                    $gmc = '<a title="Form 138" class="btn btn-info btn-sm" target="_blank" href="uploads/payverif/payments/' . $row['ge_id'] . '.jpg">
-                                                        <i class="fa fa-receipt fa-fw"></i></a>';
-                                                } else {
-                                                    $gmc = "";
-                                                }
-
-                                        ?>
-                                                <tr>
-
-                                                    <td class="text-center text-gray-900"><?php echo $row['lname'] . ", " . $row['fname'] . " " . $row['mname'] ?></td>
-                                                    <td class="text-center text-gray-900"><?php echo $row['course'] ?></td>
-                                                    <td class="text-center text-gray-900"><?php echo $row['email'] ?></td>
-                                                    <td class="text-center text-gray-900"><?php echo $birth.$f138.' '.$gmc  ?></td>
-
-                                                    <td class="text-center text-gray-900"><?php echo $row['date_submitted'] ?></td>
-                                                    <td class="text-center text-gray-900"><span class="badge badge badge-warning"><?php echo $row['enrollment_status'] ?></span></td>
-                                                    <td class="text-center text-gray-900">
-                                                        <button type="button" name="delete" id="<?= $row["ge_id"] ?>" class="btn btn-danger btn-sm delete" title="Cancel"><i class="fa fa-fw fa-times"></i></button>
-                                                    </td>
-                                                </tr>
-
-                                    </tbody>
-                                <?php
-                                            }
-                                        } else {
-                                ?>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                            <?php }
-
-                            ?>
-
-
-
-
-
-
-
-
-
-
-
-                                </table>
-                            </div>
-                            <!--end table-responsive-->
-
-                        </div>
-                    </div>
                     <!-- Content Row -->
                 </div>
                 <!-- /.container-fluid -->
