@@ -356,7 +356,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                         <div class="col-md-4">
                             <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
-                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
+                            <input type="text" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false; return (event.charCode > 47 && 
+	                                event.charCode < 58)" placeholder="Enter Mobile No..">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -433,11 +434,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="guardian" class="text-gray-900 font-weight-bold mb-3">Guardian</label>
-                            <input type="text" name="guardian" id="guardian" class="form-control">
+                            <input type="text" name="guardian" id="guardian" class="form-control" >
                         </div>
                         <div class="col-md-6">
                             <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Guardian Contact</label>
-                            <input type="text" name="gcontact" id="gcontact" class="form-control">
+                            <input type="text" maxlength="11" name="gcontact" id="gcontact" class="form-control" onkeypress="return (event.charCode > 47 && 
+	                                event.charCode < 58)">
                         </div>
                     </div>
                     <div class="modal-footer">
