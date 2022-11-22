@@ -76,6 +76,50 @@ $(document).ready(function() {
 
 
 
+    $(document).on('click', '.deletereqbtn', function() {
+        var sr_id = $(this).attr('id');
+        var filename= $(this).attr('filename');
+       // alert(filename);
+
+        Swal.fire({
+            title: 'Confirmation',
+            text: "Are you sure you want to delete this file?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    url: "codes/editinfo.php",
+                    method: "POST",
+                    data: {
+                        sr_id: sr_id,
+                        filename:filename
+                    },
+                  
+                })
+                
+              Swal.fire(
+                'Success!',
+                'File Deleted!',
+                'success'
+              )
+              setTimeout(function(){// wait for 5 secs(2)
+               window.location.reload();
+           }, 2000); 
+            
+            }
+           
+          })
+         
+    })
+
+
+
+
 
 
 

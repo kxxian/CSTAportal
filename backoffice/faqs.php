@@ -202,8 +202,8 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     </div>
 
                     <div class="modal-footer">
-                        <input type="text" name="faq_id" id="faq_id">
-                        <input type="text" name="operation" id="operation">
+                        <input type="hidden" name="faq_id" id="faq_id">
+                        <input type="hidden" name="operation" id="operation">
                         <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <input type="submit" name="action" id="action" class="btn btn-success" value="Add">
 

@@ -108,7 +108,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="usersTable" class="table table-bordered" width="100%" cellspacing="0">
+                                <table id="usersTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Name</th>

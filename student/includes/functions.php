@@ -6,8 +6,9 @@ function uploadpayment($fname, $newname)
     if (is_uploaded_file($fname['tmp_name'])) {
         $filename = basename($fname['name']);
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $payfile=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-            echo $res = "File Successfully Uploaded!";
+            echo $res = $payfile;
         } else {
             echo $res = "File Failed to Upload!";
         }
@@ -21,8 +22,9 @@ function uploadreqform($fname, $newname)
     if (is_uploaded_file($fname['tmp_name'])) {
         $filename = basename($fname['name']);
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $reqformfile=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-            echo $res = "File Successfully Uploaded!";
+            echo $res = $reqformfile;
         } else {
             echo $res = "File Failed to Upload!";
         }

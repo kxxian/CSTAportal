@@ -14,15 +14,36 @@ $(document).ready(function() {
           },
       })
 
-        },1500)
+        },1000)
 
 
+     //notifications counter 
+     $.post("codes/counter.php",
+     {data1:'get'},function(data1){
+     
+         if(data1>0 && data1<100){
+                  //console.log(data1);
+             $(".ctr_notif").text(data1.toLocaleString());
+             
+         }else if(data1>99){
+             $(".ctr_notif").text("99+");
+         }
+         else{
+            
+              $(".ctr_notif").text("");
+         }
+     });
 
-    //   setInterval(function() {
-       
-
-    // },2000);
-
+      //fetch notifications 
+     $.ajax({
+         type: "POST",
+         url: "codes/counter.php",
+         data: {
+         param: 1
+         }
+     }).done(function (rec) {
+         $('#notifications').html(rec)
+     });
 
             
 })
@@ -62,7 +83,7 @@ $(document).ready(function() {
 
 
 
-    },3000);
+    },15000);
     
 
 });

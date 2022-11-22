@@ -198,7 +198,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         </div><br>
 
                                                     </div>
-                                                    <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"><i class="fas fa-save"></i> Change</button></center>
+                                                    <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"> Change</button></center>
                                                 </form>
                                                 <div class="mt-2">
                                                     <h4 class="text-gray-900 font-weight-bold"><?= $empname ?></h4>

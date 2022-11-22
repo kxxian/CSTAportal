@@ -87,9 +87,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
             header("Location:index.php");
         }
         
-        if ($usertype!="Admin"){
-            header("Location:index.php");
-        }
+        // if ($usertype!="Admin"){
+        //     header("Location:index.php");
+        // }
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -122,6 +122,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Student No.</th>
+                                            <th>Student Type</th>
                                             <th>Name</th>
                                             <th>Year Level</th>
                                             <th>Course</th>

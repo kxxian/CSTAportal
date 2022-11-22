@@ -120,25 +120,25 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th>Student #</th>
-                                            <th>Name</th>
-                                            <th>Course</th>
-                                            <th hidden>Tuition Fee</th>
-                                            <th hidden>Applicable S.Y</th>
-                                            <th hidden>Term</th>
-                                            <th>Amount Paid</th>
-                                            <th hidden>Others</th>
-                                            <th hidden>Others Total</th>
-                                            <th hidden>SentVia</th>
-                                            <th hidden>Method</th>
-                                            <th hidden>Payment Date</th>
-                                            <th hidden>Time</th>
-                                            <th hidden>Verified</th>
-                                            <th hidden>Verification Code</th>
-                                            <th>Date</th>
-                                            <th hidden>OR</th>
-                                            <th hidden>AR</th>
-                                            <th hidden>Remarks</th>
+                                            <th class="text-center">Student #</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Course</th>
+                                            <th class="text-center" hidden>Tuition Fee</th>
+                                            <th class="text-center" hidden>Applicable S.Y</th>
+                                            <th class="text-center" hidden>Term</th>
+                                            <th class="text-center">Amount Paid</th>
+                                            <th class="text-center" hidden>Others</th>
+                                            <th class="text-center" hidden>Others Total</th>
+                                            <th class="text-center" hidden>SentVia</th>
+                                            <th class="text-center" hidden>Method</th>
+                                            <th class="text-center" hidden>Payment Date</th>
+                                            <th class="text-center" hidden>Time</th>
+                                            <th class="text-center" hidden>Verified</th>
+                                            <th class="text-center" hidden>Verification Code</th>
+                                            <th class="text-center">Date</th>
+                                            <th class="text-center" hidden>OR</th>
+                                            <th class="text-center" hidden>AR</th>
+                                            <th class="text-center" hidden>Remarks</th>
                               
                                             <th class="text-center" hidden>Actions</th>
                                         </tr>
@@ -180,23 +180,23 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                                                        
-                                                        <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td>' . $row['abbr'] . '</td>
-                                                        <td hidden>' . $row['tfeepayment'] . '</td>
-                                                        <td  hidden>' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
+                                                        <td class="text-center">' . $row['snum'] . '</td>
+                                                        <td class="text-center">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
+                                                        <td class="text-center">' . $row['abbr'] . '</td>
+                                                        <td class="text-center" hidden>' . $row['tfeepayment'] . '</td>
+                                                        <td class="text-center"  hidden>' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
                                                       
-                                                        <td hidden>' . $row['term'] . '</td>
-                                                        <td>' . $row['amtpaid'] . '</td>
+                                                        <td class="text-center" hidden>' . $row['term'] . '</td>
+                                                        <td class="text-right">' . $row['amtpaid'] . '</td>
                                                         <td hidden>' . $row['particulars'] . '</td>
                                                         <td hidden> ' . $row['particulars_total'] . '</td>
-                                                        <td hidden>' . $row['sentvia'] . '</td>
-                                                        <td hidden>' . $row['paymethod'] . '</td>
+                                                        <td class="text-center" hidden>' . $row['sentvia'] . '</td>
+                                                        <td class="text-center" hidden>' . $row['paymethod'] . '</td>
                                                         <td hidden>' . $row['date_paid'] . '</td>
                                                         <td hidden>' . $row['time_paid'] . '</td>
-                                                        <td hidden>' . $row['payment_status'] . '</td>
+                                                        <td class="text-center" hidden>' . $row['payment_status'] . '</td>
                                                         <td hidden>' . $row['verif_code'] . '</td>
-                                                        <td>' . $row['date_verified'] . '</td>
+                                                        <td class="text-center">' . $row['date_verified'] . '</td>
                                                         <td hidden>' . $row['OR'] . '</td>
                                                         <td hidden>' . $row['AR'] . '</td>
                                                         <td hidden>' . $row['remarks'] . '</td>

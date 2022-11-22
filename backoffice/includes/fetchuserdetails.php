@@ -14,6 +14,7 @@
         $dept=$row['dept'];
         $usertype=$row['role'];
         $Office=$row['office'];
+        $deptemail=$row['dept_email'];
        }
        
        catch(PDOException $e){

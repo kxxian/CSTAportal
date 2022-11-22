@@ -12,10 +12,15 @@ $date = date('y-m-d h:i:s');
 
 
 if (isset($_POST['enroll_id'])){
+    $filename=$_POST['filename'];
     $sql = "DELETE FROM enrollment where enrollment_ID=?";
     $data = array($_POST['enroll_id']);
     $stmt = $con->prepare($sql);
     $stmt->execute($data);
+
+   
+
+    unlink("../uploads/copygrades/$filename");
 
 
 }

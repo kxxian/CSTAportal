@@ -26,7 +26,7 @@ if (isset($_POST["search"]["value"])) {
  
     $query .= 'OR yrlevel LIKE "%' . $_POST["search"]["value"] . '%"';
 
-    $query .= 'OR course LIKE "%' . $_POST["search"]["value"] . '%")';
+    $query .= 'OR abbr LIKE "%' . $_POST["search"]["value"] . '%")';
     
    
 }
@@ -51,31 +51,25 @@ $filtered_rows=$statement->rowCount();
 
 
 foreach ($result as $row) {
-    $lname= $row["lname"];
+    $lname=$row["lname"];
     $fname= $row["fname"];
     $mname= $row["mname"];
 
     $sub_array = array();
-    $sub_array[] = $row["snum"];
-    $sub_array[] = $lname.', '.$fname.' '.$mname;
-    $sub_array[] = $row["yrlevel"];
-    $sub_array[] = $row["dept"];
-
-
-    $sub_array[] = $row["course"];
+    $sub_array[] = '<center>'.$row["snum"].'</center>';
+    $sub_array[] = '<center>'.$lname.', '.$fname.' '.$mname.'</center>';
+    $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
+    $sub_array[] = '<center>'.$row["dept"].'</center>';
+    $sub_array[] = '<center>'.$row["abbr"].'</center>';
    
   
- 
-   
-    
-    
     $sub_array[] =
      '
 
     <button type="button" id="' . $row["id"] . '"  email="'.$row['email'] .'" sname="'.$lname.', '.$fname.' '.$mname.'"
     class="btn btn-success btn-sm accept" title="Accept"><i class="fa fa-fw fa-thumbs-up"></i></button>
 
-    <button type="button" id="' . $row["id"] . '"  email="'.$row['email'] .'" 
+    <button type="button" id="' . $row["id"] . '"  email="'.$row['email'] .'" sname="'.$lname.', '.$fname.' '.$mname.'"
     class="btn btn-danger btn-sm decline" title="Decline"><i class="fa fa-fw fa-thumbs-down"></i></button>
     
     ';

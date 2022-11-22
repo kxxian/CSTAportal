@@ -2,6 +2,7 @@
 
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
+// require_once("codes/fetchstudenttable.php");
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -19,7 +20,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CSTA Portal | Profile</title>
+    <title>My Profile</title>
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/cstalogonew.png">
@@ -27,6 +28,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <!-- Site Icons -->
     <link rel="shortcut icon" href="img/CSTA_SMALL.png" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/CSTA_SMALL.png">
+
+    <!-- bootstrap5 cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -38,6 +42,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+        ::-webkit-scrollbar {
+            width: .5em;
+        }
+
         .address {
             text-transform: capitalize;
         }
@@ -55,8 +63,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         }
 
         .picture {
-            width: 106px;
-            height: 106px;
+            width: 140px;
+            height: 140px;
             background-color: #999999;
             border: 4px solid #CCCCCC;
             color: #FFFFFF;
@@ -123,17 +131,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-900">My Profile</h1>
+                    <h1 class="h4 mb-4 text-gray-900 font-weight-bold">My Profile</h1>
                     <div class="main-body">
                         <div class="row gutters-sm">
                             <div class="col-md-7 mb-3">
                                 <ul class="nav nav-pills" id="myTab">
                                     <li class="nav-item">
-                                        <a href="#profile" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+                                        <a href="#profile" class="nav-link active"><i class="fas fa-user"></i> Profile</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#subreq" class="nav-link active"><i class="fas fa-file"></i> Requirements</a>
+                                        <a href="#subreq" class="nav-link"><i class="fas fa-file"></i> Requirements</a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -143,19 +152,28 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
                                             <div class="card-body">
+
                                                 <div class="d-flex flex-column align-items-center text-center">
-                                                    <?php
-                                                    //check if picture is existing in uploads/users   
-                                                    $file = 'uploads/users/' . $username . '-' . $bday . '.jpg';
-                                                    if (!file_exists($file)) {
-                                                        $dp = 'default.jpg';
-                                                    } else {
-                                                        $dp = $username . '-' . $bday . '.jpg';
-                                                    }
-                                                    echo '<img  src="uploads/users/' . $dp . '" alt="Admin" class="rounded-circle" width="120">';
-                                                    ?>
-                                                    <div class="mt-3">
-                                                        <h4 class="text-gray-900"><?= $fullname ?></h4>
+                                                    <form action="profilepicupload.php" method="post" enctype="multipart/form-data">
+                                                        <div class="picture-container">
+                                                            <div class="picture">
+
+                                                                <?php
+                                                                $file = 'uploads/users/' . $sid . '.jpg';
+                                                                if (!file_exists($file)) {
+                                                                    $dp = 'default.jpg';
+                                                                } else {
+                                                                    $dp = $sid . '.jpg';
+                                                                }
+                                                                echo '<img  src="uploads/users/' . $dp . '" class="picture-src" id="wizardPicturePreview" width="150" title="Choose Picture">' ?>
+                                                                <input type="file" id="wizard-picture" name="picture" accept=".jpg" class="">
+                                                            </div><br>
+
+                                                        </div>
+                                                        <center><button style="margin-bottom:15px; margin-top:15px;" type="submit" onclick="upload()" class="btn btn-primary"> Change</button></center>
+                                                    </form>
+                                                    <div class="mt-2">
+                                                        <h4 class="text-gray-900 font-weight-bold"><?= $fullname ?> </h4>
                                                         <p class="text-secondary mb-1 text-gray-900"><?= $snum ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $yrlevel ?></p>
                                                         <p class="text-muted font-size-sm text-gray-900"><?= $course ?></p>
@@ -168,10 +186,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                     <div class="col-md-8">
                                         <div class="card mb-3">
+
+
+
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Full Name</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Full Name</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <?= $fullname ?>
@@ -180,16 +201,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Birthday</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Birthday</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <?= $bday ?>
+                                                        <?= $bday
+                                                        ?>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3 ">
-                                                        <h6 class="mb-0 text-gray-900">Email</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Email</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <?= $email ?>
@@ -198,7 +220,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Mobile</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Mobile</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <?= $mobile ?>
@@ -207,7 +229,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Address</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Address</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <span class="address"> <?= $address ?>, <?= $region ?></span>
@@ -217,7 +239,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Guardian</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Guardian</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <span class="address"> <?= $guardian ?></span>
@@ -227,24 +249,27 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900">Mobile</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Mobile</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <span class="address"> <?= $guardiancontact ?></span>
                                                     </div>
                                                 </div>
+                                                <hr>
 
 
-                                                <!-- <div class="col-sm-12">
-                                                    <a class="btn btn-primary " target="__blank" href="#">Edit</a>
-                                                </div> -->
+                                                <div class="col-sm-12">
+                                                    <button type="button" class="btn btn-info editinfo" id="<?= $sid ?>">
+                                                        Edit
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show active" id="subreq">
 
+                            <div class="tab-pane fade show active" id="subreq">
                                 <?php include_once("includes/req.php")
                                 ?>
                             </div>
@@ -273,6 +298,159 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     include("includes/scripts.php");
     ?>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
 </body>
 
+
 </html>
+
+<script src="js/header.js"></script>
+<script src="js/edit_info.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
+
+<div id="editinfoModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <form method="POST" id="editinfoForm" action="codes/editinfo.php" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-gray-900 font-weight-bold"> <i class="fa fa-fw fa-user"></i> <span class="title">Edit Information</span></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="lname" class="text-gray-900 font-weight-bold">Last Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="lname" id="lname" class="form-control" placeholder="Last Name.." readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fname" class="text-gray-900 font-weight-bold">First Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="fname" id="fname" class="form-control" placeholder="First Name.." readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mname" class="text-gray-900 font-weight-bold">Middle Name</label>
+                            <input type="text" onkeypress="return (event.charCode > 64 && 
+	                                event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" name="mname" id="mname" class="form-control" placeholder="Middle Name.." readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="bday" class="text-gray-900 font-weight-bold">Birthday</label>
+                            <input type="date" name="bday" id="bday" class="form-control" readonly>
+
+                        </div>
+                        <div class="col-md-4">
+                            <label for="email" class="text-gray-900 font-weight-bold">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email..">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="mobile" class="text-gray-900 font-weight-bold">Mobile No.</label>
+                            <input type="number" name="mobile" id="mobile" class="form-control" onKeyPress="if(this.value.length==11) return false;" placeholder="Enter Mobile No..">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-md-8">
+                            <label for="cityadd" class="text-gray-900 font-weight-bold">City Address</label>
+                            <input type="text" name="cityadd" id="cityadd" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="district" class="text-gray-900 font-weight-bold">District</label>
+                            <select id="district" name="district" class="form-control" required>
+                                <option selected value="" disabled>Select District</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refprovince where regCode=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['provCode'] . '>' . $row['provDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="city" class="text-gray-900 font-weight-bold">City</label>
+                            <select id="city" name="city" class="form-control" required>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refcitymun where regDesc=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['citymunCode'] . '>' . $row['citymunDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="barangay" class="text-gray-900 font-weight-bold">Barangay</label>
+                            <select id="barangay" name="barangay" class="form-control" required>
+
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refbrgy where regCode=?";
+                                $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['brgyCode'] . '>' . $row['brgyDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="guardian" class="text-gray-900 font-weight-bold mb-3">Guardian</label>
+                            <input type="text" name="guardian" id="guardian" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Guardian Contact</label>
+                            <input type="text" name="gcontact" id="gcontact" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-6">
+
+                            <span></span><input type="password" placeholder="Password Required" class="form-control" name="password" id="password" required>
+                        </div>
+                        <input type="hidden" name="user_id" id="user_id">
+                        <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <input type="submit" name="save" id="action" class="btn btn-success" value="Save">
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+</div>

@@ -60,13 +60,12 @@
             <div class="card-body">
 
                 <div class="table-responsive">
-                    <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered text-gray-900" id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                             <tr>
                                 <!-- <th>#</th> -->
                                 <th class="text-center">Requirement</th>
                                 <th width="250" class="text-center">Date Uploaded</th>
-                                <th width="120" class="text-center">Remarks</th>
                                 <th width="120" class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -82,22 +81,19 @@
 
                                 echo '<tr> 
                                         <!--<td>' . $row['sr_ID'] . '</td>-->
-                                        <td>' . $row['reqname'] . '</td> 
-                                        <td>' . $row['date_submitted'] . '</td>
+                                        <td class="text-center">' . $row['reqname'] . '</td> 
+                                        <td class="text-center">' . $row['date_submitted'] . '</td>
 
-                                        <td>
-                                        Validated
-                                        </td>
+                                     
 
-
-                                        <td>
+                                        <td class="text-center">
     
-                                        <a href="uploads/requirements/' . $row['sr_ID'] . '.jpg" ><button" class="userinfo btn btn-info" title="View">
+                                        <a href="uploads/requirements/' . $row['filename'] . '" ><button" class="userinfo btn btn-info btn-sm" title="View">
                                         <i class="far fa-eye"></i></button></a>
 
-                                        <input type="hidden" class="deletereqval" value="' . $row['sr_ID'] . '"
-                                        <a href="javascript:void(0)" ><button" class="deletereqbtn btn btn-danger" title="Delete">
-                                        <i class="fas fa-trash"></i></button></a>
+                                     
+                                      <button" class="deletereqbtn btn btn-danger btn-sm" title="Delete" id="'.$row['sr_ID'].'"  filename="'.$row['filename'].'">
+                                        <i class="fas fa-trash"></i></button>
                                                         
                                         </td>
 
@@ -116,7 +112,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
      
       <div class="modal-body">
@@ -124,20 +120,9 @@
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="img/enroll_guide/g1.png" alt="First slide">
+                            <img class="d-block w-100" src="img/enroll_guide/reqs.png" alt="First slide">
                         </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="img/enroll_guide/g2.png" alt="First slide">
-                        </div>
-
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                     
                     </a>
                 </div>
       </div>

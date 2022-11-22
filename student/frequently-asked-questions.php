@@ -1,5 +1,12 @@
 <?php
-require('includes/connect.php');
+require_once("includes/connect.php");
+require_once("codes/fetchuserdetails.php");
+require_once("codes/fetchcurrentsyandsem.php");
+
+if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
+    header('location:login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,7 +229,8 @@ require('includes/connect.php');
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<?php
-		require_once("includes/guest_sidebar.php");
+		$pageValue=6;
+		require_once("includes/sidebar.php");
 		?>
 		<!-- End of Sidebar -->
 
@@ -233,7 +241,7 @@ require('includes/connect.php');
 
 				<!-- Topbar -->
 				<?php
-				require('includes/guest_header.php');
+				require('includes/header.php');
 				?>
 				<!-- End of Topbar -->
 				<!-- Begin Page Content -->
@@ -289,7 +297,7 @@ require('includes/connect.php');
 
 			<!-- Footer -->
 			<?php
-			require_once("includes/guest_footer.php");
+			require_once("includes/footer.php");
 			?>
 			<!-- End of Footer -->
 		</div>
@@ -319,5 +327,12 @@ require('includes/connect.php');
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="js/header.js"></script>
+<script src="js/enrollment.js"></script>
+<script src="js/counter.js"></script>
+<script src="js/notifications.js"></script>
+
 
 </html>

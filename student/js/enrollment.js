@@ -56,6 +56,8 @@ setInterval (function() {
     
     $(document).on('click', '.cancel_enroll', function() {
         var enroll_id = $(this).attr('id');
+        var filename= $(this).attr('filename');
+       // alert(filename);
 
         Swal.fire({
             title: 'Confirmation',
@@ -72,7 +74,8 @@ setInterval (function() {
                     url: "codes/cancel_enroll.php",
                     method: "POST",
                     data: {
-                        enroll_id: enroll_id
+                        enroll_id: enroll_id,
+                        filename:filename
                     },
                   
                 })

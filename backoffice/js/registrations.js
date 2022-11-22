@@ -125,7 +125,7 @@ $(document).ready(function() {
         var accept_id = $(this).attr('id');
         var accept_email = $(this).attr('email');
         var sname=$(this).attr('sname');
-        // alert(sname); 
+        // alert(sname+accept_id+accept_email); 
 
         Swal.fire({
             title: 'Confirmation',
@@ -164,6 +164,12 @@ $(document).ready(function() {
 
     $(document).on('click', '.decline', function() {
         var id = $(this).attr('id');
+        // var email = $(this).attr('email');
+        // var sname = $(this).attr('sname');
+
+        // alert (email+sname)
+
+
         $('#reason').val("");
 
         

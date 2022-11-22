@@ -9,11 +9,11 @@ $office = $Office;
 
 
 if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
-<<<<<<< HEAD
+
     header('location:../students/login.php');
-=======
+
     header('location:login.php');
->>>>>>> 85e3325725ff5e758ae044eb980591c0ca4da041
+
 }
 ?>
 

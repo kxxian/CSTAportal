@@ -2,7 +2,7 @@
 
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
-require_once("codes/fetchstudenttable.php");
+// require_once("codes/fetchstudenttable.php");
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
@@ -313,8 +313,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 <script src="js/header.js"></script>
 <script src="js/edit_info.js"></script>
-<script src="js/counter.js"></script>
+<!-- <script src="js/counter.js"></script> -->
 <script src="js/notifications.js"></script>
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <div id="editinfoModal" class="modal fade">
     <div class="modal-dialog modal-lg">

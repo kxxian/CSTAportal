@@ -15,8 +15,8 @@ if (isset($_POST['data1'])) {
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
-
   echo $count;
+  $con=null;
 }
 
 //fetch notifications
@@ -71,7 +71,7 @@ if (isset($_POST['id'])) {
   $stmt->execute($data);
 }
 
-
+$con=null;
 
 
 ?>

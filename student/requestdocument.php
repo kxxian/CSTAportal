@@ -536,9 +536,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 } elseif ($rows['status'] == 'Cleared' || $rows['status'] == 'Completed') {
                                                                     $class = "success";
                                                                     $disabled = "disabled";
-                                                                } elseif ($rows['status'] == 'Pending' || $rows['status'] == "Waiting Payment") {
+                                                                } elseif ($rows['status'] == 'Pending') {
                                                                     $class = "warning";
-                                                                    $disabled = "disabled";
+                                                                    $disabled = "";
+                                                                }elseif ($rows['status'] == 'Waiting Payment'){
+                                                                    $class = "warning";
+                                                                    $disabled = "";
+                                                                    
                                                                 }
 
 
@@ -868,7 +872,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 
 
 <script src="js/header.js"></script>
-<script src="js/counter.js"></script>
+<!-- <script src="js/counter.js"></script> -->
 <script src="js/notifications.js"></script>
 <script src="js/reqdoc.js"></script>
 

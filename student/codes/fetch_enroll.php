@@ -41,10 +41,10 @@ foreach ($result as $row) {
     $sub_array[] =  '<center>'.$row["abbr"].'</center>';
 
 
-    if (!file_exists('../student/uploads/copygrades/'.$row['grade_copy'])){
+    if (!file_exists('../uploads/copygrades/'.$row['grade_copy'])){
         $copygrade= "NA";
     }else{
-        $copygrade='<center><a class="font-weight-bold text-center" href="../student/uploads/copygrades/'.$row['grade_copy'].'">Grades</a></center>';
+        $copygrade='<center><a class="font-weight-bold text-center" href="uploads/copygrades/'.$row['grade_copy'].'">Grades</a></center>';
 
     }
 
@@ -57,7 +57,7 @@ foreach ($result as $row) {
     $sub_array[] =
      '
     <center>
-    <button type="button"  id="' . $row["enrollment_ID"] . '" 
+    <button type="button"  id="' . $row["enrollment_ID"] . '"  filename="' . $row["grade_copy"] . '" 
     class="btn btn-danger btn-sm cancel_enroll" title="Cancel Request"><i class="fa fa-fw fa-times"></i></button>
     </center>
     ';

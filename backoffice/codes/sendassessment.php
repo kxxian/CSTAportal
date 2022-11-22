@@ -47,13 +47,11 @@ if (isset($_POST['operation'])) {
 
         $body = "Good Day Teresian!<br><br>
 
-        Here's a copy of the assessment form. Minimum down payment is Php. 3,000.00. <br>
-        Payment can be made thru Bank Deposit or Online Bank Transfer. Kindly send your proof of payment together with your assessment form to https://bit.ly/cstapayverif for<br>
-        verification and Official Receipt purposes.<br><br><br>
-        
-        Thank you. God Bless and Keep safe..<br>
-        
-    
+        Here's a copy of the <b>assessment form</b>. Minimum down payment is Php. 3,000.00. 
+        Payment can be made thru Bank Deposit or Online Bank Transfer. Kindly send your proof of payment together with your assessment form to <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for
+        verification and Official Receipt purposes.
+
+
         ";
 
         $mail = new PHPMailer();
@@ -64,8 +62,8 @@ if (isset($_POST['operation'])) {
         //SMTP user credentials
         include "../includes/smtp_config.php";
 
-        $mail->setFrom($useremail); // insert department email here
-        $mail->FromName = $empname; // employee name + Department 
+        $mail->setFrom($deptemail); // insert department email here
+        $mail->FromName = $dept; // employee name + Department 
         $mail->addAddress($mailTo, $fullname); // recipient
         $mail->SMTPOptions = array('ssl' => array(
             'verify_peer' => false,
@@ -74,7 +72,7 @@ if (isset($_POST['operation'])) {
         ));
         $mail->isHTML(true);
         $mail->Subject = "Assessment for $currentsemval A.Y. $currentsyval"; // email subject
-        $mail->Body = $body;
+        $mail->Body = '<pre>'.$body.'</pre>';
 
 
         //attachments

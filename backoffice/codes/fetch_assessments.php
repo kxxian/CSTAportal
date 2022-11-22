@@ -17,6 +17,8 @@ if (isset($_POST["search"]["value"])) {
     //$query .= 'WHERE enrollment_status="Assessment" ';
 
     $query .= 'AND (snum LIKE "%' . $_POST["search"]["value"] . '%"';
+
+    $query .= 'OR studtype LIKE "%' . $_POST["search"]["value"] . '%"';
   
     $query .= 'OR lname LIKE "%' . $_POST["search"]["value"] . '%"';
 
@@ -57,11 +59,12 @@ foreach ($result as $row) {
 
     $sub_array = array();
     $sub_array[] = $row["snum"];
+    $sub_array[] = $row["studtype"];
     $sub_array[] = $lname.', '.$fname.' '.$mname;
     $sub_array[] = $row["yrlevel"];
 
 
-    $sub_array[] = $row["course"];
+    $sub_array[] = $row["abbr"];
    
   
     $sub_array[] = $row["enrollment_status"];

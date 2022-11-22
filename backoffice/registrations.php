@@ -114,11 +114,11 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <table id="regTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Stud No.</th>
-                                            <th>Student Name</th>
-                                            <th>Year Level</th>
-                                            <th>Department</th>
-                                            <th>Course</th>
+                                            <th class="text-center">Stud No.</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th class="text-center">Year Level</th>
+                                            <th class="text-center">Department</th>
+                                            <th class="text-center">Course</th>
                                             <th width="76">Actions</th>
                                         </tr>
 

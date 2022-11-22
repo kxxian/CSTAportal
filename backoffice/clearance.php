@@ -87,9 +87,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
             header("Location:index.php");
         }
 
-        if ($usertype != "Admin") {
-            header("Location:index.php");
-        }
+        // if ($usertype != "Admin") {
+        //     header("Location:index.php");
+        // }
 
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->

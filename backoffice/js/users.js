@@ -42,29 +42,7 @@ $(document).ready(function() {
 
     $(document).on('submit', '#usersForm', function(event) {
         event.preventDefault();
-        var lname = $("#lname").val();
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var gender = $("#gender").val();
-        var email = $("#email").val();
-        var gender = $("#gender").val();
-        var mobile = $("#mobile").val();
-        var office = $("#office").val();
-        var dept = $("#dept").val();
-        var role = $("#role").val();
-        var position = $("#position").val();
-
-
-        if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role
-            || position=="") {
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Insufficient Data!'
-            })
-        } else {
+      
             $.ajax({
                 url: "codes/userscrud.php",
                 method: "POST",
@@ -84,13 +62,13 @@ $(document).ready(function() {
 
                     $('#usersModal').modal('hide');
 
-                    // $('#usersForm')[0].reset();
+                     $('#usersForm')[0].reset();
 
                     usersTable.api().ajax.reload();
                 }
 
             })
-        }
+      
     })
 
 
@@ -199,7 +177,7 @@ $(document).ready(function() {
         var user_id = $(this).attr('id');
         Swal.fire({
             title: 'Confirm',
-            text: "Are you sure you want to activate this user?",
+            text: "Are you sure you want to permanently delete this user?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

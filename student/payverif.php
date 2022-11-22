@@ -360,7 +360,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     </label>
 
 
-                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="ex. 2022-2023" onkeypress="return (event.charCode > 47 && event.charCode < 58) || (event.keyCode==45)" maxlength="9">
+                                                                    <input type="text" name="selsy" id="selsy" class="form-control" placeholder="..." onkeypress="return (event.charCode > 47 && event.charCode < 58) || (event.keyCode==45)" maxlength="9">
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <label class="form-check-label font-weight-bold" for="chktfee">
@@ -525,11 +525,11 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6" id="reqform">
                                                                     <label for=""><strong>Assessment/Disbursement Form</strong></label>
-                                                                    <input type="file" accept=".jpg" class="form-control" name="reqform">
+                                                                    <input type="file" class="form-control" name="reqform">
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <label for="paymentproof"><strong>Proof of Payment</strong></label>
-                                                                    <input type="file" accept=".jpg" class="form-control" name="paymentproof" required>
+                                                                    <input type="file"  class="form-control" name="paymentproof" required>
                                                                 </div>
 
                                                             </div>

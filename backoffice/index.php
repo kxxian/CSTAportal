@@ -164,10 +164,72 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                         <h3 class="h3 mb-0 text-gray-900 "><strong>Dashboard</strong></h3>
                     </div>
 
+
+                    <?php
+                    
+                    
+                    
+                    ?>
+
+
+
+
                     <!-- Content Row -->
                     <!-- Accounting Cards -->
                     <div class="container">
-                        <div class="row">
+                        <div class="row" >
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-orange">
+                                    <div class="inner">
+                                        <h3 class="tasks"> </h3>
+                                        <p> Tasks </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green">
+                                    <div class="inner">
+                                        <h3 class="accepted">  </h3>
+                                        <p> Registered Students </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-red">
+                                    <div class="inner">
+                                        <h3 class="staff_registrar">  </h3>
+                                        <p> Staff </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-blue">
+                                    <div class="inner">
+                                        <h3 class="up_events">  </h3>
+                                        <p> Upcoming Events </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" >
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -220,6 +282,72 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             </div>
                         </div>
 
+
+
+
+
+                        <div class="row" >
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-orange">
+                                    <div class="inner">
+                                        <h3 class="tasks"> </h3>
+                                        <p> Tasks </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green">
+                                    <div class="inner">
+                                        <h3 class="accepted">  </h3>
+                                        <p> Registered Students </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-red">
+                                    <div class="inner">
+                                        <h3 class="staff_registrar">  </h3>
+                                        <p> Staff </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-blue">
+                                    <div class="inner">
+                                        <h3 class="up_events">  </h3>
+                                        <p> Upcoming Events </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="card mb-5">
@@ -232,7 +360,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-sm-3">
                                 <div class="card rounded-0 shadow">
                                     <div class="card-header bg-gradient bg-primary text-light">
-                                        <h5 class="card-title">Schedule Form</h5>
+                                        <h5 class="card-title">Events</h5>
                                     </div>
                                     <div class="card-body">
                                         <div class="container-fluid">

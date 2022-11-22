@@ -79,15 +79,22 @@ if (isset($_POST['save'])){
     }
 
 
+    
+
+}
 
 
+if (isset($_POST['sr_id'])){
+    $sr_id=$_POST['sr_id'];
+    $filename=$_POST['filename'];
+    $sql = "DELETE FROM studreq where sr_ID=?";
+    $data = array($sr_id);
+    $stmt = $con->prepare($sql);
+    $stmt->execute($data);
 
+   
 
-
-
-
-
-
+    unlink("../uploads/requirements/$filename");
 
 
 }
