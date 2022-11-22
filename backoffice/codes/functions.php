@@ -215,7 +215,7 @@ function get_enrollments_ue(){
 function get_checkreq(){
     // session_start();
     include '../includes/connect.php';
-     include 'fetchuserdetails.php'; 
+    //  include 'fetchuserdetails.php'; 
     $statement=$con->prepare("SELECT * from vwforenrollment_students WHERE enrollment_status='Validating Requirements'");
     //$data=array($dept);
     $statement->execute();

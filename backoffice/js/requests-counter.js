@@ -326,6 +326,21 @@ $.post("codes/counter.php",
         }
     });
 
+    
+              //sidebar counter for requirements checking
+              $.post("codes/counter.php",
+              {data24:'get'},function(data24){
+         
+             if(data24>0){
+                      //console.log(data16);
+                 $(".ctr_checkreq").text(data24.toLocaleString());
+             }else{
+                
+                  $(".ctr_checkreq").text("");
+            
+             }
+         });
+ 
 
 
 
@@ -662,6 +677,22 @@ $.post("codes/counter.php",
            
             }
         });
+
+
+              //sidebar counter for requirements checking
+              $.post("codes/counter.php",
+              {data24:'get'},function(data24){
+         
+             if(data24>0){
+                      //console.log(data16);
+                 $(".ctr_checkreq").text(data24.toLocaleString());
+             }else{
+                
+                  $(".ctr_checkreq").text("");
+            
+             }
+         });
+ 
 
 
 

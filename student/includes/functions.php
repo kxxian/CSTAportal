@@ -71,8 +71,9 @@ function validate_enroll_receipt($fname, $newname)
     if (is_uploaded_file($fname['tmp_name'])) {
         $filename = basename($fname['name']);
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $receipt=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-            echo $res = "File Successfully Uploaded!";
+            echo $res = $receipt;
         } else {
             echo $res = "File Failed to Upload!";
         }
@@ -86,8 +87,9 @@ function validate_enroll_assessment($fname, $newname)
     if (is_uploaded_file($fname['tmp_name'])) {
         $filename = basename($fname['name']);
         $uploadfile = $upload_directory . $newname . "." . end(explode('.', $fname['name']));
+        $assessment=$newname . "." . end(explode('.', $fname['name']));
         if (move_uploaded_file($fname['tmp_name'], $uploadfile)) {
-            echo $res = "File Successfully Uploaded!";
+            echo $res = $assessment;
         } else {
             echo $res = "File Failed to Upload!";
         }

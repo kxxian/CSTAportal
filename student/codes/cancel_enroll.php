@@ -26,8 +26,16 @@ if (isset($_POST['enroll_id'])){
 }
 
 if (isset($_POST['enroll_valid_id'])){
+    $receipt=$_POST['receipt'];
+    $assessment=$_POST['assessment'];
+
     $sql = "DELETE FROM enrollment_validation where ev_ID=?";
     $data = array($_POST['enroll_valid_id']);
     $stmt = $con->prepare($sql);
     $stmt->execute($data);
+
+
+    unlink("../uploads/enroll_val/enroll_receipt/$receipt");
+    unlink("../uploads/enroll_val/enroll_assess/$assessment");
+
 }

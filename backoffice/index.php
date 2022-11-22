@@ -178,12 +178,14 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     <!-- Accounting Cards -->
                     <div class="container">
                     
+
+                        <!-- registrar cards -->
                         <div class="row" >
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
                                         <h3 class="tasks"> </h3>
-                                        <p> Tasks </p>
+                                        <p> Total Tasks </p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-clock" aria-hidden="true"></i>
@@ -233,11 +235,59 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
 
+                           <!-- Accounting -->
+                           <div class="row" hidden>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-orange">
+                                    <div class="inner">
+                                        <h3 class="tasks"> </h3>
+                                        <p> Total Tasks </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
 
 
-
-
-
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green">
+                                    <div class="inner">
+                                        <h3 class="accepted">  </h3>
+                                        <p> Verified Payments </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-wallet" aria-hidden="true"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-red">
+                                    <div class="inner">
+                                        <h3 class="staff_registrar">  </h3>
+                                        <p> Staff </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-blue">
+                                    <div class="inner">
+                                        <h3 class="up_events">  </h3>
+                                        <p> Upcoming Events </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
 
 
                         <div class="row">

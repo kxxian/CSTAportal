@@ -240,7 +240,8 @@ if (isset($_POST['data20'])) {
             (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Pending') 
             +
             (SELECT COUNT(reqdoc_ID) from tbldocureq where `status`='Cleared') 
-            
+            +
+            (SELECT COUNT(enrollment_ID) from enrollment where `enrollment_status`='Validating Requirements') 
             as total
          
           
@@ -310,7 +311,17 @@ if (isset($_POST['data23'])) {
 }
 
 
+//Requirements checking counter
+if (isset($_POST['data24'])) {
 
+  $sql = "SELECT enrollment_ID from enrollment where enrollment_status=?";
+  $data= array("Validating Requirements");
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
 
 
 

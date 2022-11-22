@@ -35,10 +35,10 @@ $filtered_rows=$statement->rowCount();
 foreach ($result as $row) {
    ;
     $sub_array = array();
-    $sub_array[] = '<center> <a type="button"  target="_blank" href="uploads/enroll_val/enroll_receipt/' . $row['ev_ID'] . '.jpg" id="' . $row["ev_ID"] . '" 
+    $sub_array[] = '<center> <a type="button"  target="_blank" href="uploads/enroll_val/enroll_receipt/' . $row['OR'] . '" id="' . $row["ev_ID"] . '" 
     class="btn btn-success btn-sm sendassessment" title="Official Receipt"><i class="fa fa-fw fa-receipt"></i></a>
 
-    <a type="button" target="_blank" href="uploads/enroll_val/enroll_assess/' . $row['ev_ID'] . '.jpg" id="' . $row["ev_ID"] . '" 
+    <a type="button" target="_blank" href="uploads/enroll_val/enroll_assess/' . $row['assessment'] . '" id="' . $row["ev_ID"] . '" 
     class="btn btn-warning btn-sm sendassessment" title="Assessment Form"><i class="fa fa-fw fa-book"></i></a> </center>';
     
     $sub_array[] = '<center>'. $row["status"]. '</center>';
@@ -47,7 +47,7 @@ foreach ($result as $row) {
    
    
 
-    $sub_array[] =  '<center><button" class="btn btn-danger btn-sm cancel_enroll_validate" id="' . $row['ev_ID'] . '" title="Cancel">
+    $sub_array[] =  '<center><button" class="btn btn-danger btn-sm cancel_enroll_validate" id="' . $row['ev_ID'] . '"  receipt="' . $row['OR'] . '"   assessment="' . $row['assessment'] . '"             title="Cancel">
     <i class="fas fa-fw fa-times "></i>
     </button></center>';
     

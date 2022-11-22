@@ -311,7 +311,7 @@ if (isset($_GET['stud'])){
                                 <!-- <th>#</th> -->
                                 <th class="text-center">Requirement</th>
                                 <th width="250" class="text-center">Date Uploaded</th>
-                                <th width="120" class="text-center">Remarks</th>
+                               
                                 <th width="20" class="text-center">View</th>
                             </tr>
                         </thead>
@@ -330,9 +330,6 @@ if (isset($_GET['stud'])){
                                         <td class="text-center"> ' .  $row['reqname'] . '</td> 
                                         <td class="text-center">' .  $row['date_submitted'] . '</td>
 
-                                        <td class="text-center">
-                                        Validated
-                                        </td>
 
 
                                         <td>

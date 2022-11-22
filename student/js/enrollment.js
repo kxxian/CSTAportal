@@ -97,7 +97,10 @@ setInterval (function() {
 
     $(document).on('click', '.cancel_enroll_validate', function() {
       var enroll_id = $(this).attr('id');
+      var receipt = $(this).attr('receipt');
+      var assessment = $(this).attr('assessment');
 
+      // alert (receipt + assessment)
       Swal.fire({
           title: 'Confirmation',
           text: "Are you sure you want to cancel?",
@@ -113,7 +116,9 @@ setInterval (function() {
                   url: "codes/cancel_enroll.php",
                   method: "POST",
                   data: {
-                      enroll_valid_id: enroll_id
+                      enroll_valid_id: enroll_id,
+                      receipt:receipt,
+                      assessment:assessment
                   },
                 
               })
