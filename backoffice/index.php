@@ -178,10 +178,6 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     <!-- Accounting Cards -->
                     <div class="container">
                     
-
-
-
-
                         <div class="row" >
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">

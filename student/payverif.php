@@ -336,6 +336,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-fw fa-credit-card"></i> Payment Verification</h6>
                                             </div>
                                             <div class="card-body text-gray-900">
+
+                                            
                                                 <form action="uploadpay.php" method="POST" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <fieldset class="scheduler-border">

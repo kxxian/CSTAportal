@@ -35,7 +35,7 @@
                         <div class="col-lg-12">
 
                             <label for="requirement" style="font-weight:bold;" class="text-gray-900">Upload Requirement </label>
-                            <input type="file" class="form-control" name="requirement" id="requirement" accept="application/pdf" required><span style="color:black;"><br>NOTE: Please upload <b>scanned</b> copies of your requirements in <b>.pdf</b> format.</span>
+                            <input type="file" class="form-control" name="requirement" id="requirement" accept="application/pdf" required><span style="color:black;"><br>NOTE: Please upload <b>scanned</b> copies of your designated requirements in <b>.pdf</b> format.</span>
                         </div>
 
                     </div>

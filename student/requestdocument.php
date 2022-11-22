@@ -348,7 +348,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label><strong>Place of Birth </strong>(City or Municipality Only)</label>
-                                                                <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder="Quezon City" onkeypress="return (event.charCode > 64 && 
+                                                                <input type="text" name="birthplace" id="birthplace" class="form-control" placeholder=".." onkeypress="return (event.charCode > 64 && 
 	                                                         event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" required>
 
                                                             </div>
@@ -365,13 +365,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label><strong>Year Graduated</strong> (If <strong>UNDERGRADUATE</strong>, Add Last Semester Attended) </label>
-                                                                <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder="2021-2022 First Semester " onkeypress="return (event.charCode > 64 && 
+                                                                <input name="yearGrad" id="yearGrad" type="text" class="form-control" placeholder=".." onkeypress="return (event.charCode > 64 && 
                                                             event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32 || (event.charCode>=48 && event.charCode<=57) 
                                                             || (event.charCode==45)" maxlength="30" required>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <label><strong>Last School Attended Before CSTA</strong></label>
-                                                                <input name="lastSchool" id="lastSchool" type="text" class="form-control" placeholder="e.g. STI College Novaliches" onkeypress="return (event.charCode > 64 && 
+                                                                <input name="lastSchool" id="lastSchool" type="text" class="form-control" placeholder=".." onkeypress="return (event.charCode > 64 && 
 	                                                              event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode)==32" maxlength="100" required>
                                                             </div>
                                                         </div>
@@ -406,7 +406,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         </div>
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
-                                                                <label><strong>Transcript of Records</strong> </label>
+                                                                <label><strong>Transcript of Records(TOR)</strong> </label>
                                                                 <select name="trans" id="trans" class="form-control">
                                                                     <option selected value="" disabled>..</option>
                                                                     <option value="1">First Copy</option>
@@ -414,7 +414,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-6" id="tor2div" style="display:none">
-                                                                <label><strong>Transcript of Records - Duplicate Copy</strong> (Scanned Copy of Original)</label>
+                                                                <label><strong>TOR - Duplicate Copy</strong> (Scanned PDF Copy of Original)</label>
                                                                 <input type="file" accept=".pdf" name="tor2" id="tor2" class="form-control">
 
                                                             </div>

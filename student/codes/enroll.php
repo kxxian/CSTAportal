@@ -103,10 +103,10 @@ if (isset($_POST['enroll']) && isset($_POST['selyrlevel'])) {
 
 
 
-            // $_SESSION['status'] = "Success!";
-            // $_SESSION['msg'] = "Enrollment Application Sent!";
-            // $_SESSION['status_code'] = "success";
-            // header('location:../enrollment.php');
+            $_SESSION['status'] = "Success!";
+            $_SESSION['msg'] = "Enrollment Application Sent!";
+            $_SESSION['status_code'] = "success";
+            header('location:../enrollment.php');
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

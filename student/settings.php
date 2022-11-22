@@ -180,7 +180,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
 
-                                                        <input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass">
+                                                        <input type="password" class="form-control" name="txtcurrentpass" id="txtcurrentpass" required>
                                                         <input type="checkbox" onclick="showPassword()"> Show Password
                                                     </div>
                                                 </div>
@@ -190,7 +190,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <h6 class="mb-0 text-gray-900 font-weight-bold">New Password</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <input type="password" class="form-control" name="txtnewpass" id="txtnewpass">
+                                                        <input type="password" class="form-control" name="txtnewpass" id="txtnewpass" required>
                                                         <input type="checkbox" onclick="showPassword2()"> Show Password
                                                         <p id="length" style="font-weight:bold;"></p>
                                                     </div>
@@ -201,7 +201,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <h6 class="mb-0 text-gray-900 font-weight-bold">Re-type Password</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <input type="password" class="form-control" name="txtrepass" id="txtrepass">
+                                                        <input type="password" class="form-control" name="txtrepass" id="txtrepass" required>
                                                         <input type="checkbox" onclick="showPassword3()"> Show Password
                                                         <p id="message" style="font-weight:bold;"></p>
                                                     </div>
