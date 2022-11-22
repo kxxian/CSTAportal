@@ -597,19 +597,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     $disabled = "";
                                                                 }
                                                                 //check attachments in directory
-                                                                $payment = "uploads/payverif/payments/{$rows['pv_ID']}.jpg";
-                                                                $reqform = "uploads/payverif/docrequestform/{$rows['pv_ID']}.jpg";
+                                                                $payment = "uploads/payverif/payments/{$rows['payproof']}";
+                                                                $reqform = "uploads/payverif/docrequestform/{$rows['reqform']}";
 
-                                                                if (file_exists($payment)) {
-                                                                    $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['pv_ID'] . '.jpg">
+                                                                if ($rows['payproof']!="") {
+                                                                    $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['payproof'] .'">
                                                                         <i class="fa fa-receipt fa-fw"></i></a>';
                                                                 } else {
                                                                     $img = "";
                                                                 }
 
-                                                                if (file_exists($reqform)) {
+                                                                if ($rows['reqform']!="") {
                                                                     $img2 = '
-                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['pv_ID'] . '.jpg">
+                                                                         <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['reqform'] . '">
                                                                          <i class="fa fa-receipt fa-fw"></i></a>
                                                                          ';
                                                                 } else {
@@ -622,11 +622,25 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 $strpayhistory .= ' <td class="text-center text-gray-900 font-weight-bold">' . $rows['sentvia'] . '</td>';
                                                                 $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['date_sent'] . '</td>';
                                                                 $strpayhistory .= '<td class="text-center text-gray-900 font-weight-bold">' . $rows['amtpaid'] . '</td>';
-                                                                $strpayhistory .= '<td class="text-center text-gray-900">' . $img . ' ' . $img2 . '</td>';
+                                                                $strpayhistory .= '<td class="text-center text-gray-900">' . $img . ' ' . $img2 . '
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                </td>';
+
+
+
+
+
+
+
                                                                 $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
                                                                 $strpayhistory .= '<td class="text-center">';
                                                                 $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
-                                                                $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-times"></i></button>';
+                                                                $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '" pp="' . $rows['pv_ID'] . '" rf="' . $rows['pv_ID'] . '" ><i class="fa fa-fw fa-times"></i></button>';
                                                                 $strpayhistory .= '</td>';
                                                                 $strpayhistory .= '</tr>';
                                                             }

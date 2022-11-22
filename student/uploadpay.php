@@ -11,29 +11,28 @@ if (isset($_POST['sendpay'])) {
     $paynum = $_POST['paynumsearch'];
 
 
-    if ($_POST['selsy']=="") {
+    if ($_POST['selsy'] == "") {
         $pay_sy = '-';
     } else {
         $pay_sy = $_POST['selsy'];
     }
 
-    if ($_POST['selsem']=="") {
+    if ($_POST['selsem'] == "") {
         $pay_sem = 1;
     } else {
         $pay_sem = $_POST['selsem'];
     }
 
-    if ($_POST['selterm']=="") {
+    if ($_POST['selterm'] == "") {
         $payterm = 1;
     } else {
         $payterm = $_POST['selterm'];
-        
     }
 
     // current date and time
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
-    
+
     $tfeeamount = htmlspecialchars(trim($_POST['tfeeamount']));
     $total_others = $_POST['totalothers'];
     $amountdue = $_POST['totaldue'];
@@ -44,10 +43,10 @@ if (isset($_POST['sendpay'])) {
     $top = $_POST['ToP'];
     $notes = $_POST['note'];
 
-    if ($_POST['otherpart']=="") {
+    if ($_POST['otherpart'] == "") {
         $particulars = "-";
     } else {
-     
+
         $particulars = ucwords($_POST['otherpart']);
     }
 
@@ -64,12 +63,17 @@ if (isset($_POST['sendpay'])) {
             $stmt->execute($data);
             $newname = $con->lastInsertId();
 
-            if ($_FILES['paymentproof']['name']) {
+            if ($_FILES['paymentproof']['name'] != "" || $_FILES['reqform']['name'] != "") {
                 $msg = uploadpayment($_FILES['paymentproof'], $newname);
-            }
+                $msg2 = uploadreqform($_FILES['reqform'], $newname);
 
-            if ($_FILES['reqform']['name']) {
-                $msg = uploadreqform($_FILES['reqform'], $newname);
+                $sql = "UPDATE paymentverif set payproof=?, reqform=? where pv_ID=?";
+                $data = array($msg, $msg2, $con->lastInsertId());
+                $stmt = $con->prepare($sql);
+                $stmt->execute($data);
+            } else {
+                $msg = "";
+                $msg2 = "";
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -98,14 +102,19 @@ if (isset($_POST['sendpay'])) {
             $data = array($sid, $dop, $top, $pay_sy, $pay_sem, $payterm, $tfeeamount, $particulars, $total_others, $sentthru, $paymethod, $notes, $amountdue, $amtpaid, $date, $paynum);
             $stmt = $con->prepare($sql);
             $stmt->execute($data);
-            // $newname = $con->lastInsertId();
+             $newname = $id;
 
-            if ($_FILES['paymentproof']['name']) {
-                $msg = uploadpayment($_FILES['paymentproof'], $id);
-            }
+            if ($_FILES['paymentproof']['name'] != "" || $_FILES['reqform']['name'] != "") {
+                $msg = uploadpayment($_FILES['paymentproof'], $newname);
+                $msg2 = uploadreqform($_FILES['reqform'], $newname);
 
-            if ($_FILES['reqform']['name']) {
-                $msg = uploadreqform($_FILES['reqform'], $id);
+                $sql = "UPDATE paymentverif set payproof=?, reqform=? where paynum=?";
+                $data = array($msg, $msg2, $paynum);
+                $stmt = $con->prepare($sql);
+                $stmt->execute($data);
+            } else {
+                $msg = "";
+                $msg2 = "";
             }
         } catch (PDOException $e) {
             echo $e->getMessage();

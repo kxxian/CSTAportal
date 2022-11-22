@@ -6,62 +6,6 @@ $(document).ready(function() {
  
 
 
-    
-
-    $(document).on('submit', '#usersForm', function(event) {
-        event.preventDefault();
-        var lname = $("#lname").val();
-        var fname = $("#fname").val();
-        var mname = $("#mname").val();
-        var gender = $("#gender").val();
-        var email = $("#email").val();
-        var gender = $("#gender").val();
-        var mobile = $("#mobile").val();
-        var office = $("#office").val();
-        var dept = $("#dept").val();
-        var role = $("#role").val();
-        var position = $("#position").val();
-
-
-        if (lname == "" || fname == "" || mname == "" || gender == "" ||
-            email == "" || gender == "" || mobile == "" || !office || !dept || !role
-            || position=="") {
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Insufficient Data!'
-            })
-        } else {
-            $.ajax({
-                url: "codes/userscrud.php",
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                processData: false,
-                cache: false,
-                success: function(data) {
-
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Record Updated!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-
-                    $('#usersModal').modal('hide');
-
-                    // $('#usersForm')[0].reset();
-
-                    usersTable.api().ajax.reload();
-                }
-
-            })
-        }
-    })
-
-
     $(document).on('click', '.viewpaydetails', function() {
         var payment_id = $(this).attr('id');
 
@@ -129,7 +73,9 @@ $(document).ready(function() {
                         cancel_id: pv_id
                     },
                     success: function(data) {
-                       location.reload();
+                        setTimeout(function(){
+                            window.location.reload();
+                         }, 1500);
                     }
                 })
                 Swal.fire(
