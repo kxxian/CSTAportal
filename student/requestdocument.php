@@ -339,9 +339,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <div class="form-group">
                                                     <form method="POST" action="codes/reqdoc.php" enctype="multipart/form-data">
                                                         <div class="form-group row">
-                                                            <div class="col-sm-12">
+                                                            <div class="col-sm-6">
                                                                 <label><strong>Request Number </strong>(For Updating Requests Only)</label>
-                                                                <input type="text" name="reqno" id="reqno" class="form-control" placeholder="Leave blank if this is a new request" oninput="reqnum()" onkeypress="return (event.charCode > 47 && 
+                                                                <input type="text" maxlength="10" name="reqno" id="reqno" class="form-control" placeholder="Leave blank if this is a new request" oninput="reqnum()" onkeypress="return (event.charCode > 47 && 
 	                                                         event.charCode < 58) ">
                                                             </div>
                                                         </div>

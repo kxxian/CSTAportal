@@ -396,7 +396,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             $disabled = "disabled";
                                                         } elseif ($rows['status'] == 'Pending') {
                                                             $class = "warning";
-                                                            $disabled = "disabled";
+                                                            $disabled = "";
                                                         }
 
 

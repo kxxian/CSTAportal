@@ -9,7 +9,7 @@ require_once('../includes/functions.php');
 if (isset($_POST['submit'])) {
     $reqnumsearch = $_POST['reqno'];
 
-    if ($_POST['doc']=="") {
+    if ($_POST['doc'] == "") {
         $documents = "-";
     } else {
         $documents = implode(", ", $_POST['doc']);
@@ -24,10 +24,11 @@ if (isset($_POST['submit'])) {
     }
 
 
-    if ($_POST['tor']=="") {
+    if (($_POST['tor'])=="") {
+       
         $tor = "-";
     } else {
-        $tor = ucwords(htmlspecialchars(trim($_POST['tor'])));
+        $tor = $_POST['tor'];
     }
 
 
@@ -54,7 +55,7 @@ if (isset($_POST['submit'])) {
 
 
     if (!isset($_POST['trans'])) {
-        $trans = "-";
+        $trans = "3";
     } else {
         $trans = $_POST['trans'];
     }
