@@ -31,11 +31,13 @@ if (isset($_POST['payment_id'])) {
 
 if (isset($_POST['cancel_id'])) {
     $id = $_POST['cancel_id'];
+    $reqform=$_POST['reqform'];
+    $payproof= $_POST['payproof'];
 
     $statement = $con->prepare('DELETE FROM paymentverif where pv_ID=?');
     $data = array($id);
     $result = $statement->execute($data);
 
-    unlink("../uploads/payverif/docrequestform/".$id.".jpg");    
-    unlink("../uploads/payverif/payments/".$id.".jpg"); 
+    unlink("../uploads/payverif/docrequestform/".$reqform."");    
+    unlink("../uploads/payverif/payments/".$payproof.""); 
 }

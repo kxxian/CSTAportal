@@ -640,7 +640,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 $strpayhistory .= '<td class="text-center"><span class="badge badge badge-' . $class . '">' . $rows['payment_status'] . '</span></td>';
                                                                 $strpayhistory .= '<td class="text-center">';
                                                                 $strpayhistory .= '    <button class="btn btn-info btn-sm viewpaydetails"  title="View Payment Details" id="' . $rows['pv_ID'] . '"><i class="fa fa-fw fa-eye"></i></button>';
-                                                                $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '" pp="' . $rows['pv_ID'] . '" rf="' . $rows['pv_ID'] . '" ><i class="fa fa-fw fa-times"></i></button>';
+                                                                $strpayhistory .= '    <button class="btn btn-danger btn-sm cancel" ' . $disabled . ' title="Delete" id="' . $rows['pv_ID'] . '" pp="' . $rows['payproof'] . '" rf="' . $rows['reqform'] . '" ><i class="fa fa-fw fa-times"></i></button>';
                                                                 $strpayhistory .= '</td>';
                                                                 $strpayhistory .= '</tr>';
                                                             }

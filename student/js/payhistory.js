@@ -55,7 +55,9 @@ $(document).ready(function() {
 
     $(document).on('click', '.cancel', function() {
         var pv_id = $(this).attr('id');
-        //location.reload();
+        var payproof = $(this).attr('pp');
+        var reqform = $(this).attr('rf');
+        // alert (payproof+reqform);
         Swal.fire({
             title: 'Confirm',
             text: "Are you sure you want to cancel this?",
@@ -70,7 +72,9 @@ $(document).ready(function() {
                     url: "codes/pvcrud.php",
                     method: "POST",
                     data: {
-                        cancel_id: pv_id
+                        cancel_id: pv_id,
+                        payproof: payproof,
+                        reqform:reqform
                     },
                     success: function(data) {
                         setTimeout(function(){
