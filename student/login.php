@@ -26,12 +26,33 @@ if (isset($_GET['login'])) {
 	$_SESSION['status_code'] = "info";
 }
 
+if (isset($_GET['pwdreset'])) {
+	if ($_GET['pwdreset'] == "expired") {
+
+
+		$_SESSION['status'] = "Oops!";
+		$_SESSION['msg'] = "Link Not Found!";
+		$_SESSION['status_code'] = "warning";
+	}
+}
+
 if (isset($_GET['newpwd'])) {
 	if ($_GET['newpwd'] == "passwordupdated") {
 
 
 		$_SESSION['status'] = "Success!";
 		$_SESSION['msg'] = "Password reset successful!";
+		$_SESSION['status_code'] = "success";
+	}
+}
+
+
+if (isset($_GET['newpwd'])) {
+	if ($_GET['newpwd'] == "passwordset") {
+
+
+		$_SESSION['status'] = "Success!";
+		$_SESSION['msg'] = "Username and password is set successfully!";
 		$_SESSION['status_code'] = "success";
 	}
 }

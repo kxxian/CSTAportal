@@ -32,7 +32,7 @@ if (isset($_POST['operation'])) {
         $selector = bin2hex(random_bytes(8));
         $token = random_bytes(32);
 
-        $url = "http://localhost/CSTAportal/backoffice/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+        $url = "http://localhost/CSTAportal/student/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         $expires = date("U") + 86400; //1-Day Expiration
 
         try {

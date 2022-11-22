@@ -8,13 +8,13 @@ if (isset($_POST['reset-password-submit'])) {
     $password = htmlspecialchars(trim($_POST['pwd']));
     $passwordRepeat = htmlspecialchars(trim($_POST['pwd-repeat']));
 
-    if (empty($password) || empty($passwordRepeat)) {
-        header("location: ../create-new-password.php?newpwd=empty");
-        exit();
-    } elseif ($password != $passwordRepeat) {
-        header("location: ../create-new-password.php?newpwd=pwdmismatched");
-        exit();
-    }
+    // if (empty($password) || empty($passwordRepeat)) {
+    //     header("location: ../create-new-password.php?newpwd=empty");
+    //     exit();
+    // } elseif ($password != $passwordRepeat) {
+    //     header("location: ../create-new-password.php?newpwd=pwdmismatched");
+    //     exit();
+    // }
 
     $currentDate = date("U");
 
@@ -27,7 +27,7 @@ if (isset($_POST['reset-password-submit'])) {
         $count = $stmt->rowCount();
 
         if ($count < 1) {
-            header("location:../error.php?pwdreset=expired");
+            header("location:../login.php?pwdreset=expired");
             //echo "You need to resubmit your reset request.";
             exit();
         } else {

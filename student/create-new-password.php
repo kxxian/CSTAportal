@@ -111,12 +111,10 @@ if (isset($_GET['newpwd'])) {
 <body>
 	<div class="main-bg">
 		<!-- title -->
-		<h1>CSTA Student Portal</h1>
+		<center><img src="img/big.png" alt="" width="190" style="margin-bottom:0px"></center>
 		<!-- //title -->
 		<div class="sub-main-w3">
-			<div class="image-style" hidden>
-
-			</div>
+			
 			<!-- vertical tabs -->
 			<?php
 			$selector = $_GET['selector'];
