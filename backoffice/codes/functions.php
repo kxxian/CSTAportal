@@ -235,3 +235,17 @@ function get_pendingpayments_guest(){
     $result=$statement->fetchAll();
     return $statement->rowCount();
 }
+
+
+
+function get_banks(){
+    // session_start();
+    include '../includes/connect.php';
+   // include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from payoptions");
+    //$data=array($dept);
+    $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+    $con=null;
+}
