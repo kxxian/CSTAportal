@@ -63,8 +63,8 @@ foreach ($result as $row) {
     $sub_array[] = $row["amtpaid"];
     $sub_array[] = $row["sentvia"];
 
-    $payment = "../../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
-    $reqform = "../../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
+    $payment = "../../student/uploads/payverif/payments/{$row['payproof']}";
+    $reqform = "../../student/uploads/payverif/docrequestform/{$row['reqform']}";
 
 if (file_exists($payment)){
    $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="../student/uploads/payverif/payments/'.$row['pv_ID'].'.jpg">
