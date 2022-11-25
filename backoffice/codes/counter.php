@@ -192,7 +192,7 @@ if (isset($_POST['data16'])) {
 
   echo $count;
 }
-
+//grade requests
 if (isset($_POST['data17'])) {
 
   $sql = "SELECT status from vwgradereq where status=?";
