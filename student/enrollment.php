@@ -140,6 +140,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                     <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> Enrollment Form</h6>
                                                 </div>
                                                 <div class="card-body" id="enroll_div">
+                                                
                                                     <form action="codes/enroll.php" method="POST" enctype="multipart/form-data">
 
                                                         <div class="form-group">
@@ -251,7 +252,9 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                     </div>
                                                 </div>
                                             </div>
+                                            <p>NOTE: For Freshman and Transferees, upload first your requirements to your profile before proceeding to enrollment.</p>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

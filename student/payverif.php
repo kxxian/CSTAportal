@@ -272,6 +272,44 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
         .custom-actions-btns .btn {
             margin: .3rem 0 .3rem .3rem;
         }
+
+        /* Payments */
+        .payment-card {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e7eaec;
+        }
+
+        .payment-icon-big {
+            font-size: 60px;
+            color: #d1dade;
+        }
+
+        .payments-method.panel-group .panel+.panel {
+            margin-top: -1px;
+        }
+
+        .payments-method .panel-heading {
+            padding: 15px;
+        }
+
+        .payments-method .panel {
+            border-radius: 0;
+        }
+
+        .payments-method .panel-heading h5 {
+            margin-bottom: 5px;
+        }
+
+        .payments-method .panel-heading i {
+            font-size: 26px;
+        }
+
+        .payment-icon-big {
+            font-size: 60px !important;
+            color: #d1dade;
+        }
     </style>
 
 
@@ -337,9 +375,43 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                             </div>
                                             <div class="card-body text-gray-900">
 
-                                            
+                                                <!--    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
                                                 <form action="uploadpay.php" method="POST" enctype="multipart/form-data">
                                                     <div class="form-group">
+                                                        <fieldset class="scheduler-border">
+                                                            <legend class="scheduler-border">Bank Details</legend>
+                                                            <p style="font-size: 1rem;color:gray">Payments can be made thru Bank Deposit or Online Bank Transfer</p>
+                                                            <div class="row">
+                                                            <?php
+                                                               $sql = "SELECT * FROM payoptions";
+                                                               $stmt = $con->prepare($sql);
+                                                               $stmt->execute();
+
+                                                               while ($row = $stmt->fetch()){
+
+                                                                    echo '<div class="col-sm-4">
+                                                                    <div class="payment-card">
+                                                                       <h5>'.$row['provider'].'</h5>
+                                                                        <h3>
+                                                                            '.$row['accnumber'].'
+                                                                        </h3>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                                <small>
+                                                                                    <strong>'.$row['accname'].'</strong> 
+                                                                                </small>
+                                                                            </div>
+                                                                          
+                                                                        </div>
+                                                                    </div>
+                                                                </div>';
+
+                                                               }
+                                                            
+                                                            
+                                                            ?>
+                                                            </div>
+                                                        </fieldset>
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment For</legend>
 
@@ -421,7 +493,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             </div><br>
                                                             <label>
                                                                 <h5 class="font-weight-bold">Additional (Others Fees)</h5>
-                                                                <i style="font-size: 0.9rem;color:#808080">*Enter other fees indicated in your disbursement form separated by comma(,) </i>
+                                                                <p style="font-size: 0.9rem;color:#808080">*Enter other fees indicated in your disbursement form separated by comma(,) </p>
                                                             </label>
 
 
@@ -439,7 +511,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <label class="font-weight-bold">
                                                                         Total for Other Fees
                                                                     </label>
-                                                                    <i style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</i>
+                                                                    <p style="font-size: 0.9rem;color:#808080">*Enter total amount for other fees</p>
                                                                     <input type="number" class="form-control" placeholder="0.00" id="totalothers" name="totalothers" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" min="0" maxlength="7" style="text-align:right">
                                                                 </div>
 
@@ -466,14 +538,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     <input type="text" class="form-control" id="totaldue1" name="totaldue1" style="pointer-events: none; height:55px; 
                                                                     font-size:20pt; font-weight:bold; color:red; text-align:right">
                                                                 </div>
-                                                                <i style="font-size: 1rem;color:#808080">*Total amount should be same on what is on your proof of payment</i>
+                                                                <p style="font-size: 1rem;color:#808080">*Total amount should be exactly on what is on your proof of payment</p>
 
                                                             </div>
                                                         </fieldset>
 
                                                         <fieldset class="scheduler-border">
                                                             <legend class="scheduler-border">Payment Information</legend>
-                                                            <i style="font-size: 1rem;color:red">*Fill all the details as indicated on your proof of payment</i>
+                                                            <p style="font-size: 1rem;color:red">*Fill all the details as indicated on your proof of payment</p>
                                                             <div class="form-group row">
                                                                 <div class="col-sm-6">
                                                                     <label for="paymentamount"><strong>Amount Paid</strong></label>
@@ -531,7 +603,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <label for="paymentproof"><strong>Proof of Payment</strong></label>
-                                                                    <input type="file"  class="form-control" name="paymentproof" required>
+                                                                    <input type="file" class="form-control" name="paymentproof" required>
                                                                 </div>
 
                                                             </div>
@@ -600,14 +672,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                 $payment = "uploads/payverif/payments/{$rows['payproof']}";
                                                                 $reqform = "uploads/payverif/docrequestform/{$rows['reqform']}";
 
-                                                                if ($rows['payproof']!="") {
-                                                                    $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['payproof'] .'">
+                                                                if ($rows['payproof'] != "") {
+                                                                    $img = '<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="uploads/payverif/payments/' . $rows['payproof'] . '">
                                                                         <i class="fa fa-receipt fa-fw"></i></a>';
                                                                 } else {
                                                                     $img = "";
                                                                 }
 
-                                                                if ($rows['reqform']!="") {
+                                                                if ($rows['reqform'] != "") {
                                                                     $img2 = '
                                                                          <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="uploads/payverif/docrequestform/' . $rows['reqform'] . '">
                                                                          <i class="fa fa-receipt fa-fw"></i></a>

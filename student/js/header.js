@@ -67,6 +67,7 @@ $(document).ready(function() {
 
                   //STEP WIZARD 3
                   $("#application").addClass("completed")
+                  $("#reqval").addClass("completed")
                   $("#assessment").addClass("completed")
                   $("#payment").addClass("completed")
                   $("#validate").removeClass("completed")
@@ -88,6 +89,7 @@ $(document).ready(function() {
 
                   //STEP WIZARD 4
                   $("#application").addClass("completed")
+                  $("#reqval").addClass("completed")
                   $("#assessment").addClass("completed")
                   $("#payment").addClass("completed")
                   $("#validate").addClass("completed")
