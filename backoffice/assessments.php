@@ -81,11 +81,11 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
         <!-- Sidebar -->
         <?php
-         if ($office=="Dean"){
+        //  if ($office=="Dean"){
             $pageValue = 2;
-        }else{
-            header("Location:index.php");
-        }
+        // }else{
+        //     header("Location:index.php");
+        // }
         
         // if ($usertype!="Admin"){
         //     header("Location:index.php");
@@ -127,8 +127,8 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             <th>Year Level</th>
                                             <th>Course</th>
                                             <th>Status</th>
-                                            <th>Attachment</th>
-                                            <th >Send</th>
+                                            <th width="5">File</th>
+                                            <th>Send</th>
                                         </tr>
 
                                     </thead>
@@ -219,6 +219,14 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Assessment Form</label>
                             <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email.." required>
+                        </div>
+                        
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="email" class="text-gray-900 font-weight-bold">Remarks</label>
+							<textarea id="remarks" name="remarks" class="form-control"></textarea>
                         </div>
                         
                     </div>

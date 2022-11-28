@@ -23,11 +23,14 @@ $(document).ready(function() {
                 $('#email').val(data.email);
                 $('#mobile').val(data.mobile);
                 $('#cityadd').val(data.cityadd);
+                $('#region').val(data.region);
                 $('#district').val(data.district);
                 $('#city').val(data.city);
                 $('#barangay').val(data.brgy);
                 $('#guardian').val(data.guardian);
                 $('#gcontact').val(data.gcontact);
+                $('#gcontact2').val(data.gcontact2);
+                
                 
                 
 
@@ -38,6 +41,28 @@ $(document).ready(function() {
             }
         })
     })
+
+        //populate region, province, city, brgy
+        $('#region').on('change', function() {
+            var regCode = $(this).val();
+            if (regCode) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'codes/register.php',
+                    data: 'regCode=' + regCode,
+                    success: function(html) {
+                        $('#district').html(html);
+                    }
+                });
+            } else {
+                $('#district').html('<option selected="" disabled>Select Province</option>');
+            }
+        })
+
+
+
+
+
     $('#district').on('change', function() {
         var provCode = $(this).val();
         if (provCode) {

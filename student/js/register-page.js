@@ -156,7 +156,7 @@ $(document).ready(function() {
 
 // Validate Student Registration
 function validateReg() {
-    //var snum = $('#txtSnum').val();
+    var snum = $('#txtSnum').val();
     var lname = $('#txtLname').val();
     var fname = $('#txtFname').val();
     var mname = $('#txtMname').val();

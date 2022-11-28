@@ -28,6 +28,14 @@
         $course=$row['course'];  
         $guardian=$row['guardian'];  
         $guardiancontact=$row['guardiancontact'];
+     
+        if ($row['guardiancontact2'] !=""){
+            $guardiancontact2=' / '.$row['guardiancontact2'];
+        }else{
+            $guardiancontact2="";
+        }
+
+       
         $pass=$row['pass'];
        }
        

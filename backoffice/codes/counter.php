@@ -53,8 +53,8 @@ if (isset($_POST['data4'])) {
 //pending student account registrations  
 if (isset($_POST['data5'])) {
 
-  $sql = "SELECT status from vwstudents where status=?";
-  $data = array("Pending");
+  $sql = "SELECT `status`, isAccepted from vwstudents where `status`=? and isAccepted=?";
+  $data = array("Verified",'0');
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
@@ -136,7 +136,7 @@ if (isset($_POST['data11'])) {
 //Dashboard Card -- for pending registrations 
 if (isset($_POST['data12'])) {
 
-  $sql = "SELECT status from vwstudents where status=? or isAccepted=?";
+  $sql = "SELECT status from vwstudents where status=? AND isAccepted=?";
   $data = array("Pending", 0);
   $stmt = $con->prepare($sql);
   $stmt->execute($data);

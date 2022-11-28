@@ -24,12 +24,14 @@
 			/* $_SESSION['dept'] = $row['dept_ID']; */
             
 
-            header('location:index.php');
+            header('location:../backoffice/index.php');
         }
+       
     }
     catch(PDOException $e){
         $e->getMessage();
     }
+    $con= null;
 
 
 

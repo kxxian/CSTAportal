@@ -62,9 +62,7 @@ foreach($result as $row)
     <button type="button" id="'.$row["id"].'" 
     class="btn btn-'.$color.' btn-sm '.$button.'" title="'.$title.'"><i class="fa fa-fw fa-'.$icon.'"></i></button>
 
-    <button type="button" name="delete" id="'.$row["id"].'" 
-    class="btn btn-danger btn-sm delete" title="Delete User"><i class="fa fa-fw fa-trash"></i></button>
-
+   
 
 
     ';

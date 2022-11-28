@@ -27,6 +27,7 @@ if (isset($_POST['sid'])) {
         $output['brgy'] = $row['brgy'];
         $output['guardian'] = $row['guardian'];
         $output['gcontact'] = $row['guardiancontact'];
+        $output['gcontact2'] = $row['guardiancontact2'];
     }
     echo json_encode($output);
 }
@@ -45,20 +46,22 @@ if (isset($_POST['save'])){
 
         try{
             $id=$_POST['user_id'];
-            $lname=ucwords(htmlspecialchars(trim($_POST['lname'])));
-            $fname=ucwords(htmlspecialchars(trim($_POST['fname'])));
-            $mname=ucwords(htmlspecialchars(trim($_POST['mname'])));
+            $lname=ucwords(strtolower(htmlspecialchars(trim($_POST['lname']))));
+            $fname=ucwords(strtolower(htmlspecialchars(trim($_POST['fname']))));
+            $mname=ucwords(strtolower(htmlspecialchars(trim($_POST['mname']))));
             $bday=$_POST['bday'];
             $email=$_POST['email'];
-            $cityadd=ucwords(htmlspecialchars(trim($_POST['cityadd'])));
+            $cityadd=ucwords(strtolower(htmlspecialchars(trim($_POST['cityadd']))));
+            $region=$_POST['region'];
             $district=$_POST['district'];
             $city=$_POST['city'];
             $barangay=$_POST['barangay'];
-            $guardian=ucwords(htmlspecialchars(trim($_POST['guardian'])));
+            $guardian=ucwords(strtolower(htmlspecialchars(trim($_POST['guardian']))));
             $gcontact=ucwords(htmlspecialchars(trim($_POST['gcontact'])));
+            $gcontact2=ucwords(htmlspecialchars(trim($_POST['gcontact2'])));
             
-            $statement = $con->prepare("UPDATE students set lname=?,fname=?,mname=?,bday=?,email=?,cityadd=?,province=?,city=?,brgy=?,guardian=?,guardiancontact=? where id=?");
-            $data=array($lname,$fname,$mname,$bday,$email,$cityadd,$district,$city,$barangay,$guardian,$gcontact,$id);
+            $statement = $con->prepare("UPDATE students set lname=?,fname=?,mname=?,bday=?,email=?,cityadd=?,region=?,province=?,city=?,brgy=?,guardian=?,guardiancontact=?,guardiancontact2=?, dor=dor where id=?");
+            $data=array($lname,$fname,$mname,$bday,$email,$cityadd,$region,$district,$city,$barangay,$guardian,$gcontact,$gcontact2,$id);
             $statement->execute($data);
             
             $_SESSION['status'] = "Success!";

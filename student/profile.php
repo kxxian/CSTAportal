@@ -201,7 +201,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Birthday</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Birthdate</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
                                                         <?= $bday
@@ -252,7 +252,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                         <h6 class="mb-0 text-gray-900 font-weight-bold">Mobile</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <span class="address"> <?= $guardiancontact ?></span>
+                                                        <span class="address"> <?= $guardiancontact . $guardiancontact2 ?></span>
+                                                        <!-- <button class="btn btn-success btn-sm" title="Add New Mobile Number"><i class="fas fa-phone"></i></button> -->
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -362,10 +363,35 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     </div>
                     <div class="form-group row">
 
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <label for="cityadd" class="text-gray-900 font-weight-bold">City Address</label>
                             <input type="text" name="cityadd" id="cityadd" class="form-control">
                         </div>
+
+                        <div class="col-sm-4">
+                            <label for="region" class="form-label text-gray-900"><b>Region</b></label>
+                            <select id="region" name="region" class="form-control" required>
+                                <option selected="" disabled>Select Region</option>
+                                <?php
+                                require_once("includes/connect.php");
+
+                                $sql = "select * from refregion";
+                                // $data = array('13');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute();
+
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value=' . $row['regCode'] . '>' . $row['regDesc'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+
+
+                            </select>
+                        </div>
+
+
                         <div class="col-md-4">
                             <label for="district" class="text-gray-900 font-weight-bold">District</label>
                             <select id="district" name="district" class="form-control" required>
@@ -373,10 +399,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                 <?php
                                 require_once("includes/connect.php");
 
-                                $sql = "select * from refprovince where regCode=?";
-                                $data = array('13');
+                                $sql = "select * from refprovince";
+                                // $data = array('13');
                                 $stmt = $con->prepare($sql);
-                                $stmt->execute($data);
+                                $stmt->execute();
 
                                 while ($row = $stmt->fetch()) {
                                     echo '<option value=' . $row['provCode'] . '>' . $row['provDesc'] . '</option>';
@@ -432,13 +458,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label for="guardian" class="text-gray-900 font-weight-bold mb-3">Guardian</label>
-                            <input type="text" name="guardian" id="guardian" class="form-control" >
+                            <input type="text" name="guardian" id="guardian" class="form-control">
                         </div>
-                        <div class="col-md-6">
-                            <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Guardian Contact</label>
+                        <div class="col-md-4">
+                            <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Phone number 1</label>
                             <input type="text" maxlength="11" name="gcontact" id="gcontact" class="form-control" onkeypress="return (event.charCode > 47 && 
+	                                event.charCode < 58)">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="gcontact" class="text-gray-900 font-weight-bold mb-3">Phone number 2</label>
+                            <input type="text" maxlength="11" name="gcontact2" id="gcontact2" class="form-control" onkeypress="return (event.charCode > 47 && 
 	                                event.charCode < 58)">
                         </div>
                     </div>

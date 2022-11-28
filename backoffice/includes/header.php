@@ -26,7 +26,7 @@ $strHeader.='<ul class="navbar-nav ml-auto">';
 $strHeader.='<li class="nav-item dropdown no-arrow">';
 $strHeader.='<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"';
 $strHeader.='data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-$strHeader.='<span class="mr-2 d-none d-lg-inline text-gray-100 medium">Welcome, <strong>'.$empname.'</strong></span>';
+$strHeader.='<span class="mr-2 d-none d-lg-inline text-gray-100 medium">Welcome, <strong>'.$office.'</strong></span>';
 $strHeader.=' <img class="img rounded-circle"
 src="'.$dp.'" width="40" height="40"> ';
 $strHeader.='</a>';

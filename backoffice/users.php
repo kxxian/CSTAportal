@@ -117,7 +117,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             <th>Designation</th>
                                             <th>User Type</th>
                                             <th>isActive</th>
-                                            <th width="100">Actions</th>
+                                            <th width="65">Actions</th>
                                         </tr>
 
                                     </thead>

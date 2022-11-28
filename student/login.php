@@ -170,8 +170,6 @@ if (isset($_GET['reset'])) {
 
 							</div>
 
-							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px; margin-top:10px;"><input type="checkbox" name="isAdmin" id="isAdmin" value="admin" /> <small>isAdmin?</small></span>
-
 							<button type="submit" class="btn submit" style="background-color:#824d1b; margin-bottom:10px">Login</button>
 
 							<input type="button" onclick="location.href='register.php'" class="btn submit" style="background-color:gray; margin-top: 0.5em;" value="Register">

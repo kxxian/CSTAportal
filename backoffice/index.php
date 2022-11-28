@@ -185,18 +185,18 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <div class="card-box bg-orange">
                                     <div class="inner">
                                         <h3 class="tasks"> </h3>
-                                        <p> Total Tasks </p>
+                                        <p> Pending Registrations</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="registrations.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
 
 
                             <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-green">
+                                <div class="card-box bg-orange">
                                     <div class="inner">
                                         <h3 class="accepted">  </h3>
                                         <p> Registered Students </p>
@@ -204,19 +204,19 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-red">
                                     <div class="inner">
                                         <h3 class="staff_registrar">  </h3>
-                                        <p> Staff </p>
+                                        <p> Enrollment </p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-users"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
@@ -228,7 +228,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                            <!-- Accounting -->
-                           <div class="row" hidden>
+                           <div class="row" >
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -246,7 +246,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-clock" aria-hidden="true"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
 
@@ -260,7 +260,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-wallet" aria-hidden="true"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
@@ -272,7 +272,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-users"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
@@ -284,7 +284,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <div class="icon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <!-- <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a> -->
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>

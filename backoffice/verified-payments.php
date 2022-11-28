@@ -140,7 +140,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             <th class="text-center" hidden>AR</th>
                                             <th class="text-center" hidden>Remarks</th>
                               
-                                            <th class="text-center" hidden>Actions</th>
+                                            <th class="text-center" width="10">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -200,6 +200,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         <td hidden>' . $row['OR'] . '</td>
                                                         <td hidden>' . $row['AR'] . '</td>
                                                         <td hidden>' . $row['remarks'] . '</td>
+														<td>
+															<button class="btn btn-success" title="Resend"><i class="fas fa-sync-alt"></i></button>
+														</td>
                                                         
 
 
