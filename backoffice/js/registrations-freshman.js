@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //oldstudents
-    var regTable = $('#regTable').dataTable({
+    var freshmanTable = $('#freshmanTable').dataTable({
         dom: 'Bfrtip',
         
         buttons: [
@@ -43,7 +43,7 @@ $(document).ready(function() {
         "order": [],
         "info": true,
         "ajax": {
-            url: "codes/fetch_registrations-old.php",
+            url: "codes/fetch_registrations-freshman.php",
             type: "POST"
 
         },
@@ -81,7 +81,7 @@ $(document).ready(function() {
 
                     // $('#usersForm')[0].reset();
 
-                    regTable.api().ajax.reload();
+                    freshmanTable.api().ajax.reload();
                 }
 
             })
@@ -114,7 +114,7 @@ $(document).ready(function() {
 
                     // $('#usersForm')[0].reset();
 
-                    regTable.api().ajax.reload();
+                    freshmanTable.api().ajax.reload();
                 }
 
             })
@@ -157,7 +157,7 @@ $(document).ready(function() {
                 'Account Registration Accepted!',
                 'success'
               )
-              regTable.api().ajax.reload();
+              freshmanTable.api().ajax.reload();
             
             }
         })

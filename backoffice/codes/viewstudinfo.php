@@ -67,6 +67,7 @@ if (isset($_POST['id'])) {
     $result = $statement->fetchAll();
     foreach ($result as $row) {
         $output['id'] = $row['id'];
+        $output['studtype'] = $row['studtype'];
         $output['snum'] = $row['snum'];
         $output['fullname'] = $row['lname'] . ', ' . $row['fname'] . ' ' . $row['mname'];
         $output['yrcourse'] = $row['yrlevel'].' '.$row['abbr'];

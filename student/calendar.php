@@ -5,6 +5,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
 
+if ($snum=="NA"){
+    header('location:index.php');
+}
 
 ?>
 <!DOCTYPE html>

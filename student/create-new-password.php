@@ -119,7 +119,7 @@ if (isset($_GET['newpwd'])) {
 			<?php
 			$selector = $_GET['selector'];
 			$validator = $_GET['validator'];
-			$isAd= $_GET['ad'];
+			// $isAd= $_GET['ad'];
 
 			if (empty($selector) || empty($validator)) {
 				header("location:login.php");
@@ -137,7 +137,7 @@ if (isset($_GET['newpwd'])) {
 
 						<input type="hidden" name="selector" value="<?php echo $selector ?>">
 						<input type="hidden" name="validator" value="<?php echo $validator ?>">
-						<input type="hidden" name="isAdm" value="<?php echo $isAd ?>">
+						<!-- <input type="hidden" name="isAdm" value="<?php echo $isAd ?>"> -->
 
 						<div class="input">
 							<span class="fa fa-key" aria-hidden="true"></span>

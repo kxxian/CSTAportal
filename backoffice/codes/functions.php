@@ -34,12 +34,12 @@ function get_enrollments(){
     $con=null;
 }
 
-function get_registrations(){
+function get_registrations_old(){
     // session_start();
     include '../includes/connect.php';
     //include 'fetchuserdetails.php';
-    $statement=$con->prepare("SELECT * from vwstudents WHERE isAccepted=?");
-    $data=array('0');
+    $statement=$con->prepare("SELECT * from vwstudents WHERE studtype=? and status=? and isAccepted=?");
+    $data=array('Old Student','Verified','0');
     $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
@@ -245,6 +245,30 @@ function get_banks(){
     $statement=$con->prepare("SELECT * from payoptions");
     //$data=array($dept);
     $statement->execute();
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+    $con=null;
+}
+
+function get_registrations_trans(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwstudents WHERE studtype=? and status=? and isAccepted=?");
+    $data=array('Transferee','Verified','0');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+    $con=null;
+}
+
+function get_registrations_freshman(){
+    // session_start();
+    include '../includes/connect.php';
+    //include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwstudents WHERE studtype=? and status=? and isAccepted=?");
+    $data=array('Freshman','Verified','0');
+    $statement->execute($data);
     $result=$statement->fetchAll();
     return $statement->rowCount();
     $con=null;

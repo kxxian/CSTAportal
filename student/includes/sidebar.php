@@ -29,14 +29,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -95,14 +95,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -159,14 +159,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -223,14 +223,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item active">';
+       $strSidebar .= '          <li class="nav-item active" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link active" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -287,14 +287,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item active">';
+       $strSidebar .= '          <li class="nav-item active" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -351,14 +351,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';
@@ -415,14 +415,14 @@ if ($pageValue == 0) {
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Class Schedules -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_schedule.'>';
        $strSidebar .= '            <a class="nav-link" href="schedules.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-thumbtack"></i>';
        $strSidebar .= '                <span>Class Schedules</span></a>';
        $strSidebar .= '        </li>';
 
        // <!-- Nav Item - Calendar -->
-       $strSidebar .= '          <li class="nav-item">';
+       $strSidebar .= '          <li class="nav-item" '.$sidebar_calendar.'>';
        $strSidebar .= '            <a class="nav-link" href="calendar.php">';
        $strSidebar .= '				<i class="fas fa-fw fa-calendar"></i>';
        $strSidebar .= '                <span>Calendar of Events</span></a>';

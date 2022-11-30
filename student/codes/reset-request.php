@@ -20,7 +20,7 @@ use PHPMailer\PHPMailer\PHPMailer;
     $userEmail =  htmlspecialchars(trim($_POST['email']));
 
 
-    if ($isAdmin == "") {
+    // if ($isAdmin == "") {
         //Check if user email is registered in students
         $sql = "SELECT email from vwstudents where email=?";
         $data = array($userEmail);
@@ -29,17 +29,19 @@ use PHPMailer\PHPMailer\PHPMailer;
         $checkemail = $stmt->rowCount();
         
         $admin="no";
-    } else if($isAdmin = "admin") {
+    // } else if($isAdmin = "admin") {
 
-        //Check if user email is registered in students
-        $sql = "SELECT email from vwemployees where email=?";
-        $data = array($userEmail);
-        $stmt = $con->prepare($sql);
-        $stmt->execute($data);
-        $checkemail = $stmt->rowCount();
-        $admin="yes";
-    }
-    $url = "http://localhost/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token)."&ad=".$admin;
+    //     //Check if user email is registered in students
+    //     $sql = "SELECT email from vwemployees where email=?";
+    //     $data = array($userEmail);
+    //     $stmt = $con->prepare($sql);
+    //     $stmt->execute($data);
+    //     $checkemail = $stmt->rowCount();
+    //     $admin="yes";
+    // }
+    $url = "http://localhost/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+
+    // $url = "http://localhost/CSTAportal/student/create-new-password.php?selector=" . $selector . "&validator=" . bin2hex($token)."&ad=".$admin;
 
     if ($checkemail >= 1) {
 

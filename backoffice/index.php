@@ -6,6 +6,7 @@ require_once 'includes/fetchuserdetails.php';
 
 $office = $Office;
 
+// echo $office;
 if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:../../login.php');
 }
@@ -166,9 +167,9 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                     <?php
-                    
-                    
-                    
+
+
+
                     ?>
 
 
@@ -177,10 +178,10 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     <!-- Content Row -->
                     <!-- Accounting Cards -->
                     <div class="container">
-                    
+
 
                         <!-- registrar cards -->
-                        <div class="row" >
+                        <div class="row">
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -196,37 +197,37 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                             <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-orange">
+                                <div class="card-box bg-green">
                                     <div class="inner">
-                                        <h3 class="accepted">  </h3>
+                                        <h3 class="accepted"> </h3>
                                         <p> Registered Students </p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                        <i class="fa fa-users" aria-hidden="true"></i>
                                     </div>
                                     <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-red">
+                                <div class="card-box bg-orange">
                                     <div class="inner">
-                                        <h3 class="staff_registrar">  </h3>
+                                        <h3 class="staff_registrar"> </h3>
                                         <p> Enrollment </p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-users"></i>
+                                        <i class="fa fa-edit"></i>
                                     </div>
                                     <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-blue">
+                                <div class="card-box bg-green">
                                     <div class="inner">
-                                        <h3 class="up_events">  </h3>
-                                        <p> Upcoming Events </p>
+                                        <h3 class="up_events"> </h3>
+                                        <p> Enrolled Students </p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-user-check"></i>
                                     </div>
                                     <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
@@ -235,16 +236,16 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
 
-                           <!-- Accounting -->
-                           <div class="row" >
+                        <!-- Accounting -->
+                        <div class="row">
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
                                         <h3 class="tasks"> </h3>
-                                        <p> Total Tasks </p>
+                                        <p> Document Requests</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
                                     </div>
                                     <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
@@ -254,7 +255,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-green">
                                     <div class="inner">
-                                        <h3 class="accepted">  </h3>
+                                        <h3 class="accepted"> </h3>
                                         <p> Verified Payments </p>
                                     </div>
                                     <div class="icon">
@@ -266,7 +267,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-red">
                                     <div class="inner">
-                                        <h3 class="staff_registrar">  </h3>
+                                        <h3 class="staff_registrar"> </h3>
                                         <p> Staff </p>
                                     </div>
                                     <div class="icon">
@@ -278,7 +279,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-blue">
                                     <div class="inner">
-                                        <h3 class="up_events">  </h3>
+                                        <h3 class="up_events"> </h3>
                                         <p> Upcoming Events </p>
                                     </div>
                                     <div class="icon">
@@ -384,8 +385,52 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
     <!-- scripts -->
     <script src="js/pending-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
     <script src="js/sweetalert.min.js"></script>
+
+
+    <!-- Choose which counter should be included in the script -->
+    <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+    <?php
+    }
+
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- Bootstrap core JavaScript-->

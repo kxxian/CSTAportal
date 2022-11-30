@@ -42,7 +42,7 @@ require_once '../includes/connect.php';
 
 
 
-                if ($isAd == "no") {
+                // if ($isAd == "no") {
                     try {
                         $sql = "SELECT email,pass FROM students where email=?;";
                         $data = array($tokenEmail);
@@ -57,7 +57,7 @@ require_once '../includes/connect.php';
                         } else {
                             $newpass = sha1($password);
 
-                            $sql2 = "UPDATE students set pass=? where email=?;";
+                            $sql2 = "UPDATE students set pass=?, dor=dor where email=?;";
                             $data2 = array($newpass, $tokenEmail);
                             $stmt2 = $con->prepare($sql2);
                             $stmt2->execute($data2);
@@ -72,38 +72,38 @@ require_once '../includes/connect.php';
                     } catch (PDOException $e) {
                         echo $e->getMessage();
                     }
-                } elseif ($isAd == "yes") {
+                // } elseif ($isAd == "yes") {
 
-                    try {
-                        $sql = "SELECT email,pass FROM employees where email=?;";
-                        $data = array($tokenEmail);
-                        $stmt = $con->prepare($sql);
-                        $stmt->execute($data);
-                        $row = $stmt->fetch();
-                        $count = $stmt->rowCount();
+                //     try {
+                //         $sql = "SELECT email,pass FROM employees where email=?;";
+                //         $data = array($tokenEmail);
+                //         $stmt = $con->prepare($sql);
+                //         $stmt->execute($data);
+                //         $row = $stmt->fetch();
+                //         $count = $stmt->rowCount();
 
-                        if ($count < 1) {
-                            echo "There was an error";
-                            exit();
-                        } else {
-                            $newpass = sha1($password);
+                //         if ($count < 1) {
+                //             echo "There was an error";
+                //             exit();
+                //         } else {
+                //             $newpass = sha1($password);
 
-                            $sql2 = "UPDATE employees set pass=? where email=?;";
-                            $data2 = array($newpass, $tokenEmail);
-                            $stmt2 = $con->prepare($sql2);
-                            $stmt2->execute($data2);
+                //             $sql2 = "UPDATE employees set pass=? where email=?;";
+                //             $data2 = array($newpass, $tokenEmail);
+                //             $stmt2 = $con->prepare($sql2);
+                //             $stmt2->execute($data2);
 
-                            $sql3 = "DELETE FROM pwdreset where pwdresetEmail=?;";
-                            $data3 = array($tokenEmail);
-                            $stmt3 = $con->prepare($sql3);
-                            $stmt3->execute($data3);
+                //             $sql3 = "DELETE FROM pwdreset where pwdresetEmail=?;";
+                //             $data3 = array($tokenEmail);
+                //             $stmt3 = $con->prepare($sql3);
+                //             $stmt3->execute($data3);
 
-                            header("location:../login.php?newpwd=passwordupdated");
-                        }
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
-                }
+                //             header("location:../login.php?newpwd=passwordupdated");
+                //         }
+                //     } catch (PDOException $e) {
+                //         echo $e->getMessage();
+                //     }
+                // }
             }
         }
     } catch (PDOException $e) {

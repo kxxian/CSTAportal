@@ -29,7 +29,7 @@ if (isset($_POST["search"]["value"])) {
     $query .= 'OR abbr LIKE "%' . $_POST["search"]["value"] . '%")';
 }
 
-$query .= ' AND status="Verified" AND isAccepted="0" ';
+$query .= ' AND studtype="Transferee" AND status="Verified" AND isAccepted="0" ';
 
 if (isset($_POST["order"])) {
     $query .= 'ORDER BY ' . $_POST['order']['0']['column'] . ' ' . $_POST['order']['0']['dir'] . '
@@ -53,6 +53,8 @@ foreach ($result as $row) {
     $mname = $row["mname"];
 
     $sub_array = array();
+
+
     $sub_array[] = '<center>' . $row["snum"] . '</center>';
     $sub_array[] = '<center>' . $lname . ', ' . $fname . ' ' . $mname . '</center>';
     $sub_array[] = '<center>' . $row["yrlevel"] . '</center>';
@@ -82,7 +84,7 @@ foreach ($result as $row) {
 $output = array(
     "draw"              => intval($_POST["draw"]),
     "recordsTotal"      => $filtered_rows,
-    "recordsFiltered"   => get_registrations(),
+    "recordsFiltered"   => get_registrations_trans(),
     "data"              => $data
 
 );

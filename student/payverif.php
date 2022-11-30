@@ -392,7 +392,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                                     echo '<div class="col-sm-4">
                                                                     <div class="payment-card">
                                                                        <h5>'.$row['provider'].'</h5>
-                                                                        <h3>
+                                                                        <h3 class="font-weight-bold">
                                                                             '.$row['accnumber'].'
                                                                         </h3>
                                                                         <div class="row">

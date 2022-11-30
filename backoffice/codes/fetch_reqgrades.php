@@ -51,12 +51,12 @@ $filtered_rows=$statement->rowCount();
 foreach ($result as $row) {
 
     $sub_array = array();
-    $sub_array[] = $row["snum"];
-    $sub_array[] = $row["fullname"];
-    $sub_array[] = $row["yrlevel"];
-    $sub_array[] = $row["course"];
-    $sub_array[] = $row["schoolyr"];
-    $sub_array[] = $row["semester"];
+    $sub_array[] = '<center>'.$row["snum"].'</center>';
+    $sub_array[] = '<center>'.$row["fullname"].'</center>';
+    $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
+    $sub_array[] = '<center>'.$row["abbr"].'</center>';
+    $sub_array[] = '<center>'.$row["schoolyr"].'</center>';
+    $sub_array[] = '<center>'.$row["semester"].'</center>';
    
    
   

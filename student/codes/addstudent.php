@@ -21,6 +21,8 @@ if (isset($_POST['submit'])) {
     date_default_timezone_set('Asia/Manila');
     $date = date('y-m-d h:i:s');
     //echo ucwords($date);
+    $studtype = $_POST['studtype'];
+
     $lname = ucwords(strtolower(htmlspecialchars(trim($_POST['txtLname']))));
     $fname = ucwords(strtolower(htmlspecialchars(trim($_POST['txtFname']))));
     $mname = ucwords(strtolower(htmlspecialchars(trim($_POST['txtMname']))));
@@ -70,8 +72,8 @@ if (isset($_POST['submit'])) {
             if ($responsekeys['success']) {
                 try {
 
-                    $sql = "INSERT INTO students (lname,fname,mname,snum,yrlevel,dept_ID,course,gender,cstatus,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,mothermaiden,guardian,guardiancontact,guardiancontact2,vkey,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                    $data = array($lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $cstatus, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $mothermaiden, $guardian, $guardiancontact, $guardiancontact2, $vkey, $date);
+                    $sql = "INSERT INTO students (studtype,lname,fname,mname,snum,yrlevel,dept_ID,course,gender,cstatus,bday,citizenship,mobile,email,cityadd,region,province,city,brgy,mothermaiden,guardian,guardiancontact,guardiancontact2,vkey,dor)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    $data = array($studtype,$lname, $fname, $mname, $snum, $yrlevel, $dept, $course, $gender, $cstatus, $bday, $citizen, $mobile, $email, $cityadd, $region, $province, $city, $brgy, $mothermaiden, $guardian, $guardiancontact, $guardiancontact2, $vkey, $date);
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
                     $newname = $con->lastInsertId();

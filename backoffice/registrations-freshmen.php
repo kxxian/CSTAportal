@@ -160,14 +160,14 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-plus fa-fw"></i> Registrations
+                            <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-user-plus fa-fw"></i> Registrations - Freshman
 
                             </h6>
 
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="regTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
+                                <table id="freshmanTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th class="text-center">Student No.</th>
@@ -221,7 +221,34 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
     <!-- scripts -->
     <!-- <script src="js/pending-payments.js"></script> -->
-    <script src="js/requests-counter.js"></script>
+
+
+    <!-- Choose which counter should be included in the script -->
+    <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+    <?php
+    }
+
+    ?>
+
+
     <script src="js/sweetalert.min.js"></script>
 
 
@@ -427,5 +454,5 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
 
-<script src="js/registrations.js"></script>
+<script src="js/registrations-freshman.js"></script>
 </div>

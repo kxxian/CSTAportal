@@ -118,14 +118,13 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <table id="reqgradesTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Stud No.</th>
-                                            <th>Student Name</th>
-                                            <th>Year Level</th>
-                                            <th>Course</th>
-                                            <th>Schoolyr</th>
-                                            <th>Semester</th>
-                                            
-                                            <th>Actions</th>
+                                            <th class="text-center">Student No.</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th class="text-center">Year Level</th>
+                                            <th class="text-center">Course</th>
+                                            <th class="text-center">Schoolyr</th>
+                                            <th class="text-center">Semester</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
 
                                     </thead>
@@ -171,7 +170,31 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
     <!-- scripts -->
     <script src="js/pending-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
+
+    <!-- Choose which counter should be included in the script -->
+    <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+    <?php
+    }
+
+    ?>
     <script src="js/sweetalert.min.js"></script>
    
 
@@ -215,7 +238,14 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Grades</label>
-                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control" placeholder="Enter Email.." >
+                            <input type="file" name="attachment[]" accept=".jpg" id="attachment" class="form-control"  >
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="email" class="text-gray-900 font-weight-bold">Remarks</label>
+                            <input type="text" name="attachment[]" accept=".jpg" id="attachment" class="form-control" >
                         </div>
                         
                     </div>

@@ -13,6 +13,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 }
 
 
+
+
 ?>
 <?php
 // check if enrollment is open
@@ -28,6 +30,8 @@ if ($status == 'CLOSED') { // display enrollment page if open
     header("location:index.php");
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -137,7 +141,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                             <!-- Basic Card Example -->
                                             <div class="card shadow mb-4">
                                                 <div class="card-header py-3">
-                                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> Enrollment Form</h6>
+                                                    <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-edit"></i> Assessment</h6>
                                                 </div>
                                                 <div class="card-body" id="enroll_div">
                                                 
@@ -252,7 +256,7 @@ if ($status == 'CLOSED') { // display enrollment page if open
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p>NOTE: For Freshman and Transferees, upload first your requirements to your profile before proceeding to enrollment.</p>
+                                            <p>NOTE: For Freshman and Transferees, upload your requirements to your profile first before proceeding to assessment.</p>
                                         </div>
                                         
                                     </div>

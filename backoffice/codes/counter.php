@@ -53,8 +53,8 @@ if (isset($_POST['data4'])) {
 //pending student account registrations  
 if (isset($_POST['data5'])) {
 
-  $sql = "SELECT `status`, isAccepted from vwstudents where `status`=? and isAccepted=?";
-  $data = array("Verified",'0');
+  $sql = "SELECT studtype, `status`, isAccepted from vwstudents where studtype=? and `status`=? and isAccepted=?";
+  $data = array("Old Student", "Verified", '0');
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
@@ -252,8 +252,8 @@ if (isset($_POST['data20'])) {
   // $data = array("Pending", '0', "Pending", "Sent", "Pending");
   $stmt = $con->prepare($sql);
   $stmt->execute();
-  $row=$stmt->fetch();
-  $count=$row['total'];
+  $row = $stmt->fetch();
+  $count = $row['total'];
 
   echo $count;
 }
@@ -262,7 +262,7 @@ if (isset($_POST['data20'])) {
 if (isset($_POST['data21'])) {
 
   $sql = "SELECT reqdoc_ID from tbldocureq where status=?";
-  $data= array("Pending");
+  $data = array("Pending");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
@@ -273,7 +273,7 @@ if (isset($_POST['data21'])) {
 if (isset($_POST['data22'])) {
 
   $sql = "SELECT reqdoc_ID from tbldocureq where status=?";
-  $data= array("Cleared");
+  $data = array("Cleared");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
@@ -304,8 +304,8 @@ if (isset($_POST['data23'])) {
   // $data = array("Pending", '0', "Pending", "Sent", "Pending");
   $stmt = $con->prepare($sql);
   $stmt->execute();
-  $row=$stmt->fetch();
-  $count=$row['total'];
+  $row = $stmt->fetch();
+  $count = $row['total'];
 
   echo $count;
 }
@@ -315,7 +315,7 @@ if (isset($_POST['data23'])) {
 if (isset($_POST['data24'])) {
 
   $sql = "SELECT enrollment_ID from enrollment where enrollment_status=?";
-  $data= array("Validating Requirements");
+  $data = array("Validating Requirements");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();
@@ -324,6 +324,67 @@ if (isset($_POST['data24'])) {
 }
 
 
+//Registrations-Freshman
+if (isset($_POST['data25'])) {
+
+  $sql = "SELECT id from students where studtype=? and `status`=? and isAccepted=?";
+  $data = array("Freshman", "Verified", 0);
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
+
+//Registrations-Transferees
+if (isset($_POST['data26'])) {
+
+  $sql = "SELECT id from students where studtype=? and `status`=? and isAccepted=?";
+  $data = array("Transferee", "Verified", 0);
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
+//Registrations-Transferees
+if (isset($_POST['data27'])) {
+
+  $sql = "SELECT id from students where studtype=? and `status`=? and isAccepted=?";
+  $data = array("Old Student", "Verified", 0);
+  $stmt = $con->prepare($sql);
+  $stmt->execute($data);
+  $count = $stmt->rowCount();
+
+  echo $count;
+}
+
+
+
+//total request of documents
+if (isset($_POST['data28'])) {
+
+  $sql = " 
+  SELECT
+         
+            
+            (SELECT COUNT(id) from students where studtype='Old Student' and `status`='Verified' and isAccepted=0) 
+            +
+            (SELECT COUNT(id) from students where studtype='Freshman' and `status`='Verified' and isAccepted=0) 
+            +
+            (SELECT COUNT(id) from students where studtype='Transferee' and `status`='Verified' and isAccepted=0) 
+            as total
+         
+          
+  ";
+  // $data = array("Pending", '0', "Pending", "Sent", "Pending");
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+  $row = $stmt->fetch();
+  $count = $row['total'];
+
+  echo $count;
+}
 
 
 ?>

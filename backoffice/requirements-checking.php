@@ -170,7 +170,31 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
     </a>
 
   
-    <script src="js/requests-counter.js"></script>
+
+    <!-- Choose which counter should be included in the script -->
+    <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+    <?php
+    }
+
+    ?>
     <script src="js/sweetalert.min.js"></script>
    
 

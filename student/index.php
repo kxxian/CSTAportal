@@ -1,10 +1,40 @@
 <?php
 require_once("includes/connect.php");
+require_once("codes/fetchcurrentsyandsem.php");
 require_once("codes/fetchuserdetails.php");
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
+
+
+// // if not enrolled, limit access
+// require_once("codes/fetchenrollmentdetails.php");
+
+
+#if student doesn't have student number
+// if ($snum=="NA"){
+//     $reqdocu_menu = "hidden";
+//     $payverif_menu = "hidden";
+//     $reqgrade_menu = "hidden";
+//     //sidebar
+//     $sidebar_schedule = "hidden";
+//     $sidebar_calendar="hidden";
+
+
+// }else{
+//     $reqdocu_menu = "";
+//     $payverif_menu = "";
+//     $reqgrade_menu = "";
+//     //sidebar
+//     $sidebar_schedule = "";
+//     $sidebar_calendar="";
+// }
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +93,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                 
+
                     <br>
                     <!-- Content Row With card -->
                     <!-- Page Heading -->
@@ -90,7 +120,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $note = '';
                         echo '
                         <div class="row">
-                        <div class="col-sm-3 mb-4">
+                        <div class="col-sm-3 mb-4" ">
                             <div class="row no-gutters align-items-center">
                                 <div type="button" onclick="location.href=' . $link . ';" class="card" >
                                     <img class="card-img-top" src="img/menu/enroll.jpg" alt="Card image cap">
@@ -105,7 +135,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $link = "#";
                         echo '
                         <div class="row">
-                        <div class="col-sm-3 mb-4" style="opacity:0.8">
+                        <div class="col-sm-3 mb-4" style="opacity:0.8" ">
                             <div class="row no-gutters align-items-center">
                                 <div type="button" onclick="location.href=' . $link . ';" class="card" >
                                     <img class="card-img-top" src="img/menu/enroll.jpg" alt="Card image cap">
@@ -117,24 +147,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                     </div>';
                     }
                     ?>
-
-                    <!-- Request Document -->
-                    <div class="col-sm-3 mb-4">
-
-                        <div class="row no-gutters align-items-center">
-                            <div type="button" onclick="location.href='requestdocument.php';" class="card">
-                                <img class="card-img-top" src="img/menu/documents.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="h5 card-text text-center text-gray-900"><strong>Document Request</strong></h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
                     <!--Payment Verification -->
-                    <div class="col-sm-3 mb-4">
-
+                    <div class="col-sm-3 mb-4" <?= $payverif_menu ?>>
                         <div class="row no-gutters align-items-center">
                             <div type="button" onclick="location.href='payverif.php';" class="card">
                                 <img class="card-img-top" src="img/menu/payment.jpg" alt="Card image cap">
@@ -145,6 +159,22 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         </div>
 
                     </div>
+
+                    <!-- Request Document -->
+                    <div class="col-sm-3 mb-4">
+
+                        <div class="row no-gutters align-items-center" <?= $reqdocu_menu ?>>
+                            <div type="button" onclick="location.href='requestdocument.php';" class="card">
+                                <img class="card-img-top" src="img/menu/documents.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="h5 card-text text-center text-gray-900"><strong>Document Request</strong></h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
 
 
 
@@ -163,7 +193,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $note1 = '';
                         echo '
                         
-                        <div class="col-sm-3 mb-4">
+                        <div class="col-sm-3 mb-4" ' . $reqgrade_menu . '>
                             <div class="row no-gutters align-items-center">
                                 <div type="button" onclick="location.href=' . $link1 . ';" class="card">
                                     <img class="card-img-top" src="img/menu/grades.jpg" alt="Card image cap">
@@ -178,7 +208,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                         $link1 = "#";
                         echo '
                       
-                        <div class="col-sm-3 mb-4" style="opacity:0.8">
+                        <div class="col-sm-3 mb-4" style="opacity:0.8" ' . $reqgrade_menu . '>
                             <div class="row no-gutters align-items-center">
                                 <div type="button" onclick="location.href=' . $link1 . ';" class="card">
                                     <img class="card-img-top" src="img/menu/grades.jpg" alt="Card image cap">
