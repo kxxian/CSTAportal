@@ -306,11 +306,11 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <table id="p_reqdocuTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">  
                                         <tr>
-                                            <th>Stud No.</th>
-                                            <th>Student Name</th>
-                                            <th>Status</th>
-                                            <th>Course</th>
-                                            <th width="120">Actions</th>
+                                            <th class="text-center">Student No.</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Course</th>
+                                            <th width="120" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -703,6 +703,6 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 <script src="js/p_reqdocu.js"></script>
 </div>
 
-<script src="js/reqdocu.js"></script>
+<!-- <sscript src="js/reqdocu.js"></sscript> -->
 </div>
 

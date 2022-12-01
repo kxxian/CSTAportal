@@ -185,13 +185,13 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
-                                        <h3 class="tasks"> </h3>
-                                        <p> Pending Registrations</p>
+                                        <h3 class="ctr_total_regs"> </h3>
+                                        <p>Pending Registrations</p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     </div>
-                                    <a href="registrations.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="registrations-old-students.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
 

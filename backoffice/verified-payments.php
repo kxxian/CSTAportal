@@ -5,7 +5,7 @@ require_once('includes/fetchcurrentsyandsem.php');
 require_once('includes/fetchuserdetails.php');
 
 //get office from fetchuserdetails.php
-$office=$Office;
+$office = $Office;
 
 if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
@@ -26,7 +26,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
     <title>Verified Payments</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/CSTA_SMALL.png">
 
-       <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -81,13 +81,13 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
         <!-- Sidebar -->
         <?php
-         //office conditions for sidebar menu
-         if ($office=="Accounting"){
+        //office conditions for sidebar menu
+        if ($office == "Accounting") {
             $pageValue = 5;
-        }else{
+        } else {
             header("Location:index.php");
         }
-        
+
         require_once('includes/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
@@ -108,7 +108,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                     <!-- Pending Payments Table -->
                     <div class="card shadow mb-4">
-                    <div class="card-header py-3">
+                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-gray-900"><i class="fas fa-check fa-fw"></i> Verified Payments
 
                             </h6>
@@ -120,7 +120,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th class="text-center">Student #</th>
+                                            <th class="text-center">Student No.</th>
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Course</th>
                                             <th class="text-center" hidden>Tuition Fee</th>
@@ -135,12 +135,12 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             <th class="text-center" hidden>Time</th>
                                             <th class="text-center" hidden>Verified</th>
                                             <th class="text-center" hidden>Verification Code</th>
-                                            <th class="text-center">Date</th>
-                                            <th class="text-center" hidden>OR</th>
-                                            <th class="text-center" hidden>AR</th>
+                                            <th class="text-center">Date Verified</th>
+                                            <th class="text-center">OR</th>
+                                            <th class="text-center">AR</th>
                                             <th class="text-center" hidden>Remarks</th>
-                              
-                                            <th class="text-center" width="10">Actions</th>
+
+                                            <th class="text-center" width="60">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -175,6 +175,25 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             }
 
                                             $reqform = "";
+
+
+                                            //identify whether the student has snum or not
+                                            if ($row['snum'] == 'NA') {
+                                                $snum_button = '<button sid="' . $row['sid'] . '" class="btn btn-success btn-sm assign_snum" title="Assign Student Number"><i class="far fa-address-card"></i></button>';
+                                            } else {
+                                                $snum_button = "";
+                                            }
+
+                                            //edit snum if existing
+                                            if ($row['snum'] != 'NA') {
+                                                $edit_snum = '<button sid="' . $row['sid'] . '" snum="' . $row['snum'] . '" class="btn btn-warning btn-sm edit_snum" title="Assign Student Number"><i class="far fa-address-card"></i></button>';
+                                            } else {
+                                                $edit_snum = "";
+                                            }
+
+
+
+
                                             echo '<tr> 
                              
 
@@ -184,7 +203,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         <td class="text-center">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
                                                         <td class="text-center">' . $row['abbr'] . '</td>
                                                         <td class="text-center" hidden>' . $row['tfeepayment'] . '</td>
-                                                        <td class="text-center"  hidden>' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
+                                                        <td class="text-center"  hidden>' . $row['schoolyr'] . ' ' . $row['semester'] . '  </td>
                                                       
                                                         <td class="text-center" hidden>' . $row['term'] . '</td>
                                                         <td class="text-right">' . $row['amtpaid'] . '</td>
@@ -197,27 +216,21 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         <td class="text-center" hidden>' . $row['payment_status'] . '</td>
                                                         <td hidden>' . $row['verif_code'] . '</td>
                                                         <td class="text-center">' . $row['date_verified'] . '</td>
-                                                        <td hidden>' . $row['OR'] . '</td>
-                                                        <td hidden>' . $row['AR'] . '</td>
+                                                        <td>' . $row['OR'] . '</td>
+                                                        <td>' . $row['AR'] . '</td>
                                                         <td hidden>' . $row['remarks'] . '</td>
-														<td>
-															<button class="btn btn-success" title="Resend"><i class="fas fa-sync-alt"></i></button>
-														</td>
-                                                        
+														
+                    
+
+                                                        <td> 
+                               
+                                                        <button  class="btn btn-info btn-sm" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Resend Receipt"><i class="fa fa-sync-alt fa-fw"></i></button>
+                                                        ' . $snum_button . '
+                                                        ' . $edit_snum . '
 
 
-                                                       
-                                                       
-                                                       
-                                                        
-                                                        
-                                                       
-                                                        
-                                                        
 
-                                                        <td hidden> 
-                                                        <button hidden class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
-                                                        <button hidden class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
+                                                      
                                                         </td>
                                                       </tr>';
                                         }
@@ -250,19 +263,46 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
         <i class="fas fa-angle-up"></i>
     </a>
 
-   
+
 
     <div class="modal fade" id="sendreceipt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i class="far fa-envelope"></i><strong> Send Receipt</strong> </h5>
+                    <h5 class="modal-title text-gray-900" id="exampleModalLabel"> <i id="modal_icon" class="far fa-address-card"></i><strong> <span class="title"> Send Receipt</span></strong> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                 <form action="codes/sendreceipt.php" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
+                <div class="modal-body">
+
+
+
+
+                    <form id="assform" action="codes/resendreceipt.php" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+
+                            <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
+                            <!-- <input type="hidden" name="pv_ID" id="pv_ID" class="form-control"> -->
+                            <input type="hidden" name="snum_operation" id="snum_operation" class="form-control" readonly>
+                            <input type="hidden" name="snum_sid" id="snum_sid" class="form-control" readonly>
+
+
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <label class="font-weight-bold text-gray-900">Assign Student Number</label>
+                                    <input type="text" maxlength="8" name="ass_snum" id="ass_snum" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-success" id="assignsnum" name="assignsnum" value="Assign">
+                            </div>
+                        </div>
+                    </form>
+
+                    <form id="sendreceiptform" action="codes/resendreceipt.php" method="POST" enctype="multipart/form-data">
+
                         <div class="form-group">
 
                             <!-- <label class="font-weight-bold text-gray-900">Payment For:</label> -->
@@ -273,7 +313,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                <label class="font-weight-bold text-gray-900">Choose Receipt/s:</label><br>
+                                    <label class="font-weight-bold text-gray-900">Choose Receipt/s:</label><br>
                                     <div class="form-check-inline">
                                         <input class="form-check-input" type="checkbox" value="" id="OR" onclick="toggle();">
                                         <label class="form-check-label text-gray-900" for="flexCheckDefault">
@@ -295,12 +335,12 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 </div>
                                 <div class="col-lg-6">
                                     <label class="font-weight-bold text-gray-900">A.R Number:</label>
-                                    <input type="text" name="ArNum" id="ArNum" class="form-control"  disabled>
+                                    <input type="text" name="ArNum" id="ArNum" class="form-control" disabled>
                                 </div>
-                                
+
                             </div>
                             <div class="form-group row">
-                            <div class="col-lg-12">
+                                <div class="col-lg-12">
                                     <label class="font-weight-bold text-gray-900">Attachment/s:</label>
                                     <input type="file" name="OReceipt[]" id="OReceipt" multiple="multiple" class="form-control" required disabled>
                                 </div>
@@ -313,46 +353,50 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                             </div>
                             <div class="modal-footer">
-                                <input type="submit" class="btn btn-success" id="btn" name="sendreceipt"  value="Send" disabled> 
+                                <input type="submit" class="btn btn-success" id="btn" name="sendreceipt" value="Send" disabled>
                             </div>
-                </form>
+                    </form>
+
+
+
+                </div>
             </div>
         </div>
-    </div>
 
-   
-    <!-- scripts -->
-    <script src="js/verifiedpayments.js"></script>
-    <script src="js/requests-counter.js"></script>
-    <script src="js/sweetalert.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- scripts -->
+        <script src="js/verifiedpayments.js"></script>
+        <script src="js/requests-counter.js"></script>
+        <script src="js/sweetalert.min.js"></script>
 
-    <!-- DataTable CDN JS -->
-    <!-- <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <?php
-    if (isset($_SESSION['status']) && $_SESSION['status'] != "") {
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    ?>
-        <script>
-            swal({
-                title: "<?php echo $_SESSION['status']; ?>",
-                // text: ""
-                icon: "<?php echo $_SESSION['status_code']; ?>",
-                button: "Done",
-                timer: 5000
-            });
-        </script>
+        <!-- DataTable CDN JS -->
+        <!-- <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
 
-    <?php
-        unset($_SESSION['status']);
-    }
-    ?>
+        <?php
+        if (isset($_SESSION['status']) && $_SESSION['status'] != "") {
+
+        ?>
+            <script>
+                swal({
+                    title: "<?php echo $_SESSION['status']; ?>",
+                    text: "<?php echo $_SESSION['msg']; ?>",
+                    icon: "<?php echo $_SESSION['status_code']; ?>",
+                    button: "Done",
+                    timer: 5000
+                });
+            </script>
+
+        <?php
+            unset($_SESSION['status']);
+        }
+        ?>
 
 
 

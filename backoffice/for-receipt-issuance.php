@@ -120,7 +120,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <thead class="thead-dark">
                                         <tr>
 
-                                            <th>Student #</th>
+                                            <th>Student No.</th>
                                             <th>Name</th>
                                             <th>Course</th>
                                             <th>Tuition Fee</th>
@@ -179,7 +179,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                        
                                                         <td>' . $row['snum'] . '</td>
                                                         <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td>' . $row['course'] . '</td>
+                                                        <td>' . $row['abbr'] . '</td>
                                                         <td>' . $row['tfeepayment'] . '</td>
                                                         <td >' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
                                                       
@@ -194,21 +194,11 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         <td hidden>' . $row['OR'] . '</td>
                                                         <td hidden>' . $row['AR'] . '</td>
                                                         <td hidden>' . $row['remarks'] . '</td>
-                                                        
-
-
-                                                       
-                                                       
-                                                       
-                                                        
-                                                        
-                                                       
-                                                        
-                                                        
 
                                                         <td> 
                                                         <button hidden class="btn btn-info btnPaymentDetails" onclick="loadRecord2(' . $row['pv_ID'] . ')" title="Payment Details"><i class="fa fa-list fa-fw"></i></button>
                                                         <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Send Receipt"><i class="fa fa-envelope fa-fw"></i></button>
+                                                        
                                                         </td>
                                                       </tr>';
                                         }

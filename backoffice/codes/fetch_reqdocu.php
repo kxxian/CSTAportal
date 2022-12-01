@@ -55,10 +55,10 @@ foreach ($result as $row) {
     $mname= $row["mname"];
 
     $sub_array = array();
-    $sub_array[] = $row["snum"];
-    $sub_array[] = $lname.', '.$fname.' '.$mname;
-    $sub_array[] = $row["stud_status"];
-    $sub_array[] = $row["course"];
+    $sub_array[] = '<center>'.$row["snum"].'</center>';
+    $sub_array[] = '<center>'.$lname.', '.$fname.' '.$mname.'</center>';
+    $sub_array[] = '<center>'.$row["stud_status"].'</center>';
+    $sub_array[] = '<center>'.$row["course"].'</center>';
    
     
     $sub_array[] =

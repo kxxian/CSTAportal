@@ -310,11 +310,11 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <table id="reqdocuTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">  
                                         <tr>
-                                            <th>Stud No.</th>
-                                            <th>Student Name</th>
-                                            <th>Status</th>
-                                            <th>Course</th>
-                                            <th width="120">Actions</th>
+                                            <th class="text-center">Student No.</th>
+                                            <th class="text-center">Student Name</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Course</th>
+                                            <th width="120" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                 </table>

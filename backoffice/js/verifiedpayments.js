@@ -77,7 +77,47 @@ $(document).ready(function () {
                     });
                 }
 	})
+
+
+
+
+    $(document).on('click', '.assign_snum', function() {
+        // var ev_ID = $(this).attr('id');
+        var sid = $(this).attr('sid');
+    
+
+                 $('#sendreceipt').modal('show');
+                 $('#assform').show();
+                 $('#sendreceiptform').hide();
+                 $('#snum_sid').val(sid);
+             
+                 $('.title').text("Assign Snum");
+                 $('#modal_icon').removeClass("far fa-envelope");
+                 $('#modal_icon').addClass("far fa-address-card");
+                
+    })
+
+    $(document).on('click', '.edit_snum', function() {
+        var snum = $(this).attr('snum');
+        var sid = $(this).attr('sid');
+    
+// alert(snum);
+                 $('#sendreceipt').modal('show');
+                 $('#assform').show();
+                 $('#sendreceiptform').hide();
+                 $('#snum_sid').val(sid);
+                 $('#ass_snum').val(snum);
+                 $('#snum_operation').val("Edit");
+                 $('#modal_icon').removeClass("far fa-envelope");
+                 $('#modal_icon').addClass("far fa-address-card");
+              
+             
+                 $('.title').text("Edit Snum");
+                
+    })
 })
+
+
 
 // toggle controls
 function toggle() {
@@ -137,9 +177,36 @@ function loadRecord(payment_ID) {
     $("#txtsid").val(rowEdit['sid']);
     $("#txtname").val(rowEdit['fname']+' '+rowEdit['lname']);
     $("#sendreceipt").modal("show");
+    $('.title').text("Resend Receipt");
+    $('#sendreceiptform').show();
+    $('#assform').hide();
+    $('#modal_icon').removeClass("far fa-address-card");
+    $('#modal_icon').addClass("far fa-envelope");
+   
     
 
    });
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //close payment details modal
     $('.close').on('click', function() {

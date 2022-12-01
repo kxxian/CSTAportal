@@ -99,12 +99,14 @@ if (isset($_POST['sendreceipt'])) {
 
         if (!$mail->send()) {
             // echo "<Email Not Sent: " . $mail->ErrorInfo;
-            $_SESSION['status'] = "Receipt Not Sent!";
+            $_SESSION['status'] = "Error!";
+            $_SESSION['msg'] = "Receipt notSent!";
             $_SESSION['status_code'] = "error";
             header('location:../for-receipt-issuance.php');
         } else {
 
-            $_SESSION['status'] = "Receipt Sent!";
+            $_SESSION['status'] = "Success!";
+            $_SESSION['msg'] = "Receipt Sent!";
             $_SESSION['status_code'] = "success";
             header('location:../for-receipt-issuance.php');
         }
@@ -112,4 +114,18 @@ if (isset($_POST['sendreceipt'])) {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+}
+
+//assign snum
+if (isset($_POST['assignsnum'])){
+    $snum_sid=$_POST['snum_sid'];
+    $ass_snum=$_POST['ass_snum'];
+
+    $sql = "Update students set snum=? where id=? ";
+    $data = array($ass_snum,$snum_sid);
+    $stmt = $con->prepare($sql);
+    $stmt->execute($data);
+
+
+
 }

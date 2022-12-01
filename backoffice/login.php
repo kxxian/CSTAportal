@@ -192,7 +192,7 @@ if (isset($_GET['reset'])) {
 								<span class="fa fa-envelope-o" aria-hidden="true"></span>
 								<input type="email" placeholder="Email" name="email" id="email" required />
 							</div>
-							<span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px;"><input type="checkbox" name="isAdminpw" id="isAdminpw" value="admin" /> <small>Admin</small></span>
+							<!-- <span style="float:left;font-weight:bold; font-size:15px;margin-bottom:3px;"><input type="checkbox" name="isAdminpw" id="isAdminpw" value="admin" /> <small>Admin</small></span> -->
 							<input type="submit"  class="btn submit last-btn" style="background-color: #824d1b;" value="Reset" required>
 						</form>
 					</article>

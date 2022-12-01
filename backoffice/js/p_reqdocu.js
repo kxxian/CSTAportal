@@ -11,20 +11,20 @@ $(document).ready(function() {
             //         columns: [1,2,14,16,19,20]
             //     }
             // },
-            {
-                extend: 'excelHtml5',
-                className:'btn btn-success',
-                exportOptions: {
-                    columns: [0,1,2,3,4]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [0,1,2,3,4]
-                }
-            },
+            // {
+            //     extend: 'excelHtml5',
+            //     className:'btn btn-success',
+            //     exportOptions: {
+            //         columns: [0,1,2,3,4]
+            //     }
+            // },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2,3,4]
+            //     }
+            // },
             {
                 extend: 'print',
                 className:'btn btn-secondary',
