@@ -21,7 +21,7 @@ if (isset($_POST['data1'])) {
 
 //fetch notifications
 if (isset($_POST['param'])) {
-  $sql = "SELECT * FROM vwnotif where sid=$sid order by date desc";
+  $sql = "SELECT * FROM vwnotif where sid=$sid order by notif_ID desc";
   $stmt = $con->query($sql);
   $count = $stmt->rowCount();
   $strheader = '';

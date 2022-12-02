@@ -99,3 +99,28 @@ if (isset($_POST['enroll_id'])) {
     }
     echo json_encode($output);
 }
+
+
+//return request
+if (isset($_POST['return_assess'])) {
+    $assess_id=$_POST['assess_id'];
+    $fullname=$_POST['return_fullname'];
+    $email=$_POST['return_email'];
+    $remarks=$_POST['return_message'];
+
+
+    $statement = $con->prepare("UPDATE enrollment set enrollment_status=?, remarks=? WHERE enrollment_ID=?");
+    $data = array('Returned',$remarks, $assess_id);
+    $result = $statement->execute($data);
+
+
+    $_SESSION['status'] = "Success!";
+    $_SESSION['msg'] = "Request Returned!";
+    $_SESSION['status_code'] = "success";
+    header('location:assessments.php');
+
+
+
+
+
+}

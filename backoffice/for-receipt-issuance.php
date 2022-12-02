@@ -178,8 +178,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                                                        
                                                         <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td>' . $row['abbr'] . '</td>
+                                                        <td><a title ="View Payment History" href="viewpayments.php?stud='.$row["sid"].'" target="_blank" class="font-weight-bold">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</a></td>                                                        <td>' . $row['abbr'] . '</td>
                                                         <td>' . $row['tfeepayment'] . '</td>
                                                         <td >' . $row['schoolyr'] .' '. $row['semester'] .'  </td>
                                                       
@@ -304,7 +303,30 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
    
     <!-- scripts -->
     <script src="js/send-receipt.js"></script>
-    <script src="js/requests-counter.js"></script>
+   <!-- Choose which counter should be included in the script -->
+   <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-accounting.js"></script>
+
+    <?php
+    }
+
+    ?>
     <script src="js/sweetalert.min.js"></script>
 
     <!-- Bootstrap core JavaScript-->

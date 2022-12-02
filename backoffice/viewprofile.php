@@ -20,10 +20,12 @@ if (isset($_GET['stud'])){
     
     if($row=$stmt->fetch()){
         $fullname=$row['fname'].' '.$row['mname'].' '.$row['lname'];
-        $bday=$row['bday'];
+        $bday=date_create($row['bday']);
+        
+        
         $email=$row['email'];
         $studmobile=$row['mobile'];
-        $address=ucwords($row['completeaddress']);
+        $address=ucwords(strtolower($row['completeaddress']));
         //$region=ucwords($row['region']);
         $guardian=$row['guardian'];
         $guardiancontact=$row['guardiancontact'];
@@ -38,6 +40,8 @@ if (isset($_GET['stud'])){
     }else{
         header('location: requirements-checking.php');
     }
+}else{
+    header('location: index.php');
 }
 ?>
 
@@ -220,10 +224,10 @@ if (isset($_GET['stud'])){
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Birthday</h6>
+                                                        <h6 class="mb-0 text-gray-900 font-weight-bold">Birthdate</h6>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary text-gray-900">
-                                                        <?= $bday
+                                                        <?= date_format($bday, 'F j, Y');
                                                         ?>
                                                     </div>
                                                 </div>

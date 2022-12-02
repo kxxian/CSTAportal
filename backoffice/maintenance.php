@@ -293,7 +293,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
     } else if ($office == "Accounting") {
     ?>
         <!-- script here -->
-        <script src="js/counter-dean.js"></script>
+        <script src="js/counter-accounting.js"></script>
 
     <?php
     }

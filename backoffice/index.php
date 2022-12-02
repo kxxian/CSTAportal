@@ -145,7 +145,29 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
         <!-- Sidebar -->
         <?php
         $pageValue = 1;
-        require_once('includes/sidebar.php'); ?>
+        require_once('includes/sidebar.php'); 
+        
+        if ($office=="Registrar"){
+            $reg_cards="";
+            $acc_cards="hidden";
+            $dean_cards="hidden";
+        }else if($office=="Accounting"){
+            $reg_cards="hidden";
+            $acc_cards="";
+            $dean_cards="hidden";
+            
+
+
+        }else if($office=="Dean"){
+            $reg_cards="hidden";
+            $acc_cards="hidden";
+            $dean_cards="";
+
+
+        }
+        
+        
+        ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -176,12 +198,12 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                     <!-- Content Row -->
-                    <!-- Accounting Cards -->
+
                     <div class="container">
 
 
                         <!-- registrar cards -->
-                        <div class="row">
+                        <div class="row" <?=$reg_cards?>>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -236,8 +258,8 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
 
-                        <!-- Accounting -->
-                        <div class="row">
+                        <!-- Registrar 2 -->
+                        <div class="row" <?=$reg_cards?>>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -289,6 +311,105 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 </div>
                             </div>
                         </div>
+
+
+
+
+                        <!-- Dean Cards -->
+                        <div class="row" <?=$dean_cards?>>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-orange">
+                                    <div class="inner">
+                                        <h3 class="pending_assessments"> </h3>
+                                        <p> For Assessment</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                    </div>
+                                    <a href="assessments.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green">
+                                    <div class="inner">
+                                        <h3 class="assessed"> </h3>
+                                        <p> Assessed</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-wallet" aria-hidden="true"></i>
+                                    </div>
+                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                          
+                        </div>
+
+                        <!-- Accounting -->
+                        <div class="row" <?=$acc_cards?>>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-red">
+                                    <div class="inner">
+                                        <h3 class="pending_payments"> </h3>
+                                        <p> Pending Payments</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                    </div>
+                                    <a href="pending-payments.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-orange">
+                                    <div class="inner">
+                                        <h3 class="received_payments"> </h3>
+                                        <p> For Verification </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-wallet" aria-hidden="true"></i>
+                                    </div>
+                                    <a href="received-payments.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-blue">
+                                    <div class="inner">
+                                        <h3 class="for_receipt"> </h3>
+                                        <p> For Receipt </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-receipt"></i>
+                                    </div>
+                                    <a href="for-receipt-issuance.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green   ">
+                                    <div class="inner">
+                                        <h3 class="verified"> </h3>
+                                        <p> Verified Payments </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-coins"></i>
+                                    </div>
+                                    <a href="verified-payments.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
                         <div class="row">
@@ -406,7 +527,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
     } else if ($office == "Accounting") {
     ?>
         <!-- script here -->
-        <script src="js/counter-dean.js"></script>
+        <script src="js/counter-accounting.js"></script>
 
     <?php
     }

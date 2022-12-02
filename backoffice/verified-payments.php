@@ -200,8 +200,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                                                        
                                                         <td class="text-center">' . $row['snum'] . '</td>
-                                                        <td class="text-center">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
-                                                        <td class="text-center">' . $row['abbr'] . '</td>
+                                                        <td><a title ="View Payment History" href="viewpayments.php?stud='.$row["sid"].'" target="_blank" class="font-weight-bold">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</a></td>                                                        <td class="text-center">' . $row['abbr'] . '</td>
                                                         <td class="text-center" hidden>' . $row['tfeepayment'] . '</td>
                                                         <td class="text-center"  hidden>' . $row['schoolyr'] . ' ' . $row['semester'] . '  </td>
                                                       
@@ -290,7 +289,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                             <div class="form-group row">
                                 <div class="col-lg-12">
-                                    <label class="font-weight-bold text-gray-900">Assign Student Number</label>
+                                    <label class="font-weight-bold text-gray-900">Student Number</label>
                                     <input type="text" maxlength="8" name="ass_snum" id="ass_snum" class="form-control">
                                 </div>
                             </div>
@@ -367,7 +366,30 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
         <!-- scripts -->
         <script src="js/verifiedpayments.js"></script>
-        <script src="js/requests-counter.js"></script>
+        <!-- Choose which counter should be included in the script -->
+        <?php
+        if ($office == "Registrar") {
+        ?>
+            <!-- script here -->
+            <script src="js/counter-registrar.js"></script>
+
+        <?php
+        } else if ($office == "Dean") {
+        ?>
+            <!-- script here -->
+            <script src="js/counter-dean.js"></script>
+
+
+        <?php
+        } else if ($office == "Accounting") {
+        ?>
+            <!-- script here -->
+            <script src="js/counter-accounting.js"></script>
+
+        <?php
+        }
+
+        ?>
         <script src="js/sweetalert.min.js"></script>
 
         <!-- Bootstrap core JavaScript-->

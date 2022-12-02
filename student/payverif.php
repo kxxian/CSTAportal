@@ -382,34 +382,33 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
                                                             <legend class="scheduler-border">Bank Details</legend>
                                                             <p style="font-size: 1rem;color:gray">Payments can be made thru Bank Deposit or Online Bank Transfer</p>
                                                             <div class="row">
-                                                            <?php
-                                                               $sql = "SELECT * FROM payoptions";
-                                                               $stmt = $con->prepare($sql);
-                                                               $stmt->execute();
+                                                                <?php
+                                                                $sql = "SELECT * FROM payoptions";
+                                                                $stmt = $con->prepare($sql);
+                                                                $stmt->execute();
 
-                                                               while ($row = $stmt->fetch()){
+                                                                while ($row = $stmt->fetch()) {
 
                                                                     echo '<div class="col-sm-4">
                                                                     <div class="payment-card">
-                                                                       <h5>'.$row['provider'].'</h5>
+                                                                       <h5>' . $row['provider'] . '</h5>
                                                                         <h3 class="font-weight-bold">
-                                                                            '.$row['accnumber'].'
+                                                                            ' . $row['accnumber'] . '
                                                                         </h3>
                                                                         <div class="row">
                                                                             <div class="col-sm-12">
                                                                                 <small>
-                                                                                    <strong>'.$row['accname'].'</strong> 
+                                                                                    <strong>' . $row['accname'] . '</strong> 
                                                                                 </small>
                                                                             </div>
                                                                           
                                                                         </div>
                                                                     </div>
                                                                 </div>';
+                                                                }
 
-                                                               }
-                                                            
-                                                            
-                                                            ?>
+
+                                                                ?>
                                                             </div>
                                                         </fieldset>
                                                         <fieldset class="scheduler-border">
@@ -877,7 +876,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     <div class="modal-dialog modal-xl">
         <form method="POST" id="usersForm" enctype="multipart/form-data">
             <div class="modal-content">
-
                 <div class="modal-body">
                     <div class="container">
                         <div class="row gutters">

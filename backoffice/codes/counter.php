@@ -77,7 +77,7 @@ if (isset($_POST['data6'])) {
 if (isset($_POST['data7'])) {
 
   $sql = "SELECT enrollment_status from vwforenrollment_students where dept=? AND schoolyr=? AND semester=? AND enrollment_status=?";
-  $data = array($dept, $currentsyval, $currentsemval, "Assessed");
+  $data = array($dept, $currentsyval, $currentsemval, "Waiting Payment");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();

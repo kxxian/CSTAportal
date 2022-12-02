@@ -11,20 +11,20 @@ $(document).ready(function() {
             //         columns: [1,2,14,16,19,20]
             //     }
             // },
-            {
-                extend: 'excelHtml5',
-                className:'btn btn-success',
-                exportOptions: {
-                    columns: [0,1,2,3]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                className:'btn btn-danger',
-                exportOptions: {
-                    columns: [0,1,2,3]
-                }
-            },
+            // {
+            //     extend: 'excelHtml5',
+            //     className:'btn btn-success',
+            //     exportOptions: {
+            //         columns: [0,1,2,3]
+            //     }
+            // },
+            // {
+            //     extend: 'pdfHtml5',
+            //     className:'btn btn-danger',
+            //     exportOptions: {
+            //         columns: [0,1,2,3]
+            //     }
+            // },
             {
                 extend: 'print',
                 className:'btn btn-secondary',
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
         },
         "columnDefs": [{
-            "target": [0,1,2,3],
+            "target": [0,1,2,3,4,5,6],
             "orderable": false,
         }, ],
     });
@@ -102,6 +102,9 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 $('#assessModal').modal('show');
+                $('#returnassess').hide();
+                $('#assessForm').show();
+               
                 $('#enroll_id').val(data.id);
                 $('#fullname').val(data.fullname);
                 $('#email').val(data.email);
@@ -110,15 +113,48 @@ $(document).ready(function() {
 
 
                 $('.title').text(' Send Assessment');
+                $('#icon').addClass('far fa-fw fa-envelope');
                 $('#enroll_id').val(enroll_id);
                 $('#sid').val(sid);
 
                 $('#operation').val("Send");
-                $('#action').val("Send");
+                $('#action_s').val("Send");
 
             }
         })
     })
+
+    $(document).on('click', '.returnassessment', function() {
+        var assess_id = $(this).attr('id');
+        var sid = $(this).attr('sid');
+        var email = $(this).attr('email');
+        var fullname = $(this).attr('fullname');
+        //  alert(fullname);
+      
+                $('#assessModal').modal('show');
+                $('#assessForm').hide();
+                $('#returnassess').show();
+                $('.title').text(' Return Request');
+
+                $('#assess_id').val(assess_id);
+                $('#return_email').val(email);
+                $('#return_fullname').val(fullname);
+
+
+
+                // $('#enroll_id').val(enroll_id);
+                // $('#sid').val(sid);
+
+                // $('#operation').val("Send");
+                 $('#action').val("Return");
+
+        
+    })
+
+
+
+
+
 
   
 

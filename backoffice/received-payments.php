@@ -138,22 +138,21 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                                         foreach ($result as $row) {
 
-                                            $payment = "../student/uploads/payverif/payments/{$row['pv_ID']}.jpg";
-                                            $reqform = "../student/uploads/payverif/docrequestform/{$row['pv_ID']}.jpg";
+                         
 
-                                            if (file_exists($payment)) {
+                                            if ($row['payproof']!="") {
 
                                                 $img = '
-                                                    <a href="../student/uploads/payverif/payments/' . $row['pv_ID'] . '.jpg"   title="Proof of Payment" class="btn btn-warning" >
-                                                    <i class="fa fa-file-invoice fa-fw"></i>
+                                                    <a href="../student/uploads/payverif/payments/' . $row['payproof'] . '"   title="Proof of Payment" class="btn btn-primary btn-sm" >
+                                                    <i class="fa fa-receipt fa-fw"></i>
                                                     </a>';
                                             } else {
                                                 $img = "";
                                             }
 
-                                            if (file_exists($reqform)) {
-                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['pv_ID'] . '.jpg" title="Request Form" class="btn btn-info" >
-                                                    <i class="fa fa-file-invoice fa-fw"></i>
+                                            if ($row['reqform']!="") {
+                                                $img2 = '<a href="../student/uploads/payverif/docrequestform/' . $row['reqform'] . '" title="Request Form" class="btn btn-sucess btn-sm" >
+                                                    <i class="fa fa-receipt fa-fw"></i>
                                                     </a>';
                                             } else {
                                                 $img2 = "";
@@ -166,7 +165,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
                                                         <td hidden>' . $row['sid'] . '</td>
                                                         <td>' . $row['snum'] . '</td>
-                                                        <td>' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</td>
+                                                        <td><a href="viewpayments.php?stud='.$row["sid"].'" target="_blank" class="font-weight-bold">' . $row['lname'] . ',' . ' ' . $row['fname'] . ' ' . $row['mname'] . '</a></td>
                                                         <td hidden>' . $row['email'] . '</td>
                                                         <td hidden>' . $row['mobile'] . '</td>
                                                         <td hidden>' . $row['course'] . '</td>
@@ -197,7 +196,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                                         
 
                                                         <td> 
-                                                        <button class="btn btn-success" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
+                                                        <button class="btn btn-success btn-sm" onclick="loadRecord(' . $row['pv_ID'] . ')" title="Verify"><i class="fa fa-check fa-fw"></i></button>
                                                         </td>
                                                       </tr>';
                                         }
@@ -265,7 +264,30 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
     <!-- scripts -->
     <script src="js/verify-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
+   <!-- Choose which counter should be included in the script -->
+   <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-accounting.js"></script>
+
+    <?php
+    }
+
+    ?>
     <script src="js/sweetalert.min.js"></script>
 
     <?php

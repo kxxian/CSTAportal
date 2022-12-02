@@ -54,28 +54,28 @@ foreach ($result as $row) {
     $mname= $row["mname"];
     $id=$row['pv_ID'];
 
-    $sub_array = array();
-    $sub_array[] = $row["snum"];
-    $sub_array[] = $lname.', '.$fname.' '.$mname;
-    $sub_array[] = $row["yrlevel"];
+    $sub_array = array();'<center>'.
+    $sub_array[] = '<center>'.$row["snum"].'</center>';
+    $sub_array[] = '<center><a title ="View Payment History" href="viewpayments.php?stud='.$row["sid"].'" target="_blank" class="font-weight-bold">'.$lname.', '.$fname.' '.$mname.'</a></center>';
+    $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
 
-    $sub_array[] = $row["abbr"];
-    $sub_array[] = $row["amtpaid"];
-    $sub_array[] = $row["sentvia"];
+    $sub_array[] = '<center>'.$row["abbr"].'</center>';
+    $sub_array[] = '<center>'.$row["amtpaid"].'</center>';
+    $sub_array[] = '<center>'.$row["sentvia"].'</center>';
 
     $payment = "../../student/uploads/payverif/payments/{$row['payproof']}";
     $reqform = "../../student/uploads/payverif/docrequestform/{$row['reqform']}";
 
-if (file_exists($payment)){
-   $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="../student/uploads/payverif/payments/'.$row['pv_ID'].'.jpg">
+if ($row['payproof']!=""){
+   $img='<a title="Proof of Payment" class="btn btn-primary btn-sm" target="_blank" href="../student/uploads/payverif/payments/'.$row['payproof'].'">
    <i class="fa fa-receipt fa-fw"></i></a>';
 }else{
    $img="";
 }
 
-if (file_exists($reqform)){
+if ($row['reqform']!=""){
     $img2='
-    <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="../student/uploads/payverif/docrequestform/'.$row['pv_ID'].'.jpg">
+    <a title="Assessment/Disbursement" class="btn btn-warning btn-sm" target="_blank" href="../student/uploads/payverif/docrequestform/'.$row['reqform'].'">
     <i class="fa fa-receipt fa-fw"></i></a>
     ';
  }else{

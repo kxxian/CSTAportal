@@ -58,26 +58,27 @@ foreach ($result as $row) {
     $mname= $row["mname"];
 
     $sub_array = array();
-    $sub_array[] = $row["snum"];
-    $sub_array[] = $row["studtype"];
-    $sub_array[] = $lname.', '.$fname.' '.$mname;
-    $sub_array[] = $row["yrlevel"];
+    $sub_array[] = '<center>'.$row["snum"].'</center>';
+    $sub_array[] = '<center>'.$row["studtype"].'</center>';
+    $sub_array[] = '<center>'.$lname.', '.$fname.' '.$mname.'</center>';
+    $sub_array[] = '<center>'.$row["yrlevel"].'</center>';
 
 
-    $sub_array[] = $row["abbr"];
+    $sub_array[] = '<center>'.$row["abbr"].'</center>';
    
   
-    $sub_array[] = $row["enrollment_status"];
-    $sub_array[] = '<a target="_blank" href="../student/uploads/copygrades/'.$row['enrollment_ID'].'.jpg">
-    Copy of Grades</a>';
+    $sub_array[] = '<center><a title="Copy of Grades" type="button" class="btn btn-info btn-sm" target="_blank" href="../student/uploads/copygrades/'.$row['grade_copy'].'.">
+    <i class="fa fa-fw fa-file-alt"></i>
+    </a></center>';
     
     
     $sub_array[] =
-     '
+     '<center><button type="button" name="sendassessment" id="' . $row["enrollment_ID"] . '" sid="'.$row['sid'].'" email="'.$row['email'].'" fullname="'.$lname.', '.$fname.' '.$mname.'"
+     class="btn btn-warning btn-sm returnassessment" title="Send Assessment"><i class="fa fa-fw fa-redo"></i></button>
 
     <button type="button" name="sendassessment" id="' . $row["enrollment_ID"] . '" sid="'.$row['sid'].'"
     class="btn btn-success btn-sm sendassessment" title="Send Assessment"><i class="fa fa-fw fa-paper-plane"></i></button>
-    
+    </center>
     ';
 
     
