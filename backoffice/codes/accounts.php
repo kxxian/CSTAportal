@@ -40,15 +40,21 @@ if (isset($_POST['accept_id'])) {
   $stmt2->execute($data2);
 
 
-
   ##email
 
   $mailTo = $email;
 
-  $body = "Good Day Teresian!<br><br>
-  You can now login to the CSTA Student Portal. <br><br>
+  $body = 
+  "<pre style='font-family:times new roman;'>
+  Dear ".$sname."!
+      Welcome to CSTA Student Portal. We are pleased to informed you that your account
+      registration is accepted. You can now sign in by clicking the link below. 
+      <a href='cstaportaltest.online'>https://cstaportaltest.online</a>.
  
-  Thank you. ";
+  Regards, 
+  CSTA Student Portal
+  
+  </pre>";
 
   $mail = new PHPMailer();
 
@@ -67,7 +73,7 @@ if (isset($_POST['accept_id'])) {
     'allow_self_signed' => false
   ));
   $mail->isHTML(true);
-  $mail->Subject = "Account Registration Accepted"; // email subject
+  $mail->Subject = "Welcome to CSTA Student Portal"; // email subject
   $mail->Body = $body;
 
   // $mail->addAttachment(path: "$file", name: "Grades_{$lname}'.jpg'");

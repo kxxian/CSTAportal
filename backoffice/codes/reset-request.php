@@ -68,9 +68,24 @@ use PHPMailer\PHPMailer\PHPMailer;
         $mailTo = $userEmail;
         $subject = "Password RESET";
 
-        $message  = '<p>We received a password reset request. The link to reset your password is below. If you did not make 
-        this request, you can ignore this email. </p>';
-        $message .= '<p>Here is your password reset link: <br><a href="' . $url . '">' . $url . '</a>  </p>';
+        // $message  = '<p>We received a password reset request. The link to reset your password is below. If you did not make 
+        // this request, you can ignore this email. </p>';
+        // $message .= '<p>Here is your password reset link: <br><a href="' . $url . '">' . $url . '</a>  </p>';
+
+        $message =
+        '<pre style="font-family:times new roman;>"
+         Hello Teresian,  
+            We received a password reset request. The link to reset your password is below. If you did not make 
+            this request, you can ignore this email. Here is your password reset link: <br><a href="' . $url . '">' . $url . '</a>
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>';
+
+
+
+
 
         $headers = "From: Sender\r\n";
         $headers .= "Reply-To: Sender\r\n";

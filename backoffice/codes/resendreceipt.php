@@ -60,16 +60,26 @@ if (isset($_POST['sendreceipt'])) {
 
         $mailTo = $email;
 
-        $body = "Hi Ma'am/Sir,<br><br>
+        $body =
+        "<pre style='font-family:times new roman;'>
+         Hello Teresian, 
 
-        Please see attached advance copy of Official Receipt for your reference.<br><br>
+         Please see attached advance copy of Official Receipt for your reference.
         
-        You may get the Original Copy at CSTA Cashier Monday to Friday 9am-4pm. <br><br>
-        
-        Thank You & Keep Safe.<br><br>
-        
-    
-        ";
+         You may get the Original Copy at CSTA Cashier Monday to Friday 9am-4pm. 
+         
+         Thank You & Keep Safe.
+         
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
+
+
+
+
+
 
         $mail = new PHPMailer();
 

@@ -40,6 +40,24 @@ if (isset($_POST['operation'])) {
     
         ";
 
+        $body =
+        "<pre style='font-family:times new roman;'>
+         Dear ".$fullname."  
+         We are sorry to inform you that we declined your request to register for the following reasons: 
+        
+        *".$reason." 
+
+        If you think this was a mistake, Please register again and make sure all information are correct.
+
+        Thank You & Keep Safe.
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
+
+
+
         $mail = new PHPMailer();
 
         // $mail->SMTPDebug = 3;
@@ -57,7 +75,7 @@ if (isset($_POST['operation'])) {
             'allow_self_signed' => false
         ));
         $mail->isHTML(true);
-        $mail->Subject = "Registration Denied"; // email subject
+        $mail->Subject = "Account Registration Declined"; // email subject
         $mail->Body = $body;
 
         $mail->send();

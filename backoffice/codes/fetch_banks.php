@@ -44,7 +44,7 @@ foreach($result as $row)
 
 
     <button type="button" name="delete" id="'.$row["po_ID"].'" 
-    class="btn btn-danger btn-sm delete" title="Delete User"><i class="fa fa-fw fa-trash"></i></button>
+    class="btn btn-danger btn-sm delete" title="Delete"><i class="fa fa-fw fa-trash"></i></button>
 
     ';
 

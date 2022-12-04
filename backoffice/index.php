@@ -145,28 +145,23 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
         <!-- Sidebar -->
         <?php
         $pageValue = 1;
-        require_once('includes/sidebar.php'); 
-        
-        if ($office=="Registrar"){
-            $reg_cards="";
-            $acc_cards="hidden";
-            $dean_cards="hidden";
-        }else if($office=="Accounting"){
-            $reg_cards="hidden";
-            $acc_cards="";
-            $dean_cards="hidden";
-            
+        require_once('includes/sidebar.php');
 
-
-        }else if($office=="Dean"){
-            $reg_cards="hidden";
-            $acc_cards="hidden";
-            $dean_cards="";
-
-
+        if ($office == "Registrar") {
+            $reg_cards = "";
+            $acc_cards = "hidden";
+            $dean_cards = "hidden";
+        } else if ($office == "Accounting") {
+            $reg_cards = "hidden";
+            $acc_cards = "";
+            $dean_cards = "hidden";
+        } else if ($office == "Dean") {
+            $reg_cards = "hidden";
+            $acc_cards = "hidden";
+            $dean_cards = "";
         }
-        
-        
+
+
         ?>
         <!-- End of Sidebar -->
 
@@ -203,12 +198,12 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
 
                         <!-- registrar cards -->
-                        <div class="row" <?=$reg_cards?>>
+                        <div class="row" <?= $reg_cards ?>>
                             <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-orange">
+                                <div class="card-box bg-red">
                                     <div class="inner">
                                         <h3 class="ctr_total_regs"> </h3>
-                                        <p>Pending Registrations</p>
+                                        <p> Total Pending Registrations</p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-user-plus" aria-hidden="true"></i>
@@ -216,107 +211,47 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                     <a href="registrations-old-students.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-
-
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-green">
-                                    <div class="inner">
-                                        <h3 class="accepted"> </h3>
-                                        <p> Registered Students </p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                    </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
-                                        <h3 class="staff_registrar"> </h3>
+                                        <h3 class="pending_enrollment"> </h3>
                                         <p> Enrollment </p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-edit"></i>
                                     </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-green">
-                                    <div class="inner">
-                                        <h3 class="up_events"> </h3>
-                                        <p> Enrolled Students </p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-user-check"></i>
-                                    </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Registrar 2 -->
-                        <div class="row" <?=$reg_cards?>>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-orange">
-                                    <div class="inner">
-                                        <h3 class="tasks"> </h3>
-                                        <p> Document Requests</p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                    </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-
-
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-green">
-                                    <div class="inner">
-                                        <h3 class="accepted"> </h3>
-                                        <p> Verified Payments </p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-wallet" aria-hidden="true"></i>
-                                    </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="card-box bg-red">
-                                    <div class="inner">
-                                        <h3 class="staff_registrar"> </h3>
-                                        <p> Staff </p>
-                                    </div>
-                                    <div class="icon">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="enrollment.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-blue">
                                     <div class="inner">
-                                        <h3 class="up_events"> </h3>
-                                        <p> Upcoming Events </p>
+                                        <h3 class="pending_docreq"> </h3>
+                                        <p> Document Requests </p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-calendar"></i>
+                                        <i class="fa fa-folder"></i>
                                     </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="new-reqdocu.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card-box bg-green">
+                                    <div class="inner">
+                                        <h3 class="pending_gradereq"> </h3>
+                                        <p> Grades Requests </p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-award"></i>
+                                    </div>
+                                    <a href="reqgrades.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
                         </div>
 
 
-
-
                         <!-- Dean Cards -->
-                        <div class="row" <?=$dean_cards?>>
+                        <div class="row" <?= $dean_cards ?>>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-orange">
                                     <div class="inner">
@@ -324,7 +259,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                         <p> For Assessment</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <i class="fa fa-file" aria-hidden="true"></i>
                                     </div>
                                     <a href="assessments.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
@@ -338,16 +273,16 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                         <p> Assessed</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-wallet" aria-hidden="true"></i>
+                                        <i class="fa fa-user-check" aria-hidden="true"></i>
                                     </div>
-                                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="assessed-students.php" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>
-                          
+
                         </div>
 
                         <!-- Accounting -->
-                        <div class="row" <?=$acc_cards?>>
+                        <div class="row" <?= $acc_cards ?>>
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-red">
                                     <div class="inner">

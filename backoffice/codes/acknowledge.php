@@ -24,15 +24,15 @@ if (isset($_POST['operation'])) {
 
 
         $body =
-            "
-        Hi Ma'am / Sir, <br><br>
-
-        Your payment is duly noted, we shall update you once verified.<br><br>
-
-        Thank you & Keep Safe
-        
-        
-        ";
+        "<pre style='font-family:times new roman;'>
+         Dear ".$fullname."  
+         Your payment is duly noted. Kindly wait for 2-3 working days for the verification process. 
+            Thank you & Keep Safe 
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
 
         $mail = new PHPMailer();
 

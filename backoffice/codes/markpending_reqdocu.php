@@ -33,18 +33,23 @@ if (isset($_POST['operation'])) {
 
         $mailTo = $email;
 
-        $body = "Good Day Teresian!<br><br>
 
-        Your request of documents is marked pending due to the following reasons: <br><br>
+        $body =
+        "<pre style='font-family:times new roman;'>
+         Dear ".$fullname."  
+         Your request of documents is marked pending due to the following reasons:
         
-        *".$reason." <br><br>
+         *".$reason."
+ 
+         Please settle all your deficiencies to proceed with your request.
+ 
+         Thank You & Keep Safe
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
 
-        Please settle all your deficiencies to proceed with your request. <br><br>
-
-        Thank You & Keep Safe.<br><br>
-        
-    
-        ";
 
         $mail = new PHPMailer();
 

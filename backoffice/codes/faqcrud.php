@@ -1,11 +1,11 @@
 <?php
 require_once '../includes/connect.php';
 require_once 'functions.php';
-require("../mailer/PHPMailer/src/PHPMailer.php");
-require("../mailer/PHPMailer/src/SMTP.php");
-require("../mailer/PHPMailer/src/Exception.php");
+// require("../mailer/PHPMailer/src/PHPMailer.php");
+// require("../mailer/PHPMailer/src/SMTP.php");
+// require("../mailer/PHPMailer/src/Exception.php");
 
-use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\PHPMailer;
 
 
 if (isset($_POST['operation'])) {

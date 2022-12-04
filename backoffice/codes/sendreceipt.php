@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('../includes/connect.php');
+require 'fetchuserdetails.php';
 // require_once '/student/includes/functions.php';
 require("../mailer/PHPMailer/src/PHPMailer.php");
 require("../mailer/PHPMailer/src/SMTP.php");
@@ -71,6 +72,21 @@ if (isset($_POST['sendreceipt'])) {
     
         ";
 
+            $body =
+            "<pre style='font-family:times new roman;'>
+            Hello Teresian!  
+                Here's a copy of the <b>assessment form</b>. Minimum down payment is Php. 3,000.00.
+                Payments can be made thru Bank Deposit or Online Bank Transfer. Kindly send your proof of payment together with your assessment form to 
+                <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for
+                verification and Official Receipt purposes.
+            
+            
+            Regards, 
+            CSTA Student Portal
+            </pre>";
+
+
+
         $mail = new PHPMailer();
 
         // $mail->SMTPDebug = 3;
@@ -79,7 +95,7 @@ if (isset($_POST['sendreceipt'])) {
         //SMTP user credentials
         include "../includes/smtp_config.php";
 
-        $mail->setFrom("CSTA@sampleemail.com"); // insert department email here
+        $mail->setFrom($deptemail); // insert department email here
         $mail->FromName = "CSTA Accounting"; // employee name + Department 
         $mail->addAddress($mailTo, $name); // recipient
         $mail->SMTPOptions = array('ssl' => array(

@@ -35,12 +35,12 @@ $filtered_rows=$statement->rowCount();
 foreach($result as $row)
 {
     $sub_array=array();
-    $sub_array[]=$row["empname"];
-    $sub_array[]=$row["office"];
-    $sub_array[]=$row["dept"];
-    $sub_array[]=$row["position"];
-    $sub_array[]=$row["role"];
-    $isActive=$sub_array[]=$row["isActive"];
+    $sub_array[]='<center>'.$row["empname"].'</center>';
+    $sub_array[]='<center>'.$row["office"].'</center>';
+    $sub_array[]='<center>'.$row["dept"].'</center>';
+    $sub_array[]='<center>'.$row["position"].'</center>';
+    $sub_array[]='<center>'.$row["role"].'</center>';
+    $isActive=$sub_array[]='<center>'.$row["isActive"].'</center>';
 
     if( $isActive=='No'){
         $color="success";

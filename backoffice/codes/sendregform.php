@@ -50,14 +50,19 @@ if (isset($_POST['operation'])) {
 
         $mailTo = $email;
 
-        $body = "WelcomeTeresian!<br><br>
+        $body =
+        "<pre style='font-family:times new roman;'>
+        Hello Teresian!  
+            Congratulations you are now Officially Enrolled, You have completed your enrollment for the " . $currentsemval . " of A.Y. " . $currentsyval . "
+            Attached herewith is your softcopy of your Registration Form. Please wait for further announcements regarding the sectioning and registration
+            and class schedules. 
+        
+         Regards, 
+         CSTA Student Portal
+        </pre>";
 
-        Congratulations you are Officially Enrolled, You have completed your enrollment for the " . $currentsemval . " of A.Y. " . $currentsyval . "<br><br>
-        
-        Attached herewith is your soft copy of your Registration Form.<br><br>
-        
-        Thank you.
-        ";
+
+
 
         $mail = new PHPMailer();
 

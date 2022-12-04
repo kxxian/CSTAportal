@@ -58,9 +58,17 @@ if (isset($_POST['operation'])) {
         $mailTo = $email;
         $subject = "Set Password";
 
-        $message  = '<p>You are one step away from completing your registration to CSTA Admin. Please set<br>
-            your user credentials to complete your registration </p>';
-        $message .= '<p>Here is the link: <br><a href="' . $url . '">' . $url . '</a>  </p>';
+
+        $message =
+        '<pre style="font-family:times new roman;">
+        Hello Teresian!  
+            You are one step away from completing your registration to CSTA Admin. Please set<br>
+            your user credentials to complete your registration. <>Here is the link: <br><a href="' . $url . '">' . $url . '</a>
+        
+         Regards, 
+         CSTA Student Portal
+        </pre>';
+
 
         $headers = "From: Sender\r\n";
         $headers .= "Reply-To: Sender\r\n";

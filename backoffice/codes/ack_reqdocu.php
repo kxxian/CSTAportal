@@ -37,18 +37,18 @@ if ($_POST["id"]) {
     $stmt2 = $con->prepare($sql2);
     $stmt2->execute($data2);
 
+
     $body =
-        "
-        Good day Teresian! <br><br>
-
-        We received your request, post-clearance is now on Process. <br><br>
-        Kindly wait for the summary of payment. <br><br>
-        Thank you & Keep Safe <br><br>
-
-        $empname<br>
-        $position        
-        
-        ";
+        "<pre style='font-family:times new roman;'>
+         Dear ".$fullname."  
+            We have received your request. Post-clearance is now on process. 
+            Kindly wait for the summary of payment. 
+            Thank you & Keep Safe 
+ 
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
 
     $mail = new PHPMailer();
 

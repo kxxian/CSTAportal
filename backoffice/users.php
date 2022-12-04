@@ -111,13 +111,13 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                 <table id="usersTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Office</th>
-                                            <th>Department</th>
-                                            <th>Designation</th>
-                                            <th>User Type</th>
-                                            <th>isActive</th>
-                                            <th width="65">Actions</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Office</th>
+                                            <th class="text-center">Department</th>
+                                            <th class="text-center">Designation</th>
+                                            <th class="text-center">User Type</th>
+                                            <th class="text-center">isActive</th>
+                                            <th width="65" class="text-center">Actions</th>
                                         </tr>
 
                                     </thead>
@@ -163,7 +163,30 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
 
     <!-- scripts -->
     <script src="js/pending-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
+    <!-- Choose which counter should be included in the script -->
+    <?php
+    if ($office == "Registrar") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-registrar.js"></script>
+
+    <?php
+    } else if ($office == "Dean") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-dean.js"></script>
+
+
+    <?php
+    } else if ($office == "Accounting") {
+    ?>
+        <!-- script here -->
+        <script src="js/counter-accounting.js"></script>
+
+    <?php
+    }
+
+    ?>
     <script src="js/sweetalert.min.js"></script>
 
 

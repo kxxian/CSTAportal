@@ -54,6 +54,21 @@ if (isset($_POST['operation'])) {
 
         ";
 
+
+        $body =
+        "<pre style='font-family:times new roman;'>
+        Dear ".$fullname."  
+            Here's a copy of the <b>assessment form</b>. Minimum down payment is Php. 3,000.00.
+            Payments can be made thru Bank Deposit or Online Bank Transfer. Kindly send your proof of payment together with your assessment form to 
+            <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for
+            verification and Official Receipt purposes.
+        
+        
+         Regards, 
+         CSTA Student Portal
+  
+        </pre>";
+
         $mail = new PHPMailer();
 
         // $mail->SMTPDebug = 3;

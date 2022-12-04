@@ -40,9 +40,11 @@ $(document).ready(function() {
                   if(data15>0){
                            //console.log(data15);
                       $(".ctr_enrollment").text(data15.toLocaleString());
+                      $(".pending_enrollment").text(data15.toLocaleString());
                   }else{
                      
                        $(".ctr_enrollment").text("");
+                       $(".pending_enrollment").text("0");
                      
                   }
               });
@@ -54,9 +56,11 @@ $(document).ready(function() {
                    if(data16>0){
                             //console.log(data16);
                        $(".ctr_reqdocu").text(data16.toLocaleString());
+                       $(".pending_docreq").text(data16.toLocaleString());
                    }else{
                       
                         $(".ctr_reqdocu").text("");
+                        $(".pending_docreq").text("0");
                      
                    }
                });
@@ -68,9 +72,11 @@ $(document).ready(function() {
                     if(data17>0){
                              //console.log(data17);
                         $(".ctr_gradereq").text(data17.toLocaleString());
+                        $(".pending_gradereq").text(data17.toLocaleString());
                     }else{
                        
                          $(".ctr_gradereq").text("");
+                         $(".pending_gradereq").text("0");
                    
                     }
                 });

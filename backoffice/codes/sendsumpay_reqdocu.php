@@ -40,16 +40,19 @@ if (isset($_POST['operation'])) {
 
         $mailTo = $email;
 
-        $body = "Good Day Teresian!<br><br>
+        $body =
+        "<pre style='font-family:times new roman;'>
+        Dear ".$fullname."!  
+            Please see attached file of the summary of payment for your request. 
+            Payment can be sent thru Bank Deposit or Online Bank Transfer. Kindly send your proof
+            of payment together with your summary of payment attached in this email to 
+            <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for verification and Official Receipt purposes.
+        
+         Regards, 
+         CSTA Student Portal
+        </pre>";
 
-        Please see attached file of the summary of payment for your request. <br>
-        Payment can be sent thru Bank Deposit or Online Bank Transfer. Kindly send your proof<br>
-        of payment together with your summary of payment attached in this email to <br>
-        <a href='https://cstaportaltest.online/payverif.php'>https://cstaportaltest.online/payverif.php</a> for verification and Official Receipt purposes.
-      
-       
-    
-        ";
+
 
         $mail = new PHPMailer();
 

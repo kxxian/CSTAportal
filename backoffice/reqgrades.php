@@ -124,7 +124,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                                             <th class="text-center">Course</th>
                                             <th class="text-center">Schoolyr</th>
                                             <th class="text-center">Semester</th>
-                                            <th class="text-center">Actions</th>
+                                            <th class="text-center">Send</th>
                                         </tr>
 
                                     </thead>

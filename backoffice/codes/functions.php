@@ -22,6 +22,18 @@ function get_assessments(){
     $con=null;
 }
 
+function get_assessed(){
+    // session_start();
+    include '../includes/connect.php';
+    include 'fetchuserdetails.php';
+    $statement=$con->prepare("SELECT * from vwforenrollment_students WHERE dept=? AND enrollment_status=?");
+    $data=array($dept,'Waiting Payment');
+    $statement->execute($data);
+    $result=$statement->fetchAll();
+    return $statement->rowCount();
+    $con=null;
+}
+
 function get_enrollments(){
     // session_start();
     include '../includes/connect.php';
