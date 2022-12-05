@@ -83,11 +83,12 @@ if (isset($_POST['ev'])) {
 
         //insert notification
         $notif = "We are now validating your enrollment!";
-        $icon = "fas fa-check text-white";
+        $icon = "fas fa-file-alt text-white";
+        $color="bg-warning";
         $link = "enrollment.php";
 
-        $sql2 = "INSERT INTO notif (sid,notification,icon,link,date)VALUES(?,?,?,?,?)";
-        $data2 = array($sid, $notif, $icon, $link, $date);
+        $sql2 = "INSERT INTO notif (sid,notification,icon,color,link,date)VALUES(?,?,?,?,?,?)";
+        $data2 = array($sid, $notif, $icon,$color, $link, $date);
         $stmt2 = $con->prepare($sql2);
         $stmt2->execute($data2);
     } else {
