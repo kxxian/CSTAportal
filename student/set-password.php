@@ -119,7 +119,7 @@ if (isset($_GET['login'])) {
 
 
 				<article>
-					<form action="codes/reset-passwordadm.php" method="post">
+					<form action="codes/set-credentials.php" method="post">
 						<h3 class="legend">Set up your user credentials</h3>
 
 						<input type="hidden" name="selector" value="<?php echo $selector ?>">
@@ -140,7 +140,7 @@ if (isset($_GET['login'])) {
 						</div>
 						<center><span><p id="length" ></p><p id="message" ></p></span></center>
 						
-						<input type="submit"  name="reset-password-submit" id ="btn" class="btn submit" style="background-color: #824d1b;" value="Reset Password">
+						<input type="submit"  name="reset-password-submit" id ="btn" class="btn submit" style="background-color: #824d1b;" value="Submit">
 					</form>
 				</article>
 

@@ -32,7 +32,7 @@ if (isset($_POST['operation'])) {
         $selector = bin2hex(random_bytes(8));
         $token = random_bytes(32);
 
-        $url = "http://localhost/CSTAportal/student/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+        $url = "http://localhost/CSTAportal/backoffice/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
         $expires = date("U") + 86400; //1-Day Expiration
 
         try {
@@ -61,9 +61,9 @@ if (isset($_POST['operation'])) {
 
         $message =
         '<pre style="font-family:times new roman;">
-        Hello Teresian!  
-            You are one step away from completing your registration to CSTA Admin. Please set<br>
-            your user credentials to complete your registration. <>Here is the link: <br><a href="' . $url . '">' . $url . '</a>
+        Hello '.$fname.',!  
+            You are one step away from completing your registration to CSTA Admin. Please set
+            your user credentials to complete your registration. Here is the link: <a href="' . $url . '">' . $url . '</a>
         
          Regards, 
          CSTA Student Portal

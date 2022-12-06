@@ -63,12 +63,6 @@ if (isset($_POST['ev'])) {
 
 
 
-
-
-
-
-
-
             $_SESSION['status'] = "Success!";
             $_SESSION['msg'] = "Enrollment Validation Sent!";
             $_SESSION['status_code'] = "success";

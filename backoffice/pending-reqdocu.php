@@ -3,13 +3,18 @@ session_start();
 require_once('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
 require_once 'includes/fetchuserdetails.php';
+require_once 'codes/fetchuser_session.php';
 
-//get office from fetchuserdetails.php
 $office = $Office;
 
-
+// echo $office;
 if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
     header('location:login.php');
+}
+
+//Prohibits the user to be logged in more than once at a time
+if ($user_token!=$_SESSION['user_token']) {
+    header('location:logout.php');
 }
 ?>
 

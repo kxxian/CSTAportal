@@ -303,7 +303,7 @@ CREATE TABLE `employees` (
 /*Data for the table `employees` */
 
 insert  into `employees`(`id`,`empnum`,`lname`,`fname`,`mname`,`email`,`Gender`,`mobile`,`office`,`dept_ID`,`position`,`permission_ID`,`username`,`pass`,`dor`,`isActive`) values 
-(831,'','Munoz','Jason','Beltran','dodong@email.com','Male','09872323231','Registrar',1,'Dean',1,'employee123','7c222fb2927d828af22f592134e8932480637c0d',NULL,'No');
+(831,'','Munoz','Jason','Beltran','dodong@email.com','Male','09872323231','Registrar',1,'Dean',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28',NULL,'No');
 
 /*Table structure for table `enrollment` */
 
@@ -521,9 +521,14 @@ CREATE TABLE `notif` (
   `date` datetime NOT NULL,
   `isSeen` tinyint(2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`notif_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `notif` */
+
+insert  into `notif`(`notif_ID`,`sid`,`notification`,`icon`,`color`,`link`,`date`,`isSeen`) values 
+(105,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:09:35',0),
+(106,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:30:10',0),
+(107,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:36:58',0);
 
 /*Table structure for table `particulars` */
 
@@ -636,10 +641,9 @@ CREATE TABLE `pwdreset` (
   `pwdresetEmail` text NOT NULL,
   `pwdresetSelector` text NOT NULL,
   `pwdresetToken` longtext NOT NULL,
-  `adm` text NOT NULL,
   `pwdresetExpires` text NOT NULL,
   PRIMARY KEY (`pwdresetID`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `pwdreset` */
 
@@ -44675,11 +44679,10 @@ CREATE TABLE `students` (
 
 insert  into `students`(`id`,`studtype`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`cstatus`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`mothermaiden`,`guardian`,`guardiancontact`,`guardiancontact2`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
 (39,'Freshman','Muñoz','Jason','Beltran','20-14789',4,3,6,'Male','Single','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Alma Bartolo Beltran','Alma Munoz','09089208822','82835506','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-12-02 19:44:53',1),
-(44,'Transferee','Taruc','Aila Marie','Boncacas','NA',4,1,6,'Female','Single','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Boncacas','Maria Teresa Taruc','09888232838','09999999991','ailataruc22','21c63abd2f76cb416c334efe11915a05d6167c15','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-11-30 22:28:51',0),
+(44,'Transferee','Taruc','Aila Marie','Boncacas','NA',4,1,6,'Female','Single','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Boncacas','Maria Teresa Taruc','09888232838','09999999991','ailataruc','619a7bf4f29ac53bf05fd8408bb1c6e8bc2b45b4','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-12-06 23:21:20',1),
 (48,'','Paglinawan','Pupper','','NA',1,1,6,'Male','Single','2021-12-12','Filipino','09777726262','pupper@email.com','Test','13','1374','137402','137402001','','Anetsss','09836537282','','pupperpogi','c7e867d17070d04a9050cba35a281477fdc5366f','53293c00ce3ef840c7ac1705d609b35b316498cf','Verified','2022-11-23 09:37:38',0),
 (50,'','Test','Test','Vvvv','NA',1,1,6,'Male','Single','2022-11-17','S','00939393993','test@enail.com','22d','14','1481','148102','148102003','','Alma Bartolo Beltran','09888282288','09383838883',NULL,NULL,'6f893967fd9d8ccf67d950fdeb5a53c283db8284','Verified','2022-11-28 22:31:30',0),
 (51,'','Eee','Tests','','NA',2,1,6,'Female','Single','2022-11-10','Ee','34444444444','awit@gmail.com','23 Sdadwd','01','0133','013303','013303001','Alma Bartolo Beltran','Alma Munoz','09882828288','09343439999',NULL,NULL,'26c9b13ea8997e2db33c78db6920c45a785ef369','Verified','2022-11-29 22:24:04',0),
-(52,'Transferee','Macandog','Mary Rose','Saraza','NA',4,1,6,'Female','Single','2001-02-23','Filipino','09937643643','macandog@email.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Sonia Natividad Paragas','Aling Sonia','09222121232','82835506',NULL,NULL,'1385ab25cf0975b6951c2e5aceae1ab9abe66538','Verified','2022-11-30 22:21:41',0),
 (53,'Freshman','Cardozo','Jonas','Paras','NA',4,1,6,'Female','Single','1988-05-21','Filipino','09737737773','jonas@email.com','Test','13','1374','137404','137404010','Madonna Paras','Madonna Paras Cardozo','09837737377','09887736363',NULL,NULL,'e50194ab4b5e70d4d0225fd0b6e302ba6fe836d4','Verified','2022-12-03 11:40:48',1);
 
 /*Table structure for table `studreq` */
@@ -44784,6 +44787,24 @@ insert  into `transcript`(`trans_ID`,`transcript`) values
 (1,'First Copy'),
 (2,'Duplicate'),
 (3,'-');
+
+/*Table structure for table `user_login` */
+
+DROP TABLE IF EXISTS `user_login`;
+
+CREATE TABLE `user_login` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  `user_token` varchar(255) NOT NULL,
+  `login_time` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `user_login` */
+
+insert  into `user_login`(`id`,`username`,`pass`,`user_token`,`login_time`) values 
+(4,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','d957721b703b2d3219fa106a34f5326980ad64ff','2022-12-07 01:49:49');
 
 /*Table structure for table `yrlevel` */
 

@@ -42,7 +42,7 @@ if (isset($_POST['reset-password-submit'])) {
 
 
                 try {
-                    $sql = "SELECT email,pass FROM employees where email=?;";
+                    $sql = "SELECT email,pass FROM students where email=?;";
                     $data = array($tokenEmail);
                     $stmt = $con->prepare($sql);
                     $stmt->execute($data);
@@ -55,7 +55,7 @@ if (isset($_POST['reset-password-submit'])) {
                     }else{
                         $newpass=sha1($password);
 
-                        $sql2 = "UPDATE employees set username=?, pass=? where email=?;";
+                        $sql2 = "UPDATE students set username=?, pass=? where email=?;";
                         $data2= array($username,$newpass,$tokenEmail);
                         $stmt2 = $con->prepare($sql2);
                         $stmt2->execute($data2);

@@ -42,14 +42,41 @@ if (isset($_POST['accept_id'])) {
 
   ##email
 
+  //Send Set Credentials to USER's email address
+  $selector = bin2hex(random_bytes(8));
+  $token = random_bytes(32);
+
+  $url = "http://localhost/CSTAportal/student/set-password.php?selector=" . $selector . "&validator=" . bin2hex($token);
+  $expires = date("U") + 86400; //1-Day Expiration
+
+  try {
+      $sql = "DELETE From pwdreset where pwdresetEmail = ?;";
+      $data = array($email);
+      $stmt = $con->prepare($sql);
+      $stmt->execute($data);
+  } catch (PDOException $e) {
+      echo $e->getMessage();
+  }
+
+  $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+
+  try {
+      $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,pwdresetExpires) VALUES(?,?,?,?);";
+      $data = array($email, $selector, $hashedToken, $expires);
+      $stmt = $con->prepare($sql);
+      $stmt->execute($data);
+  } catch (PDOException $e) {
+      echo $e->getMessage();
+  }
+
   $mailTo = $email;
 
   $body = 
   "<pre style='font-family:times new roman;'>
-  Dear ".$sname."!
+  Dear ".$sname.",
       Welcome to CSTA Student Portal. We are pleased to informed you that your account
-      registration is accepted. You can now sign in by clicking the link below. 
-      <a href='cstaportaltest.online'>https://cstaportaltest.online</a>.
+      registration is accepted. You can now set up your account credentials by clicking the link below. 
+      <a href='".$url."'>".$url."</a>.
  
   Regards, 
   CSTA Student Portal

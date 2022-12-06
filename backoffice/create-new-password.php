@@ -9,7 +9,10 @@ session_start();
 
 if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
 	header('location:index.php');
+}else{
+header('location:login.php');
 }
+
 $msg = "";
 if (isset($_GET['login'])) {
 	$msg = "Invalid Username or Password!";

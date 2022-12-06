@@ -16,7 +16,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
   
     $expires = date("U") + 1800;
-    $isAdmin = $_POST['isAdminpw'];
+    // $isAdmin = $_POST['isAdminpw'];
     $userEmail =  htmlspecialchars(trim($_POST['email']));
 
 
@@ -28,7 +28,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         $stmt->execute($data);
         $checkemail = $stmt->rowCount();
         
-        $admin="no";
+        // $admin="no";
     // } else if($isAdmin = "admin") {
 
     //     //Check if user email is registered in students
@@ -57,8 +57,8 @@ use PHPMailer\PHPMailer\PHPMailer;
         $hashedToken = password_hash($token, PASSWORD_DEFAULT);
 
         try {
-            $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,adm,pwdresetExpires) VALUES(?,?,?,?,?);";
-            $data = array($userEmail, $selector, $hashedToken,$admin, $expires);
+            $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,pwdresetExpires) VALUES(?,?,?,?);";
+            $data = array($userEmail, $selector, $hashedToken, $expires);
             $stmt = $con->prepare($sql);
             $stmt->execute($data);
         } catch (PDOException $e) {
@@ -73,13 +73,13 @@ use PHPMailer\PHPMailer\PHPMailer;
         // $message .= '<p>Here is your password reset link: <br><a href="' . $url . '">' . $url . '</a>  </p>';
 
         $message =
-        '<pre style="font-family:times new roman;>"
-         Hello Teresian,  
-            We received a password reset request. The link to reset your password is below. If you did not make 
-            this request, you can ignore this email. Here is your password reset link: <br><a href="' . $url . '">' . $url . '</a>
+        '<pre style="font-family:times new roman;">
+        Hello Teresian,  
+                We received a password reset request. The link to reset your password is below. If you did not make 
+                this request, you can ignore this email. Here is your password reset link: <a href="' . $url . '">' . $url . '</a>
  
-         Regards, 
-         CSTA Student Portal
+        Regards, 
+        CSTA Student Portal
   
         </pre>';
 
@@ -101,7 +101,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
         //$mail->setFrom("CSTA@sampleemail.com"); // insert department email here
         $mail->FromName = "CSTA Student Portal"; // employee name + Department 
-        $mail->addAddress($mailTo, $fname . ' ' . $lname); // recipient
+        $mail->addAddress($mailTo); // recipient
         $mail->SMTPOptions = array('ssl' => array(
             'verify_peer' => false,
             'verify_peer_name' => false,

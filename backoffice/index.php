@@ -2,15 +2,25 @@
 session_start();
 require('includes/connect.php');
 require_once('includes/fetchcurrentsyandsem.php');
-require_once 'includes/fetchuserdetails.php';
+require_once 'codes/fetchuserdetails.php';
+require_once 'codes/fetchuser_session.php';
 
 $office = $Office;
 
 // echo $office;
 if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) {
-    header('location:../../login.php');
+    header('location:login.php');
 }
+
+//Prohibits the user to be logged in more than once at a time
+if ($user_token!=$_SESSION['user_token']) {
+    header('location:logout.php');
+}
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -202,7 +212,7 @@ if (!isset($_SESSION['username_admin']) && !isset($_SESSION['password_admin'])) 
                             <div class="col-lg-3 col-sm-6">
                                 <div class="card-box bg-red">
                                     <div class="inner">
-                                        <h3 class="ctr_total_regs"> </h3>
+                                        <h3 class="ctr_total_regs_dash"> </h3>
                                         <p> Total Pending Registrations</p>
                                     </div>
                                     <div class="icon">

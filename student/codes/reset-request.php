@@ -8,8 +8,6 @@ require("../mailer/PHPMailer/src/Exception.php");
 use PHPMailer\PHPMailer\PHPMailer;
 
 
-
-
     $selector = bin2hex(random_bytes(8));
     $token = random_bytes(32);
     
@@ -28,7 +26,7 @@ use PHPMailer\PHPMailer\PHPMailer;
         $stmt->execute($data);
         $checkemail = $stmt->rowCount();
         
-        $admin="no";
+        // $admin="no";
     // } else if($isAdmin = "admin") {
 
     //     //Check if user email is registered in students
@@ -57,8 +55,8 @@ use PHPMailer\PHPMailer\PHPMailer;
         $hashedToken = password_hash($token, PASSWORD_DEFAULT);
 
         try {
-            $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,adm,pwdresetExpires) VALUES(?,?,?,?,?);";
-            $data = array($userEmail, $selector, $hashedToken,$admin, $expires);
+            $sql = "INSERT INTO pwdreset (pwdresetEmail,pwdresetSelector,pwdresetToken,pwdresetExpires) VALUES(?,?,?,?);";
+            $data = array($userEmail, $selector, $hashedToken, $expires);
             $stmt = $con->prepare($sql);
             $stmt->execute($data);
         } catch (PDOException $e) {
