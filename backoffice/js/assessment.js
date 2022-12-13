@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
     var assessTable = $('#assessTable').dataTable({
         dom: 'Bfrtip',
         
@@ -50,6 +52,25 @@ $(document).ready(function() {
             "orderable": false,
         }, ],
     });
+
+    // deptdropdown
+    $('#deptdropdown').on('change', function(){
+        var value=$(this).val();
+
+        alert (value);
+      
+
+
+
+    })
+
+
+
+
+
+
+
+
 
     $(document).on('submit', '#assessForm', function(event) {
         event.preventDefault();

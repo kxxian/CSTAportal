@@ -111,7 +111,35 @@ if ($user_token!=$_SESSION['user_token']) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="" class="form-label text-gray-900 font-weight-bold">
+                            Filter by Department
+                            </label>
+                         
+                            <select name="deptdropdown" id="deptdropdown" class="form-control mb-3">
+                            <option selected="" disabled>..</option>
+                                <?php
+                                
+                                $sql = "select * from departments where admin_only=?";
+                                 $data = array('0');
+                                $stmt = $con->prepare($sql);
+                                $stmt->execute($data);
 
+                                while ($row = $stmt->fetch()) {
+                                    echo '<option value="' . $row['dept'] . '">' . $row['dept'] . '</option>';
+                                }
+                                $stmt = null;
+
+                                ?>
+
+                                
+                                ?>
+
+
+                            </select>
+                        </div>
+                    </div>
 
 
                     <div class="card shadow mb-4">
