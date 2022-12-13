@@ -2,7 +2,7 @@
        
        try{
         $sql="select * from user_login where username=? and pass=? ";
-        $data=array($_SESSION['username_admin'],$_SESSION['password_admin']);
+        $data=array($_SESSION['username'],$_SESSION['password']);
         $stmt=$con->prepare($sql);
         $stmt->execute($data);
         $row=$stmt->fetch();

@@ -2,6 +2,7 @@
 
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
+require_once ('codes/fetchuser_session.php');
 
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {

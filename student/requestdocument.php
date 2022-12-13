@@ -2,10 +2,18 @@
 //ession_start();
 require_once("includes/connect.php");
 require_once("codes/fetchuserdetails.php");
+require_once ('codes/fetchuser_session.php');
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
     header('location:login.php');
 }
+
+//Prohibits the user to be logged in more than one
+if ($user_token!=$_SESSION['user_token']) {
+    header('location:logout.php');
+}
+
+
 if ($snum=="NA"){
     header('location:index.php');
 }
