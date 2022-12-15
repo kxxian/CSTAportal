@@ -279,7 +279,7 @@ if ($user_token!=$_SESSION['user_token']) {
         <!-- Sidebar -->
         <?php
         if ($office == "Registrar") {
-            $pageValue = 5;
+            $pageValue = 6;
         } else {
             header("Location:index.php");
         }

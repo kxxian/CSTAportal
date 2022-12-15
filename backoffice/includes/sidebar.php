@@ -679,7 +679,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
 
@@ -772,7 +772,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
@@ -853,7 +853,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Requirements -->
-              $strSidebar .= '          <li class="nav-item">';
+              $strSidebar .= '          <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="requirements-checking.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-user-check"></i>';
               $strSidebar .= '                <span> Check Requirements <div class="badge badge-danger ctr_checkreq"></div></span></a>';
@@ -863,7 +863,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
               /* //<!-- Nav Item - Enrollment --> */
               $strSidebar .= '        <li class="nav-item">';
@@ -949,14 +949,14 @@ elseif ($office == "Registrar") {
               $strSidebar .= '        </li>';
 
               // <!-- Nav Item - Assessments -->
-              $strSidebar .= '          <li class="nav-item">';
+              $strSidebar .= '          <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
-              $strSidebar .= '        <li class="nav-item active">';
+              $strSidebar .= '        <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
               $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
@@ -1049,17 +1049,17 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
-              $strSidebar .= '        <li class="nav-item">';
+              $strSidebar .= '        <li class="nav-item active">';
               $strSidebar .= '            <a class="nav-link" href="enrollment.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-edit"></i>';
               $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
               $strSidebar .= '        </li>';
               // <!-- Nav Item - Document -->
-              $strSidebar .= '  <li class="nav-item active">';
+              $strSidebar .= '  <li class="nav-item">';
               $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
               $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
               $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
@@ -1138,7 +1138,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
@@ -1148,7 +1148,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '                <span>Enrollment <div class="badge badge-danger ctr_enrollment"></div></span></a>';
               $strSidebar .= '        </li>';
               // <!-- Nav Item - Document -->
-              $strSidebar .= '  <li class="nav-item">';
+              $strSidebar .= '  <li class="nav-item active">';
               $strSidebar .= '    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"';
               $strSidebar .= '       aria-expanded="true" aria-controls="collapseTwo">';
               $strSidebar .= '       <i class="fas fa-fw fa-folder"></i>';
@@ -1164,7 +1164,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '  </li>';
 
               // <!-- Nav Item - Grades -->
-              $strSidebar .= '               <li class="nav-item active">';
+              $strSidebar .= '               <li class="nav-item">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';
@@ -1227,7 +1227,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */
@@ -1253,7 +1253,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '    </div>';
               $strSidebar .= '  </li>';
               // <!-- Nav Item - Grades -->
-              $strSidebar .= '               <li class="nav-item">';
+              $strSidebar .= '               <li class="nav-item active">';
               $strSidebar .= '               <a class="nav-link" href="reqgrades.php">';
               $strSidebar .= '                    <i class="fas fa-fw fa-award"></i>';
               $strSidebar .= '                   <span>Grades Requests <div class="badge badge-danger ctr_gradereq"></div></span></a>';
@@ -1317,7 +1317,7 @@ elseif ($office == "Registrar") {
               $strSidebar .= '          <li class="nav-item">';
               $strSidebar .= '            <a class="nav-link" href="assessments.php">';
               $strSidebar .= '                <i class="fas fa-fw fa-list"></i>';
-              $strSidebar .= '                <span> For Assessment <div class="badge badge-danger    "></div></span></a>';
+              $strSidebar .= '                <span>Assessment <div class="badge badge-danger    "></div></span></a>';
               $strSidebar .= '        </li>';
 
               /* //<!-- Nav Item - Enrollment --> */

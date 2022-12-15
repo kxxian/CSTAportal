@@ -87,7 +87,7 @@ if ($user_token!=$_SESSION['user_token']) {
         <!-- Sidebar -->
         <?php
           if ($office=="Registrar"){
-            $pageValue = 6;
+            $pageValue = 7;
         }else{
             header("Location:index.php");
         }
@@ -247,14 +247,14 @@ if ($user_token!=$_SESSION['user_token']) {
                         </div>
                         
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <div class="col-md-12">
                             <label for="email" class="text-gray-900 font-weight-bold">Remarks</label>
                             <input type="text" name="attachment[]" accept=".jpg" id="attachment" class="form-control" >
                         </div>
                         
                     </div>
-                    
+                     -->
                     <div class="modal-footer">
                         <input type="hidden" name="gradereq_ID" id="gradereq_ID">
                         <input type="hidden" name="operation" id="operation">
