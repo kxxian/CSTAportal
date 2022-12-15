@@ -173,37 +173,37 @@ $(document).ready(function() {
 
     })
 
-    $(document).on('click', '.delete', function() {
-        var user_id = $(this).attr('id');
-        Swal.fire({
-            title: 'Confirm',
-            text: "Are you sure you want to permanently delete this user?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "codes/userscrud.php",
-                    method: "POST",
-                    data: {
-                        delete_id: user_id
-                    },
-                    success: function(data) {
-                        usersTable.api().ajax.reload();
-                    }
-                })
-                Swal.fire(
-                    'Success!',
-                    'User has been deleted.',
-                    'success'
-                )
-            }
-        })
+    // $(document).on('click', '.delete', function() {
+    //     var user_id = $(this).attr('id');
+    //     Swal.fire({
+    //         title: 'Confirm',
+    //         text: "Are you sure you want to permanently delete this user?",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             $.ajax({
+    //                 url: "codes/userscrud.php",
+    //                 method: "POST",
+    //                 data: {
+    //                     delete_id: user_id
+    //                 },
+    //                 success: function(data) {
+    //                     usersTable.api().ajax.reload();
+    //                 }
+    //             })
+    //             Swal.fire(
+    //                 'Success!',
+    //                 'User has been deleted.',
+    //                 'success'
+    //             )
+    //         }
+    //     })
 
-    })
+    // })
 
 
 

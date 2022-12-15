@@ -118,14 +118,14 @@ if (isset($_POST['operation'])) {
         $gender = $_POST['gender'];
         $mobile = htmlspecialchars(trim($_POST['mobile']));
         $office = $_POST['office'];
-        $dept = $_POST['dept'];
+        // $dept = $_POST['dept'];
         $role = $_POST['role'];
         $position = ucwords(htmlspecialchars(trim($_POST['position'])));
 
-        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, dept_ID=? , position=?, permission_ID=?  
+        $statement = $con->prepare("UPDATE employees set lname=?, fname=?, mname=?,email=? ,Gender=? ,mobile=? , office=?, position=?, permission_ID=?  
          WHERE id=?");
 
-        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office, $dept, $position, $role, $id);
+        $data = array($lname, $fname, $mname, $email, $gender, $mobile, $office,  $position, $role, $id);
         $result = $statement->execute($data);
     }
 }

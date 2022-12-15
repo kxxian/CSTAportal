@@ -83,19 +83,7 @@ $(document).ready(function() {
 
         ///////////////////////////////////DEAN
     //sidebar counter for assessments
-    $.post("codes/counter.php",
-    {data6:'get'},function(data6){
-        
-        if(data6>0){
-                // console.log(data6);
-            
-            $(".for_assessment").text(data6.toLocaleString());
-       
-        }else{
-          
-            $(".for_assessment").text('');
-        }
-    });
+
 
        //dashboard counter for assessed students
        $.post("codes/counter.php",

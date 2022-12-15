@@ -111,7 +111,7 @@ if ($user_token!=$_SESSION['user_token']) {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-sm-4">
                             <label for="" class="form-label text-gray-900 font-weight-bold">
                             Filter by Department
@@ -139,7 +139,7 @@ if ($user_token!=$_SESSION['user_token']) {
 
                             </select>
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="card shadow mb-4">
@@ -151,7 +151,7 @@ if ($user_token!=$_SESSION['user_token']) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="assessTable" class="table table-bordered text-gray-900" width="100%" cellspacing="0">
+                                <table id="assessTable" class="table table-bordered text-gray-900 dudong" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th class="text-center">Student No.</th>
@@ -206,7 +206,7 @@ if ($user_token!=$_SESSION['user_token']) {
 
     <!-- scripts -->
     <script src="js/pending-payments.js"></script>
-    <script src="js/requests-counter.js"></script>
+    <script src="js/counter-registrar.js"></script>
     <script src="js/sweetalert.min.js"></script>
 
 

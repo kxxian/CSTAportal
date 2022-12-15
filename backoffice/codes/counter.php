@@ -64,8 +64,8 @@ if (isset($_POST['data5'])) {
 //Dashboard Card -- For Assessment Students 
 if (isset($_POST['data6'])) {
 
-  $sql = "SELECT enrollment_status from vwforenrollment_students where dept=? AND schoolyr=? AND semester=? AND enrollment_status=?";
-  $data = array($dept, $currentsyval, $currentsemval, "Assessment");
+  $sql = "SELECT enrollment_status from vwforenrollment_students where schoolyr=? AND semester=? AND enrollment_status=?";
+  $data = array($currentsyval, $currentsemval, "Assessment");
   $stmt = $con->prepare($sql);
   $stmt->execute($data);
   $count = $stmt->rowCount();

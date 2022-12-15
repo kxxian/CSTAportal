@@ -37,7 +37,7 @@ foreach($result as $row)
     $sub_array=array();
     $sub_array[]='<center>'.$row["empname"].'</center>';
     $sub_array[]='<center>'.$row["office"].'</center>';
-    $sub_array[]='<center>'.$row["dept"].'</center>';
+    // $sub_array[]='<center>'.$row["dept"].'</center>';
     $sub_array[]='<center>'.$row["position"].'</center>';
     $sub_array[]='<center>'.$row["role"].'</center>';
     $isActive=$sub_array[]='<center>'.$row["isActive"].'</center>';

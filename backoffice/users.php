@@ -116,11 +116,11 @@ if ($user_token!=$_SESSION['user_token']) {
                                         <tr>
                                             <th class="text-center">Name</th>
                                             <th class="text-center">Office</th>
-                                            <th class="text-center">Department</th>
+                                            <!-- <th class="text-center">Department</th> -->
                                             <th class="text-center">Designation</th>
                                             <th class="text-center">User Type</th>
                                             <th class="text-center">isActive</th>
-                                            <th width="65" class="text-center">Actions</th>
+                                            <th width="80" class="text-center">Actions</th>
                                         </tr>
 
                                     </thead>
