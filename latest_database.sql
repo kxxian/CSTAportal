@@ -303,7 +303,7 @@ CREATE TABLE `employees` (
 /*Data for the table `employees` */
 
 insert  into `employees`(`id`,`empnum`,`lname`,`fname`,`mname`,`email`,`Gender`,`mobile`,`office`,`dept_ID`,`position`,`permission_ID`,`username`,`pass`,`dor`,`isActive`) values 
-(831,'','Munoz','Jason','Beltran','dodong@email.com','Male','09872323231','Registrar',1,'Dean',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28',NULL,'No');
+(831,'','Munoz','Jason','Beltran','dodong@email.com','Male','09872323231','Registrar',1,'Registrar',1,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28',NULL,'No');
 
 /*Table structure for table `enrollment` */
 
@@ -326,12 +326,12 @@ CREATE TABLE `enrollment` (
   `remarks` varchar(255) DEFAULT NULL,
   `enrollment_status` varchar(50) NOT NULL DEFAULT 'Validating Requirements',
   PRIMARY KEY (`enrollment_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=285 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment` */
 
 insert  into `enrollment`(`enrollment_ID`,`sid`,`snum`,`studtype`,`grade_copy`,`mobile`,`yrlevel_ID`,`dept_ID`,`course_ID`,`schoolyr_ID`,`semester_ID`,`date_enrolled`,`date_assessed`,`remarks`,`enrollment_status`) values 
-(283,39,'20-14789','Regular','283.pdf','09613397412',1,1,6,2,3,'2022-12-02 19:44:53',NULL,'','Validating');
+(284,39,'20-14789','Regular','284.pdf','09613397412',1,1,6,2,3,'2022-12-12 18:20:59',NULL,NULL,'Assessment');
 
 /*Table structure for table `enrollment_switch` */
 
@@ -365,9 +365,6 @@ CREATE TABLE `enrollment_validation` (
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `enrollment_validation` */
-
-insert  into `enrollment_validation`(`ev_ID`,`sid`,`OR`,`assessment`,`schoolyr_ID`,`semester_ID`,`date_sent`,`status`) values 
-(24,39,'24.jpg','24.jpg',2,3,'2022-12-03 01:16:54','Pending');
 
 /*Table structure for table `events` */
 
@@ -521,14 +518,15 @@ CREATE TABLE `notif` (
   `date` datetime NOT NULL,
   `isSeen` tinyint(2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`notif_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `notif` */
 
 insert  into `notif`(`notif_ID`,`sid`,`notification`,`icon`,`color`,`link`,`date`,`isSeen`) values 
 (105,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:09:35',0),
 (106,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:30:10',0),
-(107,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:36:58',0);
+(107,44,'Welcome to CSTA Student Portal. You can now set up your profile here.','fas fa-user text-white','bg-success','profile.php','2022-12-06 21:36:58',0),
+(108,39,'You are now in queue for assessment.','fas fa-check text-white','bg-success','enrollment.php','2022-12-12 18:20:59',1);
 
 /*Table structure for table `particulars` */
 
@@ -44678,7 +44676,7 @@ CREATE TABLE `students` (
 /*Data for the table `students` */
 
 insert  into `students`(`id`,`studtype`,`lname`,`fname`,`mname`,`snum`,`yrlevel`,`dept_ID`,`course`,`gender`,`cstatus`,`bday`,`citizenship`,`mobile`,`email`,`cityadd`,`region`,`province`,`city`,`brgy`,`mothermaiden`,`guardian`,`guardiancontact`,`guardiancontact2`,`username`,`pass`,`vkey`,`status`,`dor`,`isAccepted`) values 
-(39,'Freshman','Muñoz','Jason','Beltran','20-14789',4,3,6,'Male','Single','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Alma Bartolo Beltran','Alma Munoz','09089208822','82835506','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-12-02 19:44:53',1),
+(39,'Freshman','Muñoz','Jason','Beltran','20-14789',1,3,6,'Male','Single','1996-07-05','Filipino','09613397412','jasonwafuu@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Alma Bartolo Beltran','Alma Munoz','09089208822','82835506','jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','3aab95dad7d0cf512a57d40bfa98f2b22d1e6507','Verified','2022-12-12 18:20:59',1),
 (44,'Transferee','Taruc','Aila Marie','Boncacas','NA',4,1,6,'Female','Single','2001-03-22','Filipino','09155494035','tarucailamarie22@gmail.com','24 Milton St. Filinvest 2','13','1374','137404','137404010','Maria Teresa Boncacas','Maria Teresa Taruc','09888232838','09999999991','ailataruc','619a7bf4f29ac53bf05fd8408bb1c6e8bc2b45b4','30fc0b036a20f244b6474e21071bd5afe4b2a054','Verified','2022-12-06 23:21:20',1),
 (48,'','Paglinawan','Pupper','','NA',1,1,6,'Male','Single','2021-12-12','Filipino','09777726262','pupper@email.com','Test','13','1374','137402','137402001','','Anetsss','09836537282','','pupperpogi','c7e867d17070d04a9050cba35a281477fdc5366f','53293c00ce3ef840c7ac1705d609b35b316498cf','Verified','2022-11-23 09:37:38',0),
 (50,'','Test','Test','Vvvv','NA',1,1,6,'Male','Single','2022-11-17','S','00939393993','test@enail.com','22d','14','1481','148102','148102003','','Alma Bartolo Beltran','09888282288','09383838883',NULL,NULL,'6f893967fd9d8ccf67d950fdeb5a53c283db8284','Verified','2022-11-28 22:31:30',0),
@@ -44799,12 +44797,13 @@ CREATE TABLE `user_login` (
   `user_token` varchar(255) NOT NULL,
   `login_time` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user_login` */
 
 insert  into `user_login`(`id`,`username`,`pass`,`user_token`,`login_time`) values 
-(4,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','d957721b703b2d3219fa106a34f5326980ad64ff','2022-12-07 01:49:49');
+(4,'employee123','2f4de0eff521909e5d183c7ab872a94560fccc28','6926b43326d67b524d1c6935a2f744b1d5768b1b','2022-12-15 20:27:38'),
+(5,'jmunoz123','962a7b688815c5285c7d9b41bad3fd40ef0f6ae5','9ce1f178dfe4b4bb60a6b1dd6a38d63560a57317','2022-12-13 20:46:59');
 
 /*Table structure for table `yrlevel` */
 
